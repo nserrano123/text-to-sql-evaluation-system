@@ -19,7 +19,7 @@ optional_string_strategy = st.one_of(st.none(), st.text(max_size=255))
 # Strategy for generating invalid (empty/whitespace) strings
 invalid_string_strategy = st.one_of(
     st.just(""),  # Empty string
-    st.text(max_size=50).filter(lambda x: not x.strip())  # Whitespace-only strings
+    st.text(alphabet=" \t\n\r\f\v", min_size=1, max_size=50)  # Whitespace-only strings
 )
 
 

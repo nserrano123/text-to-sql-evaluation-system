@@ -1,6 +1,6 @@
 """GoldQuery model for storing reference SQL queries"""
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from datetime import datetime
 from typing import Optional
 from uuid import UUID
@@ -18,6 +18,14 @@ class GoldQuery(BaseModel):
     tablas_columnas_ddl: str = Field(..., min_length=1, description="DDL schema information for database context")
     sql_reference: str = Field(..., min_length=1, description="Correct SQL query (gold standard)")
     created_at: datetime
+
+    @field_validator('chat_input', 'tablas_columnas_ddl', 'sql_reference')
+    @classmethod
+    def validate_required_fields_not_empty(cls, v: str) -> str:
+        """Validate that required string fields are not empty or whitespace-only"""
+        if not v or not v.strip():
+            raise ValueError('Field cannot be empty or contain only whitespace')
+        return v
 
     class Config:
         from_attributes = True
@@ -37,6 +45,14 @@ class GoldQueryCreate(BaseModel):
     pregunta_descompuesta: Optional[str] = None
     tablas_columnas_ddl: str = Field(..., min_length=1, description="DDL schema information for database context")
     sql_reference: str = Field(..., min_length=1, description="Correct SQL query (gold standard)")
+
+    @field_validator('chat_input', 'tablas_columnas_ddl', 'sql_reference')
+    @classmethod
+    def validate_required_fields_not_empty(cls, v: str) -> str:
+        """Validate that required string fields are not empty or whitespace-only"""
+        if not v or not v.strip():
+            raise ValueError('Field cannot be empty or contain only whitespace')
+        return v
 
     class Config:
         from_attributes = True

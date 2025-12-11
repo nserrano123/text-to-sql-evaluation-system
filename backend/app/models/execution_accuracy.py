@@ -22,3 +22,15 @@ class ExecutionAccuracy(BaseModel):
             datetime: lambda v: v.isoformat(),
             UUID: lambda v: str(v)
         }
+
+
+class ExecutionAccuracyCreate(BaseModel):
+    """Model for creating new execution accuracy records"""
+    
+    evaluation_id: UUID = Field(..., description="Reference to the evaluation")
+    results_match: Optional[bool] = Field(None, description="Whether query results match")
+    is_correct: bool = Field(..., description="Whether the generated query produces correct results")
+    evaluator_notes: Optional[str] = None
+
+    class Config:
+        from_attributes = True
