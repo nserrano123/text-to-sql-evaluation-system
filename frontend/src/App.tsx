@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import DashboardPageClean from './pages/DashboardPageClean'
 import EvaluationPageDirect from './pages/EvaluationPageDirect'
-import ResultsPage from './pages/ResultsPage'
+import ResultsPageDirect from './pages/ResultsPageDirect'
 import ExportPage from './pages/ExportPage'
 
 const queryClient = new QueryClient()
@@ -26,7 +26,7 @@ function App() {
               <Route path="/" element={<DashboardPageClean />} />
               <Route path="/evaluation" element={<EvaluationPageDirect />} />
               <Route path="/evaluation/:queryId" element={<EvaluationPageDirect />} />
-              <Route path="/results" element={<ResultsPage />} />
+              <Route path="/results" element={<ResultsPageDirect />} />
               <Route path="/export" element={<ExportPage />} />
             </Routes>
           </main>
