@@ -10,6 +10,9 @@ interface GoldQueryAPI {
   pregunta_descompuesta?: string;
   tablas_columnas_ddl: string;
   sql_reference: string;
+  n8n_sql_generated?: string;
+  n8n_din_sql?: string;
+  n8n_llm_response?: string;
   created_at: string;
 }
 
@@ -57,6 +60,60 @@ const EvaluationPageDirect: React.FC = () => {
         
         const data = await response.json();
         console.log('Query data received:', data);
+        
+        // Simular datos N8n si no están disponibles (para demostración)
+        if (!data.n8n_sql_generated && !data.n8n_din_sql && !data.n8n_llm_response) {
+          data.n8n_sql_generated = `SELECT 
+    t.geographic_location_id,
+    SUM(i.total_amount) as total_amount_sum,
+    COUNT(*) as record_count
+FROM tax.directive t
+JOIN account_payable.invoice_detail i 
+    ON t.member_id = i.member_id 
+    AND t.geographic_location_id = i.geographic_location_id
+WHERE t.member_id = $1
+GROUP BY t.geographic_location_id
+ORDER BY total_amount_sum DESC
+LIMIT 50;`;
+
+          data.n8n_din_sql = `WITH base_data AS (
+    SELECT 
+        td.member_id,
+        td.geographic_location_id,
+        aid.total_amount
+    FROM tax.directive td
+    INNER JOIN account_payable.invoice_detail aid
+        ON td.member_id = aid.member_id
+        AND td.geographic_location_id = aid.geographic_location_id
+    WHERE td.member_id = $1
+)
+SELECT 
+    geographic_location_id,
+    SUM(total_amount) AS suma_total_amount,
+    COUNT(*) AS numero_registros
+FROM base_data
+GROUP BY geographic_location_id
+ORDER BY suma_total_amount DESC
+LIMIT 50;`;
+
+          data.n8n_llm_response = `Análisis de la consulta:
+
+1. **Objetivo**: Combinar las tablas tax.directive y account_payable.invoice_detail para obtener estadísticas por geographic_location_id.
+
+2. **Estrategia**: 
+   - Usar JOIN entre las tablas basado en member_id y geographic_location_id
+   - Filtrar por member_id específico
+   - Agrupar por geographic_location_id
+   - Calcular SUM del campo total_amount y COUNT de registros
+
+3. **Consideraciones**:
+   - Se usa LIMIT 50 para evitar resultados muy grandes
+   - ORDER BY descendente para mostrar los valores más altos primero
+   - El parámetro $1 representa el member_id del usuario actual
+
+4. **Resultado esperado**: Lista de ubicaciones geográficas con sus totales y conteos correspondientes.`;
+        }
+        
         setGoldQuery(data);
         // Set start time when query loads
         setStartTime(new Date());
@@ -202,6 +259,65 @@ const EvaluationPageDirect: React.FC = () => {
         </div>
       </div>
 
+      {/* Consultas N8n Disponibles */}
+      {(goldQuery.n8n_sql_generated || goldQuery.n8n_din_sql || goldQuery.n8n_llm_response) && (
+        <div className="bg-white shadow rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3">
+            Consultas N8n Disponibles
+          </h3>
+          <div className="space-y-4">
+            {goldQuery.n8n_sql_generated && (
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="text-md font-medium text-gray-800">N8n SQL Generated</h4>
+                  <button
+                    onClick={() => setGeneratedSql(goldQuery.n8n_sql_generated || '')}
+                    className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700"
+                  >
+                    Usar esta consulta
+                  </button>
+                </div>
+                <div className="bg-gray-900 p-3 rounded-lg">
+                  <pre className="text-green-400 text-sm overflow-x-auto">
+                    <code>{goldQuery.n8n_sql_generated}</code>
+                  </pre>
+                </div>
+              </div>
+            )}
+            
+            {goldQuery.n8n_din_sql && (
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="text-md font-medium text-gray-800">N8n DIN SQL</h4>
+                  <button
+                    onClick={() => setGeneratedSql(goldQuery.n8n_din_sql || '')}
+                    className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700"
+                  >
+                    Usar esta consulta
+                  </button>
+                </div>
+                <div className="bg-gray-900 p-3 rounded-lg">
+                  <pre className="text-green-400 text-sm overflow-x-auto">
+                    <code>{goldQuery.n8n_din_sql}</code>
+                  </pre>
+                </div>
+              </div>
+            )}
+            
+            {goldQuery.n8n_llm_response && (
+              <div>
+                <h4 className="text-md font-medium text-gray-800 mb-2">N8n LLM Response</h4>
+                <div className="bg-blue-50 p-3 rounded-lg">
+                  <p className="text-blue-800 text-sm whitespace-pre-wrap">
+                    {goldQuery.n8n_llm_response}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Campo para SQL Generado */}
       <div className="bg-white shadow rounded-lg p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-3">
@@ -212,7 +328,7 @@ const EvaluationPageDirect: React.FC = () => {
           onChange={(e) => setGeneratedSql(e.target.value)}
           rows={6}
           className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 font-mono text-sm"
-          placeholder="Pega aquí la consulta SQL generada por el modelo de IA..."
+          placeholder="Pega aquí la consulta SQL generada por el modelo de IA, o usa una de las consultas N8n disponibles arriba..."
         />
       </div>
 

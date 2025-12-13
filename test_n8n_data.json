@@ -1,0 +1,8 @@
+{
+  "chat_input": "Consulta de prueba con datos N8n",
+  "tablas_columnas_ddl": "test_table -> id, name, value",
+  "sql_reference": "SELECT * FROM test_table;",
+  "n8n_sql_generated": "SELECT t.geographic_location_id, SUM(i.total_amount) as total_sum, COUNT(*) as record_count FROM tax.directive t JOIN account_payable.invoice_detail i ON t.member_id = i.member_id AND t.geographic_location_id = i.geographic_location_id WHERE t.member_id = $1 GROUP BY t.geographic_location_id ORDER BY total_sum DESC LIMIT 50;",
+  "n8n_din_sql": "WITH base AS (SELECT td.member_id, td.geographic_location_id, aid.total_amount FROM tax.directive td INNER JOIN account_payable.invoice_detail aid ON td.member_id = aid.member_id WHERE td.member_id = $1) SELECT geographic_location_id, SUM(total_amount) AS suma_total, COUNT(*) AS registros FROM base GROUP BY geographic_location_id ORDER BY suma_total DESC LIMIT 50;",
+  "n8n_llm_response": "Análisis: Esta consulta combina tax.directive con account_payable.invoice_detail para obtener estadísticas por geographic_location_id. Usa JOIN basado en member_id y geographic_location_id, filtra por member_id específico, agrupa por ubicación geográfica y calcula SUM y COUNT."
+}
