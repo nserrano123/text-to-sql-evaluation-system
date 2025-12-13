@@ -126,7 +126,7 @@ async def get_metrics_summary() -> MetricsSummary:
         )
         
         # Get aggregated metrics summary
-        summary = await metrics_summary_service.get_metrics_summary()
+        summary = metrics_summary_service.get_metrics_summary()
         
         return summary
     except Exception as e:

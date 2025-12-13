@@ -22,7 +22,7 @@ class MetricsSummaryService:
         self.time_to_answer_service = time_to_answer_service
         self.component_matching_service = component_matching_service
     
-    async def get_metrics_summary(self) -> MetricsSummary:
+    def get_metrics_summary(self) -> MetricsSummary:
         """
         Aggregate all metrics into a single summary object.
         
@@ -30,17 +30,21 @@ class MetricsSummaryService:
             MetricsSummary: Object containing all aggregated metrics
         """
         # Get total and completed evaluation counts
-        all_evaluations = await self.evaluation_repository.get_all()
+        all_evaluations = self.evaluation_repository.get_all()
         total_evaluations = len(all_evaluations)
         
         # For completed evaluations, we need to check which ones have associated metrics
-        execution_accuracy_records = await self.execution_accuracy_service.get_all_execution_accuracy_records()
+        execution_accuracy_records = self.execution_accuracy_service.repository.get_all()
         completed_evaluations = len(execution_accuracy_records)
         
         # Calculate individual metrics
-        execution_accuracy = await self.execution_accuracy_service.calculate_current_ex()
-        average_time_to_answer = await self.time_to_answer_service.calculate_current_average_tta()
-        component_scores = await self.component_matching_service.calculate_current_component_f1_scores()
+        execution_accuracy = self.execution_accuracy_service.calculate_ex(execution_accuracy_records)
+        
+        time_to_answer_records = self.time_to_answer_service.repository.get_all()
+        average_time_to_answer = self.time_to_answer_service.calculate_average_tta(time_to_answer_records)
+        
+        component_matching_records = self.component_matching_service.repository.get_all()
+        component_scores = self.component_matching_service.calculate_component_f1_scores(component_matching_records)
         
         return MetricsSummary(
             execution_accuracy=execution_accuracy,

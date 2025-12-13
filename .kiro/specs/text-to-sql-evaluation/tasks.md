@@ -167,7 +167,7 @@
     - Integrar con servicios de métricas implementados
     - _Requirements: 3.2, 4.4, 5.3, 7.4_
 
-  - [-] 7.5 Escribir property test para conteos del dashboard
+  - [x] 7.5 Escribir property test para conteos del dashboard
     - **Property 19: Dashboard counts accuracy**
     - **Validates: Requirements 7.1, 7.2, 7.3**
 
@@ -179,7 +179,7 @@
     - Configurar resolución a 300 DPI y etiquetas en español
     - _Requirements: 8.1, 8.4, 8.5_
 
-  - [ ] 8.2 Crear servicio de gráficas de componentes
+  - [x] 8.2 Crear servicio de gráficas de componentes
 
     - Función generate_component_chart: gráfico de barras comparando F1 scores por componente
     - Configurar resolución a 300 DPI y etiquetas en español
@@ -250,133 +250,133 @@
 
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 11. Implementar estructura base del frontend
+- [x] 11. Implementar estructura base del frontend
 
-  - [ ] 11.1 Configurar React Router y estructura de páginas
+  - [x] 11.1 Configurar React Router y estructura de páginas
 
     - Crear rutas para: Dashboard, Evaluation, Results, Export
     - Crear componentes de página básicos
     - _Requirements: 6.1-6.6, 7.1-7.4_
 
-  - [ ] 11.2 Crear servicios de API del frontend
+  - [x] 11.2 Crear servicios de API del frontend
 
     - Implementar funciones para llamar a todos los endpoints del backend
     - Configurar axios con base URL y manejo de errores
     - _Requirements: 6.5, 6.6_
 
-  - [ ] 11.3 Crear hooks personalizados de React Query
+  - [x] 11.3 Crear hooks personalizados de React Query
 
     - Hooks para queries y mutations de gold_queries, evaluations, métricas
     - _Requirements: 6.5, 6.6_
 
-  - [ ] 11.4 Crear tipos TypeScript para el frontend
+  - [x] 11.4 Crear tipos TypeScript para el frontend
 
     - Interfaces que correspondan a los modelos Pydantic del backend
     - _Requirements: 6.1-6.6_
 
-  - [ ] 11.5 Crear componente QueryComparison
+  - [x] 11.5 Crear componente QueryComparison
 
     - Mostrar consulta gold vs generada lado a lado
     - Mostrar contexto: chat_input, tablas_columnas_ddl
     - _Requirements: 6.2_
 
-  - [ ]\* 11.6 Escribir property test para completitud de display
+  - [x] 11.6 Escribir property test para completitud de display
     - **Property 16: Query display completeness**
     - **Validates: Requirements 6.2**
 
-- [ ] 12. Implementar página de evaluación
+- [x] 12. Implementar página de evaluación
 
-  - [ ] 12.1 Crear componente ExecutionAccuracyForm
+  - [x] 12.1 Crear componente ExecutionAccuracyForm
 
     - Botones para marcar correcto/incorrecto
     - Campo de texto para notas
     - _Requirements: 6.3, 10.1_
 
-  - [ ] 12.2 Crear componente ComponentEvaluator
+  - [x] 12.2 Crear componente ComponentEvaluator
 
     - Checkboxes para SELECT, WHERE, GROUP BY, ORDER BY, KEYWORDS
     - Campo de texto para notas de componentes
     - _Requirements: 6.4, 10.2_
 
-  - [ ]\* 12.3 Escribir property test para completitud de componentes
+  - [x] 12.3 Escribir property test para completitud de componentes
 
     - **Property 12: Component evaluation completeness**
     - **Validates: Requirements 5.1**
 
-  - [ ] 12.4 Implementar página EvaluationPage completa
+  - [x] 12.4 Implementar página EvaluationPage completa
 
     - Integrar QueryComparison, ExecutionAccuracyForm, ComponentEvaluator
     - Implementar lógica de guardado automático
     - Navegar automáticamente a siguiente consulta pendiente
     - _Requirements: 6.5, 6.6_
 
-  - [ ]\* 12.5 Escribir property test para navegación automática
+  - [x] 12.5 Escribir property test para navegación automática
 
     - **Property 18: Next query navigation**
     - **Validates: Requirements 6.6**
 
-  - [ ] 12.6 Implementar tracking de tiempo (TTA)
+  - [-] 12.6 Implementar tracking de tiempo (TTA)
 
     - Registrar start_time al cargar consulta
     - Registrar end_time al guardar evaluación
     - _Requirements: 4.1, 4.2_
 
-  - [ ]\* 12.7 Escribir property test para registro de timestamps
+  - [x] 12.7 Escribir property test para registro de timestamps
     - **Property 9: Timestamp recording**
     - **Validates: Requirements 4.1, 4.2**
 
-- [ ] 13. Implementar página de dashboard
+- [x] 13. Implementar página de dashboard
 
-  - [ ] 13.1 Crear componente ProgressIndicator
+  - [x] 13.1 Crear componente ProgressIndicator
 
     - Mostrar total de consultas, evaluadas, y porcentaje
     - _Requirements: 7.1, 7.2, 7.3_
 
-  - [ ] 13.2 Crear componente MetricsCard
+  - [x] 13.2 Crear componente MetricsCard
 
     - Mostrar EX promedio, TTA promedio, F1 scores por componente
     - _Requirements: 7.4_
 
-  - [ ] 13.3 Crear componente PendingQueriesList
+  - [x] 13.3 Crear componente PendingQueriesList
 
     - Mostrar consultas sin evaluación
     - Permitir seleccionar para evaluar
     - _Requirements: 6.1_
 
-  - [ ] 13.4 Implementar página DashboardPage completa
+  - [x] 13.4 Implementar página DashboardPage completa
 
     - Integrar ProgressIndicator, MetricsCard, PendingQueriesList
     - Conectar con hooks de React Query para datos en tiempo real
     - _Requirements: 6.1, 7.1-7.4_
 
-  - [ ]\* 13.5 Escribir property test para listado de pendientes
+  - [ ] 13.5 Escribir property test para listado de pendientes
     - **Property 15: Pending queries listing**
     - **Validates: Requirements 6.1**
 
 - [ ] 14. Implementar página de resultados y visualización
 
-  - [ ] 14.1 Crear componente ChartViewer
+  - [x] 14.1 Crear componente ChartViewer
 
     - Componente genérico para mostrar gráficas PNG del backend
     - Permitir descargar gráficas generadas
     - _Requirements: 8.1-8.5_
 
-  - [ ] 14.2 Crear componentes específicos de gráficas
+  - [x] 14.2 Crear componentes específicos de gráficas
 
     - ExChart: vista de gráfico de EX
     - ComponentChart: vista de gráfico de componentes
     - TtaHistogram: vista de histograma TTA
     - _Requirements: 8.1-8.3_
 
-  - [ ] 14.3 Implementar página ResultsPage completa
+  - [x] 14.3 Implementar página ResultsPage completa
 
     - Integrar todos los componentes de gráficas
     - Conectar con servicios de API para generar gráficas
     - _Requirements: 8.1-8.5_
 
-- [ ] 15. Implementar página de exportación
+- [x] 15. Implementar página de exportación
 
-  - [ ] 15.1 Crear componente ExportButton
+  - [x] 15.1 Crear componente ExportButton
 
     - Componente genérico para botones de exportación
     - Manejar estados de carga y descarga
@@ -420,9 +420,11 @@
 
   - [ ] 17.2 Implementar paginación en backend y frontend
 
-    - Endpoints con paginación para listas grandes
-    - Componentes de paginación en frontend (20 por página)
-    - _Requirements: 6.1_
+        - Endpoints con paginación para listas grandes
+        - Componentes de paginación en frontend (20 por página)
+        - _Requirements: 6.1_
+
+    <!--
 
 - [ ] 18. Configurar autenticación y seguridad
 
@@ -447,6 +449,7 @@
   - [ ] 18.4 Configurar rate limiting en backend
     - Limitar a 100 requests por minuto
     - _Requirements: 6.5_
+      -->
 
 - [ ] 19. Checkpoint final - Verificar sistema completo
 

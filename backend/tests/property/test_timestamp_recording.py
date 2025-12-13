@@ -2,8 +2,12 @@
 
 import pytest
 from hypothesis import given, strategies as st, settings
-from backend.app.models.time_to_answer import TimeToAnswer, TimeToAnswerCreate
-from backend.app.models.evaluation import Evaluation, EvaluationCreate
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
+
+from app.models.time_to_answer import TimeToAnswer, TimeToAnswerCreate
+from app.models.evaluation import Evaluation, EvaluationCreate
 from uuid import uuid4, UUID
 from datetime import datetime, timezone, timedelta
 from typing import Optional

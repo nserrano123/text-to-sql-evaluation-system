@@ -47,16 +47,16 @@ class ComponentMatchingService:
             return {
                 "select": 0.0,
                 "where": 0.0,
-                "group_by": 0.0,
-                "order_by": 0.0,
+                "groupBy": 0.0,
+                "orderBy": 0.0,
                 "keywords": 0.0
             }
         
         components = {
             "select": [record.select_correct for record in component_records],
             "where": [record.where_correct for record in component_records],
-            "group_by": [record.group_by_correct for record in component_records],
-            "order_by": [record.order_by_correct for record in component_records],
+            "groupBy": [record.group_by_correct for record in component_records],
+            "orderBy": [record.order_by_correct for record in component_records],
             "keywords": [record.keywords_correct for record in component_records]
         }
         

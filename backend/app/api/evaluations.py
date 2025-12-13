@@ -4,8 +4,9 @@ from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional, Dict, Any
 from uuid import UUID
 
-from ..models.evaluation import Evaluation, EvaluationCreate
+from ..models.evaluation import Evaluation, EvaluationCreate, CompleteEvaluationCreate
 from ..repositories.evaluation_repository import EvaluationRepository
+from ..services.evaluation_service import EvaluationService
 
 router = APIRouter(prefix="/api/evaluations", tags=["evaluations"])
 
@@ -64,12 +65,42 @@ async def get_evaluation_by_id(evaluation_id: UUID) -> Evaluation:
 
 
 @router.post("/", response_model=Evaluation, status_code=201)
-async def create_evaluation(evaluation_data: EvaluationCreate) -> Evaluation:
+async def create_evaluation(evaluation_data: CompleteEvaluationCreate) -> Evaluation:
     """
-    Create a new evaluation record.
+    Create a new complete evaluation record with all related metrics.
+    
+    This endpoint creates:
+    - The main evaluation record
+    - Execution accuracy record with time tracking (Requirements 4.1, 4.2)
+    - Time to answer record
+    - Component matching record
     
     Args:
-        evaluation_data: Evaluation data to create
+        evaluation_data: Complete evaluation data including time tracking
+        
+    Returns:
+        Evaluation: The created evaluation record
+        
+    Raises:
+        HTTPException: 400 if validation fails or foreign key constraint violated, 
+                      500 if database operation fails
+    """
+    try:
+        service = EvaluationService()
+        return service.create_complete_evaluation(evaluation_data)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to create evaluation: {str(e)}")
+
+
+@router.post("/simple", response_model=Evaluation, status_code=201)
+async def create_simple_evaluation(evaluation_data: EvaluationCreate) -> Evaluation:
+    """
+    Create a simple evaluation record (without metrics).
+    
+    Args:
+        evaluation_data: Basic evaluation data to create
         
     Returns:
         Evaluation: The created evaluation record

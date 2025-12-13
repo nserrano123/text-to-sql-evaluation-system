@@ -33,6 +33,15 @@ export default {
   // Setup files
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   
+  // Globals for Vite compatibility
+  globals: {
+    'import.meta': {
+      env: {
+        VITE_API_URL: 'http://localhost:8000'
+      }
+    }
+  },
+  
   // Coverage configuration
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
@@ -42,7 +51,7 @@ export default {
   ],
   
   // Coverage thresholds
-  coverageThresholds: {
+  coverageThreshold: {
     global: {
       branches: 70,
       functions: 70,
