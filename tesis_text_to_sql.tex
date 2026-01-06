@@ -1,36 +1,34 @@
-\documentclass[journal]{IEEEtai}
+\documentclass[journal]{IEEEtran}
 
-\usepackage[colorlinks,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
-\usepackage{color,array}
-\usepackage{graphicx}
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-noshorthands]{babel}
 
-% Fix for underfull vbox warnings
+\usepackage{graphicx}
+\usepackage{color,array}
+\usepackage{microtype}
+\usepackage[colorlinks,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+
 \raggedbottom
-\setlength{\parskip}{0.5ex plus 0.2ex minus 0.1ex}
-
-% Fix for underfull hbox warnings
 \sloppy
 \tolerance=2000
 \emergencystretch=5em
 \hbadness=10000
-
-\newtheorem{theorem}{Teorema}
-\newtheorem{lemma}{Lema}
-\setcounter{page}{1}
+\newcommand{\tablefont}{\footnotesize}
 
 \begin{document}
 
 \title{Generación de consultas SQL a partir de lenguaje natural aplicado al ERP Fail Fast
 }
 
-\author{Beatriz Natalia Serrano, estudiante de maestria, Martin Santos,estudiante de maestria,  Luis Gabriel Moreno, PHD. Jefe de Sección de Ingeniería de Software
-	Facultad de Ingeniería, Maestría en Inteligencia artificial, Pontificia Universidad Javeriana, Bogotá, Colombia.\\
-	Enero de 2026
-	\thanks{Este trabajo fue desarrollado como parte del programa de Maestría en Inteligencia Artificial de la Pontificia Universidad Javeriana, Bogot{a}, Colombia.}
-	\thanks{Natalia Serrano y Martín Santos, estudiantes de Maestría, Pontificia Universidad Javeriana, Bogotá, Colombia.}
-	\thanks{Director de tesis: Dr. Luis Gabriel Moreno, Pontificia Universidad Javeriana.}}
+\author{Beatriz Natalia Serrano, Martín Santos y Luis Gabriel Moreno%
+	\thanks{Beatriz Natalia Serrano y Martín Santos son estudiantes de la Maestría en Inteligencia Artificial, Facultad de Ingeniería, Pontificia Universidad Javeriana, Bogotá, Colombia.}%
+	\thanks{Luis Gabriel Moreno (Ph.D.) es Jefe de Sección de Ingeniería de Software, Facultad de Ingeniería, Pontificia Universidad Javeriana, Bogotá, Colombia, y director de tesis.}%
+	\thanks{Este trabajo fue desarrollado como parte del programa de Maestría en Inteligencia Artificial de la Pontificia Universidad Javeriana (enero de 2026).}%
+}
 
 \markboth{Tesis de Maestría en Inteligencia Artificial, Pontificia Universidad Javeriana, 2026}
 {Serrano: Arquitectura Híbrida Multi-Agente para Text-to-SQL en Sistemas ERP}
@@ -41,9 +39,7 @@
 	La generación automática de consultas SQL a partir de lenguaje natural (Text-to-SQL) representa un desafío fundamental en el procesamiento del lenguaje natural, especialmente en entornos empresariales complejos como los sistemas ERP. Este trabajo presenta una arquitectura híbrida multi-agente que integra descomposición de consultas, recuperación contextual del esquema y generación controlada de SQL mediante modelos de lenguaje de gran escala (LLMs). La arquitectura propuesta distribuye la tarea entre agentes especializados: un Selector que identifica sub-esquemas relevantes, un Decomposer que divide consultas complejas en subtareas manejables, y un Refiner que ejecuta y corrige iterativamente las consultas generadas. La evaluación se realizó sobre el sistema ERP Fail Fast, utilizando métricas estándar como Execution Accuracy (EX), Time-to-Answer (TTA) y Component Matching. Los resultados demuestran mejoras significativas ********* en precisión (incremento del 15\% en EX) y robustez ********** comparado con enfoques monolíticos, validando la hipótesis de que la colaboración multi-agente y la recuperación contextual mejoran sustancialmente el rendimiento en esquemas complejos. La arquitectura desarrollada democratiza el acceso a la información empresarial, permitiendo consultas en lenguaje natural sin requerir conocimientos técnicos especializados.
 \end{abstract}
 
-\begin{IEEEImpStatement}
-	Esta investigación contribuye significativamente al campo del procesamiento de lenguaje natural aplicado a sistemas empresariales. La arquitectura multi-agente desarrollada permite que usuarios sin conocimientos técnicos accedan directamente a información crítica de sistemas ERP mediante consultas en lenguaje natural, democratizando el acceso a la información empresarial. Los resultados obtenidos demuestran que la colaboración entre agentes especializados supera las limitaciones de enfoques monolíticos, especialmente en esquemas complejos típicos de entornos industriales. Esta tecnología tiene aplicaciones inmediatas en organizaciones que requieren análisis ágil de datos, reduciendo la dependencia de personal técnico especializado y acelerando la toma de decisiones basada en datos. El sistema desarrollado puede adaptarse a diversos dominios empresariales, ofreciendo una solución escalable para la interacción intuitiva con bases de datos complejas.
-\end{IEEEImpStatement}
+\section*{Impact Statement}
 
 \begin{IEEEkeywords}
 	Text-to-SQL, sistemas multi-agente, LLM, ERP, procesamiento de lenguaje natural, RAG, descomposición de consultas, inteligencia artificial empresarial
@@ -194,7 +190,7 @@ El flujo de trabajo de GraphRAG puede organizarse en tres fases principales \cit
 
 En comparación con un RAG clásico, GraphRAG ofrece mayor robustez ante consultas complejas —al hacer explícitas las dependencias entre entidades—, mejor cobertura —al integrar razonamiento global y local— y mayor eficiencia —al seleccionar dinámicamente comunidades relevantes y reducir tokens irrelevantes en la recuperación \cite{han2025graphrag}.
 
-\section{Arquitectura Propuesta del Sistema Text-to-SQL para el ERP FailFast}
+\section{Arquitectura Propuesta}
 
 La arquitectura propuesta se concibe como un sistema multi-agente orientado a transformar preguntas en lenguaje natural en consultas SQL ejecutables sobre el ERP Fail Fast, y luego devolver respuestas comprensibles para el usuario. Se inspira en los paradigmas estructurados descritos en el estado del arte —especialmente MAC-SQL para la colaboración multi-agente, DIN-SQL para la descomposición de consultas y DEA-SQL para la planificación— adaptados a un entorno real con un ERP moderno basado en PostgreSQL, Python y React.
 
@@ -295,6 +291,96 @@ En conjunto, la arquitectura:
 \end{itemize}
 
 Todo ello se implementa sobre el ERP Fail Fast, cuya base de datos fue diseñada de forma documentada y con una nomenclatura pensada para ser interpretable por modelos de lenguaje, lo que facilita el schema linking y la comprensión de la intención del usuario en términos de tablas y columnas.
+
+\begin{figure*}[t]
+	\centering
+	\footnotesize
+	\begin{tikzpicture}[
+			node/.style={draw, rounded corners, align=center, inner sep=4pt},
+			arrow/.style={-Latex, line width=0.6pt},
+			group/.style={draw, rounded corners, inner sep=6pt, dashed},
+			gtitle/.style={anchor=west, font=\bfseries}
+		]
+
+		% -------------------------
+		% Capa Entrada / Intención
+		% -------------------------
+		\node[node] (user) {Usuario ERP\\(Chat / Analítica)};
+		\node[node, right=14mm of user] (meta) {Metadatos\\(member\_id, user\_id, session)};
+		\node[node, below=8mm of meta, xshift=-7mm] (intent) {Agente de Intención\\(LLM conversacional)};
+
+		\draw[arrow] (user) -- (intent);
+		\draw[arrow] (meta) -- (intent);
+
+		\node[node, below left=10mm and 2mm of intent] (direct) {Respuesta directa\\(sin SQL)};
+		\node[node, below right=10mm and 2mm of intent] (decomp) {Agente de Descomposición\\(inspirado en DIN-SQL)};
+
+		\draw[arrow] (intent) -- node[midway, left]{No requiere SQL} (direct);
+		\draw[arrow] (intent) -- node[midway, right]{Requiere SQL} (decomp);
+
+		\node[group, fit=(user)(meta)(intent)(direct)(decomp)] (g1) {};
+		\node[gtitle] at ($(g1.north west)+(2pt,2pt)$) {Capa 1: Entrada e interpretación};
+
+		% --------------------------------
+		% Capa Análisis / Planificación
+		% --------------------------------
+		\node[node, below=14mm of decomp] (complex) {Clasificación de complejidad\\(baja / media / alta)};
+		\node[node, right=18mm of complex] (planner) {Planificador SQL\\(inspirado en DEA-SQL)};
+
+		\draw[arrow] (decomp) -- (complex);
+		\draw[arrow] (complex) -- (planner);
+
+		\node[node, below=12mm of complex, xshift=-10mm] (vdb1) {Vector DB\\Esquema ERP};
+		\node[node, below=12mm of complex, xshift=26mm] (vdb2) {Vector DB\\Ejemplos NL--SQL};
+		\node[node, below=10mm of planner] (rag) {Recuperación de contexto\\(inspirado en DAIL-SQL)};
+
+		\draw[arrow] (vdb1) -- (rag);
+		\draw[arrow] (vdb2) -- (rag);
+		\draw[arrow] (rag) -- (planner);
+
+		\node[group, fit=(complex)(planner)(vdb1)(vdb2)(rag)] (g2) {};
+		\node[gtitle] at ($(g2.north west)+(2pt,2pt)$) {Capa 2: Análisis y planificación};
+
+		% -------------------------
+		% Capa Generación / Ejecución
+		% -------------------------
+		\node[node, right=18mm of planner] (gen) {Agente generador de SQL\\(PostgreSQL-safe)};
+		\node[node, below=10mm of gen] (sql) {SQL SELECT\\(reglas de seguridad)};
+		\node[node, below=10mm of sql] (db) {PostgreSQL ERP\\Fail Fast};
+
+		\draw[arrow] (planner) -- (gen);
+		\draw[arrow] (gen) -- (sql);
+		\draw[arrow] (sql) -- (db);
+
+		% Iterative correction loop
+		\draw[arrow] (db.east) .. controls +(14mm,0mm) and +(14mm,0mm) .. node[midway,right]{error} (gen.east);
+
+		\node[group, fit=(gen)(sql)(db)] (g3) {};
+		\node[gtitle] at ($(g3.north west)+(2pt,2pt)$) {Capa 3: Generación y ejecución};
+
+		% -------------------------
+		% Capa Respuesta / Feedback
+		% -------------------------
+		\node[node, right=18mm of db] (resp) {Agente de respuesta\\(NLG)};
+		\node[node, above=10mm of resp] (out) {Salida amigable\\(tabla / texto)};
+
+		\draw[arrow] (db) -- node[midway, above]{resultado} (resp);
+		\draw[arrow] (resp) -- (out);
+
+		% Logging
+		\node[node, below=10mm of resp] (log) {Registro de interacción\\(pregunta, plan, SQL, métricas)};
+		\draw[arrow] (db) -- (log);
+		\draw[arrow] (resp) -- (log);
+
+		\node[group, fit=(resp)(out)(log)] (g4) {};
+		\node[gtitle] at ($(g4.north west)+(2pt,2pt)$) {Capa 4: Respuesta y retroalimentación};
+
+	\end{tikzpicture}
+
+	\caption{Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua.}
+	\label{fig:failfast_text2sql_arch}
+\end{figure*}
+
 
 \section{Metodología}
 
