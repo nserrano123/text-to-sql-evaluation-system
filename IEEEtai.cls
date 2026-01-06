@@ -204,7 +204,7 @@
 
 
 
-\ProvidesClass{IEEEtran}[2007/03/05 V1.7a by Michael Shell]
+\ProvidesClass{IEEEtai}[2020/07/27 V1.0 IEEE TAI class based on IEEEtran V1.7a by Michael Shell]
 \typeout{-- See the "IEEEtran_HOWTO" manual for usage information.}
 \typeout{-- http://www.michaelshell.org/tex/ieeetran/}
 \NeedsTeXFormat{LaTeX2e}

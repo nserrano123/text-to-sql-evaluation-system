@@ -116,6 +116,8 @@ Este documento especifica los requisitos para un sistema de evaluación de model
 4. WHEN se generan gráficas THEN el Sistema SHALL permitir exportarlas en formato PNG con resolución mínima de 300 DPI para publicación
 5. WHEN se generan gráficas THEN el Sistema SHALL incluir etiquetas claras, leyendas, y títulos descriptivos en español
 6. WHEN se generan gráficas THEN el Sistema SHALL usar una paleta de colores profesional adecuada para documentos académicos
+7. WHEN se generan gráficas THEN el Sistema SHALL permitir personalizar el estilo y formato de las gráficas para diferentes tipos de publicación
+8. WHEN se generan gráficas THEN el Sistema SHALL incluir metadatos de la evaluación (fecha, número de consultas, versión del modelo)
 
 ### Requirement 9
 
@@ -139,3 +141,27 @@ Este documento especifica los requisitos para un sistema de evaluación de model
 2. WHEN un evaluador está calificando componentes THEN el Sistema SHALL proporcionar un campo de texto para notas específicas de componentes
 3. WHEN se guardan las notas THEN el Sistema SHALL almacenar el texto en los campos `evaluator_notes` correspondientes
 4. WHEN se visualizan evaluaciones previas THEN el Sistema SHALL mostrar las notas asociadas a cada evaluación
+
+### Requirement 11
+
+**User Story:** Como administrador del sistema, quiero configurar diferentes modelos de IA para evaluación, para que pueda comparar el rendimiento entre diferentes versiones o tipos de modelos.
+
+#### Acceptance Criteria
+
+1. WHEN se configura un nuevo modelo THEN el Sistema SHALL almacenar información del modelo (nombre, versión, tipo, parámetros)
+2. WHEN se realiza una evaluación THEN el Sistema SHALL asociar la evaluación con el modelo específico utilizado
+3. WHEN se calculan métricas THEN el Sistema SHALL permitir filtrar y comparar resultados por modelo
+4. WHEN se generan reportes THEN el Sistema SHALL incluir comparaciones entre diferentes modelos
+5. WHEN se exportan datos THEN el Sistema SHALL incluir información del modelo en los archivos exportados
+
+### Requirement 12
+
+**User Story:** Como investigador, quiero realizar análisis estadísticos avanzados de los resultados, para que pueda generar insights más profundos sobre el rendimiento del modelo.
+
+#### Acceptance Criteria
+
+1. WHEN se solicita análisis estadístico THEN el Sistema SHALL calcular intervalos de confianza para las métricas principales
+2. WHEN se comparan modelos THEN el Sistema SHALL realizar pruebas de significancia estadística
+3. WHEN se analizan patrones THEN el Sistema SHALL identificar tipos de consultas con mayor/menor accuracy
+4. WHEN se generan reportes THEN el Sistema SHALL incluir análisis de correlación entre métricas
+5. WHEN se exportan análisis THEN el Sistema SHALL generar tablas estadísticas en formato LaTeX para publicación académica

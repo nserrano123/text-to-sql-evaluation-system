@@ -479,3 +479,93 @@
     - Docker files para backend y frontend
     - Scripts de deployment
     - _Requirements: All_
+
+- [ ] 21. Implementar gestión de modelos de IA
+
+  - [ ] 21.1 Crear tabla ai_models en base de datos
+
+    - Agregar migración SQL para tabla ai_models
+    - Actualizar tabla evaluations con foreign key a ai_models
+    - _Requirements: 11.1, 11.2_
+
+  - [ ] 21.2 Implementar modelo Pydantic para AIModel
+
+    - Crear clase AIModel con validación de campos
+    - Agregar campo ai_model_id a modelo Evaluation
+    - _Requirements: 11.1_
+
+  - [ ] 21.3 Crear repositorio y endpoints para modelos
+
+    - Implementar AIModelRepository con CRUD operations
+    - Crear endpoints GET/POST/PUT/DELETE /api/ai-models
+    - _Requirements: 11.1, 11.2_
+
+  - [ ] 21.4 Actualizar servicios de métricas para filtrado por modelo
+
+    - Modificar servicios de EX, TTA y Component Matching para aceptar model_id
+    - Crear endpoint /api/metrics/comparison para comparar modelos
+    - _Requirements: 11.3, 11.4_
+
+  - [ ] 21.5 Actualizar frontend para selección de modelo
+
+    - Agregar selector de modelo en página de evaluación
+    - Mostrar comparaciones entre modelos en dashboard
+    - _Requirements: 11.2, 11.3_
+
+- [ ] 22. Implementar análisis estadístico avanzado
+
+  - [ ] 22.1 Crear servicio de análisis estadístico
+
+    - Implementar cálculo de intervalos de confianza
+    - Implementar pruebas de significancia estadística (t-test, chi-square)
+    - _Requirements: 12.1, 12.2_
+
+  - [ ] 22.2 Implementar análisis de patrones
+
+    - Identificar tipos de consultas con mayor/menor accuracy
+    - Calcular correlaciones entre métricas
+    - _Requirements: 12.3, 12.4_
+
+  - [ ] 22.3 Crear endpoints de análisis estadístico
+
+    - GET /api/metrics/statistical-analysis
+    - Integrar con servicios de análisis implementados
+    - _Requirements: 12.1-12.4_
+
+  - [ ] 22.4 Actualizar exportación LaTeX con análisis estadístico
+
+    - Incluir tablas de significancia estadística
+    - Agregar intervalos de confianza a métricas
+    - _Requirements: 12.5_
+
+  - [ ] 22.5 Crear página de análisis avanzado en frontend
+
+    - Mostrar análisis estadístico en interfaz web
+    - Permitir configurar parámetros de análisis
+    - _Requirements: 12.1-12.4_
+
+- [ ] 23. Mejorar generación de gráficas
+
+  - [ ] 23.1 Implementar personalización de gráficas
+
+    - Permitir seleccionar estilos (académico, presentación, poster)
+    - Configurar paletas de colores personalizadas
+    - _Requirements: 8.7_
+
+  - [ ] 23.2 Agregar metadatos a gráficas
+
+    - Incluir fecha de evaluación, número de consultas, versión del modelo
+    - Agregar watermark o información de autoría
+    - _Requirements: 8.8_
+
+  - [ ] 23.3 Implementar gráficas de comparación entre modelos
+
+    - Gráficas lado a lado comparando métricas
+    - Gráficas de evolución temporal del rendimiento
+    - _Requirements: 11.4_
+
+- [ ] 24. Checkpoint final - Sistema completo con nuevas funcionalidades
+
+  - Verificar que todas las nuevas funcionalidades estén implementadas
+  - Ejecutar suite completa de tests
+  - Validar integración entre componentes nuevos y existentes

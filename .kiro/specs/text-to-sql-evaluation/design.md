@@ -136,7 +136,43 @@ CREATE TABLE component_matching (
 );
 ```
 
+#### Table: `ai_models`
+
+```sql
+CREATE TABLE ai_models (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name VARCHAR(255) NOT NULL,
+  version VARCHAR(100) NOT NULL,
+  model_type VARCHAR(100) NOT NULL, -- 'gpt-4', 'claude', 'llama', etc.
+  parameters JSONB, -- Store model configuration
+  description TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(name, version)
+);
+```
+
+#### Updated Table: `evaluations`
+
+```sql
+CREATE TABLE evaluations (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  gold_query_id UUID NOT NULL REFERENCES gold_queries(id) ON DELETE CASCADE,
+  ai_model_id UUID REFERENCES ai_models(id) ON DELETE SET NULL,
+  generated_sql TEXT NOT NULL,
+  evaluation_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+```
+
 ### Backend API Endpoints
+
+#### AI Models
+
+- `GET /api/ai-models` - Listar modelos disponibles
+- `GET /api/ai-models/:id` - Obtener modelo específico
+- `POST /api/ai-models` - Registrar nuevo modelo
+- `PUT /api/ai-models/:id` - Actualizar información del modelo
+- `DELETE /api/ai-models/:id` - Eliminar modelo
 
 #### Evaluations
 
@@ -156,9 +192,14 @@ CREATE TABLE component_matching (
 #### Metrics
 
 - `GET /api/metrics/execution-accuracy` - Calcular EX global
+- `GET /api/metrics/execution-accuracy/:model_id` - Calcular EX por modelo
 - `GET /api/metrics/time-to-answer` - Calcular TTA promedio
+- `GET /api/metrics/time-to-answer/:model_id` - Calcular TTA por modelo
 - `GET /api/metrics/component-matching` - Calcular F1 scores por componente
+- `GET /api/metrics/component-matching/:model_id` - Calcular F1 scores por modelo
 - `GET /api/metrics/summary` - Obtener resumen de todas las métricas
+- `GET /api/metrics/comparison` - Comparar métricas entre modelos
+- `GET /api/metrics/statistical-analysis` - Análisis estadístico avanzado
 
 #### Export & Visualization
 
