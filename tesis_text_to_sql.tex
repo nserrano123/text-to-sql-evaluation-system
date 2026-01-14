@@ -10,6 +10,9 @@
 \usepackage{microtype}
 \usepackage[colorlinks,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
 
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,fit,calc}
 
@@ -413,210 +416,6 @@ Este análisis constituye la base empírica para determinar qué componentes son
 
 Con el fin de preservar la claridad del capítulo metodológico sin sacrificar trazabilidad ni reproducibilidad, el detalle completo del conjunto de consultas —incluyendo la pregunta en lenguaje natural, la clasificación por complejidad, la descomposición semántica, las tablas y columnas relevantes del esquema y la consulta SQL de referencia— se presenta en el Anexo A.
 
-\end{document}
-
-El desempeño del sistema propuesto se evaluará mediante un conjunto reducido pero complementario de métricas que capturan tres dimensiones clave: precisión funcional, comprensión semántica del esquema y eficiencia operacional. Estas métricas se seleccionan a partir de las recomendaciones de la literatura reciente en Text-to-SQL \cite{hong2025advances, liu2025survey, shi2025comprehensive, luo2025schema} y se adaptan al contexto de un ERP, donde los usuarios formulan consultas en lenguaje natural con objetivos operativos (por ejemplo, obtener reportes financieros o de inventario en tiempo casi real).
-
-\begin{table*}
-	\caption{Marco de Métricas para Evaluación del Sistema Text-to-SQL en ERP}
-	\label{tab:metrics}
-	\tablefont%
-	\setlength{\tabcolsep}{4pt}
-	\begin{tabular*}{\textwidth}{@{}|l|l|p{6cm}|p{4cm}|@{}}
-		\hline
-		\textbf{Categoría} & \textbf{Métrica} & \textbf{Descripción y Forma de Cálculo} & \textbf{Fundamentación/Referencia} \\
-		\hline
-		Exactitud & Execution Accuracy (EX) &
-		Mide el porcentaje de consultas SQL generadas por el modelo que, al ejecutarse sobre la base de datos, producen los mismos resultados que la consulta de referencia. Se calcula como: EX = (N° de consultas con resultado correcto / N° total de consultas) × 100. &
-		Es la métrica más utilizada en los benchmarks Spider y BIRD \cite{yu2018spider, hong2024bird}. Evalúa la precisión funcional real del sistema. \\
-		\hline
-		Semántica & Schema Linking Accuracy (SLA) &
-		Evalúa la proporción de enlaces correctos entre los términos del lenguaje natural y los objetos del esquema de la base de datos (tablas, columnas, relaciones). Se calcula comparando los mapeos generados con los mapeos de referencia: SLA = (N° de enlaces correctos / N° total de enlaces) × 100. &
-		Fundamental en sistemas ERP, donde un término del usuario (``proveedor'', ``orden de compra'') puede corresponder a múltiples entidades. Propuesta y medida en trabajos como RAT-SQL y ampliada en \cite{liu2025survey}. \\
-		\hline
-		Eficiencia & Time-to-Answer (TTA) &
-		Tiempo promedio (en segundos) desde que el usuario formula la consulta hasta que recibe una respuesta SQL ejecutada correctamente. Se mide directamente en los registros del sistema (logs). &
-		Relevante en entornos ERP donde la latencia impacta la toma de decisiones. Mencionada como métrica de rendimiento en \cite{hong2025advances, luo2025schema}. \\
-		\hline
-	\end{tabular*}
-\end{table*}
-
-En conjunto, estas tres métricas permiten evaluar el sistema desde una perspectiva alineada con el uso real en un ERP:
-
-\begin{itemize}
-	\item \textbf{Execution Accuracy (EX)} captura la capacidad del modelo para responder correctamente a las necesidades de información del usuario
-	\item \textbf{Schema Linking Accuracy (SLA)} mide qué tan bien el modelo comprende y utiliza la estructura específica del esquema empresarial
-	\item \textbf{Time-to-Answer (TTA)} refleja si dicha precisión se alcanza con una latencia aceptable para la operación diaria
-\end{itemize}
-
-De esta manera, se logra un equilibrio entre rigor técnico y relevancia práctica en la validación del agente conversacional Text-to-SQL.
-
-\section{Resultados y Análisis}
-
-\subsection{Rendimiento General}
-
-Los resultados experimentales demuestran mejoras significativas de la arquitectura multi-agente propuesta comparada con los enfoques baseline. La Tabla~\ref{tab:results} presenta un resumen de las métricas principales.
-
-\begin{table}
-	\caption{Comparación de Rendimiento entre Enfoques}
-	\label{tab:results}
-	\tablefont%
-	\setlength{\tabcolsep}{3pt}
-	\begin{tabular*}{21pc}{@{}|l|c|c|c|@{}}
-		\hline
-		\textbf{Métrica} & \textbf{Baseline} & \textbf{DEA-SQL} & \textbf{Propuesta} \\
-		\hline
-		Execution Accuracy (\%) & 72.4 & 78.1 & 87.3 \\
-		Time-to-Answer (s) & 8.2 & 12.4 & 6.8 \\
-		Component F1-Score & 0.68 & 0.74 & 0.82 \\
-		Schema Linking Acc. (\%) & 81.2 & 85.7 & 92.1 \\
-		Task Success Rate (\%) & 89.3 & 91.8 & 96.4 \\
-		\hline
-	\end{tabular*}
-\end{table}
-
-La arquitectura propuesta alcanza un 87.3\% de Execution Accuracy, representando una mejora del 15\% respecto al baseline monolítico y del 9.2\% respecto a DEA-SQL. Esta mejora es especialmente notable en consultas de alta complejidad, donde la colaboración entre agentes permite manejar mejor las dependencias múltiples y el razonamiento multietapa.
-
-\subsection{Análisis por Tipo de Consulta}
-
-El análisis detallado por categorías de consulta revela patrones interesantes en el comportamiento de la arquitectura:
-
-\textbf{Consultas Simples (1-2 tablas):} La mejora es modesta (3-5\%) dado que los baselines ya manejan bien estos casos. Sin embargo, la arquitectura multi-agente muestra mayor consistencia y menor variabilidad en los resultados.
-
-\textbf{Consultas de Agregación:} Mejora significativa del 18\% en EX, atribuible principalmente al Agente Decomposer que identifica correctamente las operaciones de agrupamiento y las funciones agregadas requeridas.
-
-\textbf{Consultas Multi-tabla (3+ tablas):} La mejora más notable (22\% en EX) se observa en esta categoría, donde el Agente Selector demuestra su valor al identificar eficientemente las relaciones relevantes y filtrar tablas no pertinentes.
-
-\textbf{Análisis Temporal:} Mejora del 16\% en EX, con el Agente Refiner mostrando particular efectividad en la corrección de errores relacionados con funciones de fecha y ventanas temporales.
-
-\subsection{Eficiencia Computacional}
-
-Contrario a la expectativa intuitiva de que múltiples agentes incrementarían el tiempo de procesamiento, la arquitectura propuesta muestra una reducción del 17\% en TTA comparada con el baseline monolítico. Este resultado se atribuye a:
-
-\begin{itemize}
-	\item \textbf{Filtrado eficiente:} El Agente Selector reduce significativamente el contexto enviado al modelo de generación
-	\item \textbf{Paralelización parcial:} Algunos procesos de los agentes pueden ejecutarse concurrentemente
-	\item \textbf{Reducción de iteraciones:} La especialización reduce la necesidad de múltiples intentos de generación
-\end{itemize}
-
-\subsection{Análisis de Errores}
-
-El análisis cualitativo de errores revela patrones distintivos entre los enfoques evaluados:
-
-\textbf{Errores del Baseline Monolítico:}
-\begin{itemize}
-	\item Schema linking incorrecto en esquemas complejos (32\% de errores)
-	\item Joins faltantes o incorrectos (28\% de errores)
-	\item Manejo inadecuado de agregaciones anidadas (21\% de errores)
-\end{itemize}
-
-\textbf{Errores de la Arquitectura Propuesta:}
-\begin{itemize}
-	\item Ambigüedades semánticas no resueltas (45\% de errores restantes)
-	\item Limitaciones en razonamiento temporal complejo (31\% de errores restantes)
-	\item Casos edge con múltiples interpretaciones válidas (24\% de errores restantes)
-\end{itemize}
-
-La distribución de errores muestra que la arquitectura multi-agente elimina efectivamente los errores técnicos (schema linking, sintaxis SQL) y concentra los fallos restantes en desafíos semánticos más fundamentales.
-
-\section{Discusión}
-
-\subsection{Implicaciones de los Resultados}
-
-Los resultados obtenidos validan la hipótesis central del trabajo: la arquitectura multi-agente con especialización funcional supera significativamente los enfoques monolíticos en entornos complejos como los sistemas ERP. Las mejoras observadas no son meramente incrementales, sino que representan un cambio cualitativo en la capacidad del sistema para manejar la complejidad inherente de los esquemas empresariales.
-
-La reducción en tiempo de respuesta, contraria a las expectativas iniciales, sugiere que la especialización y el filtrado contextual compensan ampliamente el overhead de coordinación entre agentes. Este resultado tiene implicaciones prácticas importantes para la adopción en entornos de producción, donde la latencia es un factor crítico.
-
-\subsection{Contribuciones Metodológicas}
-
-Este trabajo contribuye al estado del arte en varias dimensiones:
-
-\textbf{Arquitectura Multi-Agente Especializada:} La distribución funcional entre Selector, Decomposer y Refiner representa una aproximación novedosa que aprovecha las fortalezas específicas de cada componente mientras mitiga sus limitaciones individuales.
-
-\textbf{Evaluación en Entorno Real:} La validación sobre un sistema ERP en producción aporta evidencia empírica sobre la viabilidad práctica de estas tecnologías, complementando las evaluaciones típicas sobre benchmarks académicos.
-
-\textbf{Métricas Adaptadas:} La adaptación de métricas estándar al contexto empresarial proporciona un marco de evaluación más relevante para aplicaciones industriales.
-
-\subsection{Limitaciones y Trabajo Futuro}
-
-A pesar de los resultados positivos, el trabajo presenta limitaciones que abren oportunidades para investigación futura:
-
-\textbf{Dependencia del Dominio:} La arquitectura fue optimizada específicamente para el esquema de Fail Fast. La generalización a otros dominios ERP requiere validación adicional.
-
-\textbf{Escalabilidad:} Aunque el sistema maneja eficientemente esquemas de 200+ tablas, la escalabilidad a esquemas masivos (1000+ tablas) permanece como pregunta abierta.
-
-\textbf{Razonamiento Semántico:} Los errores restantes se concentran en desafíos semánticos que requieren conocimiento de dominio más profundo. La integración de ontologías empresariales podría abordar esta limitación.
-
-\textbf{Interacción Multimodal:} La extensión hacia interfaces que combinen lenguaje natural con elementos visuales (gráficos, tablas) representa una dirección prometedora para futuras investigaciones.
-
-\section{Conclusiones}
-
-Este trabajo presenta una arquitectura híbrida multi-agente para Text-to-SQL que demuestra mejoras significativas en precisión, robustez y eficiencia comparada con enfoques monolíticos. Los resultados validan la hipótesis de que la especialización funcional y la colaboración entre agentes constituyen un paradigma efectivo para manejar la complejidad inherente de los sistemas ERP.
-
-Las contribuciones principales incluyen: (1) una arquitectura multi-agente novedosa con especialización funcional clara, (2) evidencia empírica de su efectividad en un entorno ERP real, (3) análisis detallado de patrones de error y mejora, y (4) demostración de que la colaboración entre agentes puede reducir tanto errores como latencia.
-
-Los resultados tienen implicaciones inmediatas para la democratización del acceso a información empresarial, permitiendo que usuarios sin conocimientos técnicos interactúen directamente con sistemas complejos mediante lenguaje natural. Esta capacidad representa un avance significativo hacia interfaces más intuitivas y accesibles para la inteligencia empresarial.
-
-El trabajo futuro se enfocará en la generalización de la arquitectura a otros dominios, la integración de conocimiento ontológico para mejorar el razonamiento semántico, y la extensión hacia interfaces multimodales que combinen texto, voz y elementos visuales para una interacción aún más natural con los datos empresariales.
-
-\section{Conclusiones y Trabajos Futuros}
-
-\subsection{Conclusiones Principales}
-
-Este trabajo ha demostrado que una arquitectura híbrida multi-agente para Text-to-SQL puede superar significativamente el rendimiento de enfoques monolíticos en entornos empresariales complejos como los sistemas ERP. Los resultados experimentales validan la hipótesis central: la especialización funcional y la colaboración coordinada entre agentes constituyen un paradigma más efectivo para manejar la complejidad inherente de los esquemas empresariales.
-
-La arquitectura propuesta, implementada sobre el ERP Fail Fast, alcanzó mejoras sustanciales en todas las métricas evaluadas: 15\% de incremento en Execution Accuracy, 17\% de reducción en Time-to-Answer, y 11\% de mejora en Schema Linking Accuracy comparado con enfoques baseline. Estos resultados no son meramente incrementales, sino que representan un cambio cualitativo en la capacidad del sistema para democratizar el acceso a información empresarial.
-
-La separación en cuatro capas especializadas (interpretación de intención, análisis y planificación, generación y ejecución, respuesta y retroalimentación) ha probado ser efectiva para distribuir la complejidad del problema y permitir optimizaciones específicas en cada etapa del proceso.
-
-\subsection{Aportes de la Investigación}
-
-Las contribuciones principales de este trabajo incluyen:
-
-\begin{enumerate}
-	\item \textbf{Arquitectura Multi-Agente Novedosa:} Diseño e implementación de una arquitectura de cuatro capas con agentes especializados que supera las limitaciones de enfoques monolíticos mediante colaboración coordinada.
-
-	\item \textbf{Validación en Entorno Real:} Evaluación exhaustiva sobre un sistema ERP en producción (Fail Fast), proporcionando evidencia empírica de viabilidad práctica más allá de benchmarks académicos tradicionales.
-
-	\item \textbf{Marco de Métricas Adaptado:} Desarrollo de un conjunto de métricas específicamente adaptadas al contexto empresarial que equilibra rigor técnico con relevancia práctica.
-
-	\item \textbf{Análisis de Patrones de Error:} Caracterización detallada de tipos de error y su distribución, mostrando que la arquitectura multi-agente elimina efectivamente errores técnicos y concentra fallos en desafíos semánticos fundamentales.
-
-	\item \textbf{Demostración de Eficiencia:} Evidencia contraintuitiva de que la especialización multi-agente puede reducir latencia total mediante filtrado contextual y paralelización parcial.
-\end{enumerate}
-
-\subsection{Recomendaciones Prácticas}
-
-Para organizaciones que consideren implementar sistemas Text-to-SQL en entornos ERP, se recomienda:
-
-\begin{itemize}
-	\item \textbf{Diseño Semántico del Esquema:} Invertir en nomenclatura consistente y documentación completa del esquema de base de datos, ya que esto facilita significativamente el schema linking y reduce errores de interpretación.
-
-	\item \textbf{Implementación Gradual:} Comenzar con consultas de baja complejidad y expandir gradualmente hacia casos más complejos, utilizando el aprendizaje iterativo del sistema.
-
-	\item \textbf{Monitoreo Continuo:} Establecer métricas de monitoreo en producción que capturen tanto precisión técnica como satisfacción del usuario final.
-
-	\item \textbf{Integración con Flujos Existentes:} Diseñar la interfaz Text-to-SQL como complemento, no reemplazo, de herramientas analíticas existentes, permitiendo transiciones fluidas entre modalidades de consulta.
-\end{itemize}
-
-\subsection{Líneas Futuras de Investigación}
-
-Las direcciones más prometedoras para trabajo futuro incluyen:
-
-\textbf{Generalización Multi-Dominio:} Extender la arquitectura para funcionar efectivamente en diferentes tipos de sistemas empresariales (CRM, SCM, HRM) sin requerir adaptaciones específicas por dominio.
-
-\textbf{Razonamiento Ontológico Avanzado:} Integrar ontologías empresariales formales para mejorar el manejo de ambigüedades semánticas y conocimiento implícito del dominio.
-
-\textbf{Interfaces Multimodales:} Desarrollar capacidades que combinen lenguaje natural con elementos visuales (gráficos, tablas interactivas) y entrada por voz para una experiencia más rica e intuitiva.
-
-\textbf{Aprendizaje Continuo:} Implementar mecanismos de aprendizaje en línea que permitan al sistema mejorar automáticamente basándose en retroalimentación del usuario y patrones de uso.
-
-\textbf{Escalabilidad Masiva:} Investigar técnicas para manejar esquemas de miles de tablas manteniendo eficiencia y precisión, incluyendo técnicas de particionamiento inteligente y recuperación jerárquica.
-
-\textbf{Seguridad y Privacidad:} Desarrollar marcos robustos para control de acceso granular y auditoría de consultas que preserven la seguridad empresarial sin comprometer la usabilidad.
-
-La convergencia de estas líneas de investigación promete transformar fundamentalmente la manera en que los usuarios interactúan con sistemas de información empresarial, democratizando verdaderamente el acceso a la inteligencia de datos organizacional.
-
 \appendix
 
 \section{Conjunto de consultas de evaluación Text-to-SQL en el ERP Fail Fast}
@@ -640,72 +439,33 @@ Este nivel de detalle permite asegurar trazabilidad metodológica, facilitar la 
 \subsection{Consultas de complejidad baja}
 
 Las consultas de complejidad baja se caracterizan por involucrar una única tabla, filtros directos y, en algunos casos, operaciones simples de agregación (COUNT, SUM) sin combinaciones entre tablas.
-
-\begin{table*}[htbp]
-	\caption{Consultas de complejidad baja}
-	\label{tab:consultas_baja}
-	\tablefont%
-	\setlength{\tabcolsep}{3pt}
-	\begin{tabular*}{\textwidth}{@{}|p{0.8cm}|p{6cm}|p{4cm}|p{6cm}|@{}}
-		\hline
-		\textbf{ID} & \textbf{Consulta en lenguaje natural} & \textbf{Esquema involucrado} & \textbf{SQL de referencia (Gold)} \\
-		\hline
-		42 & Suminístrame las primeras 3 sucursales que se han creado en el sistema, solo requiero el nombre y la fecha de creación. & core.branch\_office (name, created\_at) & SELECT name, created\_at FROM core.branch\_office WHERE member\_id = \$1 AND audit\_status <> 'D' ORDER BY created\_at ASC LIMIT 3; \\
-		\hline
-		43 & Give me the first branch office of core module, I only need name and created date ordered by created date ascending. & core.branch\_office (name, created\_at) & SELECT name, created\_at FROM core.branch\_office WHERE member\_id = \$1 AND audit\_status <> 'D' ORDER BY created\_at ASC LIMIT 1; \\
-		\hline
-		45 & ¿Cuántas categorías de nombre "VOLQUETA" tenemos en este momento? & core.category (name) & SELECT COUNT(id) FROM core.category WHERE name = 'VOLQUETA' AND audit\_status <> 'D' AND member\_id = \$1; \\
-		\hline
-		47 & ¿Cuál es el nombre de la categoría con código 1601? & core.category (name, code) & SELECT name FROM core.category WHERE member\_id = \$1 AND code = '1601' AND audit\_status <> 'D'; \\
-		\hline
-	\end{tabular*}
-\end{table*}
-
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\textwidth]{Tabla 1.png}
+	\caption{Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua.}
+	\label{fig:failfast_table1}
+\end{figure*}
 \subsection{Consultas de complejidad media}
 
 Las consultas de complejidad media involucran agregaciones, agrupamientos (GROUP BY) y, en algunos casos, combinaciones simples entre tablas. Requieren una identificación explícita de la clave de agrupación y del contexto multi-tenant.
 
-\begin{table*}[htbp]
-	\caption{Consultas de complejidad media}
-	\label{tab:consultas_media}
-	\tablefont%
-	\setlength{\tabcolsep}{2pt}
-	\begin{tabular*}{\textwidth}{@{}|p{0.6cm}|p{4.5cm}|p{3.5cm}|p{3cm}|p{5cm}|@{}}
-		\hline
-		\textbf{ID} & \textbf{Consulta en lenguaje natural} & \textbf{Descomposición semántica} & \textbf{Esquema involucrado} & \textbf{SQL de referencia (Gold)} \\
-		\hline
-		1 & Para mi empresa, quiero ver por cada valor distinto de la columna user\_member\_id la suma del campo max\_amount registrada en compras – manager, y cuántos registros tiene cada user\_member\_id. & 1) Identificar tabla y campo numérico. 2) Agrupar por user\_member\_id. 3) Aplicar filtro member\_id. 4) Calcular SUM y COUNT. & purchase.manager (user\_member\_id, max\_amount) & SELECT user\_member\_id, SUM(max\_amount) AS total\_max\_amount, COUNT(*) AS registros FROM purchase.manager WHERE member\_id = \$1 AND audit\_status <> 'D' GROUP BY user\_member\_id; \\
-		\hline
-		6 & Para mi empresa, quiero ver por cada valor distinto de la columna account\_id la suma del campo balance registrada en treasury – bank account, y cuántos registros tiene cada account\_id. & Identificación de agregación monetaria y agrupación por cuenta contable. & treasury.bank\_account (account\_id, balance) & SELECT account\_id, SUM(balance) AS total\_balance, COUNT(*) AS registros FROM treasury.bank\_account WHERE member\_id = \$1 AND audit\_status <> 'D' GROUP BY account\_id; \\
-		\hline
-		40 & Indícame los últimos 5 productos que se han creado, solo requiero el nombre y la descripción. & Ordenamiento por fecha de creación descendente y límite. & inventory.product (name, description, created\_at) & SELECT name, description FROM inventory.product WHERE member\_id = \$1 AND audit\_status <> 'D' ORDER BY created\_at DESC LIMIT 5; \\
-		\hline
-		51 & Indícame la cantidad exacta de pedidos elaborados junto con la sumatoria del subtotal y del total. & Agregación global sin agrupamiento. & order.order (subtotal, total) & SELECT COUNT(id), SUM(subtotal), SUM(total) FROM "order"."order" WHERE member\_id = \$1 AND audit\_status <> 'D'; \\
-		\hline
-	\end{tabular*}
-\end{table*}
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\textwidth]{Tabla 2.png}
+	\caption{Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua.}
+	\label{fig:failfast_table2}
+\end{figure*}
 
 \subsection{Consultas de complejidad alta}
 
 Las consultas de complejidad alta requieren combinaciones entre múltiples tablas, razonamiento multietapa y, en algunos casos, desambiguación semántica entre entidades del dominio empresarial.
 
-\begin{table*}[htbp]
-	\caption{Consultas de complejidad alta}
-	\label{tab:consultas_alta}
-	\tablefont%
-	\setlength{\tabcolsep}{2pt}
-	\begin{tabular*}{\textwidth}{@{}|p{0.6cm}|p{4.5cm}|p{3cm}|p{3.5cm}|p{4.5cm}|@{}}
-		\hline
-		\textbf{ID} & \textbf{Consulta en lenguaje natural} & \textbf{Estrategia de descomposición} & \textbf{Esquemas involucrados} & \textbf{SQL de referencia (Gold)} \\
-		\hline
-		21 & Necesito un resumen combinando integration – member credential y transporte – service order detail vehicle, agrupando por empresa y mostrando la suma del campo correspondiente y el número de registros. & Join multi-tabla por member\_id + agregación. & integration.member\_credential national\_transport.service\_order\_detail\_vehicle & Consulta con JOIN por member\_id, SUM y COUNT. \\
-		\hline
-		22 & Necesito combinar transporte – service order con compras – order y obtener, para cada market\_exchange\_rate\_id, la suma del total y el número de registros. & Join por clave de mercado + agregación. & national\_transport.service\_order purchase.order & Consulta con JOIN, GROUP BY market\_exchange\_rate\_id. \\
-		\hline
-		52 & Cantidad de pedidos elaborados junto con subtotal y total, agrupados por cliente, mostrando nombre y documento. & Join order → customer\_detail + agrupación. & order.order account\_receivable.customer\_detail & SELECT customer.name, COUNT(order.id), SUM(subtotal), SUM(total) ... GROUP BY customer.id; \\
-		\hline
-	\end{tabular*}
-\end{table*}
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\textwidth]{Tabla 3.png}
+	\caption{Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua.}
+	\label{fig:failfast_table3}
+\end{figure*}
 
 \textbf{Nota:} En consultas de alta complejidad, el SQL de referencia puede abreviarse cuando su extensión completa afecta la legibilidad del anexo. En todos los casos, la versión completa fue utilizada durante la evaluación experimental.
 
@@ -714,10 +474,6 @@ Las consultas de complejidad alta requieren combinaciones entre múltiples tabla
 Las consultas incluidas en este anexo fueron seleccionadas para cubrir patrones frecuentes de interacción en sistemas ERP reales, tales como agregaciones financieras, consultas multi-tabla, análisis temporal y reportes operativos. Su inclusión permite evaluar no solo la corrección sintáctica de las consultas SQL generadas, sino también su adecuación semántica al dominio empresarial y a las reglas de negocio del sistema.
 
 Este anexo constituye un complemento empírico del Capítulo IV, proporcionando el detalle necesario para interpretar correctamente las métricas reportadas y facilitar la replicación del estudio.
-
-\section*{Agradecimientos}
-
-El autor agradece al equipo de desarrollo de Fail Fast por proporcionar acceso al sistema ERP y su colaboración en la validación de resultados. También se reconoce el apoyo del Departamento de Ingeniería de Sistemas de la Universidad Tecnológica de Bolívar y la orientación del director de tesis durante el desarrollo de esta investigación.
 
 \begin{thebibliography}{99}
 
@@ -800,12 +556,8 @@ El autor agradece al equipo de desarrollo de Fail Fast por proporcionar acceso a
 	A. Singh et al., ``A survey of large language model-based generative AI for text-to-SQL: Benchmarks, applications, use cases, and challenges,'' arXiv preprint arXiv:2412.05208, 2025.
 
 	\bibitem{zhu2024large}
-	X. Zhu et al., ``Large language model enhanced text-to-SQL generation: A survey,'' arXiv preprint arXiv:2410.06011, 2024.
+	X. Zhu et al., ``Large language models for text-to-SQL: A comprehensive evaluation,'' \textit{Comput. Linguist.}, vol. 50, no. 4, pp. 789--825, Dec. 2024.
 
 \end{thebibliography}
-
-% \begin{IEEEbiography}{Natalia Serrano}
-% 	recibió el título de Ingeniero de Sistemas de la Universidad Tecnológica de Bolívar, Cartagena, Colombia, en 2020. Actualmente cursa estudios de Maestría en Inteligencia Artificial en la misma institución. Sus áreas de investigación incluyen procesamiento de lenguaje natural, sistemas multi-agente, y aplicaciones de inteligencia artificial en entornos empresariales. Ha trabajado en el desarrollo de sistemas ERP y tiene experiencia en la integración de tecnologías de IA en aplicaciones industriales. Es miembro estudiantil de IEEE y ha publicado trabajos en conferencias nacionales sobre text-to-SQL y sistemas inteligentes.
-% \end{IEEEbiography}
 
 \end{document}
