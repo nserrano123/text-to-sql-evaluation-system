@@ -94,8 +94,25 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}Procedimiento experimental}{8}{subsection.4.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-G}}Análisis del impacto de componentes}{8}{subsection.4.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-H}}Referencia al anexo del conjunto de consultas}{8}{subsection.4.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{Ap\'{e}ndice}{8}{section*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A}Descripción general del conjunto de consultas}{8}{subsection.Appendix.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {V}Resultados Experimentales y Discusión}{8}{section.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Comparación entre Component Matching y Execution Accuracy para distintas configuraciones arquitectónicas. Esta gráfica permite visualizar que un alto Component Matching no garantiza, por sí solo, una ejecución correcta del SQL.}}{9}{figure.2}\protected@file@percent }
+\newlabel{fig:component_matching_vs_execution}{{2}{9}{Comparación entre Component Matching y Execution Accuracy para distintas configuraciones arquitectónicas. Esta gráfica permite visualizar que un alto Component Matching no garantiza, por sí solo, una ejecución correcta del SQL}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Calidad estructural del SQL (Component Matching)}{9}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Exactitud de ejecución (Execution Accuracy)}{9}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Robustez ante errores considerando autocorrección (SIN ERRORES)}{9}{subsection.5.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Exactitud de ejecución (Execution Accuracy) para las distintas configuraciones arquitectónicas evaluadas. Se observan diferencias sustanciales entre configuraciones, destacando el rol determinante de la recuperación contextual del esquema (RAG) en la generación de consultas SQL ejecutables.}}{10}{figure.3}\protected@file@percent }
+\newlabel{fig:execution_accuracy}{{3}{10}{Exactitud de ejecución (Execution Accuracy) para las distintas configuraciones arquitectónicas evaluadas. Se observan diferencias sustanciales entre configuraciones, destacando el rol determinante de la recuperación contextual del esquema (RAG) en la generación de consultas SQL ejecutables}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Robustez del sistema considerando mecanismos de autocorrección (SIN ERRORES). Las configuraciones que incorporan RAG alcanzan valores cercanos al 100\%, evidenciando alta robustez frente a errores sintácticos y referencias incorrectas mediante corrección iterativa.}}{10}{figure.4}\protected@file@percent }
+\newlabel{fig:sin_errores}{{4}{10}{Robustez del sistema considerando mecanismos de autocorrección (SIN ERRORES). Las configuraciones que incorporan RAG alcanzan valores cercanos al 100\%, evidenciando alta robustez frente a errores sintácticos y referencias incorrectas mediante corrección iterativa}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Capacidad real de generación sin autocorrección (SIN\_AUTO\_CORRECCION)}{10}{subsection.5.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparación de la capacidad de generación sin autocorrección (SIN\_AUTO\_CORRECCION) entre configuraciones. Se evidencia que la configuración [RAG + DIN + DEA] alcanza valores cercanos al 89\%, mientras que configuraciones basadas únicamente en RAG o Intensión dependen fuertemente de mecanismos de corrección iterativa.}}{10}{figure.5}\protected@file@percent }
+\newlabel{fig:sin_autocorreccion}{{5}{10}{Comparación de la capacidad de generación sin autocorrección (SIN\_AUTO\_CORRECCION) entre configuraciones. Se evidencia que la configuración [RAG + DIN + DEA] alcanza valores cercanos al 89\%, mientras que configuraciones basadas únicamente en RAG o Intensión dependen fuertemente de mecanismos de corrección iterativa}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}Validación de los módulos de Intensión y Memoria en escenarios conversacionales}{11}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-E}1}Ejemplo ilustrativo de escenario multi-turno}{11}{subsubsection.5.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Ap\'{e}ndice}{11}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}Descripción general del conjunto de consultas}{11}{subsection.Appendix.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Consultas de complejidad baja}{11}{subsection.Appendix.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C}Consultas de complejidad media}{11}{subsection.Appendix.A.3}\protected@file@percent }
 \bibcite{yu2018spider}{1}
 \bibcite{scholak2021picard}{2}
 \bibcite{pourreza2023din}{3}
@@ -111,17 +128,6 @@
 \bibcite{li2023resdsql}{13}
 \bibcite{huang2024survey}{14}
 \bibcite{xie2024dea}{15}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B}Consultas de complejidad baja}{9}{subsection.Appendix.A.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Consultas de complejidad baja utilizadas en la evaluación}}{9}{figure.2}\protected@file@percent }
-\newlabel{fig:anexo_baja}{{2}{9}{Consultas de complejidad baja utilizadas en la evaluación}{figure.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C}Consultas de complejidad media}{9}{subsection.Appendix.A.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Consultas de complejidad media utilizadas en la evaluación}}{9}{figure.3}\protected@file@percent }
-\newlabel{fig:anexo_media}{{3}{9}{Consultas de complejidad media utilizadas en la evaluación}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {D}Consultas de complejidad alta}{9}{subsection.Appendix.A.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Consultas de complejidad alta utilizadas en la evaluación}}{9}{figure.4}\protected@file@percent }
-\newlabel{fig:anexo_alta}{{4}{9}{Consultas de complejidad alta utilizadas en la evaluación}{figure.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {E}Observaciones metodológicas}{9}{subsection.Appendix.A.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{Referencias}{9}{section*.3}\protected@file@percent }
 \bibcite{li2024comprehensive}{16}
 \bibcite{wang2025mac}{17}
 \bibcite{han2025graphrag}{18}
@@ -130,8 +136,17 @@
 \bibcite{gao2024dail}{21}
 \bibcite{lee2024mcs}{22}
 \bibcite{talaei2024chess}{23}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Consultas de complejidad baja utilizadas en la evaluación}}{12}{figure.6}\protected@file@percent }
+\newlabel{fig:anexo_baja}{{6}{12}{Consultas de complejidad baja utilizadas en la evaluación}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Consultas de complejidad media utilizadas en la evaluación}}{12}{figure.7}\protected@file@percent }
+\newlabel{fig:anexo_media}{{7}{12}{Consultas de complejidad media utilizadas en la evaluación}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {D}Consultas de complejidad alta}{12}{subsection.Appendix.A.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Consultas de complejidad alta utilizadas en la evaluación}}{12}{figure.8}\protected@file@percent }
+\newlabel{fig:anexo_alta}{{8}{12}{Consultas de complejidad alta utilizadas en la evaluación}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {E}Observaciones metodológicas}{12}{subsection.Appendix.A.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Referencias}{12}{section*.3}\protected@file@percent }
 \bibcite{zhang2023act}{24}
 \bibcite{rai2023improving}{25}
 \bibcite{singh2025survey}{26}
 \bibcite{zhu2024large}{27}
-\gdef \@abspage@last{10}
+\gdef \@abspage@last{13}

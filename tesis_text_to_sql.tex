@@ -416,6 +416,115 @@ Este análisis constituye la base empírica para determinar qué componentes son
 
 Con el fin de preservar la claridad del capítulo metodológico sin sacrificar trazabilidad ni reproducibilidad, el detalle completo del conjunto de consultas —incluyendo la pregunta en lenguaje natural, la clasificación por complejidad, la descomposición semántica, las tablas y columnas relevantes del esquema y la consulta SQL de referencia— se presenta en el Anexo A.
 
+\section{Resultados Experimentales y Discusión}
+
+En este capítulo se presentan los resultados del estudio experimental realizado mediante un análisis de ablación sobre distintas configuraciones arquitectónicas del sistema de transformación de lenguaje natural a SQL propuesto. Todas las configuraciones fueron evaluadas bajo condiciones controladas sobre un conjunto fijo de 53 preguntas de referencia, lo que permite comparar de manera directa el efecto individual y combinado de cada módulo sobre el desempeño del sistema.
+
+El análisis se estructura en torno a cuatro dimensiones complementarias: (i) la calidad estructural del SQL generado, (ii) la exactitud por ejecución, (iii) la robustez ante errores considerando mecanismos de corrección, y (iv) la capacidad real de generación correcta desde el primer intento, sin recurrir a autocorrección. Esta descomposición permite evaluar no solo si el sistema logra producir consultas funcionales, sino también cómo y bajo qué condiciones se alcanza dicho desempeño.
+
+Para ello, se emplean métricas consolidadas en la literatura de Text-to-SQL. En particular, se reporta el promedio del F1-score de Component Matching para los componentes SELECT, WHERE, GROUP BY y KEYWORDS, con el fin de medir el grado de alineamiento estructural entre el SQL generado y el SQL de referencia. Adicionalmente, se utiliza Execution Accuracy, que evalúa la corrección semántica de la consulta a partir del resultado de su ejecución. Finalmente, se incorporan dos métricas orientadas a robustez: SIN ERRORES, que cuantifica el éxito considerando mecanismos de reparación durante la ejecución, y SIN\_AUTO\_CORRECCION, que estima la proporción de consultas correctamente generadas desde el primer intento. En conjunto, estas métricas permiten caracterizar el desempeño del sistema desde una perspectiva estructural, funcional y operativa.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Figura 5.1 - SQL.png}
+	\caption{Comparación entre Component Matching y Execution Accuracy para distintas configuraciones arquitectónicas. Esta gráfica permite visualizar que un alto Component Matching no garantiza, por sí solo, una ejecución correcta del SQL.}
+	\label{fig:component_matching_vs_execution}
+\end{figure}
+
+Asimismo, se observa que configuraciones con diferentes combinaciones de módulos pueden alcanzar valores similares de Component Matching, aun cuando su desempeño en ejecución difiere significativamente. Este resultado sugiere que una alta correspondencia estructural, si bien es una condición necesaria, no garantiza por sí sola la generación de consultas SQL funcionales. La Figura~\ref{fig:component_matching_vs_execution} ilustra claramente esta disociación entre calidad estructural y corrección funcional.
+
+\subsection{Calidad estructural del SQL (Component Matching)}
+
+Los resultados correspondientes a la métrica de Component Matching muestran que la mayoría de las configuraciones evaluadas alcanzan altos niveles de correspondencia estructural, especialmente en los componentes SELECT y WHERE, donde los valores promedio de F1-score superan frecuentemente el 85\%. Este comportamiento indica que el sistema es capaz de identificar de forma consistente las columnas relevantes y las condiciones de filtrado implícitas o explícitas en las preguntas formuladas en lenguaje natural.
+
+En contraste, el componente GROUP BY presenta valores sistemáticamente inferiores en comparación con SELECT y WHERE. Esta tendencia se mantiene a lo largo de todas las configuraciones evaluadas y es consistente con observaciones previas en la literatura, donde las operaciones de agregación suelen encontrarse implícitas en el lenguaje natural y requieren un mayor nivel de inferencia semántica y estructural. En particular, la correcta identificación de la clave de agrupación resulta más sensible a ambigüedades del dominio y a la necesidad de conocimiento contextual adicional.
+
+
+\subsection{Exactitud de ejecución (Execution Accuracy)}
+
+La métrica de Execution Accuracy revela diferencias sustanciales entre las configuraciones arquitectónicas evaluadas. En particular, se observa que algunas configuraciones que presentan altos valores de Component Matching experimentan una caída significativa en exactitud por ejecución, lo que evidencia que la correcta identificación de componentes estructurales no siempre se traduce en consultas semánticamente correctas y ejecutables.
+
+Un caso representativo es la configuración [Intensión + DIN + DEA], que alcanza valores elevados de F1-score en el componente WHERE, pero obtiene una Execution Accuracy del 37,74\%. Este resultado indica que, aun cuando el razonamiento estructural es adecuado, la ausencia de un mecanismo explícito de grounding contextual limita la capacidad del sistema para seleccionar tablas, columnas o relaciones correctas dentro de un esquema complejo.
+
+Por el contrario, la configuración [RAG + DIN + DEA] alcanza el mejor desempeño global, con una Execution Accuracy superior al 81\%, superando incluso configuraciones más complejas que incorporan módulos adicionales como Memoria o clasificación explícita de Intensión. Este comportamiento sugiere que la recuperación contextual del esquema cumple un rol determinante en la traducción efectiva de la intención del usuario a consultas SQL ejecutables, particularmente en entornos empresariales con esquemas extensos.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Figura 5.2 - Exactitud de ejecucion.png}
+	\caption{Exactitud de ejecución (Execution Accuracy) para las distintas configuraciones arquitectónicas evaluadas. Se observan diferencias sustanciales entre configuraciones, destacando el rol determinante de la recuperación contextual del esquema (RAG) en la generación de consultas SQL ejecutables.}
+	\label{fig:execution_accuracy}
+\end{figure}
+
+En conjunto, estos resultados evidencian una brecha clara entre calidad estructural y corrección funcional, resaltando la necesidad de evaluar explícitamente la ejecución para caracterizar el desempeño real de sistemas Text-to-SQL. La Figura~\ref{fig:execution_accuracy} presenta de manera visual las diferencias de rendimiento entre las configuraciones evaluadas.
+
+\subsection{Robustez ante errores considerando autocorrección (SIN ERRORES)}
+
+La métrica SIN ERRORES evalúa la capacidad del sistema para producir una consulta funcional considerando la presencia de mecanismos de ajuste y corrección automática durante la generación y ejecución del SQL. Los resultados muestran que la mayoría de las configuraciones que incorporan RAG alcanzan valores cercanos o iguales al 100\%, lo que evidencia una alta robustez frente a errores sintácticos, referencias incorrectas o fallos menores en la formulación de la consulta.
+
+Este comportamiento indica que la recuperación aumentada por contexto no solo mejora la comprensión semántica de la consulta, sino que también actúa como un mecanismo de mitigación de errores, reduciendo la probabilidad de fallos no recuperables durante la ejecución. En particular, el acceso a descripciones del esquema y ejemplos relevantes parece facilitar la corrección iterativa de errores comunes, como joins incompletos o uso incorrecto de agregaciones.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Figura 5.3 - con autocorreccion.png}
+	\caption{Robustez del sistema considerando mecanismos de autocorrección (SIN ERRORES). Las configuraciones que incorporan RAG alcanzan valores cercanos al 100\%, evidenciando alta robustez frente a errores sintácticos y referencias incorrectas mediante corrección iterativa.}
+	\label{fig:sin_errores}
+\end{figure}
+
+No obstante, esta métrica debe interpretarse con cautela, ya que no distingue entre consultas correctamente generadas desde el primer intento y aquellas que requieren múltiples iteraciones de corrección. En este sentido, valores elevados de SIN ERRORES pueden reflejar una robustez operativa, pero no necesariamente una alta calidad inicial en la generación del SQL. La Figura~\ref{fig:sin_errores} muestra cómo las configuraciones con RAG logran alta robustez mediante mecanismos de corrección automática.
+
+\subsection{Capacidad real de generación sin autocorrección (SIN\_AUTO\_CORRECCION)}
+
+La métrica SIN\_AUTO\_CORRECCION permite evaluar de manera más estricta la capacidad del sistema para generar consultas SQL correctas desde el primer intento, sin depender de mecanismos de reparación automática. Esta métrica revela diferencias sustanciales entre configuraciones que, de otro modo, presentan valores similares en SIN ERRORES.
+
+Los resultados muestran que configuraciones basadas únicamente en RAG o en modelado de Intensión dependen fuertemente de la autocorrección, alcanzando valores inferiores al 30\% en generación correcta inicial. Este comportamiento indica que, si bien dichas configuraciones pueden eventualmente producir consultas funcionales, lo hacen a costa de múltiples iteraciones de corrección.
+
+En contraste, la configuración [RAG + DIN + DEA] alcanza un valor cercano al 89\% en SIN\_AUTO\_CORRECCION, lo que evidencia una alta capacidad de generación correcta directa. Este resultado sugiere que la combinación de recuperación contextual con descomposición y razonamiento orientado a la ejecución permite al sistema formular consultas más precisas desde el inicio, reduciendo la dependencia de ciclos de corrección posteriores.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Figura 5.4 - Autocorreccion.png}
+	\caption{Comparación de la capacidad de generación sin autocorrección (SIN\_AUTO\_CORRECCION) entre configuraciones. Se evidencia que la configuración [RAG + DIN + DEA] alcanza valores cercanos al 89\%, mientras que configuraciones basadas únicamente en RAG o Intensión dependen fuertemente de mecanismos de corrección iterativa.}
+	\label{fig:sin_autocorreccion}
+\end{figure}
+
+Esta métrica resulta clave para diferenciar entre robustez aparente y capacidad real de generación, especialmente en escenarios de producción donde la latencia y la previsibilidad del sistema son factores críticos. La Figura~\ref{fig:sin_autocorreccion} ilustra claramente las diferencias en la capacidad de generación directa entre las distintas configuraciones evaluadas.
+
+\subsection{Validación de los módulos de Intensión y Memoria en escenarios conversacionales}
+
+Además del análisis cuantitativo, se realizó una validación cualitativa orientada a evaluar el comportamiento de los módulos de Intensión y Memoria en escenarios conversacionales multi-turno, característicos de la interacción natural entre usuarios y sistemas ERP.
+
+En sistemas de transformación de lenguaje natural a SQL orientados a la interacción conversacional, no todas las entradas del usuario constituyen solicitudes ejecutables. Expresiones iniciales como saludos, preguntas genéricas o referencias incompletas carecen de la información semántica necesaria para generar una consulta válida. En este contexto, la ejecución inmediata de una consulta SQL no solo resulta innecesaria, sino potencialmente incorrecta.
+
+Para abordar este problema, el sistema incorpora un módulo de Intensión, cuya función principal es determinar si una entrada del usuario contiene información suficiente para ser interpretada como una solicitud ejecutable. Este módulo actúa como una capa de validación semántica previa a la generación de SQL, evitando intentos de ejecución cuando la intención del usuario es ambigua, incompleta o puramente conversacional.
+
+No obstante, en escenarios reales de interacción humano-sistema, la información requerida para ejecutar una consulta puede encontrarse distribuida a lo largo de múltiples turnos de diálogo. En estos casos, el módulo de Memoria desempeña un rol complementario, permitiendo conservar y recuperar el contexto semántico generado en interacciones previas. La combinación de ambos módulos habilita la reconstrucción de solicitudes completas a partir de fragmentos conversacionales, sin exigir que el usuario formule explícitamente una consulta totalmente especificada en un único mensaje.
+
+\subsubsection{Ejemplo ilustrativo de escenario multi-turno}
+
+Para ilustrar el funcionamiento coordinado de ambos módulos, se presenta el siguiente caso de uso representativo:
+
+\textbf{Turno 1 -- Usuario:} ``Hola, ¿me puedes ayudar con los productos?''
+
+\begin{itemize}
+	\item \textit{Intensión detectada:} No ejecutable
+	\item \textit{Acción del sistema:} No se genera SQL
+\end{itemize}
+
+En este primer turno, el módulo de Intensión determina que la entrada no corresponde a una solicitud ejecutable, dado que no se especifica ninguna acción concreta ni criterios de selección. En consecuencia, el sistema no genera ni ejecuta una consulta SQL, evitando así una interpretación errónea de la intención del usuario.
+
+\textbf{Turno 2 -- Usuario:} ``Dame el nombre de los primeros 5''
+
+\begin{itemize}
+	\item \textit{Memoria recupera el contexto:} productos
+	\item \textit{Intensión detectada:} Ejecutable
+	\item \textit{Consulta implícita reconstruida:} ``Obtener el nombre de los primeros 5 productos''
+	\item \textit{Acción del sistema:} Generación y ejecución del SQL
+\end{itemize}
+
+En este segundo turno, el módulo de Memoria recupera el contexto semántico previamente mencionado (productos). Con esta información, el módulo de Intensión evalúa que la combinación de ambos turnos constituye una solicitud completa y ejecutable. El sistema puede entonces reconstruir implícitamente la consulta como ``Obtener el nombre de los primeros cinco productos'' y proceder a la generación y ejecución del SQL correspondiente.
+
+Este mecanismo permite prevenir ejecuciones inválidas o ambiguas, al tiempo que soporta interacciones progresivas y naturales, donde el usuario no necesita formular una consulta completa en un único turno. De esta forma, los módulos de Intensión y Memoria no deben evaluarse exclusivamente por métricas de ejecución, sino por su capacidad de regular cuándo es semánticamente válido ejecutar una consulta, contribuyendo a la confiabilidad global del sistema en escenarios conversacionales reales.
+
 \appendix
 
 \section{Conjunto de consultas de evaluación Text-to-SQL en el ERP Fail Fast}
