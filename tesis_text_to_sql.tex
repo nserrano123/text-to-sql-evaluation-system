@@ -422,7 +422,7 @@ Con el fin de preservar la claridad del capítulo metodológico sin sacrificar t
 
 \subsection{Descripción general del conjunto de consultas}
 
-Este anexo presenta el conjunto de consultas de referencia (gold queries) utilizado para la evaluación del sistema Text-to-SQL propuesto. Dicho conjunto fue construido manualmente a partir de escenarios reales de uso del ERP Fail Fast, con el objetivo de reflejar preguntas típicas formuladas por usuarios empresariales sin conocimientos técnicos en SQL.
+Este anexo presenta el conjunto de consultas de referencia (\textit{gold queries}) utilizado para la evaluación del sistema Text-to-SQL propuesto. Dicho conjunto fue construido manualmente a partir de escenarios reales de uso del ERP Fail Fast, con el objetivo de reflejar preguntas típicas formuladas por usuarios empresariales sin conocimientos técnicos en SQL.
 
 Cada consulta documentada en este anexo incluye:
 
@@ -431,49 +431,53 @@ Cada consulta documentada en este anexo incluye:
 	\item La clasificación por nivel de complejidad (baja, media o alta).
 	\item La descomposición semántica empleada para su resolución.
 	\item La identificación de las tablas y columnas relevantes del esquema.
-	\item La consulta SQL de referencia (gold standard), validada contra la base de datos real del sistema.
+	\item La consulta SQL de referencia (\textit{gold standard}), validada contra la base de datos real del sistema.
 \end{itemize}
 
 Este nivel de detalle permite asegurar trazabilidad metodológica, facilitar la reproducibilidad del experimento y habilitar análisis posteriores sobre patrones de error y comportamiento del sistema.
 
 \subsection{Consultas de complejidad baja}
 
-Las consultas de complejidad baja se caracterizan por involucrar una única tabla, filtros directos y, en algunos casos, operaciones simples de agregación (COUNT, SUM) sin combinaciones entre tablas.
-\begin{figure*}[t]
+Las consultas de complejidad baja se caracterizan por involucrar una única tabla o un conjunto reducido de columnas, con filtros directos y, en algunos casos, operaciones simples de ordenamiento o conteo. Este tipo de consultas representa solicitudes frecuentes de tipo informativo, como la obtención de registros recientes, conteos básicos o la recuperación de atributos específicos de una entidad.
+
+Su inclusión permite evaluar la capacidad del sistema para manejar correctamente escenarios elementales sin introducir errores innecesarios en la selección de tablas, columnas o condiciones de filtrado.
+
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\textwidth]{Tabla 1.png}
-	\caption{Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua.}
-	\label{fig:failfast_table1}
-\end{figure*}
+	\includegraphics[width=\linewidth]{Tabla 1.png}
+	\caption{Consultas de complejidad baja utilizadas en la evaluación}
+	\label{fig:anexo_baja}
+\end{figure}
+
 \subsection{Consultas de complejidad media}
 
-Las consultas de complejidad media involucran agregaciones, agrupamientos (GROUP BY) y, en algunos casos, combinaciones simples entre tablas. Requieren una identificación explícita de la clave de agrupación y del contexto multi-tenant.
+Las consultas de complejidad media involucran operaciones de agregación (\texttt{SUM}, \texttt{COUNT}), cláusulas de agrupamiento (\texttt{GROUP BY}) y, en algunos casos, combinaciones simples entre tablas. Estas consultas requieren una identificación explícita de la clave de agrupación y la correcta aplicación del contexto multi-tenant del sistema.
 
-\begin{figure*}[t]
+Este nivel de complejidad es representativo de reportes operativos y financieros comunes en sistemas ERP reales.
+
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\textwidth]{Tabla 2.png}
-	\caption{Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua.}
-	\label{fig:failfast_table2}
-\end{figure*}
+	\includegraphics[width=\linewidth]{Tabla 2.png}
+	\caption{Consultas de complejidad media utilizadas en la evaluación}
+	\label{fig:anexo_media}
+\end{figure}
 
 \subsection{Consultas de complejidad alta}
 
-Las consultas de complejidad alta requieren combinaciones entre múltiples tablas, razonamiento multietapa y, en algunos casos, desambiguación semántica entre entidades del dominio empresarial.
+Las consultas de complejidad alta requieren combinaciones entre múltiples tablas pertenecientes a distintos módulos del ERP, así como razonamiento multietapa para integrar información distribuida en el esquema. En estos casos, la resolución de la consulta implica descomponer la pregunta original en sub-tareas, resolver dependencias entre entidades y aplicar agregaciones sobre los resultados combinados.
 
-\begin{figure*}[t]
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\textwidth]{Tabla 3.png}
-	\caption{Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua.}
-	\label{fig:failfast_table3}
-\end{figure*}
+	\includegraphics[width=\linewidth]{Tabla 3.png}
+	\caption{Consultas de complejidad alta utilizadas en la evaluación}
+	\label{fig:anexo_alta}
+\end{figure}
 
-\textbf{Nota:} En consultas de alta complejidad, el SQL de referencia puede abreviarse cuando su extensión completa afecta la legibilidad del anexo. En todos los casos, la versión completa fue utilizada durante la evaluación experimental.
+\textbf{Nota:} En las consultas de mayor complejidad, el SQL de referencia puede presentarse de forma abreviada cuando su extensión completa afecta la legibilidad del anexo. En todos los casos, la versión completa fue utilizada durante la evaluación experimental.
 
 \subsection{Observaciones metodológicas}
 
-Las consultas incluidas en este anexo fueron seleccionadas para cubrir patrones frecuentes de interacción en sistemas ERP reales, tales como agregaciones financieras, consultas multi-tabla, análisis temporal y reportes operativos. Su inclusión permite evaluar no solo la corrección sintáctica de las consultas SQL generadas, sino también su adecuación semántica al dominio empresarial y a las reglas de negocio del sistema.
-
-Este anexo constituye un complemento empírico del Capítulo IV, proporcionando el detalle necesario para interpretar correctamente las métricas reportadas y facilitar la replicación del estudio.
+Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones frecuentes de interacción en sistemas ERP reales, tales como agregaciones financieras, consultas multi-tabla, análisis temporal y reportes operativos. Su documentación detallada permite complementar la metodología experimental descrita en el Capítulo IV y facilitar la replicación del estudio.
 
 \begin{thebibliography}{99}
 
