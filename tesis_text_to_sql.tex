@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage[spanish,es-noshorthands]{babel}
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
 
 \usepackage{graphicx}
 \usepackage{color,array}
@@ -173,6 +174,15 @@ Talaei et al. \cite{talaei2024chess} introducen CHESS, un enfoque diseñado espe
 La principal fortaleza de CHESS es su capacidad para mejorar la eficiencia sin degradar el rendimiento: logra reducir de forma significativa el número de tokens procesados —hasta cinco veces menos— mientras se mantiene competitivo en benchmarks exigentes como BIRD \cite{talaei2024chess}. Esta combinación de selección contextual y cooperación entre agentes resulta especialmente pertinente para entornos ERP, donde los esquemas suelen abarcar cientos de tablas y atributos. En estos escenarios, CHESS ofrece una vía concreta para equilibrar el costo computacional con la necesidad de preservar suficiente cobertura semántica para responder preguntas empresariales complejas.
 
 Los análisis comparativos de Shi et al. \cite{shi2025comprehensive} y Liu et al. \cite{liu2025survey} sitúan a modelos como DEA-SQL, DAIL-SQL, MAC-SQL, ACT-SQL, MCS-SQL y CHESS dentro de los llamados ``paradigmas estructurados'', caracterizados por organizar la generación de SQL en fases claras, apoyarse en contexto recuperado de forma controlada y, en muchos casos, distribuir el razonamiento entre varios agentes. Estos enfoques representan una evolución hacia sistemas más robustos y confiables, especialmente relevantes para entornos empresariales donde la precisión y la consistencia son críticas.
+
+\begin{table*}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{Tabla Estado del Arte.png}
+	\caption{Comparación de metodologías del estado del arte en Text-to-SQL basadas en LLMs}
+	\label{tab:estado_arte}
+	\tablefont
+	\textit{Nota.} Se presentan las principales características, enfoques técnicos y resultados de las metodologías más relevantes en la generación de SQL mediante modelos de lenguaje de gran escala. La tabla facilita la comparación entre los diferentes paradigmas estructurados que han marcado el avance reciente del campo.
+\end{table*}
 
 % \subsection{Extensiones y Propuestas Recientes}
 
@@ -524,6 +534,156 @@ En este primer turno, el módulo de Intensión determina que la entrada no corre
 En este segundo turno, el módulo de Memoria recupera el contexto semántico previamente mencionado (productos). Con esta información, el módulo de Intensión evalúa que la combinación de ambos turnos constituye una solicitud completa y ejecutable. El sistema puede entonces reconstruir implícitamente la consulta como ``Obtener el nombre de los primeros cinco productos'' y proceder a la generación y ejecución del SQL correspondiente.
 
 Este mecanismo permite prevenir ejecuciones inválidas o ambiguas, al tiempo que soporta interacciones progresivas y naturales, donde el usuario no necesita formular una consulta completa en un único turno. De esta forma, los módulos de Intensión y Memoria no deben evaluarse exclusivamente por métricas de ejecución, sino por su capacidad de regular cuándo es semánticamente válido ejecutar una consulta, contribuyendo a la confiabilidad global del sistema en escenarios conversacionales reales.
+
+\subsection{Medición del costo computacional y consumo de tokens}
+
+Como parte del proceso de evaluación experimental, se registró el consumo real de tokens y el costo asociado a la generación de consultas SQL para todas las configuraciones evaluadas. Este análisis tiene como objetivo cuantificar el impacto económico de ejecutar un estudio de ablación completo en un sistema NL-to-SQL basado en modelos de lenguaje de gran escala.
+
+En total, la ejecución de todas las combinaciones experimentales dio lugar a 1.007 solicitudes de generación de SQL, considerando tanto intentos iniciales como ajustes derivados de mecanismos de autocorrección. Estas solicitudes se procesaron utilizando distintos modelos de lenguaje con capacidades diferenciadas, seleccionados dinámicamente según el tipo de tarea (generación inicial, razonamiento, verificación o corrección).
+
+El costo total acumulado de estas ejecuciones fue de \$34.777 pesos colombianos (COP), correspondiente a la generación y procesamiento de tokens de entrada y salida durante el periodo experimental.
+
+\subsubsection{Distribución del consumo de tokens}
+
+El consumo total de tokens se distribuyó entre tokens de entrada (input tokens), tokens de salida (output tokens) y tokens reutilizados mediante mecanismos de caché. La mayor parte del consumo corresponde a tokens de entrada, lo cual es consistente con la naturaleza del problema, dado que las solicitudes incluyen contexto estructural, esquemas de base de datos y fragmentos conversacionales acumulados.
+
+De forma resumida, el experimento utilizó aproximadamente:
+
+\begin{itemize}
+	\item Más de 25 millones de tokens de entrada, considerando modelos de distintas capacidades.
+	\item Cerca de 2,8 millones de tokens de salida, asociados a la generación de consultas SQL y respuestas intermedias.
+	\item Una fracción menor de tokens cacheados, con un impacto económico marginal.
+\end{itemize}
+
+Este patrón confirma que los costos del sistema están dominados por la cantidad y longitud del contexto proporcionado al modelo, más que por la longitud de las respuestas generadas.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Figura 5.5 - Catidad de Tockens.png}
+	\caption{Distribución del consumo de tokens durante la evaluación experimental. Se observa que los tokens de entrada dominan el consumo total, reflejando la naturaleza intensiva en contexto del sistema Text-to-SQL propuesto.}
+	\label{fig:cantidad_tokens}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Figura 5.6 - Cantidad de uso.png}
+	\caption{Distribución del uso de modelos de lenguaje durante el experimento. Se evidencia la selección dinámica de modelos según el tipo de tarea, optimizando el balance entre capacidad y costo computacional.}
+	\label{fig:cantidad_uso}
+\end{figure}
+
+\subsubsection{Costo promedio por solicitud}
+
+Considerando el total de 1.007 solicitudes SQL, el costo promedio por solicitud se estima en aproximadamente:
+
+\begin{center}
+	\textbf{\$34,5 COP por solicitud SQL}
+\end{center}
+
+Este valor incluye tanto solicitudes exitosas en el primer intento como aquellas que requirieron procesos de autocorrección. Desde una perspectiva práctica, este resultado indica que la evaluación exhaustiva de múltiples arquitecturas puede realizarse con un costo económico reducido, incluso al emplear modelos de lenguaje avanzados.
+
+\subsubsection{Impacto del diseño arquitectónico en el costo}
+
+Si bien este análisis no persigue la optimización económica como objetivo principal, los resultados sugieren que arquitecturas más robustas, como [RAG + DIN + DEA], reducen indirectamente el costo computacional al disminuir la necesidad de reintentos y autocorrecciones. En contraste, configuraciones con baja capacidad de generación correcta inicial tienden a incrementar el número de solicitudes necesarias para obtener una consulta válida.
+
+Este hallazgo refuerza la idea de que mejorar la calidad de la generación en el primer intento no solo impacta la exactitud del sistema, sino también su eficiencia operativa y su costo total de uso.
+
+\subsubsection{Consideraciones sobre reproducibilidad y validez}
+
+Los costos reportados corresponden a un entorno experimental específico y a un conjunto fijo de preguntas. No obstante, al tratarse de métricas directamente derivadas del consumo de tokens, estos resultados ofrecen una referencia concreta y reproducible para evaluar la viabilidad económica de sistemas NL-to-SQL en escenarios reales.
+
+Este análisis complementa las métricas de precisión y ejecución presentadas anteriormente, aportando una dimensión práctica que resulta especialmente relevante para la adopción de este tipo de sistemas en entornos productivos.
+
+\subsection{Análisis del Time To Answer (TTA) en el workflow multi-agente}
+
+El Time To Answer (TTA) mide el tiempo total transcurrido desde que el usuario emite una consulta en lenguaje natural hasta que el workflow multi-agente finaliza completamente su ejecución y retorna una respuesta definitiva. A diferencia de métricas de latencia asociadas a una única inferencia, el TTA captura de forma integral el costo temporal real del sistema, incluyendo todas las inferencias internas y ciclos de razonamiento necesarios para producir una consulta SQL válida y ejecutable.
+
+En particular, el TTA incorpora el tiempo asociado a la detección y validación de intención, la recuperación de contexto mediante mecanismos de Retrieval-Augmented Generation (RAG), el razonamiento estructural, la generación inicial del SQL y, cuando aplica, los ciclos iterativos de autocorrección. Por tanto, esta métrica refleja de manera más fiel la experiencia del usuario final y el costo computacional total del razonamiento distribuido entre agentes, aspecto crítico en entornos empresariales como los sistemas ERP.
+
+\subsubsection{Resultados agregados de TTA por configuración}
+
+La Tabla 5.7 resume los valores promedio, mínimo y máximo de TTA para las distintas configuraciones arquitectónicas evaluadas, junto con sus métricas de desempeño en Execution Accuracy, SIN ERRORES y SIN\_AUTO\_CORRECCION. Los resultados evidencian una variabilidad considerable entre configuraciones, tanto en términos de latencia promedio como de dispersión extrema.
+
+De forma general, los valores de TTA promedio oscilan entre aproximadamente 10 y 30 segundos. No obstante, algunas configuraciones presentan tiempos máximos superiores a los 100 segundos, lo que indica la presencia de ejecuciones particularmente costosas desde el punto de vista temporal.
+
+\begin{table}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Tabla 4 Time To Answer.png}
+	\caption{Resultados de Time To Answer (TTA) por configuración arquitectónica}
+	\label{tab:tta_results}
+	\tablefont
+	\textit{Nota.} El Time To Answer (TTA) se mide en segundos (s). Execution corresponde a Execution Accuracy. Sin errores representa la robustez del workflow considerando la ejecución con mecanismos de corrección activados. Sin autocorrección mide la proporción de consultas SQL correctas generadas desde el primer intento, sin requerir ciclos adicionales de corrección.
+\end{table}
+
+\subsubsection{Distribución y variabilidad del TTA}
+
+El análisis de la distribución del TTA muestra que la variabilidad no está directamente asociada al número de módulos activos en la arquitectura, sino al número de iteraciones internas requeridas para converger hacia una consulta válida. En particular, las configuraciones con bajo desempeño en SIN\_AUTO\_CORRECCION exhiben valores más elevados tanto en el TTA promedio como en el TTA máximo.
+
+Este comportamiento sugiere que cada fallo en la generación inicial del SQL introduce ciclos adicionales de razonamiento, validación y corrección, incrementando de forma acumulativa el tiempo total de respuesta. En consecuencia, el TTA se ve fuertemente influenciado por la capacidad del sistema de producir una consulta correcta desde el primer intento.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Figura 5.7 Distribución del TTA.png}
+	\caption{Distribución del Time To Answer (TTA) por configuración arquitectónica. Se observa la variabilidad en los tiempos de respuesta, evidenciando que las configuraciones con menor capacidad de generación correcta inicial presentan mayor dispersión y valores extremos más elevados.}
+	\label{fig:distribucion_tta}
+\end{figure}
+
+\subsubsection{Configuraciones sin grounding contextual}
+
+La configuración compuesta únicamente por Intension + Din + Dea presenta el mayor TTA promedio (30,6 s), así como uno de los valores máximos más elevados. Este comportamiento se corresponde con su bajo desempeño en Execution Accuracy (37,74\%) y SIN\_AUTO\_CORRECCION (33,96\%).
+
+Estos resultados evidencian que, en ausencia de grounding contextual, el workflow multi-agente incurre en múltiples intentos fallidos antes de producir una respuesta aceptable. El incremento del TTA no refleja un razonamiento más profundo o efectivo, sino una ineficiencia derivada de errores recurrentes durante la generación y validación del SQL.
+
+Este escenario constituye un contraejemplo empírico relevante: el razonamiento estructural, cuando no está correctamente contextualizado, puede incrementar significativamente el tiempo total de resolución sin mejorar la calidad del resultado final.
+
+\subsubsection{Impacto del grounding mediante RAG sobre el TTA}
+
+Las configuraciones que incorporan RAG muestran una reducción consistente del TTA promedio, incluso cuando incluyen múltiples módulos adicionales. Por ejemplo, la configuración Rag + Din + Dea alcanza un TTA promedio de 14,3 s, al mismo tiempo que obtiene el mejor desempeño en Execution Accuracy (81,13\%) y SIN\_AUTO\_CORRECCION (88,68\%).
+
+Este comportamiento indica que el grounding proporcionado por RAG permite al workflow converger más rápidamente hacia una solución válida, reduciendo la necesidad de ciclos iterativos de razonamiento y autocorrección. En consecuencia, RAG no solo mejora la exactitud del sistema, sino que también optimiza su eficiencia temporal a nivel del workflow completo.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Figura 5.8 Relacion RAG.png}
+	\caption{Relación entre la incorporación de RAG y el Time To Answer. Las configuraciones que incluyen RAG muestran una reducción consistente del TTA promedio, demostrando que el grounding contextual no solo mejora la exactitud sino también la eficiencia temporal del sistema.}
+	\label{fig:relacion_rag}
+\end{figure}
+
+\subsubsection{Relación entre SIN\_AUTO\_CORRECCION y TTA}
+
+El análisis revela una relación inversa clara entre SIN\_AUTO\_CORRECCION y TTA promedio. Las configuraciones que generan consultas correctas desde el primer intento, con valores superiores al 85\% en SIN\_AUTO\_CORRECCION, tienden a presentar TTA promedio en el rango de 10 a 15 segundos. Por el contrario, aquellas con valores inferiores al 35\% superan consistentemente los 20 segundos y exhiben una mayor dispersión en los valores máximos.
+
+Este patrón confirma que cada error inicial introduce nuevos ciclos de inferencia y validación, incrementando el tiempo total del workflow. Por tanto, la calidad de la generación en el primer intento emerge como un factor determinante no solo para la exactitud del sistema, sino también para su desempeño temporal.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Figura 5.9 Correlacion sin AC.png}
+	\caption{Correlación entre SIN\_AUTO\_CORRECCION y Time To Answer promedio. Se evidencia una relación inversa clara: las configuraciones con mayor capacidad de generación correcta en el primer intento presentan menores tiempos de respuesta, confirmando que la calidad inicial de la generación es determinante para la eficiencia temporal del sistema.}
+	\label{fig:correlacion_sin_ac}
+\end{figure}
+
+\subsubsection{Rol de Memoria e Intensión en el TTA}
+
+Las configuraciones que incorporan los módulos de Memoria e Intensión presentan un comportamiento diferenciado en términos de TTA. En escenarios conversacionales multi-turno, estos módulos permiten evitar ejecuciones prematuras y reconstruir consultas completas a partir de fragmentos distribuidos en varios mensajes, mejorando la coherencia semántica del sistema.
+
+No obstante, cuando la generación inicial del SQL no es suficientemente robusta, la acumulación de contexto y la validación adicional pueden incrementar el TTA máximo, como se observa en algunas configuraciones con valores elevados de TTA extremo. Este fenómeno no debe interpretarse como una deficiencia del sistema, sino como una consecuencia directa del soporte a interacciones conversacionales más complejas y naturales.
+
+\subsubsection{Configuración con mejor compromiso entre calidad y tiempo}
+
+Entre todas las configuraciones evaluadas, Rag + Din + Dea presenta el mejor equilibrio global entre exactitud, robustez y eficiencia temporal. Esta arquitectura combina:
+
+\begin{itemize}
+	\item Un TTA promedio bajo (14,3 s)
+	\item Alta Execution Accuracy (81,13\%)
+	\item Elevada generación correcta sin autocorrección (88,68\%)
+\end{itemize}
+
+Estos resultados demuestran que un workflow multi-agente correctamente balanceado no solo mejora la calidad de las respuestas, sino que también reduce el tiempo total requerido para completarlas, al minimizar la necesidad de razonamiento iterativo.
+
+\subsubsection{Implicaciones para sistemas NL-to-SQL multi-agente}
+
+El análisis del TTA confirma que la eficiencia temporal de un sistema NL-to-SQL multi-agente está fuertemente influenciada por su capacidad de generar consultas correctas desde el primer intento. Arquitecturas frágiles no solo presentan menores tasas de ejecución correcta, sino que también incrementan significativamente el tiempo total de respuesta, afectando negativamente la experiencia del usuario y el costo computacional.
+
+En consecuencia, el diseño de sistemas NL-to-SQL multi-agente debe priorizar el grounding contextual y el razonamiento estructural efectivo, no solo como mecanismos de mejora de exactitud, sino como factores clave para garantizar un comportamiento eficiente y escalable a nivel de workflow completo.
 
 \appendix
 
