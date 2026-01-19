@@ -37,15 +37,19 @@
 \maketitle
 
 \begin{abstract}
-	La generación automática de consultas SQL a partir de lenguaje natural (Text-to-SQL) representa un desafío fundamental en el procesamiento del lenguaje natural, especialmente en entornos empresariales complejos como los sistemas ERP. Este trabajo presenta una arquitectura híbrida multi-agente que integra descomposición de consultas, recuperación contextual del esquema y generación controlada de SQL mediante modelos de lenguaje de gran escala (LLMs). La arquitectura propuesta distribuye la tarea entre agentes especializados: un Selector que identifica sub-esquemas relevantes, un Decomposer que divide consultas complejas en subtareas manejables, y un Refiner que ejecuta y corrige iterativamente las consultas generadas. La evaluación se realizó sobre el sistema ERP Fail Fast, utilizando métricas estándar como Execution Accuracy (EX), Time-to-Answer (TTA) y Component Matching. Los resultados demuestran mejoras significativas ********* en precisión (incremento del 15\% en EX) y robustez ********** comparado con enfoques monolíticos, validando la hipótesis de que la colaboración multi-agente y la recuperación contextual mejoran sustancialmente el rendimiento en esquemas complejos. La arquitectura desarrollada democratiza el acceso a la información empresarial, permitiendo consultas en lenguaje natural sin requerir conocimientos técnicos especializados.
+	La generación automática de consultas SQL a partir de lenguaje natural (Text-to-SQL) representa un desafío fundamental en el procesamiento del lenguaje natural, especialmente en entornos empresariales complejos como los sistemas ERP. Esta tesis propone y evalúa una arquitectura híbrida multi-agente para traducir preguntas empresariales a consultas SQL ejecutables sobre el ERP Fail Fast. La solución integra recuperación contextual del esquema (RAG), descomposición de consultas y generación controlada de SQL mediante modelos de lenguaje, orquestadas por agentes especializados: un agente de Intensión que determina si una entrada es ejecutable y regula la activación del flujo Text-to-SQL en escenarios conversacionales; un Selector que delimita el sub-esquema relevante; un Decomposer que divide consultas complejas en subtareas manejables; y un Refiner que valida por ejecución y aplica correcciones iterativas. La evaluación se realizó sobre un conjunto fijo de 53 consultas de referencia utilizando Execution Accuracy (EX), Time-to-Answer (TTA) y Component Matching, además de métricas de robustez asociadas a corrección y generación en el primer intento. Los resultados reportan un incremento del 15 \% en EX y mejoras consistentes en robustez frente a enfoques monolíticos, evidenciando que la colaboración multi-agente y el grounding contextual mejoran el desempeño en esquemas empresariales extensos.
 \end{abstract}
 
-\section*{Impact Statement}
+\section*{Declaración de Impacto}
 
-Este trabajo permite que usuarios no técnicos de un ERP accedan a información empresarial mediante preguntas en lenguaje natural, traducidas a consultas SQL ejecutables sobre esquemas reales y complejos. Mediante una evaluación controlada que activa y desactiva componentes de la arquitectura, se cuantifica el efecto de la recuperación contextual, la memoria, la clasificación de intención y la descomposición de consultas sobre la exactitud por ejecución y el tiempo de respuesta, aportando evidencia práctica para el despliegue de sistemas Text-to-SQL basados en LLM en entornos ERP.
+Los sistemas ERP concentran la información operativa y financiera más relevante de una organización, pero su acceso efectivo sigue estando limitado por interfaces rígidas, reportes preconfigurados y la dependencia de perfiles técnicos capaces de formular consultas complejas. Esta brecha entre "lo que el usuario quiere preguntar" y "lo que el sistema permite responder" afecta directamente la velocidad de análisis, incrementa el costo operativo y reduce la autonomía de los equipos de negocio. En este contexto, el presente trabajo es relevante porque habilita una interacción más natural con el ERP: preguntas en lenguaje cotidiano que se traducen a consultas SQL ejecutables sobre esquemas reales y complejos.
+
+Los principales beneficiarios son usuarios no técnicos (finanzas, operaciones, ventas, compras y gerencia) que requieren respuestas rápidas para decidir, y también los equipos de TI y analítica, al disminuir la carga de solicitudes repetitivas y mejorar la trazabilidad de la lógica de consulta. Para soportar su despliegue en condiciones realistas, el estudio cuantifica mediante un diseño experimental controlado el efecto de activar y desactivar componentes de la arquitectura —recuperación contextual (RAG), memoria conversacional, clasificación de intención y descomposición de consultas— sobre métricas críticas para producción como la exactitud por ejecución y el tiempo total de respuesta.
+
+En el corto plazo, esta solución reduce fricción y dependencia de reportes estáticos, acelerando el acceso a información y mejorando la productividad. En el largo plazo, aporta evidencia práctica para evolucionar el ERP hacia una interfaz cognitiva basada en agentes, donde la consulta, validación y explicación de resultados puedan integrarse de forma segura y escalable, democratizando el acceso a la información empresarial y fortaleciendo la toma de decisiones basada en datos.
 
 \begin{IEEEkeywords}
-	Text-to-SQL, ERP, LLM, RAG, multi-agent, DIN-SQL, DEA-SQL
+	Text-to-SQL, ERP, modelos de lenguaje (LLM), recuperación aumentada (RAG), sistemas multi-agente, descomposición de consultas, autocorrección, DIN-SQL, DEA-SQL, MAC-SQL
 \end{IEEEkeywords}
 
 \section{Introducción}
@@ -58,11 +62,11 @@ La incorporación de capacidades Text-to-SQL plantea desafíos relevantes, entre
 
 \subsection{Contexto y Motivación}
 
-La interacción entre los usuarios y los sistemas de planificación de recursos empresariales (ERP) ha estado históricamente limitada por la necesidad de comprender estructuras tabulares complejas y dominar lenguajes de consulta como SQL. Aunque estos sistemas gestionan con precisión las transacciones y el control operativo, su acceso cognitivo continúa siendo restringido para quienes no tienen formación técnica. Tras más de treinta años de experiencia en el desarrollo e implementación de ERP, Fail Fast ha evidenciado una brecha persistente: mientras las organizaciones requieren interpretar su información en lenguaje natural para tomar decisiones, los sistemas siguen exigiendo consultas formales y conocimiento especializado.
+La interacción entre los usuarios y los sistemas de planificación de recursos empresariales (ERP) ha estado históricamente limitada por la necesidad de comprender estructuras tabulares complejas y dominar lenguajes de consulta como SQL. Aunque estos sistemas gestionan con precisión las transacciones y el control operativo, su acceso cognitivo continúa siendo restringido para quienes no tienen formación técnica. Tras más de treinta años de experiencia en el desarrollo e implementación de ERP, Fail Fast ha evidenciado una brecha persistente: los equipos de negocio necesitan formular preguntas en lenguaje natural para tomar decisiones oportunas, pero el ERP continúa exigiendo consultas formales y habilidades técnicas especializadas para acceder a los datos.
 
-Con la llegada de los modelos de lenguaje de gran escala (LLM), esta situación se transforma. Investigaciones recientes demuestran que los LLM pueden traducir instrucciones en lenguaje natural a consultas SQL con altos niveles de precisión \cite{scholak2021picard, pourreza2023din}, abriendo la posibilidad de que los usuarios accedan directamente a la información empresarial mediante preguntas expresadas en su propio lenguaje.
+Con los avances recientes en modelos de lenguaje (LLM), esta situación se transforma. Investigaciones recientes demuestran que los LLM pueden traducir instrucciones en lenguaje natural a consultas SQL con altos niveles de precisión \cite{scholak2021picard, pourreza2023din}, abriendo la posibilidad de que los usuarios accedan directamente a la información empresarial mediante preguntas expresadas en su propio lenguaje.
 
-No obstante, la literatura reciente evidencia limitaciones persistentes en enfoques basados en LLM para Text-to-SQL: el desempeño tiende a degradarse cuando los esquemas de datos son extensos o “huge”, debido a la interferencia de información irrelevante y a la mayor dificultad de schema linking \cite{hong2024bird, li2024comprehensive}. Asimismo, existen fallas cuando la consulta requiere conocimiento implícito no descrito explícitamente en la pregunta o el esquema (p. ej., definiciones de métricas, reglas de negocio o fórmulas), lo que ha motivado marcos de knowledge-intensive Text-to-SQL y el uso de conocimiento externo \cite{dou2022towards, gao2024dail}. Finalmente, cuando las preguntas demandan razonamiento multietapa, se observan mejoras al emplear descomposición del problema y estrategias explícitas de razonamiento (p. ej., chain-of-thought y flujos multiagente), frente a enfoques directos \cite{pourreza2023din, zhang2023act, li2024comprehensive}.
+No obstante, la literatura reciente evidencia limitaciones persistentes en enfoques basados en LLM para Text-to-SQL: el desempeño tiende a degradarse en esquemas de datos grandes y complejos, debido a la interferencia de información irrelevante y a la mayor dificultad de schema linking \cite{hong2024bird, li2024comprehensive}. Asimismo, existen fallas cuando la consulta requiere conocimiento implícito no descrito explícitamente en la pregunta o el esquema (p. ej., definiciones de métricas, reglas de negocio o fórmulas), lo que ha motivado marcos de knowledge-intensive Text-to-SQL y el uso de conocimiento externo \cite{dou2022towards, gao2024dail}. Finalmente, cuando las preguntas demandan razonamiento multietapa, se observan mejoras al emplear descomposición del problema y estrategias explícitas de razonamiento (p. ej., chain-of-thought y flujos multiagente), frente a enfoques directos \cite{pourreza2023din, zhang2023act, li2024comprehensive}.
 
 La motivación de este trabajo, por tanto, se fundamenta en aprovechar la experiencia acumulada en sistemas ERP y las capacidades emergentes de la inteligencia artificial para permitir que los usuarios formulen consultas en lenguaje natural y obtengan respuestas precisas basadas en los datos de su organización.
 
@@ -70,9 +74,9 @@ La motivación de este trabajo, por tanto, se fundamenta en aprovechar la experi
 
 \subsubsection{Justificación}
 
-El interés por mejorar la generación de SQL a partir de lenguaje natural ha crecido de manera sostenida, especialmente desde que los modelos de lenguaje de gran escala demostraron capacidad para traducir instrucciones cotidianas en consultas formales. Sin embargo, en entornos reales como los sistemas ERP, la interacción con la información sigue siendo limitada para quienes no dominan estructuras tabulares o lenguajes como SQL. A pesar de que estos sistemas cumplen un papel central en la trazabilidad y el control de los procesos empresariales, todavía existe una brecha entre su complejidad interna y la forma en que los usuarios formulan sus preguntas.
+Sin embargo, en entornos reales como los sistemas ERP, la interacción con la información sigue siendo limitada para quienes no dominan estructuras tabulares o lenguajes como SQL. A pesar de que estos sistemas cumplen un papel central en la trazabilidad y el control de los procesos empresariales, todavía existe una brecha entre su complejidad interna y la forma en que los usuarios formulan sus preguntas.
 
-Este trabajo busca cerrar esa brecha mediante una arquitectura que permita acercar las preguntas en lenguaje natural al núcleo de datos de un ERP, de manera precisa, estable y comprensible para el usuario final. Esta motivación se potencia gracias a las características del ERP Fail Fast, desarrollado durante el último año sobre un stack moderno —PostgreSQL, Python y React— que facilita la integración nativa de modelos de lenguaje y agentes inteligentes.
+Este trabajo busca cerrar esa brecha mediante una arquitectura que permita acercar las preguntas en lenguaje natural al núcleo de datos de un ERP, de manera precisa, estable y comprensible para el usuario final. Esta motivación se potencia gracias a las características del ERP Fail Fast.
 
 A diferencia de sistemas heredados, la base de datos de Fail Fast fue diseñada desde cero con una estructura coherente, documentada y con nomenclaturas alineadas al significado funcional de cada tabla. Esta decisión de ingeniería no es menor: los estudios recientes muestran que la claridad semántica en los esquemas y la consistencia en los nombres de tablas y columnas favorecen el schema linking y reducen errores de interpretación por parte de los LLM \cite{hong2024bird, luo2025schema}.
 
@@ -86,8 +90,6 @@ Diseñar y evaluar una arquitectura híbrida multi-agente para la generación au
 	\item Identificar los desafíos del proceso Text-to-SQL en el ERP Fail Fast, considerando su base de datos documentada, la semántica de sus tablas y columnas, y las particularidades del dominio empresarial.
 
 	\item Diseñar una arquitectura híbrida que integre la descomposición de consultas, la recuperación contextual del esquema y la generación controlada de SQL mediante modelos de lenguaje, orquestadas a través de agentes de inteligencia artificial.
-
-	\item ************.  Analizar el comportamiento de metodologías de última generación al aplicarlas sobre un sistema ERP real como Fail Fast, para comparar su rendimiento frente a benchmarks tradicionales como Spider o BIRD.
 
 	\item ************. Evaluar el desempeño de la arquitectura propuesta utilizando métricas consolidadas en la literatura —Execution Accuracy (EX), Schema Linking Accuracy (SLA), Context Retention Rate (CRR), Task Success Rate (TSR) y Time-to-Answer (TTA).
 
@@ -153,7 +155,7 @@ En su configuración de referencia, MAC-SQL utiliza GPT-4 como backbone para est
 
 ACT-SQL constituye una metodología reciente que busca potenciar la capacidad de razonamiento de los LLMs en la generación de SQL, mediante la incorporación de cadenas de razonamiento (chain-of-thought, CoT) generadas automáticamente \cite{zhang2023act}. A diferencia de enfoques tradicionales que requieren ejemplos anotados manualmente, ACT-SQL introduce un mecanismo de auto-CoT que produce secuencias de razonamiento de manera automática a partir de ejemplos de entrenamiento, eliminando la necesidad de etiquetado manual. Esta estrategia resulta eficiente en costos, ya que requiere únicamente una llamada a la API del LLM por cada consulta SQL generada. Además, se amplía el método de in-context learning al escenario de consultas multi-turn en text-to-SQL.
 
-El método se apoya en tres pilares: (i) prompts orientados al esquema, que exploran distintas formas de representar tablas y relaciones; (ii) selección híbrida de ejemplos (static exemplars, predefinidos y comunes a todas las consultas, y dynamic exemplars, seleccionados dinámicamente según similitud con la pregunta actual); y (iii) generación automática de cadenas de razonamiento (CoT), que introduce pasos intermedios antes de producir la consulta final en SQL.
+El método se apoya en tres pilares: (1) prompts orientados al esquema, que exploran distintas formas de representar tablas y relaciones; (2) selección híbrida de ejemplos (static exemplars, predefinidos y comunes a todas las consultas, y dynamic exemplars, seleccionados dinámicamente según similitud con la pregunta actual); y (3) generación automática de cadenas de razonamiento (CoT), que introduce pasos intermedios antes de producir la consulta final en SQL.
 
 El aporte central de ACT-SQL es demostrar que la automatización del CoT permite a los LLMs generar consultas más precisas y robustas, reduciendo la dependencia de ejemplos cuidadosamente diseñados por humanos. Esto lo convierte en una propuesta atractiva para entornos industriales como los ERP, donde la adaptabilidad y la eficiencia son críticas, y donde el razonamiento paso a paso resulta esencial para consultas complejas en esquemas extensos.
 
@@ -204,9 +206,9 @@ Los análisis comparativos de Shi et al. \cite{shi2025comprehensive} y Liu et al
 
 \section{Arquitectura Propuesta}
 
-La arquitectura propuesta se concibe como un sistema multi-agente orientado a transformar preguntas en lenguaje natural en consultas SQL ejecutables sobre el ERP Fail Fast, y luego devolver respuestas comprensibles para el usuario. Se inspira en los paradigmas estructurados descritos en el estado del arte —especialmente MAC-SQL para la colaboración multi-agente, DIN-SQL para la descomposición de consultas y DEA-SQL para la planificación— adaptados a un entorno real con un ERP moderno basado en PostgreSQL, Python y React.
+La arquitectura propuesta se concibe como un sistema multi-agente orientado a transformar preguntas en lenguaje natural en consultas SQL ejecutables sobre el ERP Fail Fast, y luego devolver respuestas comprensibles para el usuario. Se inspira en los paradigmas estructurados descritos en el estado del arte —especialmente MAC-SQL para la colaboración multi-agente, DIN-SQL para la descomposición de consultas y DEA-SQL para la planificación— adaptados a un entorno real.
 
-A alto nivel, la arquitectura implementa un marco colaborativo multi-agente donde cada agente tiene responsabilidades específicas y bien definidas, organizándose en cuatro capas funcionales: entrada e interpretación de la intención, análisis y planificación de la consulta, generación y ejecución de SQL, y respuesta en lenguaje natural y retroalimentación.
+A alto nivel, la arquitectura implementa un marco colaborativo multi-agente donde cada agente tiene responsabilidades específicas y bien definidas, organizándose en cuatro capas funcionales: entrada e interpretación de la intención, análisis y planificación de la consulta, generación y ejecución de SQL, respuesta en lenguaje natural y retroalimentación.
 
 \begin{figure*}[t]
 	\centering
@@ -238,12 +240,12 @@ El primer componente es un agente de descomposición, alineado con las ideas de 
 \begin{itemize}
 	\item Una reformulación clara de la intención (``El usuario desea obtener...'')
 	\item Una lista de pasos lógicos necesarios para responderla (qué tablas parecen relevantes, qué filtros temporales o de estado, si se requieren agregaciones o agrupaciones, etc.)
-	\item Una clasificación de complejidad (fácil, media, compleja) en función del número de tablas, la necesidad de joins y la presencia de reglas de negocio
+	\item Una clasificación de complejidad (fácil, media, compleja) en función del número de tablas y la necesidad de joins.
 \end{itemize}
 
 Este agente no genera SQL, sino que construye una ``hoja de ruta'' comprensible que sirve de puente entre el lenguaje de negocio y la estructura de la base de datos.
 
-En esta arquitectura, cada pregunta se clasifica en tres niveles de complejidad: baja, media o alta. Se considera pregunta sencilla cuando solo usa una tabla, tiene filtros directos (por fecha, estado o member\_id) y, como mucho, una agregación básica como COUNT, SUM o AVG, sin subconsultas ni joins complicados.
+En esta arquitectura, cada pregunta se clasifica en tres niveles de complejidad: fácil, media, compleja. Se considera pregunta sencilla cuando solo usa una tabla, tiene filtros directos (por fecha, estado o member\_id) y, como mucho, una agregación básica como COUNT, SUM o AVG, sin subconsultas ni joins complicados.
 
 Hablamos de pregunta de complejidad media o alta cuando intervienen varias tablas con múltiples joins, aparecen condiciones anidadas o subconsultas, hay posibles ambigüedades (por ejemplo, qué ``total'' usar: el del encabezado o el del detalle) o se deben aplicar reglas de negocio y políticas de acceso específicas (como las de entornos multi-tenant).
 
@@ -284,11 +286,11 @@ El agente tiene reglas estrictas de seguridad y contexto:
 	\item Incluye filtros obligatorios para excluir registros borrados (audit\_status)
 \end{itemize}
 
-La consulta generada se envía a la base de datos del ERP Fail Fast para ser ejecutada. Si la ejecución produce errores, esa información se devuelve al agente generador, que intenta corregir la consulta en una o varias iteraciones. Este ciclo de generar–ejecutar–corregir proporciona robustez ante variaciones en la interpretación de las consultas y ambigüedades en el esquema de datos.
+La consulta generada se envía a la base de datos del ERP Fail Fast para ser ejecutada. Si la ejecución produce errores, esa información se devuelve al agente generador, que intenta corregir la consulta hasta tres iteraciones. Este ciclo de generar–ejecutar–corregir proporciona robustez ante variaciones en la interpretación de las consultas y ambigüedades en el esquema de datos.
 
 \subsection{Capa de Respuesta en Lenguaje Natural y Retroalimentación}
 
-Cuando la consulta SQL se ejecuta correctamente, el sistema obtiene un conjunto de resultados estructurados (filas, columnas, agregados) que no son adecuados para mostrarse directamente a cualquier usuario. Para ello se utiliza un agente de respuesta que:
+Cuando la consulta SQL se ejecuta correctamente, el sistema obtiene un conjunto de resultados estructurados (filas, columnas, JOINS) que no son adecuados para mostrarse directamente a cualquier usuario. Para ello se utiliza un agente de respuesta que:
 \begin{itemize}
 	\item Recibe la pregunta original, la descomposición y los resultados de la base de datos
 	\item Resume y explica los resultados en el mismo idioma en el que el usuario preguntó
@@ -342,12 +344,11 @@ La arquitectura propuesta se diseñó de forma modular y parametrizable, permiti
 
 \textbf{Memoria.} Controla si el sistema preserva explícitamente contexto conversacional y referencias previas entre consultas. En su configuración activa, el historial relevante se incorpora como contexto adicional; en su configuración inactiva, cada consulta se procesa de forma independiente.
 
-\textbf{Intención (Intent Classification).} Determina si el sistema clasifica previamente el tipo de operación solicitada (por ejemplo, agregación, consulta multi-tabla o análisis temporal) para seleccionar un flujo de generación específico. Al desactivarse, todas las consultas siguen un flujo único de generación sin diferenciación por tipo.
+\textbf{Intención (Intent Classification).} Determina si el sistema clasifica previamente el tipo de operación solicitada (por ejemplo, agregación, consulta multi-tabla o análisis temporal) para seleccionar un flujo de generación específico. Al desactivarse, todas las consultas siguen un flujo único de generación sin diferenciación por tipo. esto en realidad lo que hace es: Esta lo que hace es determinar si se puede responder directamente la pregunta mediante Sql o por el contrario la pregunta es muy pobre o ambigua para que se pueda responder.
 
 \textbf{DIN (Decomposition-In-Natural-Language).} Cuando está activo, la consulta original se descompone en subpreguntas expresadas en lenguaje natural antes de la generación de SQL. En su configuración inactiva, el sistema intenta generar la consulta SQL de manera directa a partir de la pregunta original.
 
-\textbf{DEA (Decomposition-Execution-Aware).} Habilita un flujo de generación y refinamiento orientado a la ejecución, donde las consultas SQL generadas pueden corregirse iterativamente a partir de errores de ejecución o resultados parciales. Al desactivarse, el sistema produce una única consulta SQL sin ciclos explícitos de corrección basados en ejecución.
-
+\textbf{DEA (Decomposition-Execution-Aware).} Habilita un esquema de generación orientado a la ejecutabilidad, en el que la salida se estructura para facilitar validación posterior por ejecución (p. ej., priorizando consistencia de esquema, restricciones y composición de operadores) y para producir consultas más robustas frente a errores comunes en bases de datos reales. En esta arquitectura, DEA no realiza directamente la autocorrección: su rol es guiar la generación hacia SQL ejecutable y modular, mientras que la ejecución y los ciclos de corrección iterativa —cuando están habilitados— son responsabilidad del componente de ejecución y refinamiento (p. ej., Executor/Refiner). Al desactivarse DEA, el sistema mantiene la generación de SQL, pero sin aplicar este sesgo explícito hacia ejecutabilidad durante la construcción de la consulta.
 Estos componentes se combinan de manera controlada para conformar distintas configuraciones experimentales, manteniendo constantes el conjunto de consultas evaluadas y las métricas de desempeño. De esta forma, es posible aislar y cuantificar el aporte específico de cada componente y de sus combinaciones al rendimiento global del sistema.
 
 \subsection{Espacio experimental y combinaciones evaluadas}
