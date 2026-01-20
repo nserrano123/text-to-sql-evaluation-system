@@ -6,6 +6,7 @@
 \usepackage[spanish,es-noshorthands]{babel}
 \addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
 
+\usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{color,array}
 \usepackage{microtype}
@@ -37,7 +38,7 @@
 \maketitle
 
 \begin{abstract}
-	La generación automática de consultas SQL a partir de lenguaje natural (Text-to-SQL) representa un desafío fundamental en el procesamiento del lenguaje natural, especialmente en entornos empresariales complejos como los sistemas ERP. Esta tesis propone y evalúa una arquitectura híbrida multi-agente para traducir preguntas empresariales a consultas SQL ejecutables sobre el ERP Fail Fast. La solución integra recuperación contextual del esquema (RAG), descomposición de consultas y generación controlada de SQL mediante modelos de lenguaje, orquestadas por agentes especializados: un agente de Intensión que determina si una entrada es ejecutable y regula la activación del flujo Text-to-SQL en escenarios conversacionales; un Selector que delimita el sub-esquema relevante; un Decomposer que divide consultas complejas en subtareas manejables; y un Refiner que valida por ejecución y aplica correcciones iterativas. La evaluación se realizó sobre un conjunto fijo de 53 consultas de referencia utilizando Execution Accuracy (EX), Time-to-Answer (TTA) y Component Matching, además de métricas de robustez asociadas a corrección y generación en el primer intento. Los resultados reportan un incremento del 15 \% en EX y mejoras consistentes en robustez frente a enfoques monolíticos, evidenciando que la colaboración multi-agente y el grounding contextual mejoran el desempeño en esquemas empresariales extensos.
+	La generación automática de consultas SQL a partir de lenguaje natural (Text-to-SQL) representa un desafío fundamental en el procesamiento del lenguaje natural, especialmente en entornos empresariales complejos como los sistemas ERP. Esta tesis propone y evalúa una arquitectura híbrida multi-agente para traducir preguntas empresariales a consultas SQL ejecutables sobre el ERP Fail Fast. La solución integra recuperación contextual del esquema (RAG), descomposición de consultas y generación controlada de SQL mediante modelos de lenguaje, orquestadas por agentes especializados: un agente de Intensión que determina si una entrada es ejecutable y regula la activación del flujo Text-to-SQL en escenarios conversacionales; un Selector que delimita el sub-esquema relevante; un Decomposer que divide consultas complejas en subtareas manejables; y un Refiner que valida por ejecución y aplica correcciones iterativas. La evaluación se realizó sobre un conjunto fijo de 53 consultas de referencia utilizando Execution Accuracy (EX), Time-to-Answer (TTA) y Component Matching, además de métricas de robustez asociadas a corrección y generación en el primer intento. Los resultados reportan un incremento en EX y mejoras consistentes en robustez frente a enfoques monolíticos, evidenciando que la colaboración multi-agente y el grounding contextual mejoran el desempeño en esquemas empresariales extensos.
 \end{abstract}
 
 \section*{Declaración de Impacto}
@@ -74,7 +75,7 @@ La motivación de este trabajo, por tanto, se fundamenta en aprovechar la experi
 
 \subsubsection{Justificación}
 
-Sin embargo, en entornos reales como los sistemas ERP, la interacción con la información sigue siendo limitada para quienes no dominan estructuras tabulares o lenguajes como SQL. A pesar de que estos sistemas cumplen un papel central en la trazabilidad y el control de los procesos empresariales, todavía existe una brecha entre su complejidad interna y la forma en que los usuarios formulan sus preguntas.
+El interés por mejorar la generación de SQL a partir de lenguaje natural ha crecido de manera sostenida, especialmente desde que los modelos de lenguaje de gran escala demostraron capacidad para traducir instrucciones cotidianas en consultas formales. Sin embargo, en entornos reales como los sistemas ERP, la interacción con la información sigue siendo limitada para quienes no dominan estructuras tabulares o lenguajes como SQL. A pesar de que estos sistemas cumplen un papel central en la trazabilidad y el control de los procesos empresariales, todavía existe una brecha entre su complejidad interna y la forma en que los usuarios formulan sus preguntas.
 
 Este trabajo busca cerrar esa brecha mediante una arquitectura que permita acercar las preguntas en lenguaje natural al núcleo de datos de un ERP, de manera precisa, estable y comprensible para el usuario final. Esta motivación se potencia gracias a las características del ERP Fail Fast.
 
@@ -91,9 +92,11 @@ Diseñar y evaluar una arquitectura híbrida multi-agente para la generación au
 
 	\item Diseñar una arquitectura híbrida que integre la descomposición de consultas, la recuperación contextual del esquema y la generación controlada de SQL mediante modelos de lenguaje, orquestadas a través de agentes de inteligencia artificial.
 
-	\item ************. Evaluar el desempeño de la arquitectura propuesta utilizando métricas consolidadas en la literatura —Execution Accuracy (EX), Schema Linking Accuracy (SLA), Context Retention Rate (CRR), Task Success Rate (TSR) y Time-to-Answer (TTA).
+	\item Evaluar el desempeño de la arquitectura propuesta utilizando métricas consolidadas en la literatura —Execution Accuracy (EX), Context Retention Rate (CRR), Task Success Rate (TSR) y Time-to-Answer (TTA).
 
-	\item ************. Caracterizar los tipos de preguntas empresariales formuladas por los usuarios, con el fin de orientar futuras extensiones hacia interacciones multimodales y mecanismos que permitan democratizar el acceso seguro a la información.
+	\item Diseñar e implementar una arquitectura de observabilidad para la solución multi-agente que permita rastrear y auditar el comportamiento de cada agente (entradas, decisiones intermedias, contexto utilizado, SQL propuesto, errores y correcciones), de modo que se puedan identificar de manera simple y sistemática oportunidades de mejora y priorizar ajustes mediante análisis de fallas y estudios de ablación.
+
+	\item Lograr una  interacción conversacional que adapte la generación de respuestas  al estilo comunicativo del usuario, con el fin de que la consulta y retroalimentación del sistema se perciban lo más naturales posibles sin afectar la precisión de las consultas SQL generadas.
 \end{enumerate}
 
 \subsubsection{Hipótesis}
@@ -103,7 +106,6 @@ Diseñar y evaluar una arquitectura híbrida multi-agente para la generación au
 Se espera que esta arquitectura:
 \begin{itemize}
 	\item Incremente la Execution Accuracy (EX) al reducir errores de razonamiento y ambigüedad en consultas complejas
-	\item Mejore la Schema Linking Accuracy (SLA) gracias a la utilización de contexto estructurado y a la semántica clara del modelo de datos de Fail Fast
 	\item Preserve mejor el contexto conversacional (CRR) mediante agentes especializados y flujos de verificación
 	\item Aumente la utilidad práctica del sistema, reflejada en la Task Success Rate (TSR)
 	\item Reduzca tiempos de respuesta (TTA) debido a una orquestación que filtra y estructura adecuadamente la información que recibe el modelo
@@ -608,7 +610,7 @@ De forma general, los valores de TTA promedio oscilan entre aproximadamente 10 y
 
 \begin{table}[htbp]
 	\centering
-	\includegraphics[width=\linewidth]{Tabla 4 Time To Answer.png}
+	\includegraphics[width=0.95\linewidth]{Tabla 4 Time To Answer.png}
 	\caption{Resultados de Time To Answer (TTA) por configuración arquitectónica}
 	\label{tab:tta_results}
 	\tablefont
@@ -685,6 +687,112 @@ Estos resultados demuestran que un workflow multi-agente correctamente balancead
 El análisis del TTA confirma que la eficiencia temporal de un sistema NL-to-SQL multi-agente está fuertemente influenciada por su capacidad de generar consultas correctas desde el primer intento. Arquitecturas frágiles no solo presentan menores tasas de ejecución correcta, sino que también incrementan significativamente el tiempo total de respuesta, afectando negativamente la experiencia del usuario y el costo computacional.
 
 En consecuencia, el diseño de sistemas NL-to-SQL multi-agente debe priorizar el grounding contextual y el razonamiento estructural efectivo, no solo como mecanismos de mejora de exactitud, sino como factores clave para garantizar un comportamiento eficiente y escalable a nivel de workflow completo.
+
+\subsection{Medición del Context Retention Rate (CRR)}
+
+El Context Retention Rate (CRR) evalúa la capacidad del sistema para retener, recuperar y reutilizar correctamente el contexto relevante a lo largo de interacciones conversacionales multi-turno. A diferencia de métricas centradas en consultas aisladas, CRR mide el comportamiento del sistema cuando las solicitudes del usuario dependen parcial o totalmente de información introducida en turnos previos, como referencias elípticas, anafóricas o implícitas.
+
+Para esta evaluación, se construyó un escenario conversacional controlado compuesto por once turnos, que combina interacciones conversacionales generales con solicitudes ejecutables sobre la base de datos. La Tabla~\ref{tab:crr_evaluation} presenta, para cada turno, si la consulta es dependiente de contexto, el contexto requerido (gold context), la evidencia de su uso en el SQL generado y si el turno se considera un acierto de retención contextual (CRR\_hit).
+
+\begin{table}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Figura - Evaluacion de CRR.png}
+	\caption{Evaluación del Context Retention Rate (CRR) en un diálogo multi-turno}
+	\label{tab:crr_evaluation}
+	\tablefont
+	\textit{Nota.} Se presenta la evaluación de once turnos conversacionales, identificando aquellos dependientes de contexto previo y verificando si el sistema recuperó y aplicó correctamente dicho contexto en la generación del SQL. Los turnos 3, 6, 7 y 11 requieren información de turnos anteriores, y en todos los casos el sistema logró reutilizar correctamente el contexto (CRR\_hit = Sí).
+\end{table}
+
+\subsubsection{Definición y cálculo del CRR}
+
+Un turno se clasifica como \textit{context-dependent} cuando la solicitud del usuario no es completamente ejecutable de forma autónoma, y requiere información semántica previa (por ejemplo, entidad, campos, filtros o límites definidos anteriormente). Un turno se considera exitoso (CRR\_hit = Sí) si el sistema:
+
+\begin{itemize}
+	\item Recupera correctamente el contexto relevante de turnos previos, y
+	\item Lo aplica de forma consistente en la consulta SQL generada, sin requerir que el usuario repita explícitamente la información.
+\end{itemize}
+
+En el escenario evaluado, los turnos dependientes de contexto corresponden a los turnos 3, 6, 7 y 11, para un total de cuatro turnos contextuales. En todos ellos, el sistema reutilizó correctamente la entidad, los campos y la estructura de la consulta, modificando únicamente los parámetros explícitamente indicados por el usuario.
+
+\begin{equation}
+	\text{CRR} = \frac{\text{Turnos con CRR\_hit}}{\text{Turnos context-dependent}} = \frac{4}{4} = 1.0 \; (100\%)
+\end{equation}
+
+\subsubsection{Análisis de resultados}
+
+Los resultados muestran un CRR del 100\% en los escenarios conversacionales evaluados. Este desempeño indica que el sistema es capaz de mantener coherencia contextual a lo largo del diálogo y de reconstruir correctamente solicitudes incompletas o elípticas, incluyendo expresiones como ``lo mismo'', ``ahora con'' o ``solo uno''.
+
+Este comportamiento se explica por la integración conjunta de los módulos de Intensión y Memoria. El módulo de Intensión evita ejecuciones prematuras cuando la información es insuficiente, mientras que el módulo de Memoria preserva representaciones estructuradas del contexto previo (entidades, proyecciones y restricciones), permitiendo su reutilización controlada en turnos posteriores. En conjunto, estos mecanismos permiten que el sistema ejecute consultas únicamente cuando la información semántica necesaria ha sido correctamente inferida, mejorando la robustez y naturalidad de la interacción.
+
+En síntesis, la métrica CRR evidencia que la arquitectura propuesta no solo es efectiva en escenarios single-shot, sino que también soporta de manera consistente interacciones conversacionales multi-turno, un requisito fundamental para el despliegue de sistemas Text-to-SQL en entornos ERP reales.
+
+\subsection{Medición del Task Success Rate (TSR)}
+
+El Task Success Rate (TSR) mide la capacidad del sistema para seleccionar y ejecutar la acción final correcta en cada turno, de acuerdo con la intención del usuario. A diferencia de métricas centradas únicamente en la calidad del SQL (p. ej., Execution Accuracy), el TSR evalúa el comportamiento del sistema end-to-end, incorporando tanto solicitudes ejecutables (que deben traducirse a SQL) como interacciones conversacionales (que no deben disparar ejecución).
+
+En el sistema propuesto se definen dos acciones finales posibles:
+
+\begin{itemize}
+	\item \textbf{Conversación natural:} el sistema responde de forma informativa o aclaratoria sin generar ni ejecutar SQL.
+	\item \textbf{Generar y ejecutar SQL:} el sistema traduce la solicitud del usuario a una consulta SQL y la ejecuta sobre la base de datos.
+\end{itemize}
+
+Un turno se considera exitoso (TSR\_hit) cuando la acción realizada por el sistema coincide con la acción esperada según la intención del usuario. En particular, el sistema debe evitar ejecuciones prematuras cuando la entrada es ambigua, insuficiente o puramente conversacional, y debe generar/ejecutar SQL únicamente cuando la información semántica necesaria ha sido determinada (ya sea explícitamente o mediante memoria contextual).
+
+La Tabla~\ref{tab:tsr_evaluation} presenta la evaluación detallada del TSR para cada uno de los once turnos del escenario conversacional, indicando la acción esperada, la acción realizada por el sistema y si el turno fue exitoso.
+
+\begin{table}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Evaluacion TSR.png}
+	\caption{Evaluación del Task Success Rate (TSR) en un diálogo multi-turno}
+	\label{tab:tsr_evaluation}
+	\tablefont
+	\textit{Nota.} Se presenta la evaluación de once turnos conversacionales, mostrando para cada turno la acción esperada (conversación natural o generar/ejecutar SQL), la acción realizada por el sistema y si el turno fue exitoso (TSR\_hit). En todos los casos, el sistema seleccionó correctamente la acción a ejecutar, alcanzando un TSR del 100\%.
+\end{table}
+
+\subsubsection{Cálculo del TSR}
+
+\begin{equation}
+	\text{TSR} = \frac{\text{Turnos con TSR\_hit}}{\text{Total de turnos evaluados}} = \frac{11}{11} = 1.0 \; (100\%)
+\end{equation}
+
+\subsubsection{Resultados e interpretación}
+
+Con base en la evaluación realizada, el sistema alcanzó un TSR del 100\%, lo que indica que en todos los turnos evaluados seleccionó correctamente la acción final a ejecutar. Este resultado evidencia que el componente de Intensión distingue de forma consistente entre (i) solicitudes conversacionales, que requieren respuesta natural sin ejecución, y (ii) solicitudes ejecutables, que deben traducirse y ejecutarse como SQL.
+
+Este comportamiento es especialmente relevante en escenarios multi-turno, donde el sistema debe decidir si una solicitud puede resolverse mediante el uso de memoria contextual (p. ej., ``lo mismo'', ``ahora con\ldots'') o si debe solicitar aclaraciones adicionales antes de proceder. En este sentido, el TSR complementa métricas como Execution Accuracy, Context Retention Rate (CRR) y Time-to-Answer (TTA), al aportar una medida global del correcto funcionamiento del sistema desde la perspectiva del usuario final.
+
+Finalmente, es importante destacar que un TSR del 100\% no implica que el sistema siempre genere el SQL perfecto en el primer intento; implica que el sistema toma consistentemente la decisión correcta sobre si debe o no ejecutar una consulta. En entornos productivos, esta propiedad es crítica: ejecutar SQL cuando no corresponde puede producir resultados irrelevantes o inconsistentes, incluso si la consulta es sintácticamente válida. Por tanto, el TSR obtenido sugiere que la arquitectura propuesta alcanza un control robusto del flujo de ejecución, condición necesaria para su uso en sistemas ERP donde la precisión semántica y la seguridad operativa son prioritarias.
+
+\section{Conclusiones}
+
+Los resultados de esta tesis confirman que la correcta generación y ejecución de consultas SQL a partir de lenguaje natural no depende únicamente del alineamiento estructural entre la pregunta del usuario y la consulta generada. Si bien métricas como Component Matching evidencian una adecuada identificación de columnas, filtros y agregaciones, el análisis experimental demuestra que este alineamiento no garantiza, por sí solo, una ejecución correcta y consistente sobre esquemas empresariales reales.
+
+El estudio muestra que los módulos de razonamiento estructural (DIN y DEA) son necesarios para mejorar la Execution Accuracy; sin embargo, su efectividad depende críticamente de la presencia de mecanismos de grounding contextual. En ausencia de recuperación de contexto externo, incluso configuraciones con alto alineamiento estructural presentan tasas elevadas de error en ejecución, especialmente en esquemas extensos y con múltiples relaciones implícitas. Estos resultados refuerzan la necesidad de integrar conocimiento contextual explícito durante la generación del SQL.
+
+En este marco, el componente de Intensión cumple un rol conceptualmente distinto al del razonamiento estructural. Su función principal no es optimizar la forma de la consulta generada, sino determinar si una entrada del usuario contiene información semántica suficiente para ser ejecutada como SQL. Este mecanismo permite evitar ejecuciones prematuras ante solicitudes incompletas, ambiguas o puramente conversacionales, lo que se refleja en un Task Success Rate (TSR) del 100\% en los escenarios evaluados. En consecuencia, las configuraciones que incorporan Intensión deben evaluarse no solo por su Execution Accuracy, sino también por su capacidad de regular correctamente el flujo de ejecución.
+
+De manera complementaria, el módulo de Memoria permite mantener coherencia contextual en escenarios conversacionales multi-turno, donde la información necesaria para ejecutar una consulta se distribuye a lo largo de varios mensajes. La interacción entre Intensión y Memoria habilita la reconstrucción de consultas completas a partir de referencias elípticas o anafóricas, sin requerir que el usuario formule explícitamente una solicitud completa en un único turno, lo cual se evidencia en un Context Retention Rate (CRR) del 100\% en los diálogos evaluados.
+
+El análisis del Time-to-Answer (TTA) demuestra que un mayor tiempo de respuesta no implica necesariamente un razonamiento más efectivo. Por el contrario, configuraciones con bajo desempeño en generación inicial tienden a presentar mayores valores de TTA debido a ciclos repetidos de ejecución y corrección. Estos resultados indican que la eficiencia temporal del sistema está fuertemente condicionada por su capacidad de generar consultas correctas desde el primer intento, y no únicamente por la complejidad del razonamiento aplicado.
+
+Asimismo, los resultados evidencian que métricas de robustez como SIN ERRORES pueden sobreestimar la capacidad real del sistema cuando existen mecanismos de autocorrección. En este sentido, la métrica SIN\_AUTO\_CORRECCION proporciona una evaluación más estricta y realista del desempeño, al medir la proporción de consultas correctamente generadas desde el primer intento, sin depender de ciclos posteriores de ajuste.
+
+Un aspecto relevante que emerge de este trabajo es el impacto del diseño del esquema de datos en el desempeño de los sistemas Text-to-SQL. A diferencia de sistemas heredados, la base de datos de Fail Fast fue diseñada desde cero con una estructura coherente, documentada y con nomenclaturas alineadas al significado funcional de cada tabla y columna. Esta decisión de ingeniería resulta significativa, ya que la literatura reciente muestra que la claridad semántica y la consistencia en los esquemas favorecen el schema linking y reducen errores de interpretación por parte de los modelos de lenguaje. En consecuencia, los resultados obtenidos no solo reflejan el aporte de la arquitectura propuesta, sino también la importancia de un diseño de datos alineado con principios semánticos claros.
+
+Finalmente, la configuración [RAG + DIN + DEA] se consolida como la arquitectura más balanceada para la generación directa de SQL, al alcanzar el mejor compromiso entre simplicidad, exactitud de ejecución y confiabilidad. No obstante, en escenarios conversacionales reales, la integración de Intensión y Memoria resulta esencial para garantizar que el sistema ejecute consultas únicamente cuando estas sean semánticamente válidas y contextualmente completas. En conjunto, los resultados sugieren que los sistemas Text-to-SQL orientados a entornos ERP deben concebirse como workflows cognitivos y no como traductores monolíticos de texto a SQL.
+
+\section{Trabajo Futuro}
+
+Si bien los resultados obtenidos son alentadores, este trabajo abre múltiples líneas de investigación y desarrollo futuro. En primer lugar, la arquitectura propuesta podría ampliarse incorporando mecanismos predictivos, orientados a anticipar la intención del usuario o a sugerir consultas relevantes basadas en patrones históricos de interacción. Este enfoque permitiría reducir aún más el tiempo de respuesta y mejorar la experiencia del usuario en escenarios exploratorios o recurrentes.
+
+En segundo lugar, una extensión natural del sistema consiste en avanzar hacia interacciones multimodales, donde las consultas no se originen únicamente a partir de texto, sino también desde otros tipos de entrada como imágenes, tablas, documentos o interfaces visuales. Por ejemplo, permitir que un usuario seleccione visualmente un elemento de un reporte o una imagen de inventario y formule una pregunta contextualizada podría ampliar significativamente las capacidades del sistema más allá del paradigma Text-to-SQL tradicional.
+
+Adicionalmente, futuras investigaciones podrían explorar la integración de GraphRAG u otros mecanismos de recuperación estructurada que modelen explícitamente relaciones complejas entre entidades del ERP, con el fin de mejorar el razonamiento en consultas que requieran múltiples saltos lógicos o dependencias implícitas entre tablas.
+
+Otra línea relevante de trabajo futuro consiste en evaluar el sistema en entornos productivos de mayor escala, considerando esquemas con cientos o miles de tablas, múltiples compañías (multi-tenant) y reglas de negocio más complejas. Esto permitiría analizar aspectos como escalabilidad, costos computacionales y comportamiento bajo cargas reales de usuarios.
+
+Finalmente, se abre la posibilidad de incorporar agentes especializados adicionales, orientados a validación semántica, explicación de resultados o control de seguridad y permisos, reforzando la trazabilidad y gobernanza del sistema. Estas extensiones permitirían evolucionar el ERP hacia una interfaz cognitiva más completa, donde la consulta, el análisis y la explicación de la información empresarial se integren de forma natural, segura y escalable.
 
 \appendix
 
