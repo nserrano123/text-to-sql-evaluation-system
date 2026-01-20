@@ -131,6 +131,14 @@ Una etapa siguiente estuvo marcada por el uso de modelos de lenguaje pre entrena
 
 En la actualidad, los grandes modelos de lenguaje (LLMs) han alcanzado un papel protagónico en el campo. Su capacidad para procesar y generar texto similar al humano los hace altamente efectivos frente a la variabilidad lingüística, demostrando una notable capacidad de generalización entre dominios \cite{hong2025advances, huang2024survey}. Estos avances posicionan a los LLMs como la tendencia de próxima generación en interfaces de bases de datos.
 
+\begin{table*}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{Tabla Estado del Arte.png}
+	\caption{Comparación de metodologías del estado del arte en Text-to-SQL basadas en LLMs}
+	\label{tab:estado_arte}
+	\tablefont
+	\textit{Nota.} Se presentan las principales características, enfoques técnicos y resultados de las metodologías más relevantes en la generación de SQL mediante modelos de lenguaje de gran escala. La tabla facilita la comparación entre los diferentes paradigmas estructurados que han marcado el avance reciente del campo.
+\end{table*}
 \subsection{Metodologías Basadas en LLMs para la Generación de SQL}
 
 A diferencia de las aproximaciones tempranas basadas en reglas, plantillas o modelos de lenguaje preentrenados (PLMs), esta sección se concentra en las metodologías recientes que emplean grandes modelos de lenguaje (LLMs) como eje principal para la generación de SQL. Estos enfoques representan el estado del arte actual y se caracterizan por el uso de prompting especializado, la descomposición modular de tareas, técnicas eficientes de ajuste fino y ciclos de retroalimentación iterativa que fortalecen la precisión y la capacidad de generalización entre dominios \cite{hong2024bird, li2024comprehensive, xie2024dea}.
@@ -179,38 +187,8 @@ La principal fortaleza de CHESS es su capacidad para mejorar la eficiencia sin d
 
 Los análisis comparativos de Shi et al. \cite{shi2025comprehensive} y Liu et al. \cite{liu2025survey} sitúan a modelos como DEA-SQL, DAIL-SQL, MAC-SQL, ACT-SQL, MCS-SQL y CHESS dentro de los llamados ``paradigmas estructurados'', caracterizados por organizar la generación de SQL en fases claras, apoyarse en contexto recuperado de forma controlada y, en muchos casos, distribuir el razonamiento entre varios agentes. Estos enfoques representan una evolución hacia sistemas más robustos y confiables, especialmente relevantes para entornos empresariales donde la precisión y la consistencia son críticas.
 
-\begin{table*}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{Tabla Estado del Arte.png}
-	\caption{Comparación de metodologías del estado del arte en Text-to-SQL basadas en LLMs}
-	\label{tab:estado_arte}
-	\tablefont
-	\textit{Nota.} Se presentan las principales características, enfoques técnicos y resultados de las metodologías más relevantes en la generación de SQL mediante modelos de lenguaje de gran escala. La tabla facilita la comparación entre los diferentes paradigmas estructurados que han marcado el avance reciente del campo.
-\end{table*}
-
-% \subsection{Extensiones y Propuestas Recientes}
-
-% \subsubsection{GraphRAG}
-
-% GraphRAG (Graph-based Retrieval-Augmented Generation) extiende el paradigma clásico de RAG incorporando grafos de conocimiento al proceso de recuperación \cite{han2025graphrag}. A diferencia de los enfoques tradicionales, centrados principalmente en búsquedas vectoriales sobre fragmentos de texto, GraphRAG construye un grafo jerárquico de entidades, relaciones y comunidades a partir del corpus, lo que refuerza la capacidad de razonamiento del modelo y mejora la precisión ante consultas complejas.
-
-% En contextos empresariales, puede actuar como un verdadero motor de conocimiento: transforma artefactos como DDL, modelos ER y documentación funcional en un grafo navegable (tablas → columnas → claves → relaciones → dominios → sinónimos), genera resúmenes por comunidad o módulo (por ejemplo, Inventarios, Compras) y fortalece el schema linking en escenarios Text-to-SQL.
-
-% El flujo de trabajo de GraphRAG puede organizarse en tres fases principales \cite{han2025graphrag}:
-
-% \textbf{Indexación (creación del grafo).} El corpus se segmenta en text units, a partir de las cuales se extraen entidades y relaciones. Posteriormente, se agrupan en comunidades semánticas mediante técnicas de clustering y se generan resúmenes comunitarios que condensan el conocimiento compartido dentro de cada grupo.
-
-% \textbf{Consulta (querying).} La recuperación se apoya en tres estrategias complementarias: Global Search utiliza los resúmenes de comunidades para responder preguntas amplias u holísticas; Local Search se centra en entidades y relaciones específicas, explorando los vecindarios del grafo directamente relacionados con la consulta; DRIFT Search combina contexto global y local, equilibrando cobertura y precisión según la naturaleza de la pregunta.
-
-% \textbf{Ajuste de prompts (prompt tuning).} Se adaptan las instrucciones para que el LLM interprete adecuadamente la estructura del grafo y genere respuestas coherentes con el contexto recuperado, aprovechando tanto la información local como la visión global del dominio.
-
-% En comparación con un RAG clásico, GraphRAG ofrece mayor robustez ante consultas complejas —al hacer explícitas las dependencias entre entidades—, mejor cobertura —al integrar razonamiento global y local— y mayor eficiencia —al seleccionar dinámicamente comunidades relevantes y reducir tokens irrelevantes en la recuperación \cite{han2025graphrag}.
 
 \section{Arquitectura Propuesta}
-
-La arquitectura propuesta se concibe como un sistema multi-agente orientado a transformar preguntas en lenguaje natural en consultas SQL ejecutables sobre el ERP Fail Fast, y luego devolver respuestas comprensibles para el usuario. Se inspira en los paradigmas estructurados descritos en el estado del arte —especialmente MAC-SQL para la colaboración multi-agente, DIN-SQL para la descomposición de consultas y DEA-SQL para la planificación— adaptados a un entorno real.
-
-A alto nivel, la arquitectura implementa un marco colaborativo multi-agente donde cada agente tiene responsabilidades específicas y bien definidas, organizándose en cuatro capas funcionales: entrada e interpretación de la intención, análisis y planificación de la consulta, generación y ejecución de SQL, respuesta en lenguaje natural y retroalimentación.
 
 \begin{figure*}[t]
 	\centering
@@ -218,6 +196,11 @@ A alto nivel, la arquitectura implementa un marco colaborativo multi-agente dond
 	\caption{Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua.}
 	\label{fig:failfast_text2sql_arch}
 \end{figure*}
+
+La arquitectura propuesta se concibe como un sistema multi-agente orientado a transformar preguntas en lenguaje natural en consultas SQL ejecutables sobre el ERP Fail Fast, y luego devolver respuestas comprensibles para el usuario. Se inspira en los paradigmas estructurados descritos en el estado del arte —especialmente MAC-SQL para la colaboración multi-agente, DIN-SQL para la descomposición de consultas y DEA-SQL para la planificación— adaptados a un entorno real.
+
+A alto nivel, la arquitectura implementa un marco colaborativo multi-agente donde cada agente tiene responsabilidades específicas y bien definidas, organizándose en cuatro capas funcionales: entrada e interpretación de la intención, análisis y planificación de la consulta, generación y ejecución de SQL, respuesta en lenguaje natural y retroalimentación.
+
 
 \subsection{Capa de Entrada e Interpretación de la Intención}
 

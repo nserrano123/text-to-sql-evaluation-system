@@ -22,7 +22,6 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-B}}Planteamiento del Problema}{2}{subsection.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {I-B}1}Justificación}{2}{subsubsection.1.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {I-B}2}Objetivos}{2}{subsubsection.1.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {I-B}3}Hipótesis}{2}{subsubsection.1.2.3}\protected@file@percent }
 \citation{shi2025comprehensive}
 \citation{liu2025survey}
 \citation{hong2025advances}
@@ -42,55 +41,56 @@
 \citation{xie2024dea}
 \citation{xie2024dea}
 \citation{xie2024dea}
-\citation{pourreza2023din}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {I-B}3}Hipótesis}{3}{subsubsection.1.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {II}Marco Teórico y Estado del Arte}{3}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Primeras Aproximaciones}{3}{subsection.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Metodologías Basadas en LLMs para la Generación de SQL}{3}{subsection.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}1}Decomposition for Enhancing Attention (DEA-SQL)}{3}{subsubsection.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}2}DIN-SQL (Decomposed In-Context Learning with Self-Correction)}{3}{subsubsection.2.2.2}\protected@file@percent }
+\citation{pourreza2023din}
 \citation{wang2025mac}
 \citation{wang2025mac}
 \citation{zhang2023act}
-\citation{lee2024mcs}
-\citation{talaei2024chess}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Comparación de metodologías del estado del arte en Text-to-SQL basadas en LLMs}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:estado_arte}{{I}{4}{Comparación de metodologías del estado del arte en Text-to-SQL basadas en LLMs}{table.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}2}DIN-SQL (Decomposed In-Context Learning with Self-Correction)}{4}{subsubsection.2.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}3}MAC-SQL (Multi-Agent Collaborative Framework)}{4}{subsubsection.2.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}4}ACT-SQL (In-Context Learning con Chain-of-Thought Automático)}{4}{subsubsection.2.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}5}MCS-SQL (Multiple-Choice Selection with Multi-Prompts)}{4}{subsubsection.2.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}6}CHESS (Contextual Harnessing for Efficient SQL Synthesis)}{4}{subsubsection.2.2.6}\protected@file@percent }
+\citation{lee2024mcs}
+\citation{talaei2024chess}
 \citation{talaei2024chess}
 \citation{shi2025comprehensive}
 \citation{liu2025survey}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}5}MCS-SQL (Multiple-Choice Selection with Multi-Prompts)}{5}{subsubsection.2.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}6}CHESS (Contextual Harnessing for Efficient SQL Synthesis)}{5}{subsubsection.2.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}Arquitectura Propuesta}{5}{section.3}\protected@file@percent }
 \citation{pourreza2023din}
 \citation{xie2024dea}
 \citation{wang2025mac}
-\@writefile{toc}{\contentsline {section}{\numberline {III}Arquitectura Propuesta}{5}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Capa de Entrada e Interpretación de la Intención}{5}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Capa de Análisis y Planificación de la Consulta}{5}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}1}Agente de Descomposición (inspirado en DIN-SQL)}{5}{subsubsection.3.2.1}\protected@file@percent }
-\citation{xie2024dea}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Comparación de metodologías del estado del arte en Text-to-SQL basadas en LLMs}}{6}{table.1}\protected@file@percent }
-\newlabel{tab:estado_arte}{{I}{6}{Comparación de metodologías del estado del arte en Text-to-SQL basadas en LLMs}{table.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua.}}{6}{figure.1}\protected@file@percent }
+\newlabel{fig:failfast_text2sql_arch}{{1}{6}{Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Capa de Entrada e Interpretación de la Intención}{6}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Capa de Análisis y Planificación de la Consulta}{6}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}1}Agente de Descomposición (inspirado en DIN-SQL)}{6}{subsubsection.3.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}2}Recuperación de Contexto y Planificación (inspirado en DEA-SQL y DAIL-SQL)}{6}{subsubsection.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Capa de Generación y Ejecución de SQL}{6}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Capa de Respuesta en Lenguaje Natural y Retroalimentación}{6}{subsection.3.4}\protected@file@percent }
+\citation{xie2024dea}
 \citation{liu2025survey}
 \citation{wang2025mac}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua.}}{7}{figure.1}\protected@file@percent }
-\newlabel{fig:failfast_text2sql_arch}{{1}{7}{Arquitectura propuesta multi-agente para Text-to-SQL en el ERP Fail Fast. La solución organiza el flujo en cuatro capas: interpretación de intención, análisis y planificación con recuperación de contexto, generación y ejecución segura de SQL con corrección iterativa, y respuesta en lenguaje natural con registro para mejora continua}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Capa de Generación y Ejecución de SQL}{7}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Capa de Respuesta en Lenguaje Natural y Retroalimentación}{7}{subsection.3.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Relación con el Estado del Arte}{7}{subsection.3.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Metodología}{7}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Diseño metodológico}{7}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Conjunto de consultas de referencia (Gold Queries)}{7}{subsection.4.2}\protected@file@percent }
 \citation{yu2018spider}
 \citation{scholak2021picard}
 \citation{yu2018spider}
 \citation{hong2024bird}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Conjunto de consultas de referencia (Gold Queries)}{8}{subsection.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Componentes arquitectónicos evaluados}{8}{subsection.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Espacio experimental y combinaciones evaluadas}{8}{subsection.4.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Métricas de evaluación}{8}{subsection.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-E}1}Execution Accuracy (EX)}{8}{subsubsection.4.5.1}\protected@file@percent }
 \citation{shi2025comprehensive}
 \citation{liu2025survey}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-E}1}Execution Accuracy (EX)}{9}{subsubsection.4.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-E}2}Component Matching (CM)}{9}{subsubsection.4.5.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-E}3}Tiempo de respuesta (Time-to-Answer, TTA)}{9}{subsubsection.4.5.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}Procedimiento experimental}{9}{subsection.4.6}\protected@file@percent }
