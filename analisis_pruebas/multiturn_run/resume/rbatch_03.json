@@ -1,0 +1,44 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn21",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2850,
+     "msg": "Suministrame los primeros 10 pos - concept que se crearon en el sistema, con el nombre y la fecha de creación. Cuando puedas."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2851,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2852,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2853,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2854,
+     "msg": "Ahora, cambiando de tema: quiero saber, por cada centro de costo, la suma de la cantidad y la cantidad de cuentas por cobrar - invoice return detail asociados; incluye el nombre del centro de costo."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2855,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 7,
+     "excel_id": 2856,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    }
+   ]
+  }
+ ]
+}

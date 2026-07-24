@@ -1,0 +1,219 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn52",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3096,
+     "msg": "Regálame los nombres de los diferentes metodo de pago que se han usado en los pos - session payment. Gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3097,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3098,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3099,
+     "msg": "Ahora, cambiando de tema: indícame cuántos crm - template incluyen 'TRANSPORTE' en el nombre. Por favor."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3100,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3101,
+     "msg": "Muéstrame lo de siempre."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn53",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3102,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3103,
+     "msg": "¿Cuál es la suma total del precio unitario en crm - product interest?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3104,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3105,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3106,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3107,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 3108,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 3109,
+     "msg": "¿Me puedes explicar qué significa ese dato?"
+    },
+    {
+     "turn": 9,
+     "excel_id": 3110,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 10,
+     "excel_id": 3111,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn54",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3112,
+     "msg": "¿Cuántos pos - session discrepancy tengo por cada metodo de pago? Muéstrame el nombre del metodo de pago. Muchas gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3113,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3114,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3115,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3116,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn55",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3117,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3118,
+     "msg": "Dame el listado de nombres de integration - syncronize configuration. Cuando puedas."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3119,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3120,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3121,
+     "msg": "Perfecto, entendido."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3122,
+     "msg": "Y lo otro también, porfa."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3123,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 3124,
+     "msg": "¿Me puedes explicar qué significa ese dato?"
+    },
+    {
+     "turn": 9,
+     "excel_id": 3125,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 10,
+     "excel_id": 3126,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn56",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3127,
+     "msg": "Indícame la cantidad de cuentas por pagar - invoice discount junto con la suma del valor y del campo amount. Muchas gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3128,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3129,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3130,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3131,
+     "msg": "Ahora, cambiando de tema: para mi empresa, necesito un resumen combinando cuentas por cobrar - conditional discount y fixed_asset - asset plate, agrupando por empresa (member_id) y mostrando la suma del campo quantity y el número de registros asociados. Muchas gracias."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3132,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3133,
+     "msg": "Y en vez de la suma, dame el promedio."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,268 @@
+== CODE NODE: Code in JavaScript
+// n8n Code node (JavaScript)
+// Normalized Execution Accuracy (EX) - robusto/generico
+//
+// Soporta entradas tipo:
+// - $('Gold').all() / $('Predecida').all()  (items n8n)
+// - rows planos [{col: val, ...}]
+// - values como JSON-string ("{...}") o ("[...]")
+//
+// Devuelve:
+// normalized_ex_match (bool), normalized_ex (0/1), fingerprints, mismatch_reason
+
+// ------------------------- Helpers base
+function stableStringify(obj) {
+  if (obj === null) return "null";
+  if (Array.isArray(obj)) return "[" + obj.map(stableStringify).join(",") + "]";
+  if (typeof obj === "object") {
+    const keys = Object.keys(obj).sort();
+    return "{" + keys.map(k => JSON.stringify(k) + ":" + stableStringify(obj[k])).join(",") + "}";
+  }
+  return JSON.stringify(obj);
+}
+
+function looksLikeJsonString(s) {
+  if (typeof s !== "string") return false;
+  const t = s.trim();
+  return (t.startsWith("{") && t.endsWith("}")) || (t.startsWith("[") && t.endsWith("]"));
+}
+
+function tryParseJsonString(s) {
+  if (!looksLikeJsonString(s)) return null;
+  try {
+    return JSON.parse(s);
+  } catch {
+    return null;
+  }
+}
+
+// Quita comillas y prefijos tipo t.col o schema.table.col
+function normalizeColName(name) {
+  if (!name) return "";
+  let s = String(name).trim().toLowerCase();
+  s = s.replace(/"/g, "");
+  if (s.includes(".")) s = s.split(".").pop();
+  return s;
+}
+
+// Heurística: convertir strings numéricos en number (si conviene)
+function parseNumericString(s) {
+  // "10000000.000000" -> 10000000
+  if (typeof s !== "string") return null;
+  const t = s.trim();
+  if (!t) return null;
+  // evita UUIDs u otros con guiones/letras
+  if (/[a-zA-Z]/.test(t)) return null;
+  // número estándar
+  if (/^-?\d+(\.\d+)?$/.test(t)) {
+    const n = Number(t);
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
+}
+
+// Heurística ISO date
+function looksLikeIsoDate(s) {
+  if (typeof s !== "string") return false;
+  const t = s.trim();
+  return /^\d{4}-\d{2}-\d{2}([ T]\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})?)?$/.test(t);
+}
+
+// ------------------------- Normalización de valores
+function normalizeValue(v, opts) {
+  const {
+    floatDecimals = 6,
+    deepJsonValueNormalization = true,
+    ignoreJsonObjectKeys = true, // 👈 clave para tu caso registros vs count, sum vs total_max_amount
+  } = opts;
+
+  if (v === null || v === undefined) return null;
+
+  // Date object
+  if (v instanceof Date) return v.toISOString();
+
+  // number
+  if (typeof v === "number") {
+    if (!Number.isFinite(v)) return String(v);
+    const factor = Math.pow(10, floatDecimals);
+    return Math.round(v * factor) / factor;
+  }
+
+  // boolean
+  if (typeof v === "boolean") return v;
+
+  // string
+  if (typeof v === "string") {
+    const t = v.trim();
+
+    // intentar parsear JSON-string
+    const parsed = tryParseJsonString(t);
+    if (parsed !== null && deepJsonValueNormalization) {
+      return normalizeValue(parsed, opts);
+    }
+
+    // intentar parsear numérico
+    const n = parseNumericString(t);
+    if (n !== null) {
+      const factor = Math.pow(10, floatDecimals);
+      return Math.round(n * factor) / factor;
+    }
+
+    // fecha ISO -> normalizar
+    if (looksLikeIsoDate(t)) {
+      // no hacemos new Date() para no cambiar zona; dejamos string normalizado
+      return t;
+    }
+
+    return t;
+  }
+
+  // arrays
+  if (Array.isArray(v)) {
+    if (!deepJsonValueNormalization) return stableStringify(v);
+    // Normalizar cada elemento, luego ordenar para ignorar orden interno si aplica
+    const normArr = v.map(x => normalizeValue(x, opts));
+    // Ordenar por stringify estable para consistencia
+    normArr.sort((a, b) => stableStringify(a).localeCompare(stableStringify(b)));
+    return normArr;
+  }
+
+  // objects
+  if (typeof v === "object") {
+    if (!deepJsonValueNormalization) return stableStringify(v);
+
+    if (ignoreJsonObjectKeys) {
+      // 👇 Ignora keys internas: compara SOLO por multiset de valores del objeto
+      const vals = Object.values(v).map(x => normalizeValue(x, opts));
+      vals.sort((a, b) => stableStringify(a).localeCompare(stableStringify(b)));
+      return { __values__: vals }; // marcador
+    } else {
+      // conserva keys (normaliza keys y values)
+      const out = {};
+      for (const [k, val] of Object.entries(v)) {
+        out[normalizeColName(k)] = normalizeValue(val, opts);
+      }
+      return out;
+    }
+  }
+
+  // fallback
+  return String(v);
+}
+
+// ------------------------- Extraer rows desde items n8n o arrays planos
+function extractRows(input) {
+  // Si viene como items n8n: [{json:{...}, pairedItem:{...}}, ...]
+  if (Array.isArray(input) && input.length > 0 && typeof input[0] === "object" && input[0] !== null) {
+    const first = input[0];
+
+    // Caso items n8n: tienen .json
+    if ("json" in first) {
+      return input.map(it => it.json ?? {});
+    }
+  }
+  // Caso rows planos
+  return Array.isArray(input) ? input : [];
+}
+
+// ------------------------- Normalizar filas
+function normalizeRows(rowsInput, opts = {}) {
+  const {
+    ignoreRowOrder = true,
+    ignoreColumnNames = true,
+    normalizeColumnNames = true,
+  } = opts;
+
+  const rows = extractRows(rowsInput);
+  if (!Array.isArray(rows) || rows.length === 0) return [];
+
+  // Construir conjunto de columnas global (para no depender solo de la primera fila)
+  const colSet = new Set();
+  for (const r of rows) {
+    if (r && typeof r === "object") {
+      for (const k of Object.keys(r)) colSet.add(normalizeColumnNames ? normalizeColName(k) : k);
+    }
+  }
+  const colOrder = Array.from(colSet).sort();
+
+  const tuples = rows.map((row) => {
+    const normMap = {};
+    for (const [k, v] of Object.entries(row || {})) {
+      const nk = normalizeColumnNames ? normalizeColName(k) : k;
+      normMap[nk] = normalizeValue(v, opts);
+    }
+
+    if (ignoreColumnNames) {
+      // solo valores en orden canónico de columnas
+      return colOrder.map(c => (c in normMap ? normMap[c] : null));
+    } else {
+      // pares (col, val)
+      return colOrder.map(c => [c, (c in normMap ? normMap[c] : null)]);
+    }
+  });
+
+  if (ignoreRowOrder) {
+    tuples.sort((a, b) => stableStringify(a).localeCompare(stableStringify(b)));
+  }
+  return tuples;
+}
+
+function fingerprint(normalizedTuples) {
+  return stableStringify(normalizedTuples);
+}
+
+function normalizedExecutionMatch(goldRows, predRows, opts = {}) {
+  const goldNorm = normalizeRows(goldRows, opts);
+  const predNorm = normalizeRows(predRows, opts);
+
+  const goldFp = fingerprint(goldNorm);
+  const predFp = fingerprint(predNorm);
+
+  const match = goldFp === predFp;
+
+  let reason = null;
+  if (!match) {
+    reason = {
+      gold_row_count: Array.isArray(extractRows(goldRows)) ? extractRows(goldRows).length : 0,
+      pred_row_count: Array.isArray(extractRows(predRows)) ? extractRows(predRows).length : 0,
+      gold_norm_preview: goldNorm.slice(0, 5),
+      pred_norm_preview: predNorm.slice(0, 5),
+    };
+  }
+  return { match, goldFp, predFp, reason };
+}
+
+// ===================== n8n entry point =====================
+// Tus entradas reales:
+const goldItems = $('Gold').all();
+const predItems = $('Predecida').all();
+
+const opts = {
+  floatDecimals: 6,
+  ignoreRowOrder: true,
+  ignoreColumnNames: true,        // ignora alias de columnas
+  normalizeColumnNames: true,     // limpia t. y comillas
+  deepJsonValueNormalization: true,
+  ignoreJsonObjectKeys: true,     // 👈 ignora keys dentro de JSON/objetos (tu caso)
+};
+
+const { match, goldFp, predFp, reason } = normalizedExecutionMatch(goldItems, predItems, opts);
+
+return [
+  {
+    json: {
+      normalized_ex_match: match,
+      normalized_ex: match ? 1 : 0,
+      gold_fingerprint: goldFp,
+      pred_fingerprint: predFp,
+      mismatch_reason: reason,
+      normalized_ex_options: opts,
+    },
+  },
+];
+
+
+== Gold == {"operation": "executeQuery", "query": "{{ $json.SQL.replaceAll('```sql','').replaceAll('```','') }}", "options": {"queryReplacement": "={{ $json.member_id }}"}}
+
+== Predecida == {"operation": "executeQuery", "query": "{{ $json.N8nSqlGenerated.replaceAll('```sql','').replaceAll('```','') }}", "options": {"queryReplacement": "={{ $json.member_id }}"}}
+

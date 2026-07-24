@@ -1,0 +1,89 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn35",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2960,
+     "msg": "Regálame los nombres de los diferentes condicion comercial que se han usado en los facturas de venta. Por favor."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2961,
+     "msg": "Dame los datos."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2962,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2963,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2964,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2965,
+     "msg": "¿Y eso cómo va?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn36",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2966,
+     "msg": "Indícame los últimos 3 stakeholder - contact type que se han creado, solo requiero el nombre y la descripción. Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2967,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2968,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2969,
+     "msg": "Dame los datos."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2970,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2971,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 2972,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 2973,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 9,
+     "excel_id": 2974,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,204 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn12",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2790,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2791,
+     "msg": "Suministrame los primeros 2 transporte - veto que se crearon en el sistema, con el nombre y la fecha de creación. Muchas gracias."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2792,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2793,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2794,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn13",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2795,
+     "msg": "Dame el total del valor del descuento de los cuentas por pagar - electronic document received detail cuyo producto contiene 'VOLQUETA' en el nombre, agrupado por producto. Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2796,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2797,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 4,
+     "excel_id": 2798,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 2799,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2800,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 7,
+     "excel_id": 2801,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 8,
+     "excel_id": 2802,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn14",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2803,
+     "msg": "Dame el listado de nombres de grupos de inventario. Gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2804,
+     "msg": "Dame los datos."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2805,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 4,
+     "excel_id": 2806,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 2807,
+     "msg": "Ahora, cambiando de tema: indícame los últimos 2 inventario - product option que se han creado, solo requiero el nombre y la descripción. Es urgente."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2808,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 2809,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn15",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2810,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2811,
+     "msg": "Dame el total del total de los cuentas por cobrar - note cuyo cliente contiene 'OFICINA' en el nombre, agrupado por cliente. Gracias."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2812,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 4,
+     "excel_id": 2813,
+     "msg": "¿Y eso cómo va?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 2814,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2815,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 7,
+     "excel_id": 2816,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 2817,
+     "msg": "Ahora, cambiando de tema: indícame los últimos 5 insurance - origin of policies que se han creado, solo requiero el nombre y la fecha de creación. Muchas gracias."
+    },
+    {
+     "turn": 9,
+     "excel_id": 2818,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn16",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2819,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2820,
+     "msg": "¿Cuántos remesas tengo por cada categoria? Muéstrame el nombre del categoria. Es urgente."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2821,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2822,
+     "msg": "Ahora, cambiando de tema: ¿Cuál es el promedio del valor total por cliente en transporte - customer billing?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 2823,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2824,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    }
+   ]
+  }
+ ]
+}

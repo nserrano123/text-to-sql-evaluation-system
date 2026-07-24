@@ -131,3 +131,41 @@ test_*.json
 # Temporary files
 *.tmp
 *.temp
+
+# === Tesis: artefactos de compilacion LaTeX (regenerables) ===
+*.aux
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.nav
+*.snm
+*.vrb
+*.run.xml
+
+# === Copias de seguridad / bloqueo generadas durante el trabajo ===
+*.prev.pdf
+*.backup-*.xlsx
+~$*.xlsx
+~$*.docx
+
+# === Corrida multiturno: archivos de trabajo/scratch de los agentes ===
+# (se conservan en disco; NO se suben. Los datos finales viven en el Excel;
+#  los resultados crudos y metricas se mantienen versionados aparte.)
+analisis_pruebas/multiturn_run/tmp_*
+analisis_pruebas/multiturn_run/append_*.py
+analisis_pruebas/multiturn_run/rec_*
+analisis_pruebas/multiturn_run/mem_*.json
+analisis_pruebas/multiturn_run/spec_*.json
+analisis_pruebas/multiturn_run/diag_*
+analisis_pruebas/multiturn_run/finalize_*
+analisis_pruebas/multiturn_run/entities.json
+analisis_pruebas/multiturn_run/g.sql
+analisis_pruebas/multiturn_run/p.sql
+analisis_pruebas/multiturn_run/t.sql
+analisis_pruebas/multiturn_run/m.json

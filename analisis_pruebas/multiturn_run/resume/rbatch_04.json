@@ -1,0 +1,89 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn25",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2884,
+     "msg": "¿Cuál es el promedio del campo total_advance_value por proveedor en transporte - legalization? Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2885,
+     "msg": "Dame los datos."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2886,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2887,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2888,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2889,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 7,
+     "excel_id": 2890,
+     "msg": "Y lo otro también, porfa."
+    },
+    {
+     "turn": 8,
+     "excel_id": 2891,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    },
+    {
+     "turn": 9,
+     "excel_id": 2892,
+     "msg": "Muéstrame lo de siempre."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn26",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2893,
+     "msg": "¿Cuál es el campo payment_value más alto registrado en treasury - income payment? Gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2894,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 2895,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 4,
+     "excel_id": 2896,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 2897,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2898,
+     "msg": "Y lo otro también, porfa."
+    }
+   ]
+  }
+ ]
+}

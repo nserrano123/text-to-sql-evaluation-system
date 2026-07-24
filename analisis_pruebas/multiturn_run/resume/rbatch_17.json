@@ -1,0 +1,214 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn87",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3354,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3355,
+     "msg": "Suministrame los primeros 3 integration - parameters que se crearon en el sistema, con el nombre y la fecha de creación. Muchas gracias."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3356,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3357,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3358,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3359,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 3360,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn88",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3361,
+     "msg": "¿Cuál es la suma total del valor credito en treasury - cash register balance? Por favor."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3362,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3363,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3364,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3365,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3366,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn89",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3367,
+     "msg": "Dame el total del valor de los accounting - movement tax detail cuyo impuesto contiene 'PROVEEDOR' en el nombre, agrupado por impuesto."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3368,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3369,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3370,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3371,
+     "msg": "Muéstrame lo de siempre."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn90",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3372,
+     "msg": "Para mi empresa, necesito un resumen combinando core - indicator y programaciones de pago, agrupando por empresa (member_id) y mostrando la suma del valor del descuento y el número de registros asociados. Gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3373,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3374,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3375,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3376,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 3377,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 3378,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 8,
+     "excel_id": 3379,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 9,
+     "excel_id": 3380,
+     "msg": "Ordena ese resultado de mayor a menor."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn91",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3381,
+     "msg": "¿Cuál es la suma total del costo unitario en transporte - complementary price? Por favor."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3382,
+     "msg": "¿Y eso cómo va?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3383,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3384,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3385,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 3386,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 3387,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 3388,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 9,
+     "excel_id": 3389,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 10,
+     "excel_id": 3390,
+     "msg": "Muéstrame lo de siempre."
+    }
+   ]
+  }
+ ]
+}

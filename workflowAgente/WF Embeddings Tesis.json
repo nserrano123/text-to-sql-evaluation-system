@@ -1,0 +1,280 @@
+{
+  "name": "Embeddings Tesis",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -256,
+        -320
+      ],
+      "id": "c85dab96-0e13-4eca-a70d-118e6477f633",
+      "name": "Schedule Trigger",
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "4c7f28e3-cc16-4c57-9590-55415f2dafc9",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "r1walQcO9sv54HJH",
+          "name": "FailFastGemini MSM 300K"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": "rag_pnl_sql",
+        "embeddingBatchSize": 1000,
+        "options": {
+          "collection": {
+            "values": {
+              "useCollection": true,
+              "collectionName": "n8n_pnl_ddl_tables",
+              "collectionTableName": "rag_collection"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        -224
+      ],
+      "id": "d8bfb01b-274b-49cc-8edf-e0a288b1413c",
+      "name": "Postgres PGVector Store",
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.ddl }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        544,
+        0
+      ],
+      "id": "b571b625-b0a6-4bc5-be10-cb67cbc5108f",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "chunkSize": 10000
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterTokenSplitter",
+      "typeVersion": 1,
+      "position": [
+        624,
+        208
+      ],
+      "id": "4d5b5294-9e81-4c45-92a7-646a486a09bc",
+      "name": "Token Splitter"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        -128
+      ],
+      "id": "c945e10f-674c-4020-9236-4f538b1de8bf",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH columnas AS (\n  SELECT\n    cols.table_schema,\n    cols.table_name,\n    cols.ordinal_position,\n    cols.column_name,\n    cols.data_type,\n    cols.is_nullable,\n    cols.character_maximum_length,\n    cols.column_default,\n    COALESCE(pgd.description, '') AS comentario_columna\n  FROM information_schema.columns cols\n  JOIN pg_class c ON c.relname = cols.table_name\n  JOIN pg_namespace n ON n.oid = c.relnamespace AND n.nspname = cols.table_schema\n  LEFT JOIN pg_catalog.pg_description pgd \n         ON pgd.objoid = c.oid \n        AND pgd.objsubid = cols.ordinal_position\n  WHERE cols.table_schema NOT IN ('pg_catalog', 'information_schema')\n    AND concat('\"', cols.table_schema, '\".\"', cols.table_name, '\"') = $1\n),\nfks AS (\n  SELECT\n      nsp.nspname AS table_schema,\n      rel.relname AS table_name,\n      att.attname AS column_name,\n      fnsp.nspname AS foreign_table_schema,\n      frel.relname AS foreign_table_name,\n      fatt.attname AS foreign_column_name,\n      con.conname  AS constraint_name\n  FROM pg_constraint con\n  JOIN pg_class rel ON rel.oid = con.conrelid\n  JOIN pg_namespace nsp ON nsp.oid = rel.relnamespace\n  JOIN pg_attribute att ON att.attrelid = rel.oid AND att.attnum = ANY(con.conkey)\n  JOIN pg_class frel ON frel.oid = con.confrelid\n  JOIN pg_namespace fnsp ON fnsp.oid = frel.relnamespace\n  JOIN pg_attribute fatt ON fatt.attrelid = frel.oid AND fatt.attnum = ANY(con.confkey)\n  WHERE con.contype = 'f'\n    AND concat('\"', nsp.nspname, '\".\"', rel.relname, '\"') = $1\n),\npk_cols AS (\n  SELECT\n    kc.table_schema,\n    kc.table_name,\n    tc.constraint_name,\n    string_agg(kc.column_name, ', ') AS pk_columns\n  FROM information_schema.table_constraints tc\n  JOIN information_schema.key_column_usage kc\n    ON kc.constraint_name = tc.constraint_name\n   AND kc.table_schema = tc.table_schema\n  WHERE tc.constraint_type = 'PRIMARY KEY'\n    AND concat('\"', kc.table_schema, '\".\"',\n               kc.table_name, '\"') = $1\n  GROUP BY kc.table_schema, kc.table_name, tc.constraint_name\n),\ntbl AS (\n  SELECT\n    concat('\"', n.nspname, '\".\"', c.relname, '\"') AS schema_table,\n    obj_description(c.oid, 'pg_class')            AS comentario\n  FROM pg_class c\n  JOIN pg_namespace n ON n.oid = c.relnamespace\n  WHERE c.relkind = 'r'\n    AND n.nspname NOT IN ('pg_catalog', 'information_schema')\n    AND concat('\"', n.nspname, '\".\"', c.relname, '\"') = $1\n)\nSELECT\n  format(\n  'CREATE TABLE %s (\\n%s%s\\n);\\n%s%s',\n    t.schema_table,\n    string_agg(\n      format(\n        '  %I %s%s%s',\n        c.column_name,\n        c.data_type ||\n          CASE \n            WHEN c.character_maximum_length IS NOT NULL\n              THEN format('(%s)', c.character_maximum_length)\n            ELSE ''\n          END,\n        CASE WHEN c.is_nullable = 'NO' THEN ' NOT NULL' ELSE '' END,\n        CASE WHEN c.column_default IS NOT NULL\n          THEN format(' DEFAULT %s', c.column_default)\n          ELSE ''\n        END\n      ), ',\\n' ORDER BY c.ordinal_position\n    ),\n    COALESCE(\n      (\n        SELECT format(',\\n  CONSTRAINT %I PRIMARY KEY (%s)', p.constraint_name, p.pk_columns)\n        FROM pk_cols p\n        WHERE concat('\"', p.table_schema, '\".\"', p.table_name, '\"') = t.schema_table\n      ),\n      ''\n    ),\n    COALESCE(\n      (\n        SELECT\n          string_agg(\n            format(\n              'ALTER TABLE %s ADD CONSTRAINT %I FOREIGN KEY (%I) REFERENCES \"%s\".\"%s\"(%I);',\n              t.schema_table,\n              f.constraint_name,\n              f.column_name,\n              f.foreign_table_schema,\n              f.foreign_table_name,\n              f.foreign_column_name\n            ),\n            E'\\n'\n          )\n        FROM fks f\n        WHERE concat('\"', f.table_schema, '\".\"', f.table_name, '\"') = t.schema_table\n      ),\n      ''\n    )\n  ,''\n--  ,\n--    COALESCE(\n--     (\n--        SELECT\n--          string_agg(\n--            format(\n--             'COMMENT ON COLUMN %s.%I IS %L;',t.schema_table, c.column_name, c.comentario_columna\n--            ),\n--            E'\\n'\n--          )\n--        FROM columnas c\n--        WHERE c.comentario_columna <> ''\n--        and c.column_name not in (\n--          'id','created_at','updated_at','deleted_at','audit_status','created_by_id','deleted_by_id','updated_by_id'\n--        )\n--      ),\n--      ''\n--    )\n  ) AS ddl\nFROM tbl t\nJOIN columnas c\n  ON concat('\"', c.table_schema, '\".\"', c.table_name, '\"') = t.schema_table\nGROUP BY t.schema_table, t.comentario;\n",
+        "options": {
+          "queryReplacement": "={{ $json.schema_table }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        192,
+        -224
+      ],
+      "id": "cec78db6-c9ed-46aa-a341-d06f97f5684c",
+      "name": "TablaCompleta",
+      "executeOnce": false,
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    concat('\"',n.nspname,'\".\"',c.relname,'\"') as schema_table,\n  (SELECT count(*) \n      FROM public.rag_pnl_sql\n      WHERE text ilike concat('CREATE TABLE \"',n.nspname,'\".\"',c.relname,'\"%') and collection_id='61d9821f-1bb9-4ee1-8d2d-36e925d9bdc0') embeddings\nFROM pg_class c\nJOIN pg_namespace n ON n.oid = c.relnamespace\nWHERE c.relkind = 'r' -- 'r' es para tablas\n  AND (n.nspname \n  -- = 'cine_colombia'\n  NOT IN (\n      'pg_catalog'\n      ,'information_schema'\n      ,'public'\n      ,'cine_colombia'\n      --,'custom'\n  )\n    or  concat('\"',n.nspname,'\".\"',c.relname,'\"')='\"cine_colombia\".\"in_caint\"'\n    or  concat('\"',n.nspname,'\".\"',c.relname,'\"')='\"cine_colombia\".\"in_cuint\"'\n    or  concat('\"',n.nspname,'\".\"',c.relname,'\"')='\"cine_colombia\".\"import_file_status\"'\n  )\n  AND (SELECT count(*) \n      FROM public.rag_pnl_sql\n      WHERE text ilike concat('CREATE TABLE \"',n.nspname,'\".\"',c.relname,'\"%') and collection_id='61d9821f-1bb9-4ee1-8d2d-36e925d9bdc0')=0\n  -- and concat('\"',n.nspname,'\".\"',c.relname,'\"')='\"users\".\"user_member\"'\nlimit 1000\n  ;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -32,
+        -224
+      ],
+      "id": "ee148787-6b71-435e-bd7c-540b463c2cbf",
+      "name": "ListarTablas",
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "select * from public.rag_collection ;\n\nselect count(*) from public.rag_pnl_sql where collection_id='61d9821f-1bb9-4ee1-8d2d-36e925d9bdc0';\n\ndelete from public.rag_pnl_sql where collection_id='61d9821f-1bb9-4ee1-8d2d-36e925d9bdc0';",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        96,
+        -400
+      ],
+      "id": "957c4146-123f-4c4c-91c2-e823253653e4",
+      "name": "Execute a SQL query",
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "ListarTablas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store": {
+      "main": [
+        []
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Token Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "ListarTablas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TablaCompleta": {
+      "main": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ListarTablas": {
+      "main": [
+        [
+          {
+            "node": "TablaCompleta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "366603c6-784a-44b5-8e33-dde21c0d73c6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5f3013ca596510d58934f60e5810b87927c396fd561c71e512ceaba645263533"
+  },
+  "id": "r3tEt44jU0p5OzHi",
+  "tags": [
+    {
+      "updatedAt": "2025-09-01T00:25:05.517Z",
+      "createdAt": "2025-09-01T00:25:05.517Z",
+      "id": "yuTs3zBwr1JeB0HT",
+      "name": "Maestria"
+    }
+  ]
+}

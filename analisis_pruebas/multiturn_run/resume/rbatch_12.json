@@ -1,0 +1,214 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn62",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3174,
+     "msg": "¿Cuál es la depreciacion acumulada más alto registrado en libros de activos fijos? Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3175,
+     "msg": "¿Me puedes explicar qué significa ese dato?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3176,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3177,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3178,
+     "msg": "Ahora, cambiando de tema: ¿Cuántos cuentas por cobrar - customer detail tax directive tengo por cada impuesto? Muéstrame el nombre del impuesto. Es urgente."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3179,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 3180,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 3181,
+     "msg": "Dame los datos."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn63",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3182,
+     "msg": "Para mi empresa, necesito un resumen combinando cuentas por cobrar - conditional discount y remesas, agrupando por empresa (member_id) y mostrando la suma del valor de la carga y el número de registros asociados. Muchas gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3183,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3184,
+     "msg": "¿Y eso cómo va?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3185,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3186,
+     "msg": "Perfecto, entendido."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn64",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3187,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3188,
+     "msg": "Necesito el total del valor del impuesto y el número de treasury - cash note tax, agrupado por cuenta contable (muéstrame el nombre del cuenta contable). Muchas gracias."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3189,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3190,
+     "msg": "Y lo otro también, porfa."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3191,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3192,
+     "msg": "Dame los datos."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3193,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    },
+    {
+     "turn": 8,
+     "excel_id": 3194,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 9,
+     "excel_id": 3195,
+     "msg": "Perfecto, entendido."
+    },
+    {
+     "turn": 10,
+     "excel_id": 3196,
+     "msg": "¿Y eso cómo va?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn65",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3197,
+     "msg": "¿Cuántos saldos por pagar hay por cada valor de la columna default_interest_id? Gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3198,
+     "msg": "¿Me puedes explicar qué significa ese dato?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3199,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3200,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3201,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn66",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3202,
+     "msg": "Necesito el total del valor del descuento y el número de cuentas por pagar - return invoice, agrupado por condicion comercial (muéstrame el nombre del condicion comercial). Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3203,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3204,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3205,
+     "msg": "Ahora, cambiando de tema: indícame la cantidad de facturas de compra junto con la suma del valor del descuento y del subtotal. Gracias."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3206,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3207,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3208,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 3209,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 9,
+     "excel_id": 3210,
+     "msg": "Ordena ese resultado de mayor a menor."
+    }
+   ]
+  }
+ ]
+}

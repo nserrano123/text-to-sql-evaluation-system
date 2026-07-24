@@ -1,0 +1,174 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn82",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3325,
+     "msg": "Indicame los ultimos 2 productos que se han creado, solo requiero el nombre y la descripcion."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3326,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3327,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3328,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3329,
+     "msg": "Dame los datos."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn83",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3330,
+     "msg": "Indícame la cantidad de coberturas de poliza junto con la suma del deducible y del valor asegurado."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3331,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3332,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3333,
+     "msg": "¿Me puedes explicar qué significa ese dato?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3334,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3335,
+     "msg": "Compáralo."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn84",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3336,
+     "msg": "Para mi empresa, necesito un resumen combinando core - tree struct y pos - return sale detail, agrupando por empresa (member_id) y mostrando la suma de la cantidad alterna y el número de registros asociados. Gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3337,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3338,
+     "msg": "¿Me puedes explicar qué significa ese dato?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3339,
+     "msg": "Ahora, cambiando de tema: oye, ¿cuántos health - medical record procedure hay en el sistema en este momento? Muchas gracias."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3340,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 3341,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn85",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3342,
+     "msg": "Regálame el nombre de todos mis legal - process. Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3343,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3344,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3345,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3346,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 3347,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 3348,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn86",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3349,
+     "msg": "Dame el listado de nombres de cuentas por pagar - supplier detail."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3350,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3351,
+     "msg": "¿Y eso cómo va?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3352,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3353,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  }
+ ]
+}

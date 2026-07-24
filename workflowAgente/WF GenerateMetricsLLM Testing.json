@@ -1,0 +1,563 @@
+{
+  "name": "GenerateMetricsLLM Testing",
+  "nodes": [
+    {
+      "parameters": {
+        "source": "googleSheets",
+        "documentId": {
+          "__rl": true,
+          "value": "1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI",
+          "mode": "list",
+          "cachedResultName": "dataset_sql_40_med_complex",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 142234394,
+          "mode": "list",
+          "cachedResultName": "Medianas_y_Complejas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit#gid=142234394"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "MetricSqlGenerated"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.evaluationTrigger",
+      "typeVersion": 4.7,
+      "position": [
+        -208,
+        -160
+      ],
+      "id": "c56f4429-e3be-456b-959a-b499974be300",
+      "name": "EvaluationTrigger",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tjUyK7yIgQO9oUOK",
+          "name": "MartinAccount"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "source": "googleSheets",
+        "documentId": {
+          "__rl": true,
+          "value": "1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI",
+          "mode": "list",
+          "cachedResultName": "dataset_sql_40_med_complex",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 142234394,
+          "mode": "list",
+          "cachedResultName": "Medianas_y_Complejas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit#gid=142234394"
+        },
+        "outputs": {
+          "values": [
+            {
+              "outputName": "MetricSqlGenerated",
+              "outputValue": "={{ $('CodeSql').item.json.output.score }}"
+            },
+            {
+              "outputName": "MetricDINSql",
+              "outputValue": "={{ $('CodeDin').item.json.output.score }}"
+            },
+            {
+              "outputName": "WhyMetricSqlGenerated",
+              "outputValue": "={{ $('CodeSql').item.json.output.extended_reasoning }}\n\n{{ $('CodeSql').item.json.output.reasoning_summary }}"
+            },
+            {
+              "outputName": "WhyMetricDINSql",
+              "outputValue": "={{ $('CodeDin').item.json.output.extended_reasoning }}\n\n{{ $('CodeDin').item.json.output.reasoning_summary }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.evaluation",
+      "typeVersion": 4.8,
+      "position": [
+        1392,
+        192
+      ],
+      "id": "6fe8649d-02e8-4ce8-ad30-68522d443974",
+      "name": "Evaluation",
+      "executeOnce": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tjUyK7yIgQO9oUOK",
+          "name": "MartinAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        16,
+        -160
+      ],
+      "id": "6396db32-ad4d-46a7-8680-2647ee9a3cda",
+      "name": "Wait",
+      "webhookId": "77993687-0f0c-45b1-b466-ea071b10fc43"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Respuesta Esperada:```{{ $json[\"Pregunta Descompuesta\"] }}```\n\nRespuesta Obtenida:```{{ $json.N8nDINSql }}```",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Este evaluador semántico tiene como propósito comparar **la descomposición generada** de una pregunta vs **la descomposición esperada**, donde descomponer la pregunta significa planearla, explicarla y desglosarla de forma detallada y lógica.\n\nTu tarea es determinar qué tan alineada está la descomposición del Output con la descomposición del Ground Truth, evaluando precisión factual, coherencia lógica y equivalencia semántica.\n\nLa evaluación debe realizarse en español. La salida será en formato JSON correctamente formateado. **Es crucial que cualquier comilla doble que aparezca dentro del texto de los strings del JSON esté escapada correctamente con una barra invertida (`\\\"`) para evitar romper la estructura del JSON.**\n\n---\n\n## ✅ Escala de Puntuación (0-100)\n\n- **95-100 Equivalencia Perfecta:** La descomposición del Output refleja exactamente los mismos pasos, intención y significado que la del Ground Truth.\n- **80-94 Alta Exactitud:** La intención central y la mayoría de los pasos están correctos, con omisiones menores.\n- **60-79 Exactitud Moderada:** Captura la idea general y al menos el setenta por ciento de los pasos esenciales, pero faltan matices o detalles clave.\n- **40-59 Baja Exactitud:** Menos del setenta por ciento de los pasos fundamentales es correcto o hay errores importantes.\n- **20-39 Error Grave:** La descomposición es mayormente incorrecta o altera la lógica fundamental.\n- **0-19 Alucinación o Irrelevante:** No corresponde a la descomposición esperada, es contradictoria o totalmente fuera de contexto.\n\n---\n\n## ✅ Metodología\n\nEl análisis en `extended_reasoning` debe seguir un formato numerado, manteniendo el desglose lógico. Ejemplo de estructura:\n\n1.  **Identificación del objetivo principal de la pregunta**\n2.  **Elementos clave o entidades involucradas**\n3.  **Pasos lógicos necesarios para resolver la pregunta**\n4.  **Condiciones, restricciones o filtros relevantes**\n5.  **Relaciones o dependencias entre pasos o entidades**\n6.  **Secuencia lógica o flujo de ejecución**\n7.  **Diferencias estructurales o conceptuales entre Output y Ground Truth**\n8.  **Conclusión sobre precisión y alineación semántica**\n\nEste formato numerado es obligatorio y debe adaptarse al contenido evaluado.\n\n---\n\n## ✅ Formato Obligatorio de Salida\n\nDebes responder **únicamente** este JSON:\n\n{\n'extended_reasoning': '<análisis detallado estructurado en formato numerado, sin comillas dobles internas rotas, saltos de linea \\\\n >',\n'reasoning_summary': '<frase corta explicando la razón principal de la puntuación, sin comillas dobles internas rotas, saltos de linea \\\\n >',\n'score': <entero entre 0 y 100>\n}"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        240,
+        -160
+      ],
+      "id": "579f5dba-e4a6-46da-8a5e-2c60eadf6e20",
+      "name": "DinSqlSqlEvaluation",
+      "retryOnFail": true,
+      "executeOnce": false,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Respuesta Esperada:```{{ $json.SQL }}```\n\nRespuesta Obtenida:```{{ $json.N8nSqlGenerated }}```",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are an expert Factual Evaluator and Semantic Analyst. Your task is to compare a given Output against a Ground Truth and evaluate factual and semantic accuracy.\n\nLa evaluación debe realizarse en español. la salida sera en formato json\ncorrectamente formateado. Asegúrate de que todos los valores de texto dentro del JSON\nestén debidamente escapados o codificados para evitar la rotura del formato JSON\ndebido a comillas internas. Utiliza comillas simples para delimitar los strings\nsi es necesario, pero prioriza el escapado correcto con barras invertidas (`\\\"`)\ncuando las comillas dobles sean intrínsecas al contenido.\n\n# Escala de Puntuación (0-100)\n\n* **95-100 Equivalencia Perfecta:** El Output transmite exactamente el mismo significado que el Ground Truth.\n* **80-94 Alta Exactitud:** El hecho central es correcto, con omisiones menores.\n* **60-79 Exactitud Moderada:** Captura la idea central y al menos el setenta por ciento de los pasos fundamentales.\n* **40-59 Baja Exactitud:** Menos del setenta por ciento de los pasos esenciales son correctos o hay errores significativos.\n* **20-39 Error Grave:** Mayormente incorrecto.\n* **0-19 Alucinación o Irrelevante:** Contradictorio, falso o no relacionado.\n\n# Metodología\n\nEl análisis en `extended_reasoning` debe seguir estrictamente un formato numerado como este modelo:\n\n1. Identificación de tablas y columnas\n2. Funciones o pasos principales\n3. Filtro o condición\n4. Agrupaciones o relaciones\n5. Ordenamientos o control\n6. Límites o parámetros numéricos\n7. Diferencias de estilo o sintaxis\n8. Conclusión sobre corrección parcial o total\n\nEste esquema se debe mantener siempre, adaptándolo al contenido evaluado.\n\n# Formato Obligatorio de Salida\n\nDebes responder únicamente este JSON:\n\n{\n'extended_reasoning': '<análisis detallado estructurado en formato numerado, sin comillas dobles internas en el texto, saltos de linea \\\\n >',\n'reasoning_summary': '<frase corta explicando la razón principal de la puntuación, sin comillas dobles internas en el texto, saltos de linea \\\\n >',\n'score': <entero entre 0 y 100>\n}\n\n# Reglas Críticas\n\n1. **Prohibido usar comillas dobles dentro del contenido textual de los strings del JSON.** Si el contenido requiere una comilla doble, se debe escapar correctamente usando `\\\"`.\n2. Solo se permiten comillas simples como delimitadores de los strings JSON, pero la clave es que el *contenido* de esos strings no tenga comillas dobles rotas.\n3. No incluir texto fuera del JSON.\n4. La respuesta debe estar siempre en español.\n5. El análisis debe mantener el formato numerado, sin excepción.\n\n# Recordatorio Final\n\nEvita que las comillas dobles dentro del texto de tu análisis rompan la estructura del JSON. Escapa las comillas dobles internas si son necesarias para representar el contenido.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t "
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        240,
+        288
+      ],
+      "id": "a62829d9-8fd6-4d60-b0d8-f8cac249c1a3",
+      "name": "GeneratedSqlEvaluation",
+      "executeOnce": false
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        880,
+        192
+      ],
+      "id": "4a4dbf8e-9afe-4bdb-b4a2-fba2c138d022",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        192
+      ],
+      "id": "32de0d22-f21d-46f0-a145-3cff30756809",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {
+          "temperature": 0,
+          "topK": 1,
+          "topP": 1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        320,
+        64
+      ],
+      "id": "2ebbb5e6-c61d-4772-8da4-7f09ec767969",
+      "name": "Google Gemini Chat Model",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "r1walQcO9sv54HJH",
+          "name": "FailFastGemini MSM 300K"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "Pregunta Descompuesta"
+            },
+            {
+              "name": "N8nDINSql"
+            },
+            {
+              "name": "SQL"
+            },
+            {
+              "name": "N8nSqlGenerated"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        16,
+        336
+      ],
+      "id": "170b04b0-4ac6-4c0a-881b-ca574f6d5a48",
+      "name": "When Executed by Another Workflow",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b7792179-f5fe-46b2-b7ef-b8babea9487e",
+              "name": "MetricSqlGenerated",
+              "value": "={{ $('CodeSql').item.json.output.score }}",
+              "type": "string"
+            },
+            {
+              "id": "61fa9d8c-6985-4975-8d36-d632fb1d5d9b",
+              "name": "MetricDINSql",
+              "value": "={{ $('CodeDin').item.json.output.score }}",
+              "type": "string"
+            },
+            {
+              "id": "b131e2de-d8b7-4d3d-b5fd-8c6cc0ef112f",
+              "name": "WhyMetricSqlGenerated",
+              "value": "={{ $('CodeSql').item.json.output.extended_reasoning }}  {{ $('CodeSql').item.json.output.reasoning_summary }}",
+              "type": "string"
+            },
+            {
+              "id": "62b0aea5-31b6-4852-8d59-0e12687bd0b7",
+              "name": "WhyMetricDINSql",
+              "value": "={{ $('CodeDin').item.json.output.extended_reasoning }}  {{ $('CodeDin').item.json.output.reasoning_summary }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1616,
+        192
+      ],
+      "id": "634864a5-7158-4ae2-80f7-a06d1ea854d1",
+      "name": "SalidaEvaluacion"
+    },
+    {
+      "parameters": {
+        "jsCode": "function parseJsonAutoFix(raw) {\n  if (!raw) throw new Error(\"Input vacío\");\n\n  let txt = raw.toString().trim();\n\n  // 1️⃣ Quitar fences ```json ``` o ```\n  txt = txt\n    .replace(/^```(?:json)?/i, '')\n    .replace(/```$/i, '')\n    .trim();\n\n  // 2️⃣ Intento directo\n  try {\n    return JSON.parse(txt);\n  } catch (_) {}\n\n  // 3️⃣ Reparar comillas simples → dobles\n  try {\n    return JSON.parse(\n      txt\n        .replace(/'/g, '\"')\n        .replace(/,\\s*}/g, '}')\n        .replace(/,\\s*]/g, ']')\n    );\n  } catch (_) {}\n\n  // 4️⃣ Reparar JSON escapado (doble stringify)\n  try {\n    return JSON.parse(JSON.parse(`\"${txt.replace(/\"/g, '\\\\\"')}\"`));\n  } catch (_) {}\n\n  // 5️⃣ Último intento: eval seguro\n  try {\n    // ⚠️ Solo usar si confías en el origen\n    return Function('\"use strict\"; return (' + txt + ')')();\n  } catch (e) {\n    throw new Error(\"No se pudo parsear JSON:\\n\" + txt);\n  }\n}\n\nreturn {\n  output: parseJsonAutoFix($input.first().json.text)\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        -64
+      ],
+      "id": "f3c59ff3-1642-4ca4-8e61-f4546b9d92be",
+      "name": "CodeDin",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "function parseJsonAutoFix(raw) {\n  if (!raw) throw new Error(\"Input vacío\");\n\n  let txt = raw.toString().trim();\n\n  // 1️⃣ Quitar fences ```json ``` o ```\n  txt = txt\n    .replace(/^```(?:json)?/i, '')\n    .replace(/```$/i, '')\n    .trim();\n\n  // 2️⃣ Intento directo\n  try {\n    return JSON.parse(txt);\n  } catch (_) {}\n\n  // 3️⃣ Reparar comillas simples → dobles\n  try {\n    return JSON.parse(\n      txt\n        .replace(/'/g, '\"')\n        .replace(/,\\s*}/g, '}')\n        .replace(/,\\s*]/g, ']')\n    );\n  } catch (_) {}\n\n  // 4️⃣ Reparar JSON escapado (doble stringify)\n  try {\n    return JSON.parse(JSON.parse(`\"${txt.replace(/\"/g, '\\\\\"')}\"`));\n  } catch (_) {}\n\n  // 5️⃣ Último intento: eval seguro\n  try {\n    // ⚠️ Solo usar si confías en el origen\n    return Function('\"use strict\"; return (' + txt + ')')();\n  } catch (e) {\n    throw new Error(\"No se pudo parsear JSON:\\n\" + txt);\n  }\n}\n\nreturn {\n  output: parseJsonAutoFix($input.first().json.text)\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        288
+      ],
+      "id": "e5c44be0-f6f1-401c-9aa4-e036a0012d22",
+      "name": "CodeSql"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {
+          "temperature": 0,
+          "topK": 1,
+          "topP": 1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        896,
+        16
+      ],
+      "id": "3609edb7-693e-4b5f-af76-e00b913ae57b",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "r1walQcO9sv54HJH",
+          "name": "FailFastGemini MSM 300K"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('DinSqlSqlEvaluation').item.json.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Debes ajustar Correctamente el json para que tenga la estructura y escapes correspondientes."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        816,
+        -208
+      ],
+      "id": "af89a911-8418-4348-96f8-0eb0d2adaf2b",
+      "name": "AjustarJson",
+      "retryOnFail": false,
+      "executeOnce": false
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "Pregunta Descompuesta": "1) Identificar la tabla y el campo numérico a sumar.\n2) Escoger la columna por la cual se va a agrupar (ej. *_id relevante).\n3) Aplicar filtro multi-tenant member_id = $1.\n4) Calcular SUM y COUNT por cada grupo.\n5) Ordenar por el total descendente y limitar a 50 filas.",
+          "N8nDINSql": "**Reformulación:**\nEl usuario desea obtener, para su empresa, un resumen que muestre la suma del campo `asset_value` y el recuento de registros de la tabla `fixed_asset.asset_addition`, agrupados por cada `supplier_id` distinto.\n\n**Pasos lógicos sugeridos para la generación SQL:**\n1. Identificar la tabla `fixed_asset.asset_addition`.\n2. Verificar si la tabla `fixed_asset.asset_addition` contiene el campo `member_id` para aplicar el filtro multi-empresa. Se aplicará `where member_id=$1 limit 20`.\n3. Si la tabla `fixed_asset.asset_addition` contiene el campo `audit_status`, se debe añadir la condición `where \"audit_status\" <> \"D\"` para excluir registros eliminados.\n4. Seleccionar el campo `supplier_id` para agrupar los resultados.\n5. Calcular la suma del campo `asset_value` para cada `supplier_id`.\n6. Contar el número total de registros para cada `supplier_id`.\n7. Realizar la agrupación de los resultados por `supplier_id`.\n8. Presentar el `supplier_id`, la suma calculada de `asset_value` y el conteo de registros.\n9. La complejidad de esta consulta es **Fácil** ya que implica el uso de una sola tabla (`fixed_asset.asset_addition`), funciones de agregación (`SUM`, `COUNT`), agrupamiento (`GROUP BY`) y filtros estándar (`member_id`, `audit_status`).\n\n**Complejidad:** 🟢 Fácil",
+          "SQL": "SELECT t.supplier_id AS supplier_id, SUM(t.asset_value) AS total_asset_value, COUNT(*) AS registros\nFROM \"fixed_asset\".\"asset_addition\" AS t\nWHERE t.member_id = $1 AND \"audit_status\" <> 'D' \nGROUP BY t.supplier_id\nORDER BY total_asset_value DESC\nlimit 100;",
+          "N8nSqlGenerated": "SELECT \"supplier_id\", SUM(\"asset_value\"), COUNT(*) FROM \"fixed_asset\".\"asset_addition\" WHERE member_id = $1 AND \"audit_status\" <> 'D' GROUP BY \"supplier_id\" LIMIT 100"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "EvaluationTrigger": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "DinSqlSqlEvaluation",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GeneratedSqlEvaluation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluation": {
+      "main": [
+        [
+          {
+            "node": "SalidaEvaluacion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DinSqlSqlEvaluation": {
+      "main": [
+        [
+          {
+            "node": "CodeDin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GeneratedSqlEvaluation": {
+      "main": [
+        [
+          {
+            "node": "CodeSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Evaluation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "GeneratedSqlEvaluation",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "DinSqlSqlEvaluation",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "DinSqlSqlEvaluation",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GeneratedSqlEvaluation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CodeDin": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AjustarJson",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CodeSql": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AjustarJson",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AjustarJson": {
+      "main": [
+        [
+          {
+            "node": "CodeDin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "bb0a6a75-6290-4ec3-a44d-d55cec62fc9d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5f3013ca596510d58934f60e5810b87927c396fd561c71e512ceaba645263533"
+  },
+  "id": "iXPItA1NNQCTc063",
+  "tags": [
+    {
+      "updatedAt": "2025-09-01T00:25:05.517Z",
+      "createdAt": "2025-09-01T00:25:05.517Z",
+      "id": "yuTs3zBwr1JeB0HT",
+      "name": "Maestria"
+    }
+  ]
+}

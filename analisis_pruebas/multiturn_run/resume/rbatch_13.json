@@ -1,0 +1,209 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn67",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3211,
+     "msg": "¿Cuántos cuentas por pagar - configuration tengo registrados? Gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3212,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3213,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3214,
+     "msg": "Y lo otro también, porfa."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3215,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3216,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn68",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3217,
+     "msg": "Para mi empresa, quiero ver por cada tercero la suma del valor del activo y cuántos registros hay en activos fijos. Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3218,
+     "msg": "Perfecto, entendido."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3219,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3220,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3221,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3222,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3223,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    },
+    {
+     "turn": 8,
+     "excel_id": 3224,
+     "msg": "Ahora, cambiando de tema: ¿Cuál es la suma total del campo note_value en cuentas por cobrar - note detail? Es urgente."
+    },
+    {
+     "turn": 9,
+     "excel_id": 3225,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 10,
+     "excel_id": 3226,
+     "msg": "Dame los datos."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn69",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3227,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3228,
+     "msg": "Suministrame los primeros 3 cuentas por pagar - discount type que se crearon en el sistema, con el nombre y la fecha de creación. Por favor."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3229,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3230,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3231,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn70",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3232,
+     "msg": "¿Cuál es el nombre del transporte - stakeholder branch con código 1435? Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3233,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3234,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3235,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3236,
+     "msg": "¿Y eso cómo va?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 3237,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3238,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 3239,
+     "msg": "Dame los datos."
+    },
+    {
+     "turn": 9,
+     "excel_id": 3240,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 10,
+     "excel_id": 3241,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn71",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3242,
+     "msg": "Dame el total del valor credito de los treasury - income account cuyo sucursal contiene 'OFICINA' en el nombre, agrupado por sucursal. Gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3243,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3244,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3245,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3246,
+     "msg": "Ordena ese resultado de mayor a menor."
+    }
+   ]
+  }
+ ]
+}

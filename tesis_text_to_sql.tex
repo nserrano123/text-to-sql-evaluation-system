@@ -79,7 +79,7 @@ El interés por mejorar la generación de SQL a partir de lenguaje natural ha cr
 
 Este trabajo busca cerrar esa brecha mediante una arquitectura que permita acercar las preguntas en lenguaje natural al núcleo de datos de un ERP, de manera precisa, estable y comprensible para el usuario final. Esta motivación se potencia gracias a las características del ERP Fail Fast.
 
-A diferencia de sistemas heredados, la base de datos de Fail Fast fue diseñada desde cero con una estructura coherente, documentada y con nomenclaturas alineadas al significado funcional de cada tabla. Esta decisión de ingeniería no es menor: los estudios recientes muestran que la claridad semántica en los esquemas y la consistencia en los nombres de tablas y columnas favorecen el schema linking y reducen errores de interpretación por parte de los LLM \cite{hong2024bird, luo2025schema}.
+A diferencia de sistemas heredados, la base de datos de Fail Fast fue diseñada desde cero con una estructura coherente, documentada y con nomenclaturas alineadas al significado funcional de cada tabla. Esta decisión de ingeniería no es menor: los estudios recientes muestran que la claridad semántica en los esquemas y la consistencia en los nombres de tablas y columnas favorecen el schema linking y reducen errores de interpretación por parte de los LLM \cite{hong2024bird, hong2025advances}.
 
 \subsubsection{Objetivos}
 
@@ -347,7 +347,7 @@ Dado un conjunto de cinco componentes binarios (activo/inactivo), el espacio tot
 
 $$2^5 - 1 = 31$$
 
-Se excluyó la configuración nula (sin componentes activos), dado que no produce generación SQL. En consecuencia, se evaluaron 31 combinaciones distintas, incluyendo, entre otras:
+Se excluyó la configuración nula (sin componentes activos), dado que no produce generación SQL. De este espacio de 31 combinaciones posibles se evaluaron efectivamente 19 configuraciones, priorizando aquellas que incorporan recuperación contextual (RAG) —requisito para generar SQL válido sobre el esquema del ERP— junto con un conjunto de configuraciones de contraste sin RAG. Entre las configuraciones evaluadas se incluyen:
 
 \begin{itemize}
 	\item RAG
@@ -360,7 +360,16 @@ Se excluyó la configuración nula (sin componentes activos), dado que no produc
 	\item RAG + Memoria + Intención + DIN + DEA (arquitectura completa)
 \end{itemize}
 
-Cada configuración fue ejecutada sobre las mismas 53 consultas gold, garantizando condiciones experimentales homogéneas.
+Cada configuración fue ejecutada sobre el mismo conjunto de consultas de referencia, garantizando condiciones experimentales homogéneas.
+
+\subsection{Conjuntos de datos de evaluación}
+\label{sec:datasets}
+
+La evaluación se apoya en dos conjuntos complementarios, ambos anclados al esquema real del ERP Fail Fast. El \textbf{conjunto de un solo turno} (ablación) es el banco de preguntas empresariales de complejidad media y compleja; cada registro asocia una pregunta en lenguaje natural con su descomposición, las tablas y columnas relevantes y una consulta SQL de referencia (gold) validada por ejecución, distribuidas en tres niveles (Fácil, Media, Compleja) y cubriendo agregaciones financieras, consultas multi-tabla, análisis temporal y reportes operativos. Este conjunto se ejecutó bajo cada una de las 19 configuraciones evaluadas.
+
+El \textbf{conjunto conversacional multi-turno}, construido para evaluar los módulos de Intensión y Memoria, comprende \textbf{100 conversaciones} (hasta 10 turnos; \textbf{759 turnos} en total) derivadas de las preguntas anteriores. El orden de los turnos es significativo: cada conversación encadena un turno inicial ejecutable con seguimientos que dependen del contexto acumulado (referencias elípticas como ``ahora el promedio'', ``ordénalo'', ``¿a qué tipo pertenece?''), intercalados con turnos puramente conversacionales que \emph{no} deben disparar SQL y turnos ambiguos que deben motivar una aclaración (446 turnos ejecutables, 196 conversacionales y 117 ambiguos).
+
+Sobre el conjunto de un solo turno se calculan Execution Accuracy, Component Matching y Time-to-Answer. Sobre el conjunto conversacional, la evaluación reproduce el flujo agentivo completo (RAG+Memoria+Intensión+DIN+DEA) contra la base de datos de prueba, con memoria persistente entre turnos: se registra la acción tomada por el sistema (ejecutar SQL, responder conversacionalmente o pedir aclaración) y, cuando ejecuta SQL, la consulta se ejecuta realmente y su resultado se compara con el de referencia mediante Execution Accuracy normalizada. Esto mide dos capacidades propias del escenario conversacional: el \emph{gating} de intención (cuándo ejecutar SQL) y la \emph{resolución de contexto} (reconstruir la consulta desde la memoria de turnos previos).
 
 \subsection{Métricas de evaluación}
 
@@ -393,10 +402,10 @@ El procedimiento seguido para cada configuración fue el siguiente:
 
 \begin{enumerate}
 	\item Selección de una configuración específica de componentes.
-	\item Ejecución secuencial de las 53 consultas gold bajo dicha configuración.
+	\item Ejecución secuencial del conjunto de consultas de referencia bajo dicha configuración.
 	\item Registro automático del SQL generado, resultado de ejecución, componentes estructurales y tiempo de respuesta.
 	\item Cálculo agregado de las métricas EX, CM y TTA.
-	\item Repetición del proceso para las 31 configuraciones definidas.
+	\item Repetición del proceso para las 19 configuraciones evaluadas.
 \end{enumerate}
 
 Este procedimiento garantiza comparabilidad directa entre configuraciones y permite analizar tanto el impacto individual de cada componente como sus efectos combinados.
@@ -451,8 +460,8 @@ Por el contrario, la configuración [RAG + DIN + DEA] alcanza el mejor desempeñ
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\linewidth]{Figura 5.2 - Exactitud de ejecucion.png}
-	\caption{Exactitud de ejecución (Execution Accuracy) para las distintas configuraciones arquitectónicas evaluadas. Se observan diferencias sustanciales entre configuraciones, destacando el rol determinante de la recuperación contextual del esquema (RAG) en la generación de consultas SQL ejecutables.}
+	\includegraphics[width=\linewidth]{Figura 5.2 - Ranking EX 19 configuraciones.png}
+	\caption{Exactitud de ejecución (Execution Accuracy) para las 19 configuraciones arquitectónicas evaluadas sobre las mismas 53 consultas gold. Se observan diferencias sustanciales entre configuraciones, destacando el rol determinante de la recuperación contextual del esquema (RAG); se resalta la configuración completa seleccionada para el escenario conversacional.}
 	\label{fig:execution_accuracy}
 \end{figure}
 
@@ -483,8 +492,8 @@ En contraste, la configuración [RAG + DIN + DEA] alcanza un valor cercano al 89
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\linewidth]{Figura 5.4 - Autocorreccion.png}
-	\caption{Comparación de la capacidad de generación sin autocorrección (SIN\_AUTO\_CORRECCION) entre configuraciones. Se evidencia que la configuración [RAG + DIN + DEA] alcanza valores cercanos al 89\%, mientras que configuraciones basadas únicamente en RAG o Intensión dependen fuertemente de mecanismos de corrección iterativa.}
+	\includegraphics[width=\linewidth]{Figura 5.4 - Ranking SIN AUTO 19 configuraciones.png}
+	\caption{Capacidad de generación sin autocorrección (SIN\_AUTO\_CORRECCION) para las 19 configuraciones evaluadas sobre las mismas 53 consultas gold. La configuración [RAG + DIN + DEA] lidera con 88,7\%, mientras que configuraciones basadas únicamente en RAG o Intensión dependen fuertemente de mecanismos de corrección iterativa; la configuración completa alcanza un 67,9\%, sacrificando parte de la generación directa a cambio de las capacidades conversacionales.}
 	\label{fig:sin_autocorreccion}
 \end{figure}
 
@@ -677,6 +686,7 @@ El análisis del TTA confirma que la eficiencia temporal de un sistema NL-to-SQL
 En consecuencia, el diseño de sistemas NL-to-SQL multi-agente debe priorizar el grounding contextual y el razonamiento estructural efectivo, no solo como mecanismos de mejora de exactitud, sino como factores clave para garantizar un comportamiento eficiente y escalable a nivel de workflow completo.
 
 \subsection{Medición del Context Retention Rate (CRR)}
+\label{sec:crr_dialogo}
 
 El Context Retention Rate (CRR) evalúa la capacidad del sistema para retener, recuperar y reutilizar correctamente el contexto relevante a lo largo de interacciones conversacionales multi-turno. A diferencia de métricas centradas en consultas aisladas, CRR mide el comportamiento del sistema cuando las solicitudes del usuario dependen parcial o totalmente de información introducida en turnos previos, como referencias elípticas, anafóricas o implícitas.
 
@@ -706,13 +716,22 @@ En el escenario evaluado, los turnos dependientes de contexto corresponden a los
 	\text{CRR} = \frac{\text{Turnos con CRR\_hit}}{\text{Turnos context-dependent}} = \frac{4}{4} = 1.0 \; (100\%)
 \end{equation}
 
-\subsubsection{Análisis de resultados}
+\subsubsection{Análisis de resultados sobre el conjunto conversacional}
 
-Los resultados muestran un CRR del 100\% en los escenarios conversacionales evaluados. Este desempeño indica que el sistema es capaz de mantener coherencia contextual a lo largo del diálogo y de reconstruir correctamente solicitudes incompletas o elípticas, incluyendo expresiones como ``lo mismo'', ``ahora con'' o ``solo uno''.
+El diálogo ilustrativo anterior alcanza un CRR del 100\% en sus cuatro turnos dependientes de contexto. Para verificar que este comportamiento se sostiene a escala, la retención de contexto se evaluó sobre el conjunto conversacional completo (Sección~\ref{sec:datasets}), que contiene \textbf{313 turnos de seguimiento dependientes de memoria}. En el 97,4\% de estos turnos (305/313), el sistema reconoció la referencia elíptica y reconstruyó la solicitud a partir de la entidad y la consulta establecidas en turnos previos, en lugar de tratar el mensaje como una petición aislada o pedir que el usuario repitiera la información.
 
-Este comportamiento se explica por la integración conjunta de los módulos de Intensión y Memoria. El módulo de Intensión evita ejecuciones prematuras cuando la información es insuficiente, mientras que el módulo de Memoria preserva representaciones estructuradas del contexto previo (entidades, proyecciones y restricciones), permitiendo su reutilización controlada en turnos posteriores. En conjunto, estos mecanismos permiten que el sistema ejecute consultas únicamente cuando la información semántica necesaria ha sido correctamente inferida, mejorando la robustez y naturalidad de la interacción.
+No obstante, retener el contexto y \emph{ejecutar la consulta exacta} son cosas distintas. La Figura~\ref{fig:contexto_mt} contrasta la calidad del SQL entre los turnos iniciales (que parten de una pregunta autónoma) y los turnos de seguimiento (que deben reconstruirse desde la memoria). En los turnos iniciales, la Execution Accuracy alcanza el 88,0\%; en los seguimientos contextuales desciende al 62,9\%. Esta brecha es esperable y semánticamente informativa: reconstruir una consulta a partir de fragmentos conversacionales previos es intrínsecamente más difícil que traducir una pregunta completa, ya que exige inferir correctamente qué entidad, campos y filtros deben heredarse del contexto. Aun así, cerca de dos de cada tres seguimientos producen resultados idénticos a los de la consulta de referencia, lo que confirma que el módulo de Memoria aporta una capacidad real —no meramente ilustrativa— de resolución contextual.
 
-En síntesis, la métrica CRR evidencia que la arquitectura propuesta no solo es efectiva en escenarios single-shot, sino que también soporta de manera consistente interacciones conversacionales multi-turno, un requisito fundamental para el despliegue de sistemas Text-to-SQL en entornos ERP reales.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.68\linewidth]{Figura 5.11 - Contexto multiturno.png}
+	\caption{Calidad del SQL en turnos iniciales frente a seguimientos que dependen de la memoria conversacional. La caída de Execution Accuracy (88,0\% $\rightarrow$ 62,9\%) refleja la mayor dificultad de reconstruir la consulta desde el contexto, capacidad habilitada por el módulo de Memoria.}
+	\label{fig:contexto_mt}
+\end{figure}
+
+Este comportamiento se explica por la integración conjunta de los módulos de Intensión y Memoria. El módulo de Intensión evita ejecuciones prematuras cuando la información es insuficiente, mientras que el módulo de Memoria preserva representaciones del contexto previo (entidades, proyecciones y restricciones), permitiendo su reutilización controlada en turnos posteriores. En conjunto, estos mecanismos permiten que el sistema ejecute consultas únicamente cuando la información semántica necesaria ha sido correctamente inferida, mejorando la robustez y naturalidad de la interacción.
+
+En síntesis, la evaluación conversacional evidencia que la configuración completa \textbf{RAG+Memoria+Intensión+DIN+DEA} es la única que soporta de forma consistente las interacciones multi-turno: aunque en un solo turno no maximiza la Execution Accuracy, es la que integra los componentes (Memoria e Intensión) que habilitan tanto el \emph{gating} correcto de la ejecución como la resolución de contexto, requisitos fundamentales para el despliegue de sistemas Text-to-SQL en entornos ERP conversacionales reales.
 
 \subsection{Medición del Task Success Rate (TSR)}
 
@@ -727,26 +746,26 @@ En el sistema propuesto se definen dos acciones finales posibles:
 
 Un turno se considera exitoso (TSR\_hit) cuando la acción realizada por el sistema coincide con la acción esperada según la intención del usuario. En particular, el sistema debe evitar ejecuciones prematuras cuando la entrada es ambigua, insuficiente o puramente conversacional, y debe generar/ejecutar SQL únicamente cuando la información semántica necesaria ha sido determinada (ya sea explícitamente o mediante memoria contextual).
 
-La Tabla~\ref{tab:tsr_evaluation} presenta la evaluación detallada del TSR para cada uno de los once turnos del escenario conversacional, indicando la acción esperada, la acción realizada por el sistema y si el turno fue exitoso.
+En el diálogo ilustrativo de once turnos del escenario base (Sección~\ref{sec:crr_dialogo}), el sistema seleccionó correctamente la acción en todos los casos, para un TSR de $11/11 = 100\%$. Para obtener una medida representativa más allá de un único diálogo, el TSR se evaluó sobre el conjunto conversacional completo.
 
-\begin{table}[htbp]
+\subsubsection{Resultados sobre el conjunto conversacional completo}
+
+Con el fin de obtener una medida estadísticamente representativa —y no limitada a un único diálogo—, el TSR se evaluó sobre el conjunto conversacional multi-turno completo descrito en la Sección~\ref{sec:datasets}, ejecutando el flujo agentivo completo contra la base de datos de prueba. Sobre los \textbf{759 turnos} de las \textbf{100 conversaciones}, el sistema alcanzó un \textbf{TSR del 98,4\%} (747/759). El desglose por tipo de turno es revelador (Figura~\ref{fig:gating_mt}):
+
+\begin{itemize}
+	\item En los \textbf{446 turnos que debían ejecutar SQL}, el sistema ejecutó SQL en el 98,2\% de los casos (438/446): casi nunca se abstuvo indebidamente.
+	\item En los \textbf{196 turnos puramente conversacionales} (saludos, cortesías, preguntas fuera de dominio), el sistema respondió sin ejecutar SQL en el 100\% de los casos: nunca disparó una consulta innecesaria.
+	\item En los \textbf{117 turnos ambiguos}, el sistema solicitó aclaración en el 96,6\% de los casos (113/117); los turnos restantes constituyen el margen de error, donde intentó responder pese a la ambigüedad.
+\end{itemize}
+
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\linewidth]{Evaluacion TSR.png}
-	\caption{Evaluación del Task Success Rate (TSR) en un diálogo multi-turno}
-	\label{tab:tsr_evaluation}
-	\tablefont
-	\textit{Nota.} Se presenta la evaluación de once turnos conversacionales, mostrando para cada turno la acción esperada (conversación natural o generar/ejecutar SQL), la acción realizada por el sistema y si el turno fue exitoso (TSR\_hit). En todos los casos, el sistema seleccionó correctamente la acción a ejecutar, alcanzando un TSR del 100\%.
-\end{table}
+	\includegraphics[width=0.82\linewidth]{Figura 5.10 - Gating multiturno.png}
+	\caption{Gating de intención en el conjunto conversacional (100 conversaciones, 759 turnos): decisión real del sistema frente a la acción esperada, por tipo de turno. El sistema ejecuta SQL cuando corresponde (98,2\% en turnos ejecutables, 100\% en conversacionales), y el margen de error se concentra en los turnos ambiguos.}
+	\label{fig:gating_mt}
+\end{figure}
 
-\subsubsection{Cálculo del TSR}
-
-\begin{equation}
-	\text{TSR} = \frac{\text{Turnos con TSR\_hit}}{\text{Total de turnos evaluados}} = \frac{11}{11} = 1.0 \; (100\%)
-\end{equation}
-
-\subsubsection{Resultados e interpretación}
-
-Con base en la evaluación realizada, el sistema alcanzó un TSR del 100\%, lo que indica que en todos los turnos evaluados seleccionó correctamente la acción final a ejecutar. Este resultado evidencia que el componente de Intensión distingue de forma consistente entre (i) solicitudes conversacionales, que requieren respuesta natural sin ejecución, y (ii) solicitudes ejecutables, que deben traducirse y ejecutarse como SQL.
+Este resultado confirma, ahora a escala del conjunto completo, que el componente de Intensión distingue de forma consistente entre (i) solicitudes conversacionales, que requieren respuesta natural sin ejecución, y (ii) solicitudes ejecutables, que deben traducirse y ejecutarse como SQL.
 
 Este comportamiento es especialmente relevante en escenarios multi-turno, donde el sistema debe decidir si una solicitud puede resolverse mediante el uso de memoria contextual (p. ej., ``lo mismo'', ``ahora con\ldots'') o si debe solicitar aclaraciones adicionales antes de proceder. En este sentido, el TSR complementa métricas como Execution Accuracy, Context Retention Rate (CRR) y Time-to-Answer (TTA), al aportar una medida global del correcto funcionamiento del sistema desde la perspectiva del usuario final.
 
@@ -756,9 +775,9 @@ Finalmente, es importante destacar que un TSR del 100\% no implica que el sistem
 
 Los resultados del estudio evidencian que los módulos de razonamiento estructural, particularmente DIN y DEA, son necesarios para incrementar la Execution Accuracy en el problema Text-to-SQL. Sin embargo, su efectividad depende de manera crítica de la incorporación de mecanismos de grounding contextual. En ausencia de recuperación de contexto externo, incluso configuraciones con alto alineamiento estructural presentan tasas elevadas de error en ejecución, especialmente en esquemas extensos y con múltiples relaciones implícitas. En consecuencia, se confirma la necesidad de integrar conocimiento contextual explícito durante la generación de consultas SQL en dominios empresariales.
 
-El componente de Intensión presenta un rol funcionalmente distinto al razonamiento estructural. Su propósito no se orienta a optimizar la forma de la consulta generada, sino a determinar si la entrada del usuario contiene información semántica suficiente para su ejecución como SQL. Este mecanismo reduce ejecuciones prematuras ante solicitudes incompletas, ambiguas o conversacionales y regula el flujo de ejecución del sistema. Este comportamiento se refleja en un Task Success Rate (TSR) del 100 % en los escenarios evaluados, lo cual sugiere que, en contextos conversacionales, la utilidad práctica del sistema depende tanto de la exactitud de ejecución como de su capacidad para decidir cuándo abstenerse de ejecutar.
+El componente de Intensión presenta un rol funcionalmente distinto al razonamiento estructural. Su propósito no se orienta a optimizar la forma de la consulta generada, sino a determinar si la entrada del usuario contiene información semántica suficiente para su ejecución como SQL. Este mecanismo reduce ejecuciones prematuras ante solicitudes incompletas, ambiguas o conversacionales y regula el flujo de ejecución del sistema. Este comportamiento se refleja en un Task Success Rate (TSR) del 98,4 % sobre las 100 conversaciones evaluadas (759 turnos), con un desempeño casi perfecto en los turnos que deben ejecutar SQL (98,2 %), perfecto en los puramente conversacionales (100 %), y un margen de error concentrado en los turnos ambiguos. Esto sugiere que, en contextos conversacionales, la utilidad práctica del sistema depende tanto de la exactitud de ejecución como de su capacidad para decidir cuándo abstenerse de ejecutar.
 
-De manera complementaria, el módulo de Memoria contribuye a la coherencia contextual en escenarios multi-turno, donde la información requerida para la consulta se distribuye a lo largo de varios mensajes. La combinación de Intensión y Memoria permite reconstruir consultas completas a partir de referencias elípticas o anafóricas, sin exigir que el usuario formule una solicitud completa en un único turno. En los diálogos evaluados, este comportamiento se asocia con mejoras en la retención de contexto conversacional (Context Retention Rate, CRR) y en la tasa de éxito de tareas (TSR), facilitando una interacción más natural sin degradar la precisión de las consultas generadas.
+De manera complementaria, el módulo de Memoria contribuye a la coherencia contextual en escenarios multi-turno, donde la información requerida para la consulta se distribuye a lo largo de varios mensajes. La combinación de Intensión y Memoria permite reconstruir consultas completas a partir de referencias elípticas o anafóricas, sin exigir que el usuario formule una solicitud completa en un único turno. En la evaluación conversacional, el sistema reconoció y actuó sobre el contexto en el 97,4 % de los turnos de seguimiento dependientes de memoria, alcanzando una Execution Accuracy del 62,9 % en dichos turnos frente al 88,0 % de los turnos iniciales; esta brecha refleja la mayor dificultad de reconstruir la consulta desde el diálogo, y confirma que la configuración completa RAG+Memoria+Intensión+DIN+DEA —pese a no maximizar la exactitud de un solo turno— es la más adecuada para el escenario conversacional real, al ser la única que habilita simultáneamente el gating de intención y la resolución de contexto.
 
 El análisis del Time-to-Answer (TTA) indica que un mayor tiempo de respuesta no implica necesariamente un razonamiento más efectivo. Por el contrario, configuraciones con bajo desempeño en generación inicial tienden a incrementar el TTA debido a ciclos repetidos de ejecución y corrección. En consecuencia, la eficiencia temporal del sistema se encuentra condicionada principalmente por su capacidad de generar consultas correctas desde el primer intento, más que por la complejidad del razonamiento aplicado.
 
@@ -854,25 +873,22 @@ Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones fre
 	T. Scholak, N. Schucher, and D. Bahdanau, ``PICARD: Parsing incrementally for constrained auto-regressive decoding from language models,'' in \textit{Proc. EMNLP}, Punta Cana, Dominican Republic, 2021, pp. 9895--9901.
 
 	\bibitem{pourreza2023din}
-	M. Pourreza and D. Rafiei, ``DIN-SQL: Decomposed in-context learning of text-to-SQL with self-correction,'' in \textit{Proc. NeurIPS}, New Orleans, LA, USA, 2023, pp. 23--35.
+	M. Pourreza and D. Rafiei, ``DIN-SQL: Decomposed in-context learning of text-to-SQL with self-correction,'' in \textit{Proc. NeurIPS}, New Orleans, LA, USA, 2023.
 
 	\bibitem{gan2021natural}
-	Y. Gan et al., ``Natural SQL: Making SQL easier to infer from natural language specifications,'' in \textit{Proc. EMNLP}, Online, 2021, pp. 2030--2042.
+	Y. Gan, X. Chen, and M. Purver, ``Exploring underexplored limitations of cross-domain text-to-SQL generalization,'' in \textit{Proc. EMNLP}, Punta Cana, Dominican Republic, 2021, pp. 8926--8931.
 
 	\bibitem{hong2024bird}
-	J. Hong et al., ``BIRD: A big bench for large-scale database grounded text-to-SQL evaluation,'' in \textit{Proc. NeurIPS}, Vancouver, Canada, 2024, pp. 45--58.
-
-	\bibitem{luo2025schema}
-	K. Luo et al., ``Schema linking for text-to-SQL: A survey and new benchmark,'' \textit{ACM Trans. Database Syst.}, vol. 50, no. 2, pp. 1--28, Mar. 2025.
+	J. Li et al., ``Can LLM already serve as a database interface? A BIg bench for large-scale database grounded text-to-SQLs,'' in \textit{Proc. NeurIPS Datasets and Benchmarks Track}, New Orleans, LA, USA, 2023.
 
 	\bibitem{shi2025comprehensive}
-	P. Shi et al., ``A comprehensive survey of large language models for text-to-SQL,'' \textit{ACM Comput. Surv.}, vol. 58, no. 1, pp. 1--35, Jan. 2025.
+	L. Shi, Z. Tang, N. Zhang, X. Zhang, and Z. Yang, ``A survey on employing large language models for text-to-SQL tasks,'' \textit{ACM Comput. Surv.}, vol. 58, no. 2, pp. 1--37, 2025, doi: 10.1145/3737873.
 
 	\bibitem{liu2025survey}
-	H. Liu et al., ``Text-to-SQL in the era of large language models: A comprehensive survey,'' \textit{IEEE Trans. Knowl. Data Eng.}, vol. 37, no. 3, pp. 1123--1140, Mar. 2025.
+	X. Liu et al., ``A survey of text-to-SQL in the era of LLMs: Where are we, and where are we going?,'' \textit{IEEE Trans. Knowl. Data Eng.}, vol. 37, no. 10, pp. 5735--5754, 2025, doi: 10.1109/TKDE.2025.3592032.
 
 	\bibitem{hong2025advances}
-	S. Hong et al., ``Recent advances in neural text-to-SQL: A comprehensive review,'' \textit{Artif. Intell. Rev.}, vol. 58, no. 4, pp. 891--925, Apr. 2025.
+	Z. Hong et al., ``Next-generation database interfaces: A survey of LLM-based text-to-SQL,'' arXiv preprint arXiv:2406.08426, 2025.
 
 	\bibitem{li2014nalir}
 	F. Li and H. V. Jagadish, ``Constructing an interactive natural language interface for relational databases,'' \textit{Proc. VLDB Endow.}, vol. 8, no. 1, pp. 73--84, Sep. 2014.
@@ -884,22 +900,22 @@ Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones fre
 	L. Dong and M. Lapata, ``Language to logical form with neural attention,'' in \textit{Proc. ACL}, Berlin, Germany, 2016, pp. 33--43.
 
 	\bibitem{li2023resdsql}
-	H. Li et al., ``ResdsQL: Decoupling schema linking and skeleton parsing for text-to-SQL,'' in \textit{Proc. AAAI}, Washington, DC, USA, 2023, pp. 13067--13075.
+	H. Li, J. Zhang, C. Li, and H. Chen, ``RESDSQL: Decoupling schema linking and skeleton parsing for text-to-SQL,'' in \textit{Proc. AAAI}, Washington, DC, USA, 2023, pp. 13067--13075.
 
 	\bibitem{huang2024survey}
-	J. Huang et al., ``Large language models for text-to-SQL: A survey of methods and evaluation,'' \textit{Found. Trends Databases}, vol. 12, no. 3-4, pp. 234--298, 2024.
+	Y. Huang et al., ``Exploring the landscape of text-to-SQL with large language models: Progresses, challenges and opportunities,'' arXiv preprint arXiv:2505.23838, 2025.
 
 	\bibitem{xie2024dea}
-	C. Xie et al., ``DEA-SQL: Decomposition for enhancing attention in text-to-SQL,'' in \textit{Proc. ICLR}, Vienna, Austria, 2024, pp. 1--15.
+	Y. Xie et al., ``Decomposition for enhancing attention: Improving LLM-based text-to-SQL through workflow paradigm (DEA-SQL),'' in \textit{Findings of ACL}, Bangkok, Thailand, 2024, pp. 10796--10816.
 
 	\bibitem{li2024comprehensive}
-	Y. Li et al., ``A comprehensive evaluation of large language models on text-to-SQL tasks,'' in \textit{Proc. ICML}, Honolulu, HI, USA, 2024, pp. 2891--2905.
+	B. Zhang et al., ``Benchmarking the text-to-SQL capability of large language models: A comprehensive evaluation,'' arXiv preprint arXiv:2403.02951, 2024.
 
 	\bibitem{wang2025mac}
-	X. Wang et al., ``MAC-SQL: Multi-agent collaborative framework for text-to-SQL,'' in \textit{Proc. ICLR}, Kigali, Rwanda, 2025, pp. 1--16.
+	B. Wang et al., ``MAC-SQL: A multi-agent collaborative framework for text-to-SQL,'' in \textit{Proc. COLING}, Abu Dhabi, UAE, 2025, pp. 540--557.
 
 	\bibitem{han2025graphrag}
-	L. Han et al., ``GraphRAG: Enhancing retrieval-augmented generation with knowledge graphs,'' \textit{ACM Trans. Inf. Syst.}, vol. 43, no. 2, pp. 1--24, Apr. 2025.
+	H. Han et al., ``Retrieval-augmented generation with graphs (GraphRAG),'' arXiv preprint arXiv:2501.00309, 2025.
 
 	\bibitem{aparicio2023natural}
 	S. Aparicio et al., ``Natural language to SQL in low-code platforms,'' arXiv preprint arXiv:2308.15239, 2023.
@@ -908,13 +924,13 @@ Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones fre
 	L. Dou et al., ``Towards knowledge-intensive text-to-SQL semantic parsing with formulaic knowledge,'' in \textit{Proc. EMNLP}, Abu Dhabi, UAE, 2022, pp. 5240--5253.
 
 	\bibitem{gao2024dail}
-	D. Gao et al., ``DAIL-SQL: Dynamic few-shot in-context learning for text-to-SQL,'' arXiv preprint arXiv:2403.10072, 2024.
+	D. Gao et al., ``Text-to-SQL empowered by large language models: A benchmark evaluation (DAIL-SQL),'' \textit{Proc. VLDB Endow.}, vol. 17, no. 5, pp. 1132--1145, 2024, doi: 10.14778/3641204.3641221.
 
 	\bibitem{lee2024mcs}
-	J. Lee, S. Kim, and H. Cho, ``MCS-SQL: Multiple-choice selection with multi-prompts for robust text-to-SQL generation,'' arXiv preprint arXiv:2403.08764, 2024.
+	D. Lee, C. Park, J. Kim, and H. Park, ``MCS-SQL: Leveraging multiple prompts and multiple-choice selection for text-to-SQL generation,'' in \textit{Proc. COLING}, Abu Dhabi, UAE, 2025, pp. 337--353.
 
 	\bibitem{talaei2024chess}
-	M. Talaei, S. Cho, and T. Kim, ``CHESS: Contextual harnessing for efficient SQL synthesis,'' arXiv preprint arXiv:2404.03919, 2024.
+	S. Talaei, M. Pourreza, Y.-C. Chang, A. Mirhoseini, and A. Saberi, ``CHESS: Contextual harnessing for efficient SQL synthesis,'' arXiv preprint arXiv:2405.16755, 2024.
 
 	\bibitem{zhang2023act}
 	H. Zhang et al., ``ACT-SQL: In-context learning for text-to-SQL with automatically-generated chain-of-thought,'' in \textit{Findings of EMNLP}, Singapore, 2023, pp. 3501--3532.
@@ -926,7 +942,7 @@ Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones fre
 	A. Singh et al., ``A survey of large language model-based generative AI for text-to-SQL: Benchmarks, applications, use cases, and challenges,'' arXiv preprint arXiv:2412.05208, 2025.
 
 	\bibitem{zhu2024large}
-	X. Zhu et al., ``Large language models for text-to-SQL: A comprehensive evaluation,'' \textit{Comput. Linguist.}, vol. 50, no. 4, pp. 789--825, Dec. 2024.
+	X. Zhu, Q. Li, L. Cui, and Y. Liu, ``Large language model enhanced text-to-SQL generation: A survey,'' arXiv preprint arXiv:2410.06011, 2024.
 
 \end{thebibliography}
 

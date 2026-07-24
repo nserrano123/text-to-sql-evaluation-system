@@ -1,0 +1,239 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn2",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2709,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2710,
+     "msg": "Dime la cantidad de cuentas por pagar - commercial condition que se encuentran activos. Cuando puedas."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2711,
+     "msg": "¿Y eso cómo va?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2712,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2713,
+     "msg": "¿Me puedes explicar qué significa ese dato?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2714,
+     "msg": "Ahora, cambiando de tema: ¿Cuántos movimientos de inventario tengo por cada sucursal? Muéstrame el nombre del sucursal. Cuando puedas."
+    },
+    {
+     "turn": 7,
+     "excel_id": 2715,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 8,
+     "excel_id": 2716,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 9,
+     "excel_id": 2717,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 10,
+     "excel_id": 2718,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn3",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2719,
+     "msg": "¿Cuántos transporte - vehicle driver hay por cada valor de la columna member_vehicle_id? Cuando puedas."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2720,
+     "msg": "Perfecto, entendido."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2721,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2722,
+     "msg": "Ahora, cambiando de tema: regálame los nombres de los diferentes centro de costo que se han usado en los facturas de compra. Por favor."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2723,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2724,
+     "msg": "Dame los datos."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn4",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2725,
+     "msg": "Regálame los nombres de los diferentes ruta que se han usado en los precios de flete. Por favor."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2726,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 2727,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2728,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2729,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2730,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 7,
+     "excel_id": 2731,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 2732,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 9,
+     "excel_id": 2733,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 10,
+     "excel_id": 2734,
+     "msg": "¿Me puedes explicar qué significa ese dato?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn5",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2735,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2736,
+     "msg": "Dime la cantidad de treasury - member payment gateway que se encuentran activos. Cuando puedas."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2737,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2738,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2739,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2740,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 2741,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 8,
+     "excel_id": 2742,
+     "msg": "Perfecto, entendido."
+    },
+    {
+     "turn": 9,
+     "excel_id": 2743,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 10,
+     "excel_id": 2744,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn6",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2745,
+     "msg": "Dame el listado de nombres de crm - segment. Por favor."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2746,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2747,
+     "msg": "Dame los datos."
+    },
+    {
+     "turn": 4,
+     "excel_id": 2748,
+     "msg": "Perfecto, entendido."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2749,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2750,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    }
+   ]
+  }
+ ]
+}

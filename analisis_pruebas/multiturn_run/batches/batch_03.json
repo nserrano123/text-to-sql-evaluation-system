@@ -1,0 +1,189 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn17",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2825,
+     "msg": "Dame el total del valor del impuesto de los treasury - cash note tax cuyo cuenta contable contiene 'LOCAL' en el nombre, agrupado por cuenta contable. Gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2826,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 2827,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    },
+    {
+     "turn": 4,
+     "excel_id": 2828,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 2829,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2830,
+     "msg": "Perfecto, entendido."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn18",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2831,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2832,
+     "msg": "Para mi empresa, necesito un resumen combinando core - resource type y cuentas por cobrar - netting detail, agrupando por empresa (member_id) y mostrando la suma del campo crossing_balance y el número de registros asociados. Cuando puedas."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2833,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2834,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2835,
+     "msg": "Ahora, cambiando de tema: indícame la cantidad de cotizaciones de venta junto con la suma del descuento adicional y del valor del descuento. Es urgente."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2836,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn19",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2837,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2838,
+     "msg": "¿Cuál es el saldo más bajo registrado en saldos por pagar? Por favor."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2839,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 4,
+     "excel_id": 2840,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2841,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2842,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 2843,
+     "msg": "¿Me puedes explicar qué significa ese dato?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 2844,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn20",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2845,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2846,
+     "msg": "Lista los treasury - payment method activos, solo necesito el nombre."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2847,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2848,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2849,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn21",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2850,
+     "msg": "Suministrame los primeros 10 pos - concept que se crearon en el sistema, con el nombre y la fecha de creación. Cuando puedas."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2851,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2852,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2853,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2854,
+     "msg": "Ahora, cambiando de tema: quiero saber, por cada centro de costo, la suma de la cantidad y la cantidad de cuentas por cobrar - invoice return detail asociados; incluye el nombre del centro de costo."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2855,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 7,
+     "excel_id": 2856,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    }
+   ]
+  }
+ ]
+}

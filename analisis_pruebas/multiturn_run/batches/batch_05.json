@@ -1,0 +1,214 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn27",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2899,
+     "msg": "Indícame los últimos 5 cuentas por cobrar - customer type que se han creado, solo requiero el nombre y la fecha de creación. Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2900,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 2901,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2902,
+     "msg": "Ahora, cambiando de tema: para mi empresa, necesito un resumen combinando treasury - payment method y cuentas por cobrar - configuration, agrupando por empresa (member_id) y mostrando la suma del saldo maximo y el número de registros asociados. Por favor."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2903,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2904,
+     "msg": "Y en vez de la suma, dame el promedio."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn28",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2905,
+     "msg": "¿Cuántos fixed_asset - group revaluation f class hay por cada valor de la columna group_book_id? Cuando puedas."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2906,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 2907,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 4,
+     "excel_id": 2908,
+     "msg": "Perfecto, entendido."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2909,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2910,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn29",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2911,
+     "msg": "Regálame los nombres de los diferentes condicion comercial que se han usado en los cuentas por cobrar - commercial condition detail. Por favor."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2912,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2913,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2914,
+     "msg": "Ahora, cambiando de tema: indícame el nombre del operacion del integration - sao concept con código 1305. Cuando puedas."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2915,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2916,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 2917,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn30",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2918,
+     "msg": "Me puedes indicar por favor la cantidad total de treasury - cash. Por favor."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2919,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 2920,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2921,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2922,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2923,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 2924,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 8,
+     "excel_id": 2925,
+     "msg": "¿Me puedes explicar qué significa ese dato?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn31",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2926,
+     "msg": "Para mi empresa, quiero ver por cada amortizacion la suma del valor amortizado y cuántos registros hay en accounting - amortization detail. Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2927,
+     "msg": "Muéstrame lo de siempre."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2928,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 2929,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 2930,
+     "msg": "Ordena ese resultado de mayor a menor."
+    },
+    {
+     "turn": 6,
+     "excel_id": 2931,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 7,
+     "excel_id": 2932,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 8,
+     "excel_id": 2933,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 9,
+     "excel_id": 2934,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 10,
+     "excel_id": 2935,
+     "msg": "Dame los datos."
+    }
+   ]
+  }
+ ]
+}

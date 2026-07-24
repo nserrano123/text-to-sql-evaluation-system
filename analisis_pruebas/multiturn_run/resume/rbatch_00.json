@@ -1,0 +1,39 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn6",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 2745,
+     "msg": "Dame el listado de nombres de crm - segment. Por favor."
+    },
+    {
+     "turn": 2,
+     "excel_id": 2746,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 3,
+     "excel_id": 2747,
+     "msg": "Dame los datos."
+    },
+    {
+     "turn": 4,
+     "excel_id": 2748,
+     "msg": "Perfecto, entendido."
+    },
+    {
+     "turn": 5,
+     "excel_id": 2749,
+     "msg": "Hola, buenas, ¿cómo vas?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 2750,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    }
+   ]
+  }
+ ]
+}

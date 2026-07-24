@@ -1,0 +1,10589 @@
+[
+ {
+  "excel_id": 2709,
+  "session": "TestMultiturn2",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15578
+ },
+ {
+  "excel_id": 2710,
+  "session": "TestMultiturn2",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 24274
+ },
+ {
+  "excel_id": 2711,
+  "session": "TestMultiturn2",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12102
+ },
+ {
+  "excel_id": 2712,
+  "session": "TestMultiturn2",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 25909
+ },
+ {
+  "excel_id": 2713,
+  "session": "TestMultiturn2",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15257
+ },
+ {
+  "excel_id": 2714,
+  "session": "TestMultiturn2",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 40785
+ },
+ {
+  "excel_id": 2715,
+  "session": "TestMultiturn2",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 26354
+ },
+ {
+  "excel_id": 2716,
+  "session": "TestMultiturn2",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 27586
+ },
+ {
+  "excel_id": 2717,
+  "session": "TestMultiturn2",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14007
+ },
+ {
+  "excel_id": 2718,
+  "session": "TestMultiturn2",
+  "turn": 10,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 24638
+ },
+ {
+  "excel_id": 2719,
+  "session": "TestMultiturn3",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 29775
+ },
+ {
+  "excel_id": 2720,
+  "session": "TestMultiturn3",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13098
+ },
+ {
+  "excel_id": 2721,
+  "session": "TestMultiturn3",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 23939
+ },
+ {
+  "excel_id": 2722,
+  "session": "TestMultiturn3",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27544
+ },
+ {
+  "excel_id": 2723,
+  "session": "TestMultiturn3",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.5
+  },
+  "errors": 0,
+  "time_ms": 25292
+ },
+ {
+  "excel_id": 2724,
+  "session": "TestMultiturn3",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 26478
+ },
+ {
+  "excel_id": 2725,
+  "session": "TestMultiturn4",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 32800
+ },
+ {
+  "excel_id": 2726,
+  "session": "TestMultiturn4",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.5
+  },
+  "errors": 0,
+  "time_ms": 24483
+ },
+ {
+  "excel_id": 2727,
+  "session": "TestMultiturn4",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13139
+ },
+ {
+  "excel_id": 2728,
+  "session": "TestMultiturn4",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 30163
+ },
+ {
+  "excel_id": 2729,
+  "session": "TestMultiturn4",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15819
+ },
+ {
+  "excel_id": 2730,
+  "session": "TestMultiturn4",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28150
+ },
+ {
+  "excel_id": 2731,
+  "session": "TestMultiturn4",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 30628
+ },
+ {
+  "excel_id": 2732,
+  "session": "TestMultiturn4",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 25434
+ },
+ {
+  "excel_id": 2733,
+  "session": "TestMultiturn4",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 26088
+ },
+ {
+  "excel_id": 2734,
+  "session": "TestMultiturn4",
+  "turn": 10,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 17658
+ },
+ {
+  "excel_id": 2735,
+  "session": "TestMultiturn5",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13387
+ },
+ {
+  "excel_id": 2736,
+  "session": "TestMultiturn5",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 32293
+ },
+ {
+  "excel_id": 2737,
+  "session": "TestMultiturn5",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.5
+  },
+  "errors": 0,
+  "time_ms": 20391
+ },
+ {
+  "excel_id": 2738,
+  "session": "TestMultiturn5",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 25799
+ },
+ {
+  "excel_id": 2739,
+  "session": "TestMultiturn5",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 25791
+ },
+ {
+  "excel_id": 2740,
+  "session": "TestMultiturn5",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13627
+ },
+ {
+  "excel_id": 2741,
+  "session": "TestMultiturn5",
+  "turn": 7,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12134
+ },
+ {
+  "excel_id": 2742,
+  "session": "TestMultiturn5",
+  "turn": 8,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13180
+ },
+ {
+  "excel_id": 2743,
+  "session": "TestMultiturn5",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 29211
+ },
+ {
+  "excel_id": 2744,
+  "session": "TestMultiturn5",
+  "turn": 10,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 19430
+ },
+ {
+  "excel_id": 2745,
+  "session": "TestMultiturn6",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 29060
+ },
+ {
+  "excel_id": 2746,
+  "session": "TestMultiturn6",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 23909
+ },
+ {
+  "excel_id": 2747,
+  "session": "TestMultiturn6",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 25594
+ },
+ {
+  "excel_id": 2748,
+  "session": "TestMultiturn6",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14944
+ },
+ {
+  "excel_id": 2749,
+  "session": "TestMultiturn6",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1167
+ },
+ {
+  "excel_id": 2750,
+  "session": "TestMultiturn6",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 1021
+ },
+ {
+  "excel_id": 2751,
+  "session": "TestMultiturn7",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 25787
+ },
+ {
+  "excel_id": 2752,
+  "session": "TestMultiturn7",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 28146
+ },
+ {
+  "excel_id": 2753,
+  "session": "TestMultiturn7",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13277
+ },
+ {
+  "excel_id": 2754,
+  "session": "TestMultiturn7",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 20315
+ },
+ {
+  "excel_id": 2755,
+  "session": "TestMultiturn7",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 10982
+ },
+ {
+  "excel_id": 2756,
+  "session": "TestMultiturn7",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 22837
+ },
+ {
+  "excel_id": 2757,
+  "session": "TestMultiturn7",
+  "turn": 7,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12417
+ },
+ {
+  "excel_id": 2758,
+  "session": "TestMultiturn7",
+  "turn": 8,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 10240
+ },
+ {
+  "excel_id": 2759,
+  "session": "TestMultiturn7",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 23128
+ },
+ {
+  "excel_id": 2760,
+  "session": "TestMultiturn7",
+  "turn": 10,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12046
+ },
+ {
+  "excel_id": 2761,
+  "session": "TestMultiturn8",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 36889
+ },
+ {
+  "excel_id": 2762,
+  "session": "TestMultiturn8",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 23743
+ },
+ {
+  "excel_id": 2763,
+  "session": "TestMultiturn8",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11698
+ },
+ {
+  "excel_id": 2764,
+  "session": "TestMultiturn8",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11466
+ },
+ {
+  "excel_id": 2765,
+  "session": "TestMultiturn8",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14668
+ },
+ {
+  "excel_id": 2766,
+  "session": "TestMultiturn8",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 25363
+ },
+ {
+  "excel_id": 2767,
+  "session": "TestMultiturn8",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 28741
+ },
+ {
+  "excel_id": 2768,
+  "session": "TestMultiturn8",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 22385
+ },
+ {
+  "excel_id": 2769,
+  "session": "TestMultiturn8",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 20867
+ },
+ {
+  "excel_id": 2770,
+  "session": "TestMultiturn9",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 30056
+ },
+ {
+  "excel_id": 2771,
+  "session": "TestMultiturn9",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13196
+ },
+ {
+  "excel_id": 2772,
+  "session": "TestMultiturn9",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 23145
+ },
+ {
+  "excel_id": 2773,
+  "session": "TestMultiturn9",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 9794
+ },
+ {
+  "excel_id": 2774,
+  "session": "TestMultiturn9",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 10502
+ },
+ {
+  "excel_id": 2775,
+  "session": "TestMultiturn9",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 33432
+ },
+ {
+  "excel_id": 2776,
+  "session": "TestMultiturn9",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 21116
+ },
+ {
+  "excel_id": 2777,
+  "session": "TestMultiturn9",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 26554
+ },
+ {
+  "excel_id": 2778,
+  "session": "TestMultiturn9",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14284
+ },
+ {
+  "excel_id": 2779,
+  "session": "TestMultiturn10",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 21506
+ },
+ {
+  "excel_id": 2780,
+  "session": "TestMultiturn10",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 23355
+ },
+ {
+  "excel_id": 2781,
+  "session": "TestMultiturn10",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12574
+ },
+ {
+  "excel_id": 2782,
+  "session": "TestMultiturn10",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 23719
+ },
+ {
+  "excel_id": 2783,
+  "session": "TestMultiturn10",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11471
+ },
+ {
+  "excel_id": 2784,
+  "session": "TestMultiturn11",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13247
+ },
+ {
+  "excel_id": 2785,
+  "session": "TestMultiturn11",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 991
+ },
+ {
+  "excel_id": 2786,
+  "session": "TestMultiturn11",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 17518
+ },
+ {
+  "excel_id": 2787,
+  "session": "TestMultiturn11",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16424
+ },
+ {
+  "excel_id": 2788,
+  "session": "TestMultiturn11",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1273
+ },
+ {
+  "excel_id": 2789,
+  "session": "TestMultiturn11",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 1145
+ },
+ {
+  "excel_id": 2790,
+  "session": "TestMultiturn12",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 33514
+ },
+ {
+  "excel_id": 2791,
+  "session": "TestMultiturn12",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 26644
+ },
+ {
+  "excel_id": 2792,
+  "session": "TestMultiturn12",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 18003
+ },
+ {
+  "excel_id": 2793,
+  "session": "TestMultiturn12",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28051
+ },
+ {
+  "excel_id": 2794,
+  "session": "TestMultiturn12",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 29660
+ },
+ {
+  "excel_id": 2795,
+  "session": "TestMultiturn13",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.4,
+   "where": 0.666667,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 36157
+ },
+ {
+  "excel_id": 2796,
+  "session": "TestMultiturn13",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14685
+ },
+ {
+  "excel_id": 2797,
+  "session": "TestMultiturn13",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 29307
+ },
+ {
+  "excel_id": 2798,
+  "session": "TestMultiturn13",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 29875
+ },
+ {
+  "excel_id": 2799,
+  "session": "TestMultiturn13",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.4,
+   "where": 0.666667,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28421
+ },
+ {
+  "excel_id": 2800,
+  "session": "TestMultiturn13",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.4,
+   "where": 0.666667,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28620
+ },
+ {
+  "excel_id": 2801,
+  "session": "TestMultiturn13",
+  "turn": 7,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 18001
+ },
+ {
+  "excel_id": 2802,
+  "session": "TestMultiturn13",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 32258
+ },
+ {
+  "excel_id": 2803,
+  "session": "TestMultiturn14",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 44112
+ },
+ {
+  "excel_id": 2804,
+  "session": "TestMultiturn14",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 19623
+ },
+ {
+  "excel_id": 2805,
+  "session": "TestMultiturn14",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28214
+ },
+ {
+  "excel_id": 2806,
+  "session": "TestMultiturn14",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 19923
+ },
+ {
+  "excel_id": 2807,
+  "session": "TestMultiturn14",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28305
+ },
+ {
+  "excel_id": 2808,
+  "session": "TestMultiturn14",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 26916
+ },
+ {
+  "excel_id": 2809,
+  "session": "TestMultiturn14",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28159
+ },
+ {
+  "excel_id": 2810,
+  "session": "TestMultiturn15",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15604
+ },
+ {
+  "excel_id": 2811,
+  "session": "TestMultiturn15",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.4,
+   "where": 0.666667,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 49547
+ },
+ {
+  "excel_id": 2812,
+  "session": "TestMultiturn15",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.4,
+   "where": 0.666667,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 32414
+ },
+ {
+  "excel_id": 2813,
+  "session": "TestMultiturn15",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 18489
+ },
+ {
+  "excel_id": 2814,
+  "session": "TestMultiturn15",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16338
+ },
+ {
+  "excel_id": 2815,
+  "session": "TestMultiturn15",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16480
+ },
+ {
+  "excel_id": 2816,
+  "session": "TestMultiturn15",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 34464
+ },
+ {
+  "excel_id": 2817,
+  "session": "TestMultiturn15",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 31283
+ },
+ {
+  "excel_id": 2818,
+  "session": "TestMultiturn15",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 32843
+ },
+ {
+  "excel_id": 2819,
+  "session": "TestMultiturn16",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 18022
+ },
+ {
+  "excel_id": 2820,
+  "session": "TestMultiturn16",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 30665
+ },
+ {
+  "excel_id": 2821,
+  "session": "TestMultiturn16",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 29865
+ },
+ {
+  "excel_id": 2822,
+  "session": "TestMultiturn16",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 36063
+ },
+ {
+  "excel_id": 2823,
+  "session": "TestMultiturn16",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 33642
+ },
+ {
+  "excel_id": 2824,
+  "session": "TestMultiturn16",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 19181
+ },
+ {
+  "excel_id": 2825,
+  "session": "TestMultiturn17",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 78486
+ },
+ {
+  "excel_id": 2826,
+  "session": "TestMultiturn17",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27063
+ },
+ {
+  "excel_id": 2827,
+  "session": "TestMultiturn17",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12277
+ },
+ {
+  "excel_id": 2828,
+  "session": "TestMultiturn17",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 33807
+ },
+ {
+  "excel_id": 2829,
+  "session": "TestMultiturn17",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 27725
+ },
+ {
+  "excel_id": 2830,
+  "session": "TestMultiturn17",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12929
+ },
+ {
+  "excel_id": 2831,
+  "session": "TestMultiturn18",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13012
+ },
+ {
+  "excel_id": 2832,
+  "session": "TestMultiturn18",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 57182
+ },
+ {
+  "excel_id": 2833,
+  "session": "TestMultiturn18",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 25221
+ },
+ {
+  "excel_id": 2834,
+  "session": "TestMultiturn18",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 27522
+ },
+ {
+  "excel_id": 2835,
+  "session": "TestMultiturn18",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 43448
+ },
+ {
+  "excel_id": 2836,
+  "session": "TestMultiturn18",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12747
+ },
+ {
+  "excel_id": 2837,
+  "session": "TestMultiturn19",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12952
+ },
+ {
+  "excel_id": 2838,
+  "session": "TestMultiturn19",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 34764
+ },
+ {
+  "excel_id": 2839,
+  "session": "TestMultiturn19",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 29336
+ },
+ {
+  "excel_id": 2840,
+  "session": "TestMultiturn19",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13733
+ },
+ {
+  "excel_id": 2841,
+  "session": "TestMultiturn19",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12670
+ },
+ {
+  "excel_id": 2842,
+  "session": "TestMultiturn19",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28148
+ },
+ {
+  "excel_id": 2843,
+  "session": "TestMultiturn19",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16537
+ },
+ {
+  "excel_id": 2844,
+  "session": "TestMultiturn19",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 27493
+ },
+ {
+  "excel_id": 2845,
+  "session": "TestMultiturn20",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15329
+ },
+ {
+  "excel_id": 2846,
+  "session": "TestMultiturn20",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 30961
+ },
+ {
+  "excel_id": 2847,
+  "session": "TestMultiturn20",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 23592
+ },
+ {
+  "excel_id": 2848,
+  "session": "TestMultiturn20",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 25711
+ },
+ {
+  "excel_id": 2849,
+  "session": "TestMultiturn20",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 26123
+ },
+ {
+  "excel_id": 2850,
+  "session": "TestMultiturn21",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 37381
+ },
+ {
+  "excel_id": 2851,
+  "session": "TestMultiturn21",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28000
+ },
+ {
+  "excel_id": 2852,
+  "session": "TestMultiturn21",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 26722
+ },
+ {
+  "excel_id": 2853,
+  "session": "TestMultiturn21",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27825
+ },
+ {
+  "excel_id": 2854,
+  "session": "TestMultiturn21",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 40574
+ },
+ {
+  "excel_id": 2855,
+  "session": "TestMultiturn21",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 28986
+ },
+ {
+  "excel_id": 2856,
+  "session": "TestMultiturn21",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 17867
+ },
+ {
+  "excel_id": 2857,
+  "session": "TestMultiturn22",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 36842
+ },
+ {
+  "excel_id": 2858,
+  "session": "TestMultiturn22",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 33057
+ },
+ {
+  "excel_id": 2859,
+  "session": "TestMultiturn22",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 30743
+ },
+ {
+  "excel_id": 2860,
+  "session": "TestMultiturn22",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 26393
+ },
+ {
+  "excel_id": 2861,
+  "session": "TestMultiturn22",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 17931
+ },
+ {
+  "excel_id": 2862,
+  "session": "TestMultiturn22",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15782
+ },
+ {
+  "excel_id": 2863,
+  "session": "TestMultiturn22",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 28138
+ },
+ {
+  "excel_id": 2864,
+  "session": "TestMultiturn22",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28026
+ },
+ {
+  "excel_id": 2865,
+  "session": "TestMultiturn22",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 28376
+ },
+ {
+  "excel_id": 2866,
+  "session": "TestMultiturn22",
+  "turn": 10,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 17048
+ },
+ {
+  "excel_id": 2867,
+  "session": "TestMultiturn23",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 30349
+ },
+ {
+  "excel_id": 2868,
+  "session": "TestMultiturn23",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27333
+ },
+ {
+  "excel_id": 2869,
+  "session": "TestMultiturn23",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16104
+ },
+ {
+  "excel_id": 2870,
+  "session": "TestMultiturn23",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 54741
+ },
+ {
+  "excel_id": 2871,
+  "session": "TestMultiturn23",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 17083
+ },
+ {
+  "excel_id": 2872,
+  "session": "TestMultiturn23",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27980
+ },
+ {
+  "excel_id": 2873,
+  "session": "TestMultiturn23",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 31677
+ },
+ {
+  "excel_id": 2874,
+  "session": "TestMultiturn23",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 29009
+ },
+ {
+  "excel_id": 2875,
+  "session": "TestMultiturn23",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27024
+ },
+ {
+  "excel_id": 2876,
+  "session": "TestMultiturn23",
+  "turn": 10,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 19546
+ },
+ {
+  "excel_id": 2877,
+  "session": "TestMultiturn24",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 30151
+ },
+ {
+  "excel_id": 2878,
+  "session": "TestMultiturn24",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 29934
+ },
+ {
+  "excel_id": 2879,
+  "session": "TestMultiturn24",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27936
+ },
+ {
+  "excel_id": 2880,
+  "session": "TestMultiturn24",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 22666
+ },
+ {
+  "excel_id": 2881,
+  "session": "TestMultiturn24",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 18915
+ },
+ {
+  "excel_id": 2882,
+  "session": "TestMultiturn24",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 35569
+ },
+ {
+  "excel_id": 2883,
+  "session": "TestMultiturn24",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 19051
+ },
+ {
+  "excel_id": 2884,
+  "session": "TestMultiturn25",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13379
+ },
+ {
+  "excel_id": 2885,
+  "session": "TestMultiturn25",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 718
+ },
+ {
+  "excel_id": 2886,
+  "session": "TestMultiturn25",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 579
+ },
+ {
+  "excel_id": 2887,
+  "session": "TestMultiturn25",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 629
+ },
+ {
+  "excel_id": 2888,
+  "session": "TestMultiturn25",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15368
+ },
+ {
+  "excel_id": 2889,
+  "session": "TestMultiturn25",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13045
+ },
+ {
+  "excel_id": 2890,
+  "session": "TestMultiturn25",
+  "turn": 7,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 643
+ },
+ {
+  "excel_id": 2891,
+  "session": "TestMultiturn25",
+  "turn": 8,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 666
+ },
+ {
+  "excel_id": 2892,
+  "session": "TestMultiturn25",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 719
+ },
+ {
+  "excel_id": 2893,
+  "session": "TestMultiturn26",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 19220
+ },
+ {
+  "excel_id": 2894,
+  "session": "TestMultiturn26",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 759
+ },
+ {
+  "excel_id": 2895,
+  "session": "TestMultiturn26",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 12211
+ },
+ {
+  "excel_id": 2896,
+  "session": "TestMultiturn26",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 695
+ },
+ {
+  "excel_id": 2897,
+  "session": "TestMultiturn26",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 12107
+ },
+ {
+  "excel_id": 2898,
+  "session": "TestMultiturn26",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 662
+ },
+ {
+  "excel_id": 2899,
+  "session": "TestMultiturn27",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 16884
+ },
+ {
+  "excel_id": 2900,
+  "session": "TestMultiturn27",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 549
+ },
+ {
+  "excel_id": 2901,
+  "session": "TestMultiturn27",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 10484
+ },
+ {
+  "excel_id": 2902,
+  "session": "TestMultiturn27",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 16968
+ },
+ {
+  "excel_id": 2903,
+  "session": "TestMultiturn27",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 558
+ },
+ {
+  "excel_id": 2904,
+  "session": "TestMultiturn27",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13145
+ },
+ {
+  "excel_id": 2905,
+  "session": "TestMultiturn28",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 11529
+ },
+ {
+  "excel_id": 2906,
+  "session": "TestMultiturn28",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15749
+ },
+ {
+  "excel_id": 2907,
+  "session": "TestMultiturn28",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 9826
+ },
+ {
+  "excel_id": 2908,
+  "session": "TestMultiturn28",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 707
+ },
+ {
+  "excel_id": 2909,
+  "session": "TestMultiturn28",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 615
+ },
+ {
+  "excel_id": 2910,
+  "session": "TestMultiturn28",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 659
+ },
+ {
+  "excel_id": 2911,
+  "session": "TestMultiturn29",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 12632
+ },
+ {
+  "excel_id": 2912,
+  "session": "TestMultiturn29",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 724
+ },
+ {
+  "excel_id": 2913,
+  "session": "TestMultiturn29",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 583
+ },
+ {
+  "excel_id": 2914,
+  "session": "TestMultiturn29",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13420
+ },
+ {
+  "excel_id": 2915,
+  "session": "TestMultiturn29",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 10218
+ },
+ {
+  "excel_id": 2916,
+  "session": "TestMultiturn29",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 10410
+ },
+ {
+  "excel_id": 2917,
+  "session": "TestMultiturn29",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 9999
+ },
+ {
+  "excel_id": 2918,
+  "session": "TestMultiturn30",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 9850
+ },
+ {
+  "excel_id": 2919,
+  "session": "TestMultiturn30",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 575
+ },
+ {
+  "excel_id": 2920,
+  "session": "TestMultiturn30",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 9968
+ },
+ {
+  "excel_id": 2921,
+  "session": "TestMultiturn30",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 575
+ },
+ {
+  "excel_id": 2922,
+  "session": "TestMultiturn30",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 10932
+ },
+ {
+  "excel_id": 2923,
+  "session": "TestMultiturn30",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 9563
+ },
+ {
+  "excel_id": 2924,
+  "session": "TestMultiturn30",
+  "turn": 7,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1040
+ },
+ {
+  "excel_id": 2925,
+  "session": "TestMultiturn30",
+  "turn": 8,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 609
+ },
+ {
+  "excel_id": 2926,
+  "session": "TestMultiturn31",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.857143,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13125
+ },
+ {
+  "excel_id": 2927,
+  "session": "TestMultiturn31",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 535
+ },
+ {
+  "excel_id": 2928,
+  "session": "TestMultiturn31",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11625
+ },
+ {
+  "excel_id": 2929,
+  "session": "TestMultiturn31",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 10487
+ },
+ {
+  "excel_id": 2930,
+  "session": "TestMultiturn31",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12765
+ },
+ {
+  "excel_id": 2931,
+  "session": "TestMultiturn31",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.857143,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11271
+ },
+ {
+  "excel_id": 2932,
+  "session": "TestMultiturn31",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.571429,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 12438
+ },
+ {
+  "excel_id": 2933,
+  "session": "TestMultiturn31",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.571429,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11266
+ },
+ {
+  "excel_id": 2934,
+  "session": "TestMultiturn31",
+  "turn": 9,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 471
+ },
+ {
+  "excel_id": 2935,
+  "session": "TestMultiturn31",
+  "turn": 10,
+  "action": "EXECUTE_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12728
+ },
+ {
+  "excel_id": 2936,
+  "session": "TestMultiturn32",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 68106
+ },
+ {
+  "excel_id": 2937,
+  "session": "TestMultiturn32",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 32647
+ },
+ {
+  "excel_id": 2938,
+  "session": "TestMultiturn32",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 37786
+ },
+ {
+  "excel_id": 2939,
+  "session": "TestMultiturn32",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 30947
+ },
+ {
+  "excel_id": 2940,
+  "session": "TestMultiturn32",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 27414
+ },
+ {
+  "excel_id": 2941,
+  "session": "TestMultiturn32",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 17246
+ },
+ {
+  "excel_id": 2942,
+  "session": "TestMultiturn32",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 27889
+ },
+ {
+  "excel_id": 2943,
+  "session": "TestMultiturn32",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 29215
+ },
+ {
+  "excel_id": 2944,
+  "session": "TestMultiturn32",
+  "turn": 9,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 20366
+ },
+ {
+  "excel_id": 2945,
+  "session": "TestMultiturn32",
+  "turn": 10,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 30274
+ },
+ {
+  "excel_id": 2946,
+  "session": "TestMultiturn33",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15436
+ },
+ {
+  "excel_id": 2947,
+  "session": "TestMultiturn33",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 28913
+ },
+ {
+  "excel_id": 2948,
+  "session": "TestMultiturn33",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15911
+ },
+ {
+  "excel_id": 2949,
+  "session": "TestMultiturn33",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 33776
+ },
+ {
+  "excel_id": 2950,
+  "session": "TestMultiturn33",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 18285
+ },
+ {
+  "excel_id": 2951,
+  "session": "TestMultiturn33",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 30510
+ },
+ {
+  "excel_id": 2952,
+  "session": "TestMultiturn33",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 19707
+ },
+ {
+  "excel_id": 2953,
+  "session": "TestMultiturn33",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 26991
+ },
+ {
+  "excel_id": 2954,
+  "session": "TestMultiturn33",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 20058
+ },
+ {
+  "excel_id": 2955,
+  "session": "TestMultiturn34",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 49843
+ },
+ {
+  "excel_id": 2956,
+  "session": "TestMultiturn34",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15006
+ },
+ {
+  "excel_id": 2957,
+  "session": "TestMultiturn34",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 28683
+ },
+ {
+  "excel_id": 2958,
+  "session": "TestMultiturn34",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 31951
+ },
+ {
+  "excel_id": 2959,
+  "session": "TestMultiturn34",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16397
+ },
+ {
+  "excel_id": 2960,
+  "session": "TestMultiturn35",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 14554
+ },
+ {
+  "excel_id": 2961,
+  "session": "TestMultiturn35",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 645
+ },
+ {
+  "excel_id": 2962,
+  "session": "TestMultiturn35",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 15374
+ },
+ {
+  "excel_id": 2963,
+  "session": "TestMultiturn35",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 12610
+ },
+ {
+  "excel_id": 2964,
+  "session": "TestMultiturn35",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 686
+ },
+ {
+  "excel_id": 2965,
+  "session": "TestMultiturn35",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 762
+ },
+ {
+  "excel_id": 2966,
+  "session": "TestMultiturn36",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 14885
+ },
+ {
+  "excel_id": 2967,
+  "session": "TestMultiturn36",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 15970
+ },
+ {
+  "excel_id": 2968,
+  "session": "TestMultiturn36",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 12536
+ },
+ {
+  "excel_id": 2969,
+  "session": "TestMultiturn36",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 669
+ },
+ {
+  "excel_id": 2970,
+  "session": "TestMultiturn36",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1064
+ },
+ {
+  "excel_id": 2971,
+  "session": "TestMultiturn36",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 13196
+ },
+ {
+  "excel_id": 2972,
+  "session": "TestMultiturn36",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1134
+ },
+ {
+  "excel_id": 2973,
+  "session": "TestMultiturn36",
+  "turn": 8,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1354
+ },
+ {
+  "excel_id": 2974,
+  "session": "TestMultiturn36",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 39712
+ },
+ {
+  "excel_id": 2975,
+  "session": "TestMultiturn37",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 71361
+ },
+ {
+  "excel_id": 2976,
+  "session": "TestMultiturn37",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 20969
+ },
+ {
+  "excel_id": 2977,
+  "session": "TestMultiturn37",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 12198
+ },
+ {
+  "excel_id": 2978,
+  "session": "TestMultiturn37",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14452
+ },
+ {
+  "excel_id": 2979,
+  "session": "TestMultiturn37",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 745
+ },
+ {
+  "excel_id": 2980,
+  "session": "TestMultiturn37",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 14425
+ },
+ {
+  "excel_id": 2981,
+  "session": "TestMultiturn37",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 733
+ },
+ {
+  "excel_id": 2982,
+  "session": "TestMultiturn37",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 20916
+ },
+ {
+  "excel_id": 2983,
+  "session": "TestMultiturn37",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 657
+ },
+ {
+  "excel_id": 2984,
+  "session": "TestMultiturn37",
+  "turn": 10,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 670
+ },
+ {
+  "excel_id": 2985,
+  "session": "TestMultiturn38",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 44564
+ },
+ {
+  "excel_id": 2986,
+  "session": "TestMultiturn38",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 12435
+ },
+ {
+  "excel_id": 2987,
+  "session": "TestMultiturn38",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 683
+ },
+ {
+  "excel_id": 2988,
+  "session": "TestMultiturn38",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 674
+ },
+ {
+  "excel_id": 2989,
+  "session": "TestMultiturn38",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14336
+ },
+ {
+  "excel_id": 2990,
+  "session": "TestMultiturn38",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13029
+ },
+ {
+  "excel_id": 2991,
+  "session": "TestMultiturn38",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 776
+ },
+ {
+  "excel_id": 2992,
+  "session": "TestMultiturn38",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13975
+ },
+ {
+  "excel_id": 2993,
+  "session": "TestMultiturn38",
+  "turn": 9,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 577
+ },
+ {
+  "excel_id": 2994,
+  "session": "TestMultiturn38",
+  "turn": 10,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 785
+ },
+ {
+  "excel_id": 2995,
+  "session": "TestMultiturn39",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 25788
+ },
+ {
+  "excel_id": 2996,
+  "session": "TestMultiturn39",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 609
+ },
+ {
+  "excel_id": 2997,
+  "session": "TestMultiturn39",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 598
+ },
+ {
+  "excel_id": 2998,
+  "session": "TestMultiturn39",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13567
+ },
+ {
+  "excel_id": 2999,
+  "session": "TestMultiturn39",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 563
+ },
+ {
+  "excel_id": 3000,
+  "session": "TestMultiturn39",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 527
+ },
+ {
+  "excel_id": 3001,
+  "session": "TestMultiturn39",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 11837
+ },
+ {
+  "excel_id": 3002,
+  "session": "TestMultiturn40",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1327
+ },
+ {
+  "excel_id": 3003,
+  "session": "TestMultiturn40",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 22806
+ },
+ {
+  "excel_id": 3004,
+  "session": "TestMultiturn40",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13189
+ },
+ {
+  "excel_id": 3005,
+  "session": "TestMultiturn40",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 605
+ },
+ {
+  "excel_id": 3006,
+  "session": "TestMultiturn40",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 11396
+ },
+ {
+  "excel_id": 3007,
+  "session": "TestMultiturn40",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16339
+ },
+ {
+  "excel_id": 3008,
+  "session": "TestMultiturn41",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 20943
+ },
+ {
+  "excel_id": 3009,
+  "session": "TestMultiturn41",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11677
+ },
+ {
+  "excel_id": 3010,
+  "session": "TestMultiturn41",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 641
+ },
+ {
+  "excel_id": 3011,
+  "session": "TestMultiturn41",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 13331
+ },
+ {
+  "excel_id": 3012,
+  "session": "TestMultiturn41",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 11488
+ },
+ {
+  "excel_id": 3013,
+  "session": "TestMultiturn41",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 12521
+ },
+ {
+  "excel_id": 3014,
+  "session": "TestMultiturn41",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 655
+ },
+ {
+  "excel_id": 3015,
+  "session": "TestMultiturn42",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 20676
+ },
+ {
+  "excel_id": 3016,
+  "session": "TestMultiturn42",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12628
+ },
+ {
+  "excel_id": 3017,
+  "session": "TestMultiturn42",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 11571
+ },
+ {
+  "excel_id": 3018,
+  "session": "TestMultiturn42",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 583
+ },
+ {
+  "excel_id": 3019,
+  "session": "TestMultiturn42",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11869
+ },
+ {
+  "excel_id": 3020,
+  "session": "TestMultiturn42",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 859
+ },
+ {
+  "excel_id": 3021,
+  "session": "TestMultiturn42",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 12692
+ },
+ {
+  "excel_id": 3022,
+  "session": "TestMultiturn42",
+  "turn": 8,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 759
+ },
+ {
+  "excel_id": 3023,
+  "session": "TestMultiturn42",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 606
+ },
+ {
+  "excel_id": 3024,
+  "session": "TestMultiturn43",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 653
+ },
+ {
+  "excel_id": 3025,
+  "session": "TestMultiturn43",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 12333
+ },
+ {
+  "excel_id": 3026,
+  "session": "TestMultiturn43",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12191
+ },
+ {
+  "excel_id": 3027,
+  "session": "TestMultiturn43",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 12550
+ },
+ {
+  "excel_id": 3028,
+  "session": "TestMultiturn43",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 625
+ },
+ {
+  "excel_id": 3029,
+  "session": "TestMultiturn43",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 559
+ },
+ {
+  "excel_id": 3030,
+  "session": "TestMultiturn43",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12248
+ },
+ {
+  "excel_id": 3031,
+  "session": "TestMultiturn43",
+  "turn": 8,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 544
+ },
+ {
+  "excel_id": 3032,
+  "session": "TestMultiturn44",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 672
+ },
+ {
+  "excel_id": 3033,
+  "session": "TestMultiturn44",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 15926
+ },
+ {
+  "excel_id": 3034,
+  "session": "TestMultiturn44",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 576
+ },
+ {
+  "excel_id": 3035,
+  "session": "TestMultiturn44",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 803
+ },
+ {
+  "excel_id": 3036,
+  "session": "TestMultiturn44",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13555
+ },
+ {
+  "excel_id": 3037,
+  "session": "TestMultiturn44",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1178
+ },
+ {
+  "excel_id": 3038,
+  "session": "TestMultiturn44",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 16264
+ },
+ {
+  "excel_id": 3039,
+  "session": "TestMultiturn44",
+  "turn": 8,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 700
+ },
+ {
+  "excel_id": 3040,
+  "session": "TestMultiturn44",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13144
+ },
+ {
+  "excel_id": 3041,
+  "session": "TestMultiturn45",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 597
+ },
+ {
+  "excel_id": 3042,
+  "session": "TestMultiturn45",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11064
+ },
+ {
+  "excel_id": 3043,
+  "session": "TestMultiturn45",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 10504
+ },
+ {
+  "excel_id": 3044,
+  "session": "TestMultiturn45",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 921
+ },
+ {
+  "excel_id": 3045,
+  "session": "TestMultiturn45",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13148
+ },
+ {
+  "excel_id": 3046,
+  "session": "TestMultiturn45",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13562
+ },
+ {
+  "excel_id": 3047,
+  "session": "TestMultiturn45",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 940
+ },
+ {
+  "excel_id": 3048,
+  "session": "TestMultiturn45",
+  "turn": 8,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 458
+ },
+ {
+  "excel_id": 3049,
+  "session": "TestMultiturn46",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 14223
+ },
+ {
+  "excel_id": 3050,
+  "session": "TestMultiturn46",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13496
+ },
+ {
+  "excel_id": 3051,
+  "session": "TestMultiturn46",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 488
+ },
+ {
+  "excel_id": 3052,
+  "session": "TestMultiturn46",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 635
+ },
+ {
+  "excel_id": 3053,
+  "session": "TestMultiturn46",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 527
+ },
+ {
+  "excel_id": 3054,
+  "session": "TestMultiturn46",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 15679
+ },
+ {
+  "excel_id": 3055,
+  "session": "TestMultiturn46",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 631
+ },
+ {
+  "excel_id": 3056,
+  "session": "TestMultiturn46",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13941
+ },
+ {
+  "excel_id": 3057,
+  "session": "TestMultiturn46",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 14383
+ },
+ {
+  "excel_id": 3058,
+  "session": "TestMultiturn47",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 57571
+ },
+ {
+  "excel_id": 3059,
+  "session": "TestMultiturn47",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 30466
+ },
+ {
+  "excel_id": 3060,
+  "session": "TestMultiturn47",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 17238
+ },
+ {
+  "excel_id": 3061,
+  "session": "TestMultiturn47",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 35027
+ },
+ {
+  "excel_id": 3062,
+  "session": "TestMultiturn47",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 17451
+ },
+ {
+  "excel_id": 3063,
+  "session": "TestMultiturn48",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 19495
+ },
+ {
+  "excel_id": 3064,
+  "session": "TestMultiturn48",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 31025
+ },
+ {
+  "excel_id": 3065,
+  "session": "TestMultiturn48",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16669
+ },
+ {
+  "excel_id": 3066,
+  "session": "TestMultiturn48",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14059
+ },
+ {
+  "excel_id": 3067,
+  "session": "TestMultiturn48",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 29907
+ },
+ {
+  "excel_id": 3068,
+  "session": "TestMultiturn48",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 71417
+ },
+ {
+  "excel_id": 3069,
+  "session": "TestMultiturn48",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 20322
+ },
+ {
+  "excel_id": 3070,
+  "session": "TestMultiturn48",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 28260
+ },
+ {
+  "excel_id": 3071,
+  "session": "TestMultiturn49",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 46508
+ },
+ {
+  "excel_id": 3072,
+  "session": "TestMultiturn49",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16036
+ },
+ {
+  "excel_id": 3073,
+  "session": "TestMultiturn49",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 28805
+ },
+ {
+  "excel_id": 3074,
+  "session": "TestMultiturn49",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 36605
+ },
+ {
+  "excel_id": 3075,
+  "session": "TestMultiturn49",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16366
+ },
+ {
+  "excel_id": 3076,
+  "session": "TestMultiturn49",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 0.8,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 32848
+ },
+ {
+  "excel_id": 3077,
+  "session": "TestMultiturn49",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 0.8,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 18904
+ },
+ {
+  "excel_id": 3078,
+  "session": "TestMultiturn50",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 36155
+ },
+ {
+  "excel_id": 3079,
+  "session": "TestMultiturn50",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16451
+ },
+ {
+  "excel_id": 3080,
+  "session": "TestMultiturn50",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 36297
+ },
+ {
+  "excel_id": 3081,
+  "session": "TestMultiturn50",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16343
+ },
+ {
+  "excel_id": 3082,
+  "session": "TestMultiturn50",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 31695
+ },
+ {
+  "excel_id": 3083,
+  "session": "TestMultiturn50",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 19991
+ },
+ {
+  "excel_id": 3084,
+  "session": "TestMultiturn50",
+  "turn": 7,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15793
+ },
+ {
+  "excel_id": 3085,
+  "session": "TestMultiturn50",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 36708
+ },
+ {
+  "excel_id": 3086,
+  "session": "TestMultiturn51",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 54983
+ },
+ {
+  "excel_id": 3087,
+  "session": "TestMultiturn51",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 17576
+ },
+ {
+  "excel_id": 3088,
+  "session": "TestMultiturn51",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 35593
+ },
+ {
+  "excel_id": 3089,
+  "session": "TestMultiturn51",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 34767
+ },
+ {
+  "excel_id": 3090,
+  "session": "TestMultiturn51",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16188
+ },
+ {
+  "excel_id": 3091,
+  "session": "TestMultiturn51",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 27070
+ },
+ {
+  "excel_id": 3092,
+  "session": "TestMultiturn51",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 42488
+ },
+ {
+  "excel_id": 3093,
+  "session": "TestMultiturn51",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 43827
+ },
+ {
+  "excel_id": 3094,
+  "session": "TestMultiturn51",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 36654
+ },
+ {
+  "excel_id": 3095,
+  "session": "TestMultiturn51",
+  "turn": 10,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 25231
+ },
+ {
+  "excel_id": 3096,
+  "session": "TestMultiturn52",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 53073
+ },
+ {
+  "excel_id": 3097,
+  "session": "TestMultiturn52",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16483
+ },
+ {
+  "excel_id": 3098,
+  "session": "TestMultiturn52",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 33111
+ },
+ {
+  "excel_id": 3099,
+  "session": "TestMultiturn52",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.666667,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 38961
+ },
+ {
+  "excel_id": 3100,
+  "session": "TestMultiturn52",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 0.666667,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28298
+ },
+ {
+  "excel_id": 3101,
+  "session": "TestMultiturn52",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12840
+ },
+ {
+  "excel_id": 3102,
+  "session": "TestMultiturn53",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15559
+ },
+ {
+  "excel_id": 3103,
+  "session": "TestMultiturn53",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 35943
+ },
+ {
+  "excel_id": 3104,
+  "session": "TestMultiturn53",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 28743
+ },
+ {
+  "excel_id": 3105,
+  "session": "TestMultiturn53",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 26334
+ },
+ {
+  "excel_id": 3106,
+  "session": "TestMultiturn53",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 23920
+ },
+ {
+  "excel_id": 3107,
+  "session": "TestMultiturn53",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11830
+ },
+ {
+  "excel_id": 3108,
+  "session": "TestMultiturn53",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 26136
+ },
+ {
+  "excel_id": 3109,
+  "session": "TestMultiturn53",
+  "turn": 8,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12739
+ },
+ {
+  "excel_id": 3110,
+  "session": "TestMultiturn53",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13964
+ },
+ {
+  "excel_id": 3111,
+  "session": "TestMultiturn53",
+  "turn": 10,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14012
+ },
+ {
+  "excel_id": 3112,
+  "session": "TestMultiturn54",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 32590
+ },
+ {
+  "excel_id": 3113,
+  "session": "TestMultiturn54",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12816
+ },
+ {
+  "excel_id": 3114,
+  "session": "TestMultiturn54",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 35617
+ },
+ {
+  "excel_id": 3115,
+  "session": "TestMultiturn54",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12650
+ },
+ {
+  "excel_id": 3116,
+  "session": "TestMultiturn54",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28583
+ },
+ {
+  "excel_id": 3117,
+  "session": "TestMultiturn55",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11147
+ },
+ {
+  "excel_id": 3118,
+  "session": "TestMultiturn55",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 24118
+ },
+ {
+  "excel_id": 3119,
+  "session": "TestMultiturn55",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 22953
+ },
+ {
+  "excel_id": 3120,
+  "session": "TestMultiturn55",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 24006
+ },
+ {
+  "excel_id": 3121,
+  "session": "TestMultiturn55",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 10195
+ },
+ {
+  "excel_id": 3122,
+  "session": "TestMultiturn55",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11137
+ },
+ {
+  "excel_id": 3123,
+  "session": "TestMultiturn55",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 24052
+ },
+ {
+  "excel_id": 3124,
+  "session": "TestMultiturn55",
+  "turn": 8,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11343
+ },
+ {
+  "excel_id": 3125,
+  "session": "TestMultiturn55",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 24018
+ },
+ {
+  "excel_id": 3126,
+  "session": "TestMultiturn55",
+  "turn": 10,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27131
+ },
+ {
+  "excel_id": 3127,
+  "session": "TestMultiturn56",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 27131
+ },
+ {
+  "excel_id": 3128,
+  "session": "TestMultiturn56",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12529
+ },
+ {
+  "excel_id": 3129,
+  "session": "TestMultiturn56",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 31109
+ },
+ {
+  "excel_id": 3130,
+  "session": "TestMultiturn56",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14345
+ },
+ {
+  "excel_id": 3131,
+  "session": "TestMultiturn56",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 37030
+ },
+ {
+  "excel_id": 3132,
+  "session": "TestMultiturn56",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 31786
+ },
+ {
+  "excel_id": 3133,
+  "session": "TestMultiturn56",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 30963
+ },
+ {
+  "excel_id": 3134,
+  "session": "TestMultiturn57",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 571
+ },
+ {
+  "excel_id": 3135,
+  "session": "TestMultiturn57",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 12143
+ },
+ {
+  "excel_id": 3136,
+  "session": "TestMultiturn57",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13693
+ },
+ {
+  "excel_id": 3137,
+  "session": "TestMultiturn57",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 12440
+ },
+ {
+  "excel_id": 3138,
+  "session": "TestMultiturn57",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 11014
+ },
+ {
+  "excel_id": 3139,
+  "session": "TestMultiturn57",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 602
+ },
+ {
+  "excel_id": 3140,
+  "session": "TestMultiturn57",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 724
+ },
+ {
+  "excel_id": 3141,
+  "session": "TestMultiturn57",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 12419
+ },
+ {
+  "excel_id": 3142,
+  "session": "TestMultiturn57",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 580
+ },
+ {
+  "excel_id": 3143,
+  "session": "TestMultiturn58",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 689
+ },
+ {
+  "excel_id": 3144,
+  "session": "TestMultiturn58",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 15764
+ },
+ {
+  "excel_id": 3145,
+  "session": "TestMultiturn58",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13821
+ },
+ {
+  "excel_id": 3146,
+  "session": "TestMultiturn58",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 662
+ },
+ {
+  "excel_id": 3147,
+  "session": "TestMultiturn58",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 656
+ },
+ {
+  "excel_id": 3148,
+  "session": "TestMultiturn58",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 15039
+ },
+ {
+  "excel_id": 3149,
+  "session": "TestMultiturn59",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13777
+ },
+ {
+  "excel_id": 3150,
+  "session": "TestMultiturn59",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 756
+ },
+ {
+  "excel_id": 3151,
+  "session": "TestMultiturn59",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 833
+ },
+ {
+  "excel_id": 3152,
+  "session": "TestMultiturn59",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13192
+ },
+ {
+  "excel_id": 3153,
+  "session": "TestMultiturn59",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1225
+ },
+ {
+  "excel_id": 3154,
+  "session": "TestMultiturn59",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12625
+ },
+ {
+  "excel_id": 3155,
+  "session": "TestMultiturn59",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 15605
+ },
+ {
+  "excel_id": 3156,
+  "session": "TestMultiturn59",
+  "turn": 8,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 544
+ },
+ {
+  "excel_id": 3157,
+  "session": "TestMultiturn59",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 595
+ },
+ {
+  "excel_id": 3158,
+  "session": "TestMultiturn60",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 626
+ },
+ {
+  "excel_id": 3159,
+  "session": "TestMultiturn60",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 12365
+ },
+ {
+  "excel_id": 3160,
+  "session": "TestMultiturn60",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 12173
+ },
+ {
+  "excel_id": 3161,
+  "session": "TestMultiturn60",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 19502
+ },
+ {
+  "excel_id": 3162,
+  "session": "TestMultiturn60",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 630
+ },
+ {
+  "excel_id": 3163,
+  "session": "TestMultiturn60",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 978
+ },
+ {
+  "excel_id": 3164,
+  "session": "TestMultiturn60",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 981
+ },
+ {
+  "excel_id": 3165,
+  "session": "TestMultiturn60",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 14889
+ },
+ {
+  "excel_id": 3166,
+  "session": "TestMultiturn60",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 588
+ },
+ {
+  "excel_id": 3167,
+  "session": "TestMultiturn60",
+  "turn": 10,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": null
+ },
+ {
+  "excel_id": 3168,
+  "session": "TestMultiturn61",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 728
+ },
+ {
+  "excel_id": 3169,
+  "session": "TestMultiturn61",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 17485
+ },
+ {
+  "excel_id": 3170,
+  "session": "TestMultiturn61",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 14925
+ },
+ {
+  "excel_id": 3171,
+  "session": "TestMultiturn61",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13266
+ },
+ {
+  "excel_id": 3172,
+  "session": "TestMultiturn61",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13566
+ },
+ {
+  "excel_id": 3173,
+  "session": "TestMultiturn61",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 738
+ },
+ {
+  "excel_id": 3174,
+  "session": "TestMultiturn62",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 76425
+ },
+ {
+  "excel_id": 3175,
+  "session": "TestMultiturn62",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15941
+ },
+ {
+  "excel_id": 3176,
+  "session": "TestMultiturn62",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 10553
+ },
+ {
+  "excel_id": 3177,
+  "session": "TestMultiturn62",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 23189
+ },
+ {
+  "excel_id": 3178,
+  "session": "TestMultiturn62",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 38937
+ },
+ {
+  "excel_id": 3179,
+  "session": "TestMultiturn62",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12580
+ },
+ {
+  "excel_id": 3180,
+  "session": "TestMultiturn62",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 17434
+ },
+ {
+  "excel_id": 3181,
+  "session": "TestMultiturn62",
+  "turn": 8,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13211
+ },
+ {
+  "excel_id": 3182,
+  "session": "TestMultiturn63",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 43179
+ },
+ {
+  "excel_id": 3183,
+  "session": "TestMultiturn63",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 18164
+ },
+ {
+  "excel_id": 3184,
+  "session": "TestMultiturn63",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12212
+ },
+ {
+  "excel_id": 3185,
+  "session": "TestMultiturn63",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 10763
+ },
+ {
+  "excel_id": 3186,
+  "session": "TestMultiturn63",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12814
+ },
+ {
+  "excel_id": 3187,
+  "session": "TestMultiturn64",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14414
+ },
+ {
+  "excel_id": 3188,
+  "session": "TestMultiturn64",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 37192
+ },
+ {
+  "excel_id": 3189,
+  "session": "TestMultiturn64",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16578
+ },
+ {
+  "excel_id": 3190,
+  "session": "TestMultiturn64",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12588
+ },
+ {
+  "excel_id": 3191,
+  "session": "TestMultiturn64",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 16651
+ },
+ {
+  "excel_id": 3192,
+  "session": "TestMultiturn64",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11624
+ },
+ {
+  "excel_id": 3193,
+  "session": "TestMultiturn64",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13548
+ },
+ {
+  "excel_id": 3194,
+  "session": "TestMultiturn64",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 19307
+ },
+ {
+  "excel_id": 3195,
+  "session": "TestMultiturn64",
+  "turn": 9,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12867
+ },
+ {
+  "excel_id": 3196,
+  "session": "TestMultiturn64",
+  "turn": 10,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13425
+ },
+ {
+  "excel_id": 3197,
+  "session": "TestMultiturn65",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28043
+ },
+ {
+  "excel_id": 3198,
+  "session": "TestMultiturn65",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15966
+ },
+ {
+  "excel_id": 3199,
+  "session": "TestMultiturn65",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12681
+ },
+ {
+  "excel_id": 3200,
+  "session": "TestMultiturn65",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 16397
+ },
+ {
+  "excel_id": 3201,
+  "session": "TestMultiturn65",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14316
+ },
+ {
+  "excel_id": 3202,
+  "session": "TestMultiturn66",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 30253
+ },
+ {
+  "excel_id": 3203,
+  "session": "TestMultiturn66",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13179
+ },
+ {
+  "excel_id": 3204,
+  "session": "TestMultiturn66",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 17147
+ },
+ {
+  "excel_id": 3205,
+  "session": "TestMultiturn66",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 29399
+ },
+ {
+  "excel_id": 3206,
+  "session": "TestMultiturn66",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 18088
+ },
+ {
+  "excel_id": 3207,
+  "session": "TestMultiturn66",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14491
+ },
+ {
+  "excel_id": 3208,
+  "session": "TestMultiturn66",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14455
+ },
+ {
+  "excel_id": 3209,
+  "session": "TestMultiturn66",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 16414
+ },
+ {
+  "excel_id": 3210,
+  "session": "TestMultiturn66",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 17801
+ },
+ {
+  "excel_id": 3211,
+  "session": "TestMultiturn67",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 25905
+ },
+ {
+  "excel_id": 3212,
+  "session": "TestMultiturn67",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 9954
+ },
+ {
+  "excel_id": 3213,
+  "session": "TestMultiturn67",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 775
+ },
+ {
+  "excel_id": 3214,
+  "session": "TestMultiturn67",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 10213
+ },
+ {
+  "excel_id": 3215,
+  "session": "TestMultiturn67",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 20892
+ },
+ {
+  "excel_id": 3216,
+  "session": "TestMultiturn67",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 719
+ },
+ {
+  "excel_id": 3217,
+  "session": "TestMultiturn68",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 89369
+ },
+ {
+  "excel_id": 3218,
+  "session": "TestMultiturn68",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 695
+ },
+ {
+  "excel_id": 3219,
+  "session": "TestMultiturn68",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13518
+ },
+ {
+  "excel_id": 3220,
+  "session": "TestMultiturn68",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 548
+ },
+ {
+  "excel_id": 3221,
+  "session": "TestMultiturn68",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 21290
+ },
+ {
+  "excel_id": 3222,
+  "session": "TestMultiturn68",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15227
+ },
+ {
+  "excel_id": 3223,
+  "session": "TestMultiturn68",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 681
+ },
+ {
+  "excel_id": 3224,
+  "session": "TestMultiturn68",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 29381
+ },
+ {
+  "excel_id": 3225,
+  "session": "TestMultiturn68",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 687
+ },
+ {
+  "excel_id": 3226,
+  "session": "TestMultiturn68",
+  "turn": 10,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 936
+ },
+ {
+  "excel_id": 3227,
+  "session": "TestMultiturn69",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 967
+ },
+ {
+  "excel_id": 3228,
+  "session": "TestMultiturn69",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 31968
+ },
+ {
+  "excel_id": 3229,
+  "session": "TestMultiturn69",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13707
+ },
+ {
+  "excel_id": 3230,
+  "session": "TestMultiturn69",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 608
+ },
+ {
+  "excel_id": 3231,
+  "session": "TestMultiturn69",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 750
+ },
+ {
+  "excel_id": 3232,
+  "session": "TestMultiturn70",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 33585
+ },
+ {
+  "excel_id": 3233,
+  "session": "TestMultiturn70",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 619
+ },
+ {
+  "excel_id": 3234,
+  "session": "TestMultiturn70",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 784
+ },
+ {
+  "excel_id": 3235,
+  "session": "TestMultiturn70",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11999
+ },
+ {
+  "excel_id": 3236,
+  "session": "TestMultiturn70",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 484
+ },
+ {
+  "excel_id": 3237,
+  "session": "TestMultiturn70",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 375
+ },
+ {
+  "excel_id": 3238,
+  "session": "TestMultiturn70",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 430
+ },
+ {
+  "excel_id": 3239,
+  "session": "TestMultiturn70",
+  "turn": 8,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 408
+ },
+ {
+  "excel_id": 3240,
+  "session": "TestMultiturn70",
+  "turn": 9,
+  "action": "NO_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 637
+ },
+ {
+  "excel_id": 3241,
+  "session": "TestMultiturn70",
+  "turn": 10,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11633
+ },
+ {
+  "excel_id": 3242,
+  "session": "TestMultiturn71",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 51661
+ },
+ {
+  "excel_id": 3243,
+  "session": "TestMultiturn71",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1028
+ },
+ {
+  "excel_id": 3244,
+  "session": "TestMultiturn71",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 727
+ },
+ {
+  "excel_id": 3245,
+  "session": "TestMultiturn71",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14052
+ },
+ {
+  "excel_id": 3246,
+  "session": "TestMultiturn71",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14486
+ },
+ {
+  "excel_id": 3247,
+  "session": "TestMultiturn72",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 54227
+ },
+ {
+  "excel_id": 3248,
+  "session": "TestMultiturn72",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 673
+ },
+ {
+  "excel_id": 3249,
+  "session": "TestMultiturn72",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 14200
+ },
+ {
+  "excel_id": 3250,
+  "session": "TestMultiturn72",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14587
+ },
+ {
+  "excel_id": 3251,
+  "session": "TestMultiturn72",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1378
+ },
+ {
+  "excel_id": 3252,
+  "session": "TestMultiturn73",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 917
+ },
+ {
+  "excel_id": 3253,
+  "session": "TestMultiturn73",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 12288
+ },
+ {
+  "excel_id": 3254,
+  "session": "TestMultiturn73",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 906
+ },
+ {
+  "excel_id": 3255,
+  "session": "TestMultiturn73",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13734
+ },
+ {
+  "excel_id": 3256,
+  "session": "TestMultiturn73",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 13360
+ },
+ {
+  "excel_id": 3257,
+  "session": "TestMultiturn73",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": null
+ },
+ {
+  "excel_id": 3258,
+  "session": "TestMultiturn74",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 23066
+ },
+ {
+  "excel_id": 3259,
+  "session": "TestMultiturn74",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1131
+ },
+ {
+  "excel_id": 3260,
+  "session": "TestMultiturn74",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 852
+ },
+ {
+  "excel_id": 3261,
+  "session": "TestMultiturn74",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 17723
+ },
+ {
+  "excel_id": 3262,
+  "session": "TestMultiturn74",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.5,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 15219
+ },
+ {
+  "excel_id": 3263,
+  "session": "TestMultiturn74",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14454
+ },
+ {
+  "excel_id": 3264,
+  "session": "TestMultiturn75",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.666667,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 14375
+ },
+ {
+  "excel_id": 3265,
+  "session": "TestMultiturn75",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 759
+ },
+ {
+  "excel_id": 3266,
+  "session": "TestMultiturn75",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 13159
+ },
+ {
+  "excel_id": 3267,
+  "session": "TestMultiturn75",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 0.666667,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 15983
+ },
+ {
+  "excel_id": 3268,
+  "session": "TestMultiturn75",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 0.666667,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 16014
+ },
+ {
+  "excel_id": 3269,
+  "session": "TestMultiturn75",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1309
+ },
+ {
+  "excel_id": 3270,
+  "session": "TestMultiturn75",
+  "turn": 7,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1417
+ },
+ {
+  "excel_id": 3271,
+  "session": "TestMultiturn76",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 24658
+ },
+ {
+  "excel_id": 3272,
+  "session": "TestMultiturn76",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13587
+ },
+ {
+  "excel_id": 3273,
+  "session": "TestMultiturn76",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13982
+ },
+ {
+  "excel_id": 3274,
+  "session": "TestMultiturn76",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 727
+ },
+ {
+  "excel_id": 3275,
+  "session": "TestMultiturn76",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 14662
+ },
+ {
+  "excel_id": 3276,
+  "session": "TestMultiturn76",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 878
+ },
+ {
+  "excel_id": 3277,
+  "session": "TestMultiturn76",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13951
+ },
+ {
+  "excel_id": 3278,
+  "session": "TestMultiturn77",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 85129
+ },
+ {
+  "excel_id": 3279,
+  "session": "TestMultiturn77",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11860
+ },
+ {
+  "excel_id": 3280,
+  "session": "TestMultiturn77",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 733
+ },
+ {
+  "excel_id": 3281,
+  "session": "TestMultiturn77",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1384
+ },
+ {
+  "excel_id": 3282,
+  "session": "TestMultiturn77",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 674
+ },
+ {
+  "excel_id": 3283,
+  "session": "TestMultiturn77",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 601
+ },
+ {
+  "excel_id": 3284,
+  "session": "TestMultiturn77",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12504
+ },
+ {
+  "excel_id": 3285,
+  "session": "TestMultiturn77",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 15529
+ },
+ {
+  "excel_id": 3286,
+  "session": "TestMultiturn77",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 13576
+ },
+ {
+  "excel_id": 3287,
+  "session": "TestMultiturn77",
+  "turn": 10,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 667
+ },
+ {
+  "excel_id": 3288,
+  "session": "TestMultiturn78",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 46941
+ },
+ {
+  "excel_id": 3289,
+  "session": "TestMultiturn78",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 733
+ },
+ {
+  "excel_id": 3290,
+  "session": "TestMultiturn78",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 16303
+ },
+ {
+  "excel_id": 3291,
+  "session": "TestMultiturn78",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 38048
+ },
+ {
+  "excel_id": 3292,
+  "session": "TestMultiturn78",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12060
+ },
+ {
+  "excel_id": 3293,
+  "session": "TestMultiturn78",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 742
+ },
+ {
+  "excel_id": 3294,
+  "session": "TestMultiturn78",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 12998
+ },
+ {
+  "excel_id": 3295,
+  "session": "TestMultiturn78",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12590
+ },
+ {
+  "excel_id": 3296,
+  "session": "TestMultiturn78",
+  "turn": 9,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1335
+ },
+ {
+  "excel_id": 3297,
+  "session": "TestMultiturn78",
+  "turn": 10,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1550
+ },
+ {
+  "excel_id": 3298,
+  "session": "TestMultiturn79",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 36252
+ },
+ {
+  "excel_id": 3299,
+  "session": "TestMultiturn79",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 14634
+ },
+ {
+  "excel_id": 3300,
+  "session": "TestMultiturn79",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13092
+ },
+ {
+  "excel_id": 3301,
+  "session": "TestMultiturn79",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 393
+ },
+ {
+  "excel_id": 3302,
+  "session": "TestMultiturn79",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 512
+ },
+ {
+  "excel_id": 3303,
+  "session": "TestMultiturn79",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 456
+ },
+ {
+  "excel_id": 3304,
+  "session": "TestMultiturn79",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12539
+ },
+ {
+  "excel_id": 3305,
+  "session": "TestMultiturn79",
+  "turn": 8,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 660
+ },
+ {
+  "excel_id": 3306,
+  "session": "TestMultiturn79",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14738
+ },
+ {
+  "excel_id": 3307,
+  "session": "TestMultiturn79",
+  "turn": 10,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 701
+ },
+ {
+  "excel_id": 3308,
+  "session": "TestMultiturn80",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 36323
+ },
+ {
+  "excel_id": 3309,
+  "session": "TestMultiturn80",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11731
+ },
+ {
+  "excel_id": 3310,
+  "session": "TestMultiturn80",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 789
+ },
+ {
+  "excel_id": 3311,
+  "session": "TestMultiturn80",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1076
+ },
+ {
+  "excel_id": 3312,
+  "session": "TestMultiturn80",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 12705
+ },
+ {
+  "excel_id": 3313,
+  "session": "TestMultiturn80",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 13435
+ },
+ {
+  "excel_id": 3314,
+  "session": "TestMultiturn80",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 27275
+ },
+ {
+  "excel_id": 3315,
+  "session": "TestMultiturn80",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 10895
+ },
+ {
+  "excel_id": 3316,
+  "session": "TestMultiturn80",
+  "turn": 9,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 459
+ },
+ {
+  "excel_id": 3317,
+  "session": "TestMultiturn80",
+  "turn": 10,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11228
+ },
+ {
+  "excel_id": 3318,
+  "session": "TestMultiturn81",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 18050
+ },
+ {
+  "excel_id": 3319,
+  "session": "TestMultiturn81",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 24395
+ },
+ {
+  "excel_id": 3320,
+  "session": "TestMultiturn81",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 545
+ },
+ {
+  "excel_id": 3321,
+  "session": "TestMultiturn81",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 431
+ },
+ {
+  "excel_id": 3322,
+  "session": "TestMultiturn81",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.75
+  },
+  "errors": 0,
+  "time_ms": 11930
+ },
+ {
+  "excel_id": 3323,
+  "session": "TestMultiturn81",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13608
+ },
+ {
+  "excel_id": 3324,
+  "session": "TestMultiturn81",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12566
+ },
+ {
+  "excel_id": 3325,
+  "session": "TestMultiturn82",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 17128
+ },
+ {
+  "excel_id": 3326,
+  "session": "TestMultiturn82",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12590
+ },
+ {
+  "excel_id": 3327,
+  "session": "TestMultiturn82",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 12646
+ },
+ {
+  "excel_id": 3328,
+  "session": "TestMultiturn82",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 17714
+ },
+ {
+  "excel_id": 3329,
+  "session": "TestMultiturn82",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 607
+ },
+ {
+  "excel_id": 3330,
+  "session": "TestMultiturn83",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 14440
+ },
+ {
+  "excel_id": 3331,
+  "session": "TestMultiturn83",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 16730
+ },
+ {
+  "excel_id": 3332,
+  "session": "TestMultiturn83",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 545
+ },
+ {
+  "excel_id": 3333,
+  "session": "TestMultiturn83",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 551
+ },
+ {
+  "excel_id": 3334,
+  "session": "TestMultiturn83",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.857143
+  },
+  "errors": 0,
+  "time_ms": 13592
+ },
+ {
+  "excel_id": 3335,
+  "session": "TestMultiturn83",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 532
+ },
+ {
+  "excel_id": 3336,
+  "session": "TestMultiturn84",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 20872
+ },
+ {
+  "excel_id": 3337,
+  "session": "TestMultiturn84",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 14786
+ },
+ {
+  "excel_id": 3338,
+  "session": "TestMultiturn84",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 609
+ },
+ {
+  "excel_id": 3339,
+  "session": "TestMultiturn84",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 12710
+ },
+ {
+  "excel_id": 3340,
+  "session": "TestMultiturn84",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1649
+ },
+ {
+  "excel_id": 3341,
+  "session": "TestMultiturn84",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 13937
+ },
+ {
+  "excel_id": 3342,
+  "session": "TestMultiturn85",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11792
+ },
+ {
+  "excel_id": 3343,
+  "session": "TestMultiturn85",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11457
+ },
+ {
+  "excel_id": 3344,
+  "session": "TestMultiturn85",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 580
+ },
+ {
+  "excel_id": 3345,
+  "session": "TestMultiturn85",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 884
+ },
+ {
+  "excel_id": 3346,
+  "session": "TestMultiturn85",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 548
+ },
+ {
+  "excel_id": 3347,
+  "session": "TestMultiturn85",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 13110
+ },
+ {
+  "excel_id": 3348,
+  "session": "TestMultiturn85",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11043
+ },
+ {
+  "excel_id": 3349,
+  "session": "TestMultiturn86",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 14390
+ },
+ {
+  "excel_id": 3350,
+  "session": "TestMultiturn86",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 317
+ },
+ {
+  "excel_id": 3351,
+  "session": "TestMultiturn86",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 702
+ },
+ {
+  "excel_id": 3352,
+  "session": "TestMultiturn86",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 9789
+ },
+ {
+  "excel_id": 3353,
+  "session": "TestMultiturn86",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13996
+ },
+ {
+  "excel_id": 3354,
+  "session": "TestMultiturn87",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14974
+ },
+ {
+  "excel_id": 3355,
+  "session": "TestMultiturn87",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 35516
+ },
+ {
+  "excel_id": 3356,
+  "session": "TestMultiturn87",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13635
+ },
+ {
+  "excel_id": 3357,
+  "session": "TestMultiturn87",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 28478
+ },
+ {
+  "excel_id": 3358,
+  "session": "TestMultiturn87",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 26855
+ },
+ {
+  "excel_id": 3359,
+  "session": "TestMultiturn87",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 26197
+ },
+ {
+  "excel_id": 3360,
+  "session": "TestMultiturn87",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15751
+ },
+ {
+  "excel_id": 3361,
+  "session": "TestMultiturn88",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 39636
+ },
+ {
+  "excel_id": 3362,
+  "session": "TestMultiturn88",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13682
+ },
+ {
+  "excel_id": 3363,
+  "session": "TestMultiturn88",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 30493
+ },
+ {
+  "excel_id": 3364,
+  "session": "TestMultiturn88",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15698
+ },
+ {
+  "excel_id": 3365,
+  "session": "TestMultiturn88",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 16562
+ },
+ {
+  "excel_id": 3366,
+  "session": "TestMultiturn88",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27126
+ },
+ {
+  "excel_id": 3367,
+  "session": "TestMultiturn89",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 54948
+ },
+ {
+  "excel_id": 3368,
+  "session": "TestMultiturn89",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 12776
+ },
+ {
+  "excel_id": 3369,
+  "session": "TestMultiturn89",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 32156
+ },
+ {
+  "excel_id": 3370,
+  "session": "TestMultiturn89",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.4,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 30187
+ },
+ {
+  "excel_id": 3371,
+  "session": "TestMultiturn89",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13969
+ },
+ {
+  "excel_id": 3372,
+  "session": "TestMultiturn90",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 62112
+ },
+ {
+  "excel_id": 3373,
+  "session": "TestMultiturn90",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 18215
+ },
+ {
+  "excel_id": 3374,
+  "session": "TestMultiturn90",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 18899
+ },
+ {
+  "excel_id": 3375,
+  "session": "TestMultiturn90",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14167
+ },
+ {
+  "excel_id": 3376,
+  "session": "TestMultiturn90",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 31326
+ },
+ {
+  "excel_id": 3377,
+  "session": "TestMultiturn90",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 33383
+ },
+ {
+  "excel_id": 3378,
+  "session": "TestMultiturn90",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 30102
+ },
+ {
+  "excel_id": 3379,
+  "session": "TestMultiturn90",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.666667,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 33220
+ },
+ {
+  "excel_id": 3380,
+  "session": "TestMultiturn90",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 29959
+ },
+ {
+  "excel_id": 3381,
+  "session": "TestMultiturn91",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 48809
+ },
+ {
+  "excel_id": 3382,
+  "session": "TestMultiturn91",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14121
+ },
+ {
+  "excel_id": 3383,
+  "session": "TestMultiturn91",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 31413
+ },
+ {
+  "excel_id": 3384,
+  "session": "TestMultiturn91",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14857
+ },
+ {
+  "excel_id": 3385,
+  "session": "TestMultiturn91",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14054
+ },
+ {
+  "excel_id": 3386,
+  "session": "TestMultiturn91",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13774
+ },
+ {
+  "excel_id": 3387,
+  "session": "TestMultiturn91",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 17560
+ },
+ {
+  "excel_id": 3388,
+  "session": "TestMultiturn91",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27496
+ },
+ {
+  "excel_id": 3389,
+  "session": "TestMultiturn91",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 31111
+ },
+ {
+  "excel_id": 3390,
+  "session": "TestMultiturn91",
+  "turn": 10,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 14054
+ },
+ {
+  "excel_id": 3391,
+  "session": "TestMultiturn92",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.8
+  },
+  "errors": 0,
+  "time_ms": 30360
+ },
+ {
+  "excel_id": 3392,
+  "session": "TestMultiturn92",
+  "turn": 2,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 9562
+ },
+ {
+  "excel_id": 3393,
+  "session": "TestMultiturn92",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 26976
+ },
+ {
+  "excel_id": 3394,
+  "session": "TestMultiturn92",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1249
+ },
+ {
+  "excel_id": 3395,
+  "session": "TestMultiturn92",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 715
+ },
+ {
+  "excel_id": 3396,
+  "session": "TestMultiturn92",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 11059
+ },
+ {
+  "excel_id": 3397,
+  "session": "TestMultiturn92",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 639
+ },
+ {
+  "excel_id": 3398,
+  "session": "TestMultiturn92",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11465
+ },
+ {
+  "excel_id": 3399,
+  "session": "TestMultiturn92",
+  "turn": 9,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 12080
+ },
+ {
+  "excel_id": 3400,
+  "session": "TestMultiturn92",
+  "turn": 10,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13280
+ },
+ {
+  "excel_id": 3401,
+  "session": "TestMultiturn93",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 26984
+ },
+ {
+  "excel_id": 3402,
+  "session": "TestMultiturn93",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 10421
+ },
+ {
+  "excel_id": 3403,
+  "session": "TestMultiturn93",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11709
+ },
+ {
+  "excel_id": 3404,
+  "session": "TestMultiturn93",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 512
+ },
+ {
+  "excel_id": 3405,
+  "session": "TestMultiturn93",
+  "turn": 5,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 564
+ },
+ {
+  "excel_id": 3406,
+  "session": "TestMultiturn93",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 745
+ },
+ {
+  "excel_id": 3407,
+  "session": "TestMultiturn93",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 10984
+ },
+ {
+  "excel_id": 3408,
+  "session": "TestMultiturn94",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 31110
+ },
+ {
+  "excel_id": 3409,
+  "session": "TestMultiturn94",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 918
+ },
+ {
+  "excel_id": 3410,
+  "session": "TestMultiturn94",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1148
+ },
+ {
+  "excel_id": 3411,
+  "session": "TestMultiturn94",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1155
+ },
+ {
+  "excel_id": 3412,
+  "session": "TestMultiturn94",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13484
+ },
+ {
+  "excel_id": 3413,
+  "session": "TestMultiturn94",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13184
+ },
+ {
+  "excel_id": 3414,
+  "session": "TestMultiturn94",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 488
+ },
+ {
+  "excel_id": 3415,
+  "session": "TestMultiturn94",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 627
+ },
+ {
+  "excel_id": 3416,
+  "session": "TestMultiturn95",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 43590
+ },
+ {
+  "excel_id": 3417,
+  "session": "TestMultiturn95",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 13164
+ },
+ {
+  "excel_id": 3418,
+  "session": "TestMultiturn95",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 920
+ },
+ {
+  "excel_id": 3419,
+  "session": "TestMultiturn95",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 30175
+ },
+ {
+  "excel_id": 3420,
+  "session": "TestMultiturn95",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 15373
+ },
+ {
+  "excel_id": 3421,
+  "session": "TestMultiturn95",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 556
+ },
+ {
+  "excel_id": 3422,
+  "session": "TestMultiturn96",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 570
+ },
+ {
+  "excel_id": 3423,
+  "session": "TestMultiturn96",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27608
+ },
+ {
+  "excel_id": 3424,
+  "session": "TestMultiturn96",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 718
+ },
+ {
+  "excel_id": 3425,
+  "session": "TestMultiturn96",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11646
+ },
+ {
+  "excel_id": 3426,
+  "session": "TestMultiturn96",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 436
+ },
+ {
+  "excel_id": 3427,
+  "session": "TestMultiturn96",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 799
+ },
+ {
+  "excel_id": 3428,
+  "session": "TestMultiturn96",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 14555
+ },
+ {
+  "excel_id": 3429,
+  "session": "TestMultiturn96",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 799
+ },
+ {
+  "excel_id": 3430,
+  "session": "TestMultiturn96",
+  "turn": 9,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1031
+ },
+ {
+  "excel_id": 3431,
+  "session": "TestMultiturn97",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 10846
+ },
+ {
+  "excel_id": 3432,
+  "session": "TestMultiturn97",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 27425
+ },
+ {
+  "excel_id": 3433,
+  "session": "TestMultiturn97",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 458
+ },
+ {
+  "excel_id": 3434,
+  "session": "TestMultiturn97",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 481
+ },
+ {
+  "excel_id": 3435,
+  "session": "TestMultiturn97",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 543
+ },
+ {
+  "excel_id": 3436,
+  "session": "TestMultiturn97",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.5
+  },
+  "errors": 0,
+  "time_ms": 12179
+ },
+ {
+  "excel_id": 3437,
+  "session": "TestMultiturn97",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 618
+ },
+ {
+  "excel_id": 3438,
+  "session": "TestMultiturn97",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 20280
+ },
+ {
+  "excel_id": 3439,
+  "session": "TestMultiturn97",
+  "turn": 9,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 600
+ },
+ {
+  "excel_id": 3440,
+  "session": "TestMultiturn97",
+  "turn": 10,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 11656
+ },
+ {
+  "excel_id": 3441,
+  "session": "TestMultiturn98",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 28634
+ },
+ {
+  "excel_id": 3442,
+  "session": "TestMultiturn98",
+  "turn": 2,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 539
+ },
+ {
+  "excel_id": 3443,
+  "session": "TestMultiturn98",
+  "turn": 3,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 670
+ },
+ {
+  "excel_id": 3444,
+  "session": "TestMultiturn98",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 12968
+ },
+ {
+  "excel_id": 3445,
+  "session": "TestMultiturn98",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.5
+  },
+  "errors": 0,
+  "time_ms": 11247
+ },
+ {
+  "excel_id": 3446,
+  "session": "TestMultiturn98",
+  "turn": 6,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 661
+ },
+ {
+  "excel_id": 3447,
+  "session": "TestMultiturn98",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 14541
+ },
+ {
+  "excel_id": 3448,
+  "session": "TestMultiturn99",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 60927
+ },
+ {
+  "excel_id": 3449,
+  "session": "TestMultiturn99",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 0.8,
+   "where": 0.666667,
+   "group_by": 0.666667,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 12129
+ },
+ {
+  "excel_id": 3450,
+  "session": "TestMultiturn99",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.666667
+  },
+  "errors": 0,
+  "time_ms": 12098
+ },
+ {
+  "excel_id": 3451,
+  "session": "TestMultiturn99",
+  "turn": 4,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 741
+ },
+ {
+  "excel_id": 3452,
+  "session": "TestMultiturn99",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 689
+ },
+ {
+  "excel_id": 3453,
+  "session": "TestMultiturn99",
+  "turn": 6,
+  "action": "CLARIFY",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 498
+ },
+ {
+  "excel_id": 3454,
+  "session": "TestMultiturn99",
+  "turn": 7,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 517
+ },
+ {
+  "excel_id": 3455,
+  "session": "TestMultiturn99",
+  "turn": 8,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 13653
+ },
+ {
+  "excel_id": 3456,
+  "session": "TestMultiturn100",
+  "turn": 1,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 637
+ },
+ {
+  "excel_id": 3457,
+  "session": "TestMultiturn100",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 21168
+ },
+ {
+  "excel_id": 3458,
+  "session": "TestMultiturn100",
+  "turn": 3,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 393
+ },
+ {
+  "excel_id": 3459,
+  "session": "TestMultiturn100",
+  "turn": 4,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.5
+  },
+  "errors": 0,
+  "time_ms": 10450
+ },
+ {
+  "excel_id": 3460,
+  "session": "TestMultiturn100",
+  "turn": 5,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 489
+ },
+ {
+  "excel_id": 3461,
+  "session": "TestMultiturn100",
+  "turn": 6,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 46555
+ },
+ {
+  "excel_id": 3462,
+  "session": "TestMultiturn100",
+  "turn": 7,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 1.0,
+   "order_by": 0.0,
+   "keywords": 0.888889
+  },
+  "errors": 0,
+  "time_ms": 11246
+ },
+ {
+  "excel_id": 3463,
+  "session": "TestMultiturn101",
+  "turn": 1,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 1,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 22744
+ },
+ {
+  "excel_id": 3464,
+  "session": "TestMultiturn101",
+  "turn": 2,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 1.0,
+   "where": 0.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 0.5
+  },
+  "errors": 0,
+  "time_ms": 13300
+ },
+ {
+  "excel_id": 3465,
+  "session": "TestMultiturn101",
+  "turn": 3,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 15145
+ },
+ {
+  "excel_id": 3466,
+  "session": "TestMultiturn101",
+  "turn": 4,
+  "action": "NO_SQL",
+  "has_gold": false,
+  "ex": null,
+  "cm_f1": null,
+  "errors": 0,
+  "time_ms": 1006
+ },
+ {
+  "excel_id": 3467,
+  "session": "TestMultiturn101",
+  "turn": 5,
+  "action": "EXECUTE_SQL",
+  "has_gold": true,
+  "ex": 0,
+  "cm_f1": {
+   "select": 0.0,
+   "where": 1.0,
+   "group_by": 0.0,
+   "order_by": 0.0,
+   "keywords": 1.0
+  },
+  "errors": 0,
+  "time_ms": 14427
+ }
+]

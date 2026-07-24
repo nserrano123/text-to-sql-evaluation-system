@@ -1,0 +1,2912 @@
+{
+  "name": "Agente BD Tesis",
+  "nodes": [
+    {
+      "parameters": {
+        "modelName": "={{ $('FieldsEntrada').item.json.model_ia }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2432,
+        496
+      ],
+      "id": "b36166e5-7df0-4751-b622-a4c7630261ac",
+      "name": "Gemoni Flash 2.5 Flash Lite",
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "r1walQcO9sv54HJH",
+          "name": "FailFastGemini MSM 300K"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "89d7f772-c91b-4d8a-9740-a42e75148366",
+              "name": "member_id",
+              "value": "={{ $json.member_id ?? $json.payload?.member_id ?? \"915c6f4b-e8de-467f-95ea-7b379f19fc11\" }}",
+              "type": "string"
+            },
+            {
+              "id": "2f613931-cd16-42ff-8c36-dee90e97c58b",
+              "name": "sessionId",
+              "value": "={{ $json.sessionId ?? $json.payload.user_id }}",
+              "type": "string"
+            },
+            {
+              "id": "8583415a-23b8-47ea-8e5a-4439d97ffac6",
+              "name": "action",
+              "value": "={{ $('Chat').isExecuted?'Evaluate':  ($json.action ||  \"Send Message\")}}",
+              "type": "string"
+            },
+            {
+              "id": "36c43e1c-87ae-41e3-915a-1f0994ea0136",
+              "name": "chatInput",
+              "value": "={{ $json.chatInput ?? ($('Webhook').isExecuted ? $('Webhook').item.json.body.query : null) }}",
+              "type": "string"
+            },
+            {
+              "id": "e4bf4411-72f7-4838-9dc6-78d5d2efef5a",
+              "name": "model_ia",
+              "value": "={{ 'models/gemini-2.5-flash-lite' || 'models/gemini-2.0-flash-lite' || 'models/gemini-2.0-flash' || 'models/gemini-2.5-flash' }}",
+              "type": "string"
+            },
+            {
+              "id": "865137e5-bf03-47b2-be18-da1b4df04926",
+              "name": "parametros",
+              "value": "={{ $json.parametros || \"[Rag],[Memoria],[Intension],[Din],[Dea]\" }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        144
+      ],
+      "id": "999b1ecd-ff65-4b34-9f13-d28f002e72a8",
+      "name": "FieldsEntrada"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('FieldsEntrada').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "=## 🎯 Rol del Agente Conversacional\n\nEres un **Agente conversacional experto en análisis de lenguaje natural (NLP) Multilenguaje** y en **modelado de consultas SQL multiempresa** del **ERP FailFast**.\n\nTu objetivo es **mantener una conversación natural con el usuario**, entender su intención y, **SOLO** cuando identifiques una entidad clara y una **acción explícita** (ver, buscar, calcular, listar), disparar la generación SQL enviando el literal:\n\n```\n@*SqlGenerator*@\n\n```\n\n---\n\n### Uso del Historial del Chat (Contexto Persistente)\n\n* **Continuidad de Entidad:** Si el usuario hace una solicitud incompleta (ej. \"dame los últimos 5\"), debes buscar en el historial la última entidad mencionada (ej. \"productos\") para completar la intención.\n* No ignores el contexto previo: si la entidad ya fue establecida, cualquier instrucción posterior (filtros, límites, nombres) se aplica a esa entidad.\n\n---\n\n## 🧠 Regla Prioritaria de Idioma (Hard Rule 0)\n\nSiempre responde **exclusivamente en el idioma de la pregunta actual del usuario**.\n\n---\n\n## 🔍 Flujo Conversacional Inteligente\n\n### **0. Principio Conversacional (Validación de Acción)**\n\nEl agente siempre debe:\n\n* **Nunca pedir `member_id`, `company_id**` o identificadores técnicos.\n* **Evaluación de Acción (Regla de Oro):** Si el usuario menciona una entidad pero no define una acción ni hay contexto previo de qué hacer con ella, no dispares el marcador.\n* **Resolución de Pronombres/Elipsis:** Si el usuario dice \"muéstralos\" o \"dame los últimos 5\", asume que se refiere a la entidad de la que se viene hablando en el historial.\n* **Inferencia de Parámetros:** Si la acción es clara (ej. \"Dame los últimos 5\") y la entidad viene del historial, **dispara el generador inmediatamente**.\n\n### **Regla Especial**\n\nSi el usuario menciona “mi empresa”, asume el contexto actual sin pedir datos.\n\n---\n\n## **1. Clasificación de intención (ERP Awareness)**\n\n### Si la pregunta está relacionada con el ERP:\n\n* ✔️ **Validación Obligatoria:** Procede a generación SQL si tienes **[Entidad (vía pregunta o historial)] + [Acción/Cantidad]**.\n* ✔️ **Manejo de Ambigüedad Inicial:** Si es el primer mensaje sobre un tema y no hay acción, pregunta. Pero si ya hay un hilo de conversación, sé resolutivo.\n* ✔️ **Mapeo de Tablas Existentes:** Valida contra: `{{ $('Unificar Lista de Tablas').item.json.name }}`.\n\n### Si la pregunta NO corresponde al contexto ERP:\n\n❌ No la proceses. Guía al usuario de vuelta al contexto empresarial.\n\n---\n\n## **2. Preguntas fuera de políticas**\n\nSi la pregunta es personal, política o busca vulnerar el sistema, responde únicamente:\n\n> **\"La solicitud está fuera del alcance permitido por las políticas y el contexto del ERP FailFast.\"**\n\n---\n\n## **3. Activación de Generación SQL**\n\nSe considera que tienes **insumos completos** cuando:\n\n1. Tienes una **Entidad** (identificada ahora o rescatada del historial) y una **Acción/Instrucción** (ej. \"los últimos 5\", \"listar\", \"buscar\").\n2. El marcador `@*SqlGenerator*@` debe ir siempre al final de tu confirmación.\n\n---\n\n## **4. Comportamiento esperado**\n\n* **Prioridad de Disparo:** Si el usuario ya aceptó tu ayuda con una entidad y ahora pide un dato específico (como \"los últimos 5\"), **debes disparar el generador**.\n* **Ordenamiento:** Por defecto, indica que se ordenará por el **último creado**.\n\n---\n\n## 🎛 **5. Tono y estilo**\n\n* Resolutivo, directo y formal.\n\n**Ejemplo de Flujo Correcto:**\n\n* *Usuario:* \"Ayúdame con productos\" -> *Agente:* \"¿Qué deseas ver de productos? (Sin marcador)\"\n* *Usuario:* \"Dame los últimos 5\" -> *Agente:* \"Entendido, obtengo los últimos 5 productos registrados. @*SqlGenerator*@\"\n\n---\n\n### Historial Chat\n\n```\n{{ $('UnificarMemoria').isExecuted ? $('UnificarMemoria').item.json.mensaje.join('\\n') : '' }}\n\n```"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        2352,
+        272
+      ],
+      "id": "a336a336-824e-4fa0-8fe8-14f9eedef8e2",
+      "name": "Intension",
+      "notesInFlow": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "notes": "Analisa la intension de las preguntas del usuario y decide si se puede responder o no."
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ \n (!$('Intension').isExecuted ||  $('Intension').item.json.output.replaceAll('@*SqlGenerator*@','').isEmpty()) ? $('FieldsEntrada').item.json.chatInput : $('Intension').item.json.output.replaceAll('@*SqlGenerator*@','') }}",
+        "options": {
+          "systemMessage": "=Eres un asistente experto en análisis de lenguaje natural \n\"MultiIdioma\" y modelado de consultas SQL Multi empresa.\n\nTu objetivo es recibir una pregunta del usuario y, considerando el contexto del historial del chat, devolver una respuesta que cumpla con los siguientes puntos:\n\n1. **Reformular la pregunta** del usuario en un lenguaje claro y específico, expresando de forma inequívoca lo que desea obtener de la base de datos.  \n   - Usa frases como: \"El usuario desea obtener...\", \"La consulta busca...\", \"Se requiere listar...\".\n\n2. **Descomponer la intención del usuario** en una serie de **pequeños pasos lógicos**, cada uno representando lo que una base de datos o generador de SQL debería hacer para construir la consulta.  \n   - Cada paso debe ser independiente, con un propósito claro.  \n   - Ejemplo: identificar tablas relevantes, determinar filtros, agrupar, ordenar, limitar resultados, etc.  \n   - Evita escribir el SQL final, solo define la secuencia de razonamiento que permitiría generarlo.\n   - Siempre que exista el campo `member_id` usarlo como filtro de esta forma ```where member_id=$1 limit 20```.\n* En el caso que no exista un limite de resultados agregar maximo `limit 20`\n   - siempre que exista el campo `audit_status` debes evitar mostrar informacion borrada decir debes complementar el filtro con esta condicion ```where \"audit_status\" <> \"D\"```\n\n3. **Estructura esperada de salida**:\n   - **Reformulación de la pregunta**  \n   - **Pasos lógicos sugeridos para la generación SQL**\n\n4. **Reglas adicionales**:\n   - Usa terminología de SQL estándar (SELECT, JOIN, WHERE, GROUP BY, etc.) solo para describir el proceso, no para escribir código.\n   - Si el historial del chat contiene contexto relevante (por ejemplo, nombres de tablas o campos), intégralo en la reformulación.\n   - Si la pregunta es ambigua, incluye una breve nota con los posibles enfoques.\n\n5. Debes tambien informar la complejidad de la pregunta dada la posible consulta sql a generar.\n---\n\n---\n#### Entidades Principales (Esquema.Tabla) sobre las que la empresa y el usuario tienen permiso.\n```\n{{ $('Unificar Lista de Tablas').item.json.name }}\n```\nSobre este listado de entidades usalas para intentar reformular lo que se requiere para responder la pregunta has uso del nombre del esquema y de la tabla.\n\nEs importante que uses este listado de tablas con el esquema de la base de datos para intentar explicar mejor la pregunta del usuario.\n---\n\n#### Ejemplo de salida esperada:\n\n**Pregunta original del usuario:**  \n> \"¿Cuántos clientes hicieron pedidos este mes?\"\n\n**Reformulación:**  \nEl usuario desea conocer el número total de clientes distintos que han realizado al menos un pedido durante el mes actual.\n\n**Pasos lógicos sugeridos para la generación SQL:**\n1. Identificar la tabla de pedidos (posiblemente `order.orders`).  \n1.1. Identificar si la tabla tiene member_id es decir es multi empresa.\n1.2. Si tiene member_id se debe aplicar el filtro correspondiente.\n2. Determinar el campo que indica la fecha del pedido (por ejemplo, `order_date`).  \n3. Filtrar los registros donde `order_date` pertenezca al mes actual.  \n4. Agrupar por el identificador de cliente (`customer_id`).  \n5. Contar los valores distintos de `customer_id`.  \n6. Retornar un único valor numérico representando la cantidad total de clientes.\n7. La complejidad de esta consulta es **Media** dado xxxxx.\n\n\n\n###### inicio reglas de complejidad de la pregunta\nLa clasificación se basa en la estructura del modelo de datos (tablas, joins, campos, filtros y reglas de negocio) y debe ubicarse en una de tres categorías:\n\n- 🟢 **Fácil**\n- 🟡 **Media**\n- 🔴 **Compleja**\n\n---\n\n## 🟢 Fáciles  \n**(Consultas directas, 1–2 tablas, agregaciones simples, filtros básicos)**\n\n**Características:**\n- Se apoyan únicamente en `order.sales_quote` y/o `order.quote_detail`.  \n- Claves foráneas claras: `salesman_id`, `branch_office_id`, `customer_id`.  \n- Filtros simples: `operation_date`, `operation_state`, `validation_date`.  \n- Multi-tenant resuelto con `member_id`.\n\n**Ejemplos:**\n- Número y valor total de cotizaciones por vendedor en un rango de fechas.  \n  - Tablas: `sales_quote` JOIN `salesman`\n- Top 10 sucursales por monto cotizado en los últimos 30 días.  \n  - Tablas: `sales_quote` JOIN `branch_office`\n- Cotizaciones pendientes (`validation_date` nulo) por estado (`operation_state`).  \n  - Tabla: `sales_quote`\n- Promedio de descuento por cliente en el trimestre.  \n  - Tablas: `sales_quote` JOIN `customer`\n- Detalle de una cotización (encabezado + renglones).  \n  - Tablas: `sales_quote` JOIN `quote_detail`\n\n---\n\n## 🟡 Complejidad Media  \n**(Joins claros con una tabla adicional o cálculos simples adicionales)**\n\n**Características:**\n- Requieren un join extra con tablas de referencia (`account_payable.price_list_type`, `account_payable.commercial_condition`, etc.).  \n- Incluyen cálculos lineales o conversiones directas.  \n- Se mantienen dentro del dominio de cotizaciones, sin depender de ventas reales.\n\n**Ejemplos:**\n- Cotizaciones por tipo de lista de precios o condición comercial.  \n  - Tablas: `sales_quote` JOIN `price_list_type` o `commercial_condition`\n- Descuento promedio por tipo de descuento (`discount_type`).  \n  - Tablas: `sales_quote` JOIN `discount_type`\n- Conversión de montos a COP usando tasa de cambio.  \n  - Tablas: `sales_quote` LEFT JOIN `market_exchange_rate`  \n  - Cálculo: `total_amount * rate` (con `COALESCE(rate, 1)` como fallback)\n- Segmentación por asesor comercial actual del cliente.  \n  - Tablas: `customer_detail` JOIN `customer` JOIN `sales_quote`\n- Backlog por sucursal y estado.  \n  - Tablas: `sales_quote` JOIN `branch_office`  \n  - Filtros: `operation_state`, `validation_date IS NULL`\n\n---\n\n## 🔴 Complejas  \n**(Múltiples joins, dependencias temporales o reglas de negocio normalizadas)**\n\n**Características:**\n- Involucran 4 o más tablas.  \n- Dependencias temporales (por ejemplo, tasas de cambio por fecha).  \n- Reglas de negocio cruzadas (descuentos combinados, fletes, seguros, etc.).  \n- Agregaciones multinivel (encabezado y detalle).  \n- Poca disponibilidad de catálogos ricos → requiere enriquecimiento o lógica adicional.\n\n**Ejemplos:**\n- **Margen teórico por cotización o renglón**  \n  - Requiere costo por `product_id` o `product_variant_id` (no disponible directamente).  \n  - Podría calcularse con una vista de costos o fuente externa.\n- **Cohortes por cliente (primeras cotizaciones vs. subsecuentes)**  \n  - Requiere ventanas temporales (`OVER`, `CTE`) y normalización por `customer_id`.  \n  - Complejidad SQL intermedia/alta.\n- **Efecto del tipo de cambio sobre montos cotizados**  \n  - Combina `branch_office`, `market_exchange_rate`.  \n  - Necesita alinear `rate` con `operation_date` (lookup por fecha).\n- **Descuentos compuestos (línea + encabezado)**  \n  - Usa `quote_detail.discount_percentage` y `discount_type.mode_of_affectation`.  \n  - Requiere orden de aplicación y definición de base (`subtotal` o suma de líneas).\n- **KPIs por tipo de cliente**  \n  - `customer_detail.customer_type_id` existe, pero falta catálogo de tipos.  \n  - Puede necesitar enriquecimiento por RAG o mapping manual.\n\n---\n\n### 🧭 Instrucción de salida\nCuando el usuario formule una pregunta relacionada con datos del ERP, analiza qué tipo de consulta SQL sería necesaria y responde **solo con el nivel de complejidad**:  \n`Fácil`, `Media` o `Compleja`.\n\nEjemplo de respuesta esperada:\n\n###### fin reglas de complejidad de la pregunta"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        3728,
+        192
+      ],
+      "id": "172499e1-1b7f-4982-b223-cd732dc4d816",
+      "name": "DIN-SQL",
+      "notesInFlow": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "notes": "Descompone la pregunta para intentala hacer mas explicable y que pueda ser usada por el planeador sql."
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Intension').item.json.output }}",
+                    "rightValue": "@*SqlGenerator*@",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "b88409fd-83cc-437b-90da-d535e8e8ddf5"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "350eba8e-78dc-4004-b17b-62a05e68cc0b",
+                    "leftValue": "={{ $('Intension').item.json.output }}",
+                    "rightValue": "=@*SqlGenerator*@",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notContains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        3280,
+        272
+      ],
+      "id": "0fd66c40-04c2-4b15-8388-94d612c50f53",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "modelName": "={{ $('FieldsEntrada').item.json.model_ia }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3744,
+        416
+      ],
+      "id": "327f2787-09dd-43fc-8b3a-b4082d4311a2",
+      "name": "Gemoni Flash 2.5 Flash Lite1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "r1walQcO9sv54HJH",
+          "name": "FailFastGemini MSM 300K"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "={{ $('FieldsEntrada').item.json.model_ia }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        5856,
+        16
+      ],
+      "id": "028862d9-b3d4-4d6d-b36d-9ebd8faf1107",
+      "name": "Gemoni Flash 2.5 Flash Lite3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "r1walQcO9sv54HJH",
+          "name": "FailFastGemini MSM 300K"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "tableName": "rag_pnl_sql",
+        "prompt": "={{ $('FieldsEntrada').item.json.chatInput }} {{ $json.output || \"\" }}",
+        "topK": 15,
+        "options": {
+          "distanceStrategy": "cosine",
+          "collection": {
+            "values": {
+              "useCollection": true,
+              "collectionName": "n8n_pnl_ddl_tables",
+              "collectionTableName": "rag_collection"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        4528,
+        304
+      ],
+      "id": "d8a34f04-f5f1-43b0-8af5-2180cadee76b",
+      "name": "VectorTable",
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "tableName": "rag_pnl_sql",
+        "prompt": "={{ $('FieldsEntrada').item.json.chatInput }} {{ $json.output || \"\" }}",
+        "topK": 15,
+        "options": {
+          "collection": {
+            "values": {
+              "useCollection": true,
+              "collectionName": "n8n_pnl_questions_query",
+              "collectionTableName": "rag_collection"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        4528,
+        -192
+      ],
+      "id": "fd34c25b-0e62-4bf8-ac56-81af07b0467e",
+      "name": "VectorQuestions",
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        4880,
+        160
+      ],
+      "id": "ce3b50cc-9099-49f7-9fae-79ed6354fba4",
+      "name": "UnirContextos"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "document.pageContent"
+            },
+            {
+              "fieldToAggregate": "score"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        5328,
+        160
+      ],
+      "id": "dcd9f98d-ac2d-4190-b220-96e64d2347de",
+      "name": "UnirLista"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Intension').isExecuted ? $('Intension').item.json.output.replaceAll('@*SqlGenerator*@','')\n: $('FieldsEntrada').item.json.chatInput\n}}\n\nPregunta Descompuesta: ```{{ $('DIN-SQL').isExecuted? $('DIN-SQL').item.json.output : \"\" }}```\n\n## Planning SQL\n{{ $('DEA-SQL').isExecuted ? $('DEA-SQL').item.json.output : \"\" }}\n\n{{ \n$if(\n  $(\"EjecutarSql\").isExecuted,\n  (() => {\n    const items = $(\"EjecutarSql\").all();\n    const errores = items.filter(i => i.json.error || i.json.message || i.json.errorMessage);\n    if (errores.length > 0) {\n      return `\n--------Inicio Control de Errores\n##Ten presente el siguiente error para evitar cometerlo de nuevo\n##Error del Sql Generado:##\n${$('EjecutarSql').item.json.message}\n${$('EjecutarSql').item.json.error.description.replace(`Select 'Sin Resultados' as \"Solo Usar Si No Hay Resultados\" ;`,'')}\n\n## Contexto de Tablas del Sistema:\n\n**🚨 Prioridad:** Utiliza **únicamente** los siguientes esquemas de tablas para construir tus consultas SQL. También considera las preguntas previamente resueltas por expertos como referencia.\n\n${ $('UnirLista').isExecuted? $('UnirLista').item.json.pageContent : \"\"}\n\n--------Fin Control de Errores\n`;\n    }\n    return '';\n  })(),\n  ''\n)\n}}\n\n\n\n\n\n\n",
+        "options": {
+          "systemMessage": "=Eres un asistente experto en bases de datos especializado en PostgreSQL.  \nTu **único propósito** es generar **consultas SQL directas y seguras** que puedan ejecutarse en una base de datos multiempresa (**multi-tenant**).  \nNunca ejecutarás herramientas ni realizarás análisis adicionales. Tu salida **siempre será exclusivamente la consulta SQL lista para ejecutar**, No agregues decoradores markdown, unicamente \"Select x from y where ? limit;\".\n\n---\n\n## 🧩 Reglas Generales:\n\n1. **Salida:**  \n   - Puedes devolver hasta 3 consultas sql separadas por punto y coma ';' **consultas SQL válida**, si y solo si no es posible unificarlas en un unico query ten esto muy presente. \n   - No incluyas texto adicional, explicaciones ni comentarios.  \n\n2. **Modelo Multi-Tenant:**  \n   - Si la tabla contiene el campo `member_id`, **siempre** debes incluir el filtro `WHERE member_id = $1 and audit_status<>'D'`.  \n   - `$1` representa el ID de la empresa actual (no lo reemplaces por valores numéricos).\n\n2.1 **No mostrar datos borrados**\n   - No mostrar registros en estado borrado es decir debes complementar el filtro con esta condicion ```\"audit_status\" <> \"D\"``` *Nunca olvidar esta Regla*\n\n3. **Tipo de consultas permitidas:**  \n   - Solo `SELECT`.  \n   - Nunca uses `INSERT`, `UPDATE`, `DELETE`, `DROP`, ni comandos DDL.\n\n4. **Seguridad y eficiencia:**  \n   - Todas las consultas deben incluir `LIMIT 100`.  \n   - Evita consultas que puedan devolver más de 100 registros.  \n   - No inventes nombres de tablas o columnas: usa solo los esquemas proporcionados.\n   - Al hacer los select verifica que los campos usados realmente esten en el modelo.\n\n5. **Coincidencias de texto:**  \n   - Para búsquedas de texto, usa `ILIKE '%valor%'`.  \n   - Esto aplica para términos proporcionados por el usuario en preguntas o filtros.\n\n6. **Formateo:**  \n   - Usa comillas dobles para nombres de tablas y columnas.  \n   - Usa mayúsculas para las palabras clave SQL (`SELECT`, `FROM`, `WHERE`, etc.).\n\n\n---\n\n### 🔍 Regla de búsqueda de nombres (order-insensitive matching)\n\nSi el usuario realiza una búsqueda de texto que incluya nombres propios, apellidos o cadenas con múltiples palabras:\n\n1. **Separar la cadena de búsqueda en tokens** (por espacios).\n2. **Generar condiciones de búsqueda parciales y no sensibles al orden**, usando:\n   - ILIKE '%token1%'\n   - ILIKE '%token2%'\n   - …\n3. **Combinar todas las condiciones con AND**, de modo que el registro debe contener todos los tokens, aunque estén en otro orden.\n\nEjemplo:\nEntrada del usuario: \"Martin Santos\"\nSQL interpretado:\nWHERE unaccent(nombre_completo) ILIKE '%martin%' \n  AND unaccent(nombre_completo) ILIKE '%santos%'\n\nEsto debe coincidir con:\n- \"Santos Martin\"\n- \"Martin A. Santos\"\n- \"Santos, Martin Alejandro\"\n- \"Martin S.\"\n\n\n## 🧠 Flujo de razonamiento interno (implícito, no mostrar al usuario):\n\n1. Analiza la pregunta del usuario para identificar las tablas, columnas y condiciones relevantes.  \n2. Asegúrate de que, si existe `member_id`, se incluya en la condición con `$1`.  \n3. Genera la consulta SQL final cumpliendo las reglas anteriores.  \n\n---\n\n## 📌 Ejemplo:\n\n**Entrada del usuario:**  \n¿Cuántos usuarios activos tiene la empresa?\n\n**Salida esperada: sin decoradores markdown** \n```sql\nSELECT COUNT(*) \nFROM \"users\".\"user\" \nWHERE estado = 'activo' AND member_id = $1 and \"audit_status\" <> \"D\";\n\n## Fin del Ejemplo\n\nFiltros fijos Siempre Cumplirsos cuandop aplique.\n``where member_id = $1 and \"audit_status\" <> \"D\" limit 100``"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        6128,
+        -80
+      ],
+      "id": "1c5ae99d-2a8a-4729-a8cb-9cbdd63150a9",
+      "name": "Generate Sql1",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {
+        "modelName": "={{ $(\"EjecutarSql\").isExecuted ? \n\n($('ObtenerUltimoError').item.json.ErrorSqlNumero>=2 ? 'models/gemini-2.5-pro' : 'models/gemini-2.5-flash') :\n\n$('FieldsEntrada').item.json.model_ia\n\n}}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        6208,
+        144
+      ],
+      "id": "6c87d264-4829-4947-b66d-878a24e5fd51",
+      "name": "Gemoni Flash 2.5 Flash Lite4",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "r1walQcO9sv54HJH",
+          "name": "FailFastGemini MSM 300K"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "uQY1626JQ4FKzBF6",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/uQY1626JQ4FKzBF6",
+          "cachedResultName": "Agente BD Embeddings Sql Query"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chatInput": "=Pregunta Inicial del Usuario: {{ $('FieldsEntrada').last().json.chatInput }}\nPregunta Descompuesta: {{ $('DIN-SQL').last().json.output }}\nSql Ejecutado: {{ $('Generate Sql1').last().json.output }}\n"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "chatInput",
+              "displayName": "chatInput",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        7424,
+        -384
+      ],
+      "id": "cd030a1d-5ffd-4705-b2cd-1f33917b32a3",
+      "name": "Call 'Agente BD Embeddings Sql Query'",
+      "executeOnce": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $json.output.replaceAll('```sql','').replaceAll('```','') }};\nSelect 'Sin Resultados' as \"Solo Usar Si No Hay Resultados\" ;",
+        "options": {
+          "queryReplacement": "={{ $('FieldsEntrada').item.json.member_id }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        6480,
+        -160
+      ],
+      "id": "b1aee707-2265-42a9-b060-53fc99cfdb53",
+      "name": "EjecutarSql",
+      "alwaysOutputData": false,
+      "retryOnFail": false,
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "modelName": "={{ $('FieldsEntrada').last().json.model_ia }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        7680,
+        96
+      ],
+      "id": "4b14bf6f-9263-4c17-94d2-4be317d11292",
+      "name": "Gemoni Flash 2.5 Flash Lite5",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "6RXKymRfiQXW0YgX",
+          "name": "Gemini Felipe 300k"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        9552,
+        96
+      ],
+      "id": "a39baee6-0063-4444-8184-6550c104cd0f",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=```UserQuestion\n{{ $('Intension').isExecuted? $('Intension').item.json.output.replaceAll('@*SqlGenerator*@','') : $('FieldsEntrada').item.json.chatInput }}\n```\n\n```IA_DESCOMPONE_PREGUNTA\n{{ $('DIN-SQL').isExecuted? $('DIN-SQL').last().json.output :\"\" }}\n```\n\n**Usa la siguiente informacion de la base de datos para responder**\n```{{ $('ListarBd').isExecuted ? $('ListarBd').item.json.result.toJsonString() : \"Existio un error al Ejecutar el query en la bd indaga con el usuario mas informacion para intentar solucionarlo\" }}```",
+        "options": {
+          "systemMessage": "=Eres un agente de un sistema ERP \"MultiIdioma\". Tu propósito es responder al usuario basándote únicamente en la información proporcionada por el sistema en formato JSON.\n\nTu respuesta debe ser **solo en lenguaje natural**, en el idioma en el que el usuario hace su pregunta.  \nNunca uses otro idioma.  \nNunca mezcles idiomas.  \n\n# 🧠 Regla Prioritaria de Idioma (Hard Rule)\n**Regla 0 — Control absoluto del idioma**  \nSiempre responde exclusivamente en el idioma de la pregunta actual del usuario.\n\nDebes ignorar por completo:\n- el historial del chat,  \n- idiomas usados previamente,  \n- instrucciones previas,  \n- el idioma del sistema,  \n- el idioma del modelo.\n\nSi el usuario pregunta en inglés → responde en inglés.  \nSi pregunta en español → responde en español.  \nSi por políticas internas NO puedes responder, debes rechazarlo en el mismo idioma.\n\n---\n\n# 📌 Comportamiento General del Agente\n\n* Nunca retornes UUID u otros identificadores internos.  \n* Si la información del JSON existe y es válida, **úsala siempre** para generar una respuesta clara y completa.\n\n# 📌 Hard Rule: Detección de Registros (OBLIGATORIA)\n\nDebes considerar que existen **varios registros** cuando en el JSON:\n\n1. Exista un arreglo (lista) de objetos, o  \n2. Haya múltiples objetos dentro de cualquier array del JSON.\n\nSi detectas un array con longitud ≥ 2, debes activar inmediatamente el **modo tabla Markdown**, sin excepciones.\n\nRegla estricta:\n- Cuando `json.length >= 2` o `json.data.length >= 2` o cualquier array similar tenga 2 o más elementos → salida en tabla obligatoria.\n- Nunca presentes múltiples elementos como párrafos o listas.\n\nEjemplo de activación:\nSi el JSON contiene algo como:\n[\n  { \"name\": \"custom\", \"type\": \"OT\", \"created\": \"2025-08-08\" },\n  { \"name\": \"N/A\", \"type\": \"OT\", \"created\": \"2025-08-08\" }\n]\n\nEntonces debes responder SIEMPRE con tabla.\n\n\n# 📌 Regla Obligatoria de Listados (Hard Rule)\n\n**Cuando el JSON contenga un array con dos o más objetos**, debes presentar la salida en una **tabla Markdown**, sin excepciones.\n\nCondiciones estrictas:\n- Se considera que hay “múltiples registros” cuando cualquier arreglo del JSON tenga longitud ≥ 2.\n- En ese caso, debes mostrar únicamente una tabla Markdown.\n- Máximo 5 columnas, seleccionadas por relevancia (Nombre, Categoría/Tipo, Estado, Fecha, Valor).\n- Si solo hay un registro (un solo objeto), responde en texto natural.\n- No puedes listar los elementos como párrafos, puntos o bloques separados. Únicamente tabla.\n\nEjemplo obligatorio:\n\n| Nombre | Categoría | Fecha de Creación |\n|--------|-----------|-------------------|\n| Producto A | OT | 2025-08-08 |\n| Producto B | CH | 2025-07-04 |\n\n\n* Usa **solo la lógica derivada del contenido del JSON**:  \n  - Deduce relaciones implícitas.  \n  - Si hay varios nombres similares, elige el más probable.  \n  - Si existe un vínculo evidente en los datos, interprétalo sin pedir más información técnica.\n\n---\n\n# ❗ Cuando falte información o el JSON esté vacío\nSi la información no existe, está incompleta o hubo un error:\n\nNO debes pedir:\n- nombres de tablas,  \n- nombres de columnas,  \n- estructuras internas,  \n- nada técnico relacionado con la base de datos.\n\nEn su lugar, debes:\n\n👉 **Indagar de manera funcional**, preguntando qué busca obtener el usuario.  \n\nEjemplos válidos:  \n> “¿Qué tipo de configuración deseas revisar?”  \n> “¿Qué información específica necesitas sobre estos productos?”  \n\nEjemplos NO permitidos:  \n⛔ “Dime el nombre de la tabla”.  \n⛔ “Falta la columna id_producto”.\n\n---\n\n# 📌 Criterios adicionales\n* Responde siempre en **lenguaje natural**, sin SQL ni estructuras técnicas, salvo que el usuario lo pida explícitamente.  \n* No Responder con UUID Internos del sistema.\n* Si existe suficiente información para construir una respuesta útil, **debes responder sin bloquearte**.  \n* Si el JSON contiene múltiples objetos de salida, prioriza la claridad en la presentación usando tablas Markdown.\n\n---\n\n# ✔ Objetivo Final\nTu misión es entregar respuestas útiles, naturales y comprensibles basadas en el JSON disponible.  \nCuando la información no sea suficiente, debes guiar al usuario para refinar su intención **en términos funcionales** (no técnicos).  \n\n\n\n###Historial Chat###\n```\n{{ $('UnificarMemoria').isExecuted ? $('UnificarMemoria').item.json.mensaje.join('\\n') : '' }}\n```"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        7600,
+        -128
+      ],
+      "id": "dff4195b-f26e-4ba0-af24-7eedbfae26c8",
+      "name": "LLM Response",
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "d9NbdAIVguOoogFf",
+          "mode": "list",
+          "cachedResultName": "Historial Modelo Agentes",
+          "cachedResultUrl": "/projects/y8X546LeUwRnIJz8/datatables/d9NbdAIVguOoogFf"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $('LogInsertadoInicial').last().json.id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "user_session": "={{ $('FieldsEntrada').last().json.sessionId }}",
+            "Intension": "={{ $('Intension').isExecuted? $('Intension').last().json.output : \"\" }}",
+            "Pregunta": "={{ $('FieldsEntrada').last().json.chatInput }}",
+            "DIN_SQL": "={{ $(\"DIN-SQL\").isExecuted ? $(\"DIN-SQL\").last().json.output : null }}",
+            "PlanningSql": "={{ $(\"DEA-SQL\").isExecuted ? $('DEA-SQL').last().json.output : null }}",
+            "GenerateSql": "={{ $(\"Generate Sql1\").isExecuted ? $('Generate Sql1').last().json.output : null }}",
+            "LLM_Response": "={{ $(\"LLM Response\").isExecuted ? $('LLM Response').last().json.output : $('Intension').last().json.output }}",
+            "Model_ia": "={{ $('FieldsEntrada').last().json.model_ia }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "user_session",
+              "displayName": "user_session",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Model_ia",
+              "displayName": "Model_ia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Pregunta",
+              "displayName": "Pregunta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Intension",
+              "displayName": "Intension",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "DIN_SQL",
+              "displayName": "DIN_SQL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "PlanningSql",
+              "displayName": "PlanningSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "GenerateSql",
+              "displayName": "GenerateSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "LLM_Response",
+              "displayName": "LLM_Response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ErrorSqlNumero",
+              "displayName": "ErrorSqlNumero",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        9104,
+        96
+      ],
+      "id": "af780285-a0a5-4353-91dc-6780fd8a53e2",
+      "name": "Log_Ejecuciones"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "result",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        6704,
+        -256
+      ],
+      "id": "62fefc38-75e7-4475-a8d8-5aaedeb28869",
+      "name": "ListarBd"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "d9NbdAIVguOoogFf",
+          "mode": "list",
+          "cachedResultName": "Historial Modelo Agentes",
+          "cachedResultUrl": "/projects/y8X546LeUwRnIJz8/datatables/d9NbdAIVguOoogFf"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "user_session": "={{ $json.sessionId }}",
+            "Pregunta": "={{ $json.chatInput }}",
+            "Model_ia": "={{ $('FieldsEntrada').item.json.model_ia }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "user_session",
+              "displayName": "user_session",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Model_ia",
+              "displayName": "Model_ia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Pregunta",
+              "displayName": "Pregunta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Intension",
+              "displayName": "Intension",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "DIN_SQL",
+              "displayName": "DIN_SQL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "PlanningSql",
+              "displayName": "PlanningSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "GenerateSql",
+              "displayName": "GenerateSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "LLM_Response",
+              "displayName": "LLM_Response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        784,
+        144
+      ],
+      "id": "59a7993f-a1c7-42e6-9781-b3b613e38cca",
+      "name": "LogInsertadoInicial"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      output: $('RespuestaTavus').isExecuted ?$('RespuestaTavus').first().json.output : $input.first().json.LLM_Response\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        9328,
+        96
+      ],
+      "id": "4637c644-4393-4f56-b5d6-3b84e0c83e42",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "d9NbdAIVguOoogFf",
+          "mode": "list",
+          "cachedResultName": "Historial Modelo Agentes",
+          "cachedResultUrl": "/projects/y8X546LeUwRnIJz8/datatables/d9NbdAIVguOoogFf"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "=id",
+              "keyValue": "={{ $('LogInsertadoInicial').item.json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        6704,
+        144
+      ],
+      "id": "e3b66b70-40c1-49ba-ad49-98b323f67024",
+      "name": "ObtenerUltimoError"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "d9NbdAIVguOoogFf",
+          "mode": "list",
+          "cachedResultName": "Historial Modelo Agentes",
+          "cachedResultUrl": "/projects/y8X546LeUwRnIJz8/datatables/d9NbdAIVguOoogFf"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $('LogInsertadoInicial').item.json.id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ErrorSqlNumero": "={{ $json.ErrorSqlNumero + 1 }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "user_session",
+              "displayName": "user_session",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Model_ia",
+              "displayName": "Model_ia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Pregunta",
+              "displayName": "Pregunta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Intension",
+              "displayName": "Intension",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "DIN_SQL",
+              "displayName": "DIN_SQL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "PlanningSql",
+              "displayName": "PlanningSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "GenerateSql",
+              "displayName": "GenerateSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "LLM_Response",
+              "displayName": "LLM_Response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "ErrorSqlNumero",
+              "displayName": "ErrorSqlNumero",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        7152,
+        288
+      ],
+      "id": "3387d77e-c8c7-48e8-bafd-ea83a1a2bb3e",
+      "name": "ActualizaError"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.ErrorSqlNumero }}",
+                    "rightValue": 3,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    },
+                    "id": "b8940bc1-4ddf-4ecc-b5ea-e5e8c8db9ea3"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "aa10d84b-7ae5-4853-a506-8ca6773cdd76",
+                    "leftValue": "={{ $json.ErrorSqlNumero }}",
+                    "rightValue": 3,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lt"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        6928,
+        96
+      ],
+      "id": "70d9e91a-65aa-4814-8972-94670bf8227f",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "sessionId"
+            },
+            {
+              "name": "action"
+            },
+            {
+              "name": "chatInput"
+            },
+            {
+              "name": "member_id"
+            },
+            {
+              "name": "parametros"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        336,
+        336
+      ],
+      "id": "db38c976-63df-47e9-a2c6-f2585bfaf359",
+      "name": "InitWorkFlow"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "81c81741-d97b-4890-a770-552be7c88430",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        112,
+        144
+      ],
+      "id": "a0cfcb6e-9da5-4bc2-9649-3a0b51033bb0",
+      "name": "Webhook",
+      "webhookId": "81c81741-d97b-4890-a770-552be7c88430",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "verify",
+        "token": "={{ $json.headers.authorization.split(' ')[1] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.jwt",
+      "typeVersion": 1,
+      "position": [
+        336,
+        144
+      ],
+      "id": "3df96aaa-1de2-477b-8cd8-c64d3e50c566",
+      "name": "JWT",
+      "credentials": {
+        "jwtAuth": {
+          "id": "kM4mCpb1FFvSWgkJ",
+          "name": "FailFastPrivate"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "select e.name from core.page c inner join system.entity_catal e on c.entity_catal_id = e.id \nwhere c.id in\n(\n    select distinct record from core.menu  where member_id = $1\n)\ngroup by e.name\nunion\nselect e.name from core.page c inner join core.member_entity_catal e on c.entity_catal_id = e.id \nwhere c.id in\n(\n    select distinct record from core.menu  where member_id = $1\n)\ngroup by e.name\n;\n",
+        "options": {
+          "queryReplacement": "={{ $('FieldsEntrada').item.json.member_id }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1232,
+        -16
+      ],
+      "id": "ddcf6391-fc91-4796-bab6-fa1a4fffaf5a",
+      "name": "Entidades del Sistema",
+      "alwaysOutputData": false,
+      "retryOnFail": false,
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1456,
+        -16
+      ],
+      "id": "961e6756-b2ce-4b9c-ba64-da196bd0d5bf",
+      "name": "Unificar Lista de Tablas"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('FieldsEntrada').item.json.sessionId }}_{{ $('FieldsEntrada').item.json.member_id }}_intension"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        3872,
+        416
+      ],
+      "id": "692f1987-2bd1-4b40-aa3d-81e699ee5970",
+      "name": "Memoria DinSql",
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Pregunta Usuario:```{{ \n$('Intension').isExecuted ?\n$('Intension').item.json.output.replaceAll('@*SqlGenerator*@',''):\n$('FieldsEntrada').item.json.chatInput}}```\n\n### **Pregunta Descompuesta**\n```text\n{{ $('DIN-SQL').isExecuted ? $('DIN-SQL').item.json.output : \"\" }}\n```\n### **Esquema de BD y Ejemplos**\n```\n{{ $json.pageContent || \"\" }}\n```\n",
+        "options": {
+          "systemMessage": "=Eres un **Agente Planeador de SQL**, especializado en analizar preguntas del usuario y generar **planeaciones SQL estrictamente basadas en los esquemas de base de datos proporcionados**.\n\nTu tarea es **planear** cómo responder la pregunta del usuario usando únicamente las tablas y columnas existentes en el esquema.\n\nBajo ninguna circunstancia puedes inventar tablas, columnas, relaciones, alias especiales, funciones, tipos de datos o esquemas que NO estén explícitamente en el **Esquema de BD y Ejemplos**.\n\n---\n\n## 🔒 **REGLAS ESTRICTAS (NO ROMPER)**\n\n1. **NO inventes columnas, NO inventes tablas, NO inventes esquemas.**\n\n   * Si algo no existe en el esquema, no lo uses.\n   * Si no está claro, simplemente no lo incluyas.\n\n2. **La base de datos es multiempresa.**\n   Siempre que exista `member_id`, debes usarlo como filtro:\n\n   ```sql\n   WHERE member_id = $1 and audit_status<>'D'\n   LIMIT 100\n   ```\n\n3. Si la tabla **no** tiene columna `member_id`, aplica igualmente un filtro de `LIMIT 100` si la pregunta no pide explícitamente todos los resultados.\n\n4. **Debes identificar y listar cuáles tablas y columnas del esquema son relevantes para responder la pregunta.**\n\n5. Si la pregunta NO se puede responder con el esquema dado, debes decirlo explícitamente:\n\n   > \"No se puede resolver con las tablas y columnas disponibles en el esquema.\"\n\n6. No mostrar registros en estado borrado es decir debes complementar el filtro con esta condicion ```\"audit_status\" <> \"D\"``` *Nunca olvidar esta condicion*\n---\n\n### 🔍 Regla de búsqueda de nombres (order-insensitive matching)\n\nSi el usuario realiza una búsqueda de texto que incluya nombres propios, apellidos o cadenas con múltiples palabras:\n\n1. **Separar la cadena de búsqueda en tokens** (por espacios).\n2. **Generar condiciones de búsqueda parciales y no sensibles al orden**, usando:\n   - ILIKE '%token1%'\n   - ILIKE '%token2%'\n   - …\n3. **Combinar todas las condiciones con AND**, de modo que el registro debe contener todos los tokens, aunque estén en otro orden.\n\nEjemplo:\nEntrada del usuario: \"Martin Santos\"\nSQL interpretado:\nWHERE unaccent(nombre_completo) ILIKE '%martin%' \n  AND unaccent(nombre_completo) ILIKE '%santos%'\n\nEsto debe coincidir con:\n- \"Santos Martin\"\n- \"Martin A. Santos\"\n- \"Santos, Martin Alejandro\"\n- \"Martin S.\"\n\n\n## 📤 **RETORNO OBLIGATORIO**\n\nDebes retornar SIEMPRE lo siguiente:\n\n### **1. Cuatro (4) posibles queries SQL válidos**, cada uno acompañado de su explicación de planeación:\n\n* Cómo responde la pregunta.\n* Qué tablas usa.\n* Por qué esas columnas son necesarias.\n* Deben ser **100% válidos basados únicamente en el esquema proporcionado**.\n\n### **2. Aplicar reglas de filtrado:**\n\n* Si la tabla tiene `member_id` → usar el filtro obligatorio.\n* Si no tiene `member_id` → agregar `LIMIT 100`, a menos que la pregunta pida algo distinto.\n* Agregar siempre el filtro `audit_status<>'D'`\n\n### **3. Lista de tablas y columnas relevantes**\n\nUn bloque que muestre qué partes del esquema fueron utilizadas.\n\n### **4. Sin inventar nada.**\n\nNada fuera del esquema proporcionado."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        5776,
+        -208
+      ],
+      "id": "f07b8ee0-976c-4c51-a252-07085cb7fcb0",
+      "name": "DEA-SQL",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        4608,
+        32
+      ],
+      "id": "94ff05e4-07fb-4766-907c-f64961ee7bcd",
+      "name": "models/gemini-embedding-001",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "r1walQcO9sv54HJH",
+          "name": "FailFastGemini MSM 300K"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1c26a66c-8e5a-4d15-a57c-017711578804",
+              "leftValue": "={{ $json.score }}",
+              "rightValue": 0.3,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            },
+            {
+              "id": "47b45bce-2eaa-425f-8488-4dc3d46733bd",
+              "leftValue": "={{ $('UnirContextos').all().filter(item => item.json.score < 0.10).length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        5104,
+        160
+      ],
+      "id": "94dc4447-173c-4c64-936e-a6616efc405a",
+      "name": "FiltroEmbeddings"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('FiltroEmbeddings').isExecuted? $('FiltroEmbeddings').all().length : 11 }}",
+                    "rightValue": 10,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lt"
+                    },
+                    "id": "b3b8875a-4b0d-4041-badc-f8d502240c59"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "76b19744-9f74-413a-a0f6-32908735bc5c",
+                    "leftValue": "={{ $('FiltroEmbeddings').isExecuted? $('FiltroEmbeddings').all().length : 10 }}",
+                    "rightValue": 10,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a953ec78-2d54-44eb-97da-7bf09cae21ea",
+                    "leftValue": "={{\n$(\"ObtenerUltimoError\").isExecuted ? \n($(\"ObtenerUltimoError\").item.json.ErrorSqlNumero *1) : \n3\n}}",
+                    "rightValue": 3,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        7120,
+        -368
+      ],
+      "id": "85121e96-0020-4919-9a85-327218a644be",
+      "name": "DecideGuardarPregunta"
+    },
+    {
+      "parameters": {
+        "source": "googleSheets",
+        "documentId": {
+          "__rl": true,
+          "value": "1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI",
+          "mode": "list",
+          "cachedResultName": "dataset_sql_40_med_complex",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 142234394,
+          "mode": "list",
+          "cachedResultName": "Medianas_y_Complejas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit#gid=142234394"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "N8nLLmResponse"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.evaluationTrigger",
+      "typeVersion": 4.7,
+      "position": [
+        112,
+        -64
+      ],
+      "id": "556dbfb7-e2a0-4953-85ee-351731e7dab6",
+      "name": "EvaluationTrigger",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tjUyK7yIgQO9oUOK",
+          "name": "MartinAccount"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "source": "googleSheets",
+        "documentId": {
+          "__rl": true,
+          "value": "1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI",
+          "mode": "list",
+          "cachedResultName": "dataset_sql_40_med_complex",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 142234394,
+          "mode": "list",
+          "cachedResultName": "Medianas_y_Complejas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit#gid=142234394"
+        },
+        "outputs": {
+          "values": [
+            {
+              "outputName": "N8nSqlGenerated",
+              "outputValue": "={{ $('FieldsEntrada').item.json.action }}"
+            },
+            {
+              "outputName": "N8nDINSql",
+              "outputValue": "={{ $(\"DIN-SQL\").isExecuted ? $(\"DIN-SQL\").last().json.output : null }}"
+            },
+            {
+              "outputName": "N8nLLmResponse",
+              "outputValue": "={{ $(\"LLM Response\").isExecuted ? $('LLM Response').last().json.output : $('Intension').last().json.output }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.evaluation",
+      "typeVersion": 4.8,
+      "position": [
+        9776,
+        96
+      ],
+      "id": "7b35bd75-e90c-4c37-85f7-26fd1702d1fa",
+      "name": "Evaluation",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tjUyK7yIgQO9oUOK",
+          "name": "MartinAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        336,
+        -64
+      ],
+      "id": "afe6d5e4-f627-4557-bb08-0a1889181b20",
+      "name": "Wait",
+      "webhookId": "168f28d4-5818-4d23-8b8e-6f35486a83a3",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('FieldsEntrada').item.json.action.trim()  }}",
+                    "rightValue": "Tavus",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "9f1d6ff0-e801-47af-b90e-04ae444b9422"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b5fa5eeb-26df-4639-8b00-15e62d2c2580",
+                    "leftValue": "={{ $('FieldsEntrada').item.json.action.trim()  }}",
+                    "rightValue": "Tavus",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        8528,
+        -128
+      ],
+      "id": "9d849f68-85ad-45fb-8261-0eae13a2c35d",
+      "name": "Switch2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('LLM Response').item.json.output }}",
+        "options": {
+          "systemMessage": "=Transforma cualquier *input* que ingrese el usuario en texto plano, claro y fácil de leer para un modelo de Text-to-Speech.\n\nReglas de respuesta:\n\n1. **No incluyas introducciones ni explicaciones.**\n\n   * No uses frases como: *“Claro, aquí tienes…”*, *“Este es el texto…”*, etc.\n   * La respuesta debe ser **únicamente el texto transformado**.\n\n2. **Usa un tono conversacional y natural.**\n\n3. **Si el contenido incluye una lista**, formatea cada elemento así:\n\n   * *Primero:* xxx\n   * *Segundo:* xxx\n   * *Tercero:* xxx\n   * etc.\n\n4. No envies como texto nunca los string de tipo uuid debido a que no son entendibles para un usuario final.\n\n5. Como la respuesta va a ser Leida por un modelo de Text-to-Speech debes entregar un texto corto respondiendo la pregunta para que no sea tan extenso el contenido a no ser que el usuario solicite mas informacion."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        8752,
+        -256
+      ],
+      "id": "f8fb30c3-047a-4ed9-acda-df46854f0f3c",
+      "name": "RespuestaTavus",
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {
+        "modelName": "={{ $('FieldsEntrada').last().json.model_ia }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        8832,
+        -32
+      ],
+      "id": "85e4eb69-281b-43ae-be7f-732569220bd4",
+      "name": "Gemoni Flash 2.5 Flash Lite6",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "r1walQcO9sv54HJH",
+          "name": "FailFastGemini MSM 300K"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('FieldsEntrada').item.json.sessionId }}_{{ $('FieldsEntrada').item.json.member_id }}_global",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        8256,
+        -32
+      ],
+      "id": "b5e5b830-9b1c-46c2-a9f9-8f1eacd47c6c",
+      "name": "MemoriaGlobal",
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "select concat(message->'type',': ',message->>'content') mensaje from (\n    select * from public.n8n_chat_histories \n    where session_id='{{ $('FieldsEntrada').item.json.sessionId }}_{{ $('FieldsEntrada').item.json.member_id }}_global'\n    order by id desc limit $1\n) as a order by id asc;",
+        "options": {
+          "queryReplacement": "=10"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1232,
+        304
+      ],
+      "id": "9873d45e-4639-43ff-b461-9c7e5a2c91a8",
+      "name": "ObtenerMemoria",
+      "alwaysOutputData": false,
+      "retryOnFail": false,
+      "credentials": {
+        "postgres": {
+          "id": "YhYz4hY2iLbGrdwr",
+          "name": "MainFailFast"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "mensaje"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1456,
+        240
+      ],
+      "id": "a1d0e85e-b0da-4a3b-b32c-6c2c2bf4e499",
+      "name": "UnificarMemoria"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "fieldsToMatchString": "name, mensaje",
+        "joinMode": "keepEverything",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1680,
+        144
+      ],
+      "id": "97f14007-6f89-4df2-805d-42dd3e79199b",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1904,
+        144
+      ],
+      "id": "0b8585bb-74df-4706-bfba-a078f0f4b8c6",
+      "name": "JoinMemoryTables"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "messages": {
+          "messageValues": [
+            {
+              "type": "user",
+              "message": "={{ $('FieldsEntrada').item.json.chatInput }}"
+            },
+            {
+              "type": "ai",
+              "message": "={{ $json.output }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        2928,
+        160
+      ],
+      "id": "3f205ac3-07ab-4d62-a147-84e5485a945a",
+      "name": "Chat Memory Manager",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "messages": {
+          "messageValues": [
+            {
+              "type": "ai",
+              "message": "={{ $json.output }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        8176,
+        -256
+      ],
+      "id": "396d98d2-4992-49d5-926e-6f3b3619ddce",
+      "name": "Chat Memory Insert IA",
+      "executeOnce": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "53497db1-c95c-407b-b1e2-7b20388b0c94",
+              "name": "N8nSqlGenerated",
+              "value": "={{ $(\"Generate Sql1\").isExecuted ? $('Generate Sql1').last().json.output : null }}",
+              "type": "string"
+            },
+            {
+              "id": "52da6975-21ca-4ea2-af38-3038efe27173",
+              "name": "N8nDINSql",
+              "value": "={{ $(\"DIN-SQL\").isExecuted ? $(\"DIN-SQL\").last().json.output : null }}",
+              "type": "string"
+            },
+            {
+              "id": "bfe6b76f-e707-4a00-a559-f45a464754e9",
+              "name": "N8nLLmResponse",
+              "value": "={{ $(\"LLM Response\").isExecuted ? $('LLM Response').last().json.output : $('Intension').last().json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "226d4073-65df-4059-aa92-1d623b7938d9",
+              "name": "N8nErrorsSql",
+              "value": "={{ $('Log_Ejecuciones').isExecuted ? $('Log_Ejecuciones').item.json.ErrorSqlNumero : 0 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        10224,
+        96
+      ],
+      "id": "af58a1e8-d16d-42d7-922d-6be1a2287cca",
+      "name": "SalidaEvaluate"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d7235fd8-9354-4182-9ccf-9b4d543f3b9e",
+              "leftValue": "={{ $('FieldsEntrada').last().json.action }}",
+              "rightValue": "Evaluate",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        10000,
+        96
+      ],
+      "id": "851fd19b-1a97-473f-9958-a4bad477fadc",
+      "name": "IfEvaluated"
+    },
+    {
+      "parameters": {
+        "public": true,
+        "authentication": "basicAuth",
+        "initialMessages": "Hola, Soy el Agente de PNL a SQL.",
+        "options": {
+          "responseMode": "responseNode"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        336,
+        528
+      ],
+      "id": "2fb0224d-18aa-4100-bc94-32a97d18661b",
+      "name": "Chat",
+      "webhookId": "798ae5cc-2580-4203-9fe5-62f1616a59b7",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "6RXWlHwDULcvjTRt",
+          "name": "UsertestPNL"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "671215d8-0d33-4b30-84c5-d9bc7a8c54dd",
+              "leftValue": "={{ $('FieldsEntrada').item.json.parametros }}",
+              "rightValue": "[Memoria]",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1008,
+        240
+      ],
+      "id": "6510dd75-3ac4-4ef9-95e2-e5c547305e41",
+      "name": "IfMemoria"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "671215d8-0d33-4b30-84c5-d9bc7a8c54dd",
+              "leftValue": "={{ $('FieldsEntrada').item.json.parametros }}",
+              "rightValue": "[Memoria]",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2704,
+        272
+      ],
+      "id": "7af86d77-2b36-42ad-a96d-3ddc50b5e49d",
+      "name": "IfMemoria1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "671215d8-0d33-4b30-84c5-d9bc7a8c54dd",
+              "leftValue": "={{ $('FieldsEntrada').item.json.parametros }}",
+              "rightValue": "[Memoria]",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        4304,
+        48
+      ],
+      "id": "2c631884-a6e8-41a6-a287-656f213fcf9f",
+      "name": "IfMemoria2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "671215d8-0d33-4b30-84c5-d9bc7a8c54dd",
+              "leftValue": "={{ $('FieldsEntrada').item.json.parametros }}",
+              "rightValue": "[Memoria]",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        6928,
+        -256
+      ],
+      "id": "729ca4ac-e719-4b01-94a8-cf4933d95332",
+      "name": "IfMemoria3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "671215d8-0d33-4b30-84c5-d9bc7a8c54dd",
+              "leftValue": "={{ $('FieldsEntrada').item.json.parametros }}",
+              "rightValue": "[Memoria]",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        7952,
+        -128
+      ],
+      "id": "9afc5c68-03d4-49d1-879e-4a8c1e00e692",
+      "name": "IfMemoria4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "671215d8-0d33-4b30-84c5-d9bc7a8c54dd",
+              "leftValue": "={{ $('FieldsEntrada').item.json.parametros }}",
+              "rightValue": "[Intension]",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2128,
+        144
+      ],
+      "id": "1c488991-6736-48bc-8c39-0854ee52cbf1",
+      "name": "IfIntension"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "671215d8-0d33-4b30-84c5-d9bc7a8c54dd",
+              "leftValue": "={{ $('FieldsEntrada').item.json.parametros }}",
+              "rightValue": "[Din]",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3504,
+        16
+      ],
+      "id": "02fdb217-931e-4c44-ad46-70af74df8b8f",
+      "name": "IfIntension1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "671215d8-0d33-4b30-84c5-d9bc7a8c54dd",
+              "leftValue": "={{ $('FieldsEntrada').item.json.parametros }}",
+              "rightValue": "[Rag]",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "da36391a-b759-4856-8b2f-95e5244d9c5a",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3952,
+        -80
+      ],
+      "id": "3aea7951-1813-48d6-953d-49bb9abe4ae8",
+      "name": "IfRag"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "671215d8-0d33-4b30-84c5-d9bc7a8c54dd",
+              "leftValue": "={{ $('FieldsEntrada').item.json.parametros }}",
+              "rightValue": "[Dea]",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "da36391a-b759-4856-8b2f-95e5244d9c5a",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        5552,
+        -96
+      ],
+      "id": "d459f61e-1e67-41db-ad1e-02112797b031",
+      "name": "IfDea"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "workflow.failfast.com.co",
+            "connection": "keep-alive",
+            "content-length": "86",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMmZkNDFjY2QtMGNkZi00MzUxLWIzOTUtNDFkNzczMDI2OWRkIiwibWVtYmVyX2lkIjoiOTE1YzZmNGItZThkZS00NjdmLTk1ZWEtN2IzNzlmMTlmYzExIiwiZXhwIjoxNzYzNjk2NjQzLjg4NjQ3NywiaWF0IjoxNzYzNTIxNDQzLjg4NjQ3NywiaXNzIjoic3RvbmVfd2ViIn0.f0AlmpOBty0DGdt8MAUau2fL3OLZgnJnIiij-Vrq9tE",
+            "sec-ch-ua": "\"Chromium\";v=\"142\", \"Google Chrome\";v=\"142\", \"Not_A Brand\";v=\"99\"",
+            "x-auth": "registroAppSOAPServiceClienteServidorIISSQLnewSTONE",
+            "sec-ch-ua-mobile": "?0",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json",
+            "origin": "https://app.failfast.com.co",
+            "sec-fetch-site": "same-site",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "https://app.failfast.com.co/",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "en-CO,en;q=0.9,es-CO;q=0.8,es;q=0.7,en-US;q=0.6"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "query": "reintenta indicarme los registros mas recientes de empleados en la empresa"
+          },
+          "webhookUrl": "https://workflow.failfast.com.co/webhook/81c81741-d97b-4890-a770-552be7c88430",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "InitWorkFlow": [
+      {
+        "json": {
+          "sessionId": "TestMultiturn1",
+          "action": "Evaluate",
+          "chatInput": "Dame el nombre de los ultimos 5",
+          "member_id": "915c6f4b-e8de-467f-95ea-7b379f19fc11",
+          "parametros": "[Rag],[Memoria],[Intension],[Din],[Dea]"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Gemoni Flash 2.5 Flash Lite": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Intension",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FieldsEntrada": {
+      "main": [
+        [
+          {
+            "node": "LogInsertadoInicial",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DIN-SQL": {
+      "main": [
+        [
+          {
+            "node": "IfRag",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intension": {
+      "main": [
+        [
+          {
+            "node": "IfMemoria1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "IfIntension1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log_Ejecuciones",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemoni Flash 2.5 Flash Lite1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "DIN-SQL",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemoni Flash 2.5 Flash Lite3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "DEA-SQL",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VectorTable": {
+      "main": [
+        [
+          {
+            "node": "UnirContextos",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "VectorQuestions": {
+      "main": [
+        [
+          {
+            "node": "UnirContextos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UnirContextos": {
+      "main": [
+        [
+          {
+            "node": "FiltroEmbeddings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UnirLista": {
+      "main": [
+        [
+          {
+            "node": "IfDea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemoni Flash 2.5 Flash Lite4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Sql1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Sql1": {
+      "main": [
+        [
+          {
+            "node": "EjecutarSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'Agente BD Embeddings Sql Query'": {
+      "main": [
+        [
+          {
+            "node": "LLM Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EjecutarSql": {
+      "main": [
+        [
+          {
+            "node": "ListarBd",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ObtenerUltimoError",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemoni Flash 2.5 Flash Lite5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "LLM Response",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Response": {
+      "main": [
+        [
+          {
+            "node": "IfMemoria4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        [
+          {
+            "node": "Evaluation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log_Ejecuciones": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ListarBd": {
+      "main": [
+        [
+          {
+            "node": "IfMemoria3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LogInsertadoInicial": {
+      "main": [
+        [
+          {
+            "node": "Entidades del Sistema",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IfMemoria",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObtenerUltimoError": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ActualizaError": {
+      "main": [
+        [
+          {
+            "node": "Generate Sql1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "LLM Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ActualizaError",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "InitWorkFlow": {
+      "main": [
+        [
+          {
+            "node": "FieldsEntrada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "JWT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JWT": {
+      "main": [
+        [
+          {
+            "node": "FieldsEntrada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Entidades del Sistema": {
+      "main": [
+        [
+          {
+            "node": "Unificar Lista de Tablas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unificar Lista de Tablas": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memoria DinSql": {
+      "ai_memory": [
+        [
+          {
+            "node": "DIN-SQL",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DEA-SQL": {
+      "main": [
+        [
+          {
+            "node": "Generate Sql1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "models/gemini-embedding-001": {
+      "ai_embedding": [
+        [
+          {
+            "node": "VectorTable",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "VectorQuestions",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FiltroEmbeddings": {
+      "main": [
+        [
+          {
+            "node": "UnirLista",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DecideGuardarPregunta": {
+      "main": [
+        [
+          {
+            "node": "Call 'Agente BD Embeddings Sql Query'",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "LLM Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "LLM Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EvaluationTrigger": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "FieldsEntrada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "RespuestaTavus",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log_Ejecuciones",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemoni Flash 2.5 Flash Lite6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "RespuestaTavus",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RespuestaTavus": {
+      "main": [
+        [
+          {
+            "node": "Log_Ejecuciones",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MemoriaGlobal": {
+      "ai_memory": [
+        [
+          {
+            "node": "Chat Memory Manager",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "Chat Memory Insert IA",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObtenerMemoria": {
+      "main": [
+        [
+          {
+            "node": "UnificarMemoria",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UnificarMemoria": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "JoinMemoryTables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JoinMemoryTables": {
+      "main": [
+        [
+          {
+            "node": "IfIntension",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Memory Manager": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Memory Insert IA": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluation": {
+      "main": [
+        [
+          {
+            "node": "IfEvaluated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IfEvaluated": {
+      "main": [
+        [
+          {
+            "node": "SalidaEvaluate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat": {
+      "main": [
+        [
+          {
+            "node": "FieldsEntrada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IfMemoria": {
+      "main": [
+        [
+          {
+            "node": "ObtenerMemoria",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "UnificarMemoria",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IfMemoria1": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Manager",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IfMemoria2": {
+      "main": [
+        [
+          {
+            "node": "VectorQuestions",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "UnirContextos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IfMemoria3": {
+      "main": [
+        [
+          {
+            "node": "DecideGuardarPregunta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "LLM Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IfMemoria4": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Insert IA",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IfIntension": {
+      "main": [
+        [
+          {
+            "node": "Intension",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IfIntension1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IfIntension1": {
+      "main": [
+        [
+          {
+            "node": "DIN-SQL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IfRag",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IfRag": {
+      "main": [
+        [
+          {
+            "node": "IfMemoria2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "VectorTable",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IfDea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IfDea": {
+      "main": [
+        [
+          {
+            "node": "DEA-SQL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Generate Sql1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "any"
+  },
+  "versionId": "f8783c53-ced6-4fdc-8513-3b8e42d2e3fd",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5f3013ca596510d58934f60e5810b87927c396fd561c71e512ceaba645263533"
+  },
+  "id": "6NxRE7RhF413NZfo",
+  "tags": [
+    {
+      "updatedAt": "2025-09-01T00:25:05.517Z",
+      "createdAt": "2025-09-01T00:25:05.517Z",
+      "id": "yuTs3zBwr1JeB0HT",
+      "name": "Maestria"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn72",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3247,
+     "msg": "Quiero saber, por cada metodo de pago, la suma del valor neto y la cantidad de pos - session payment asociados; incluye el nombre del metodo de pago."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3248,
+     "msg": "Y lo otro también, porfa."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3249,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3250,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3251,
+     "msg": "¿Y tú quién eres exactamente?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn73",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3252,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3253,
+     "msg": "¿Cuántos integration - syncronize configuration hay por cada valor de la columna provider_id?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3254,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3255,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3256,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 3257,
+     "msg": "Ordena ese resultado de mayor a menor."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn74",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3258,
+     "msg": "¿Cuántos fixed_asset - group revaluation f class tengo por cada cuenta contable? Muéstrame el nombre del cuenta contable. Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3259,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3260,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3261,
+     "msg": "Ahora, cambiando de tema: ¿Cuántos clientes tengo por cada tipo de descuento? Muéstrame el nombre del tipo de descuento. Cuando puedas."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3262,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3263,
+     "msg": "Ordena ese resultado de mayor a menor."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn75",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3264,
+     "msg": "Oye, ¿cuántos cuentas contables tienen 'OFICINA' dentro de su nombre? Muchas gracias."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3265,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3266,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3267,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3268,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3269,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3270,
+     "msg": "Dame los datos."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn76",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3271,
+     "msg": "Necesito un reporte de libros de activos fijos: la suma de la depreciacion acumulada y el número de registros, agrupado por cada valor de la columna revaluation_distribution_id. Cuando puedas."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3272,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3273,
+     "msg": "Y en vez de la suma, dame el promedio."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3274,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3275,
+     "msg": "Ahora, cambiando de tema: regálame, agrupado por cada valor de la columna service_order_detail_id, el total del precio y la cantidad de transporte - service order detail additional cost. Por favor."
+    },
+    {
+     "turn": 6,
+     "excel_id": 3276,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3277,
+     "msg": "Ordena ese resultado de mayor a menor."
+    }
+   ]
+  }
+ ]
+}

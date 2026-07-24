@@ -1,0 +1,214 @@
+{
+ "conversations": [
+  {
+   "session": "TestMultiturn97",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3431,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3432,
+     "msg": "Lista los cuentas por cobrar - conditional discount activos, solo necesito el nombre. Muchas gracias."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3433,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3434,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3435,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 3436,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 7,
+     "excel_id": 3437,
+     "msg": "¿Qué otras cosas puedes consultar de mi empresa?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 3438,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 9,
+     "excel_id": 3439,
+     "msg": "Dame los datos."
+    },
+    {
+     "turn": 10,
+     "excel_id": 3440,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn98",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3441,
+     "msg": "¿Cuál es la suma total del total credito en comprobantes contables? Es urgente."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3442,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3443,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3444,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3445,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 3446,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3447,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn99",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3448,
+     "msg": "Dame el total del valor del impuesto de los cuentas por pagar - note tax detail cuyo cuenta contable contiene 'PROVEEDOR' en el nombre, agrupado por cuenta contable. Por favor."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3449,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3450,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3451,
+     "msg": "Y lo otro también, porfa."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3452,
+     "msg": "¿Y tú quién eres exactamente?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 3453,
+     "msg": "Compáralo."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3454,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 8,
+     "excel_id": 3455,
+     "msg": "De ese resultado, ¿cuál tiene el valor más alto?"
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn100",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3456,
+     "msg": "Hola, buenos días."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3457,
+     "msg": "¿Cuál es el saldo más bajo registrado en saldos por pagar? Por favor."
+    },
+    {
+     "turn": 3,
+     "excel_id": 3458,
+     "msg": "¿Ese número te parece normal para un negocio como el mío?"
+    },
+    {
+     "turn": 4,
+     "excel_id": 3459,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 5,
+     "excel_id": 3460,
+     "msg": "Oye, ¿y me recomiendas algo para almorzar hoy?"
+    },
+    {
+     "turn": 6,
+     "excel_id": 3461,
+     "msg": "Ahora, cambiando de tema: ¿Cuántos core - cancellation record hay por cada valor de la columna cancellation_id? Gracias."
+    },
+    {
+     "turn": 7,
+     "excel_id": 3462,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    }
+   ]
+  },
+  {
+   "session": "TestMultiturn101",
+   "turns": [
+    {
+     "turn": 1,
+     "excel_id": 3463,
+     "msg": "Indícame la cantidad de detalles de movimiento contable junto con la suma del valor credito y del valor debito. Cuando puedas."
+    },
+    {
+     "turn": 2,
+     "excel_id": 3464,
+     "msg": "¿Cuántos registros dio ese resultado en total?"
+    },
+    {
+     "turn": 3,
+     "excel_id": 3465,
+     "msg": "De ese resultado, muéstrame solo los primeros 5."
+    },
+    {
+     "turn": 4,
+     "excel_id": 3466,
+     "msg": "Listo, muchas gracias, justo lo que necesitaba."
+    },
+    {
+     "turn": 5,
+     "excel_id": 3467,
+     "msg": "Ordena ese resultado de mayor a menor."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1023 @@
+{
+  "name": "ConsolidateMetrics",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "6NxRE7RhF413NZfo",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/6NxRE7RhF413NZfo",
+          "cachedResultName": "Agente BD Tesis"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sessionId": "={{ $json.sessionId }}",
+            "action": "Evaluate",
+            "chatInput": "={{ $json.chatInput }}",
+            "member_id": "={{ $json.member_id }}",
+            "parametros": "={{ $json.Parametros }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "sessionId",
+              "displayName": "sessionId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "action",
+              "displayName": "action",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "chatInput",
+              "displayName": "chatInput",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "member_id",
+              "displayName": "member_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "parametros",
+              "displayName": "parametros",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        32,
+        80
+      ],
+      "id": "c515c626-400b-4ea9-9a47-5cc312718345",
+      "name": "Call 'Agente BD Tesis'"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI",
+          "mode": "list",
+          "cachedResultName": "dataset_sql_40_med_complex",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 142234394,
+          "mode": "list",
+          "cachedResultName": "Medianas_y_Complejas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit#gid=142234394"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": "E",
+            "MetricSqlGenerated": "={{  $('LlmEvaluate').isExecuted? $('LlmEvaluate').last().json.MetricSqlGenerated:'' }}",
+            "MetricDINSql": "={{  $('LlmEvaluate').isExecuted? $('LlmEvaluate').last().json.MetricDINSql:'' }}",
+            "WhyMetricSqlGenerated": "={{  $('LlmEvaluate').isExecuted? $('LlmEvaluate').last().json.WhyMetricSqlGenerated:'' }}",
+            "WhyMetricDINSql": "={{  $('LlmEvaluate').isExecuted?  $('LlmEvaluate').last().json.WhyMetricDINSql :'' }}",
+            "N8nSqlGenerated": "={{ $('Call \\'Agente BD Tesis\\'').last().json.N8nSqlGenerated }}",
+            "N8nDINSql": "={{ $('Call \\'Agente BD Tesis\\'').last().json.N8nDINSql }}",
+            "N8nLLmResponse": "={{ $('Call \\'Agente BD Tesis\\'').last().json.N8nLLmResponse }}",
+            "ComponentMatching": "={{ $('ComponentMatching').isExecuted? $('ComponentMatching').last().json.ComponentMatching : '' }}",
+            "CM_select": "={{ $('ComponentMatching').isExecuted? $('ComponentMatching').last().json.CM_select  : ''}}",
+            "CM_where": "={{ $('ComponentMatching').isExecuted? $('ComponentMatching').last().json.CM_where  : ''}}",
+            "CM_group_by": "={{ $('ComponentMatching').isExecuted? $('ComponentMatching').last().json.CM_group_by  : ''}}",
+            "CM_order_by": "={{ $('ComponentMatching').isExecuted? $('ComponentMatching').last().json.CM_order_by  : ''}}",
+            "CM_keywords": "={{ $('ComponentMatching').isExecuted? $('ComponentMatching').last().json.CM_keywords : ''}}",
+            "ExecutionAccuracy": "={{ $('ExecitionAccuracy').isExecuted? $('ExecitionAccuracy').last().json.ExecutionAccuracy : '' }}",
+            "ExecutionAccuracyTotal": "={{ $('ExecitionAccuracy').isExecuted? $('ExecitionAccuracy').last().json.ExecutionAccuracyTotal : '' }}",
+            "N8nTimeToResponse": "={{\n  new Date($('EndDatabase').last().json.EndDatabase).getTime()\n  -\n  new Date($('InitDatabase').last().json.InitDatabase).getTime()\n}}\n",
+            "row_number": "={{ $('EndDatabase').last().json.row_number }}",
+            "N8nErrorsSql": "={{ $('Call \\'Agente BD Tesis\\'').last().json.N8nErrorsSql }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Parametros",
+              "displayName": "Parametros",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "chatInput",
+              "displayName": "chatInput",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "sessionId",
+              "displayName": "sessionId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "member_id",
+              "displayName": "member_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Clasificacion",
+              "displayName": "Clasificacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Pregunta Descompuesta",
+              "displayName": "Pregunta Descompuesta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tablas y columnas (DDL)",
+              "displayName": "Tablas y columnas (DDL)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "SQL",
+              "displayName": "SQL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "N8nSqlGenerated",
+              "displayName": "N8nSqlGenerated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "N8nDINSql",
+              "displayName": "N8nDINSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "N8nLLmResponse",
+              "displayName": "N8nLLmResponse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "N8nTimeToResponse",
+              "displayName": "N8nTimeToResponse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "N8nErrorsSql",
+              "displayName": "N8nErrorsSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "MetricSqlGenerated",
+              "displayName": "MetricSqlGenerated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "MetricDINSql",
+              "displayName": "MetricDINSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "WhyMetricSqlGenerated",
+              "displayName": "WhyMetricSqlGenerated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "WhyMetricDINSql",
+              "displayName": "WhyMetricDINSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ComponentMatching",
+              "displayName": "ComponentMatching",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CM_select",
+              "displayName": "CM_select",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CM_where",
+              "displayName": "CM_where",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CM_group_by",
+              "displayName": "CM_group_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CM_order_by",
+              "displayName": "CM_order_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CM_keywords",
+              "displayName": "CM_keywords",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ExecutionAccuracy",
+              "displayName": "ExecutionAccuracy",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ExecutionAccuracyTotal",
+              "displayName": "ExecutionAccuracyTotal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1376,
+        368
+      ],
+      "id": "9e65a1c0-355e-4c80-a99d-6137f290d21b",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tjUyK7yIgQO9oUOK",
+          "name": "MartinAccount"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        928,
+        48
+      ],
+      "id": "9e7c44d0-9f56-4129-a036-69f35de1d7f8",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "wYUYhUZw9KbrSm8u",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/wYUYhUZw9KbrSm8u",
+          "cachedResultName": "GenerateMetrics_ExecitionAccuracy"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "SQL": "={{ $('Loop Over Items').item.json.SQL }}",
+            "N8nSqlGenerated": "={{ $json.N8nSqlGenerated }}",
+            "member_id": "={{ $('Loop Over Items').item.json.member_id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "SQL",
+              "displayName": "SQL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "N8nSqlGenerated",
+              "displayName": "N8nSqlGenerated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "member_id",
+              "displayName": "member_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        704,
+        176
+      ],
+      "id": "b42efea4-a9b0-426b-b12e-136c3f5cea06",
+      "name": "ExecitionAccuracy"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "iXPItA1NNQCTc063",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/iXPItA1NNQCTc063",
+          "cachedResultName": "GenerateMetricsLLM Testing"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Pregunta Descompuesta": "={{ $('Loop Over Items').item.json['Pregunta Descompuesta'] }}",
+            "SQL": "={{ $('Loop Over Items').item.json.SQL }}",
+            "N8nDINSql": "={{ $json.N8nDINSql }}",
+            "N8nSqlGenerated": "={{ $json.N8nSqlGenerated }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Pregunta Descompuesta",
+              "displayName": "Pregunta Descompuesta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "N8nDINSql",
+              "displayName": "N8nDINSql",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "SQL",
+              "displayName": "SQL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "N8nSqlGenerated",
+              "displayName": "N8nSqlGenerated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        704,
+        -16
+      ],
+      "id": "a2526d83-3f04-495e-a6f8-23229d235ae2",
+      "name": "LlmEvaluate",
+      "disabled": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "NL65mnguq5VoHLtJ",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/NL65mnguq5VoHLtJ",
+          "cachedResultName": "GenerateMetrics_ComponentMatching"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "SQL": "={{ $('Loop Over Items').item.json.SQL }}",
+            "N8nSqlGenerated": "={{ $json.N8nSqlGenerated }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "SQL",
+              "displayName": "SQL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "N8nSqlGenerated",
+              "displayName": "N8nSqlGenerated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        704,
+        -208
+      ],
+      "id": "be259a2e-6e77-4c6d-af4f-30b8c9ad64b2",
+      "name": "ComponentMatching"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        64
+      ],
+      "id": "eac26b60-852b-4aba-8e33-2de5a69eb04e",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -416,
+        432
+      ],
+      "id": "408a5fde-085b-4de8-9a21-ff61234b3239",
+      "name": "Loop Over Items",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        -112
+      ],
+      "id": "64ebc821-329d-4343-b342-24a04055b401",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a096b76-9e89-46ba-b25f-daa8c482010f",
+              "name": "InitDatabase",
+              "value": "={{ $now }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -192,
+        80
+      ],
+      "id": "3477bd68-de47-4368-a4bf-0cbdd509f45d",
+      "name": "InitDatabase"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a096b76-9e89-46ba-b25f-daa8c482010f",
+              "name": "EndDatabase",
+              "value": "={{ $now }}",
+              "type": "string"
+            },
+            {
+              "id": "d7eb1770-097b-480c-a677-2504aae590d2",
+              "name": "row_number",
+              "value": "={{ $('Loop Over Items').item.json.row_number }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        256,
+        80
+      ],
+      "id": "5e9d115f-9549-4a33-b047-3b0dc635d56a",
+      "name": "EndDatabase"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI",
+          "mode": "list",
+          "cachedResultName": "dataset_sql_40_med_complex",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 142234394,
+          "mode": "list",
+          "cachedResultName": "Medianas_y_Complejas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9tg_bIZFsS1l1nIiC3G7_n5jEvyr4Z0BASaENpk4oI/edit#gid=142234394"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "P"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -640,
+        432
+      ],
+      "id": "db90cb04-64ce-4200-ad40-e6ab48b3fe2d",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tjUyK7yIgQO9oUOK",
+          "name": "MartinAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -864,
+        528
+      ],
+      "id": "f4cc2424-f5f1-4455-b7bd-3128130fe43a",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -864,
+        336
+      ],
+      "id": "9278e0b8-f701-4380-a0fe-ed605b7d1ad1",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "e45ca3f1-9785-4894-a393-94e6b8622dae",
+              "leftValue": "={{ $json.N8nSqlGenerated }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        80
+      ],
+      "id": "22bd49a4-d808-4e10-845d-6221a413ae08",
+      "name": "If1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Call 'Agente BD Tesis'": {
+      "main": [
+        [
+          {
+            "node": "EndDatabase",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ExecitionAccuracy": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "LlmEvaluate": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ComponentMatching": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "InitDatabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "InitDatabase": {
+      "main": [
+        [
+          {
+            "node": "Call 'Agente BD Tesis'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EndDatabase": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ComponentMatching",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LlmEvaluate",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ExecitionAccuracy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "6ae13c0a-56b5-4012-a5f9-c1e9c32e5da3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5f3013ca596510d58934f60e5810b87927c396fd561c71e512ceaba645263533"
+  },
+  "id": "jbT8nUdOUheYFFxc",
+  "tags": []
+}
