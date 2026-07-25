@@ -650,14 +650,14 @@ Este comportamiento indica que el grounding proporcionado por RAG permite al wor
 
 \subsubsection{Relación entre SIN\_AUTO\_CORRECCION y TTA}
 
-El análisis revela una relación inversa clara entre SIN\_AUTO\_CORRECCION y TTA promedio. Las configuraciones que generan consultas correctas desde el primer intento, con valores superiores al 85\% en SIN\_AUTO\_CORRECCION, tienden a presentar TTA promedio en el rango de 10 a 15 segundos. Por el contrario, aquellas con valores inferiores al 35\% superan consistentemente los 20 segundos y exhiben una mayor dispersión en los valores máximos.
+Considerando el conjunto completo de configuraciones, la correlación lineal entre SIN\_AUTO\_CORRECCION y TTA promedio es débil ($r \approx -0{,}05$): la generación correcta al primer intento no es, por sí sola, el factor que gobierna el tiempo de respuesta. El patrón dominante es otro: la configuración sin grounding contextual, Intensión + DIN + DEA, concentra a la vez el mayor TTA promedio (30,6 s) y el menor SIN\_AUTO\_CORRECCION (33,96\%), mientras que entre las configuraciones con RAG el TTA permanece comprimido en la franja de 10 a 16 segundos con relativa independencia de su generación inicial —incluso las de SIN\_AUTO\_CORRECCION inferior al 25\% (RAG, RAG + Intensión, RAG + Memoria) resuelven en torno a 11--12 s, porque el grounding permite converger sin acumular ciclos de corrección costosos.
 
-Este patrón confirma que cada error inicial introduce nuevos ciclos de inferencia y validación, incrementando el tiempo total del workflow. Por tanto, la calidad de la generación en el primer intento emerge como un factor determinante no solo para la exactitud del sistema, sino también para su desempeño temporal.
+Así, la relación entre calidad inicial y tiempo se manifiesta solo cuando el error de generación coincide con la ausencia de grounding: entonces cada intento fallido añade ciclos de inferencia y validación que disparan el TTA. Cuando el sistema dispone de RAG, la recuperación del esquema absorbe ese costo. El factor determinante del desempeño temporal no es, por tanto, el SIN\_AUTO\_CORRECCION aislado, sino la presencia de grounding contextual (Figura~\ref{fig:relacion_rag}).
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\linewidth]{Figura 5.9 Correlacion sin AC.png}
-	\caption{Correlación entre SIN\_AUTO\_CORRECCION y Time To Answer promedio. Se evidencia una relación inversa clara: las configuraciones con mayor capacidad de generación correcta en el primer intento presentan menores tiempos de respuesta, confirmando que la calidad inicial de la generación es determinante para la eficiencia temporal del sistema.}
+	\caption{Relación entre SIN\_AUTO\_CORRECCION y Time To Answer promedio para las 19 configuraciones evaluadas. La correlación lineal es débil ($r \approx -0{,}05$): el mayor TTA no lo determina la generación inicial por sí sola, sino la ausencia de grounding contextual (configuración sin RAG en el extremo superior derecho). Entre las configuraciones con RAG el TTA permanece comprimido en 10--16 s con independencia de su generación al primer intento.}
 	\label{fig:correlacion_sin_ac}
 \end{figure}
 
@@ -690,16 +690,16 @@ En consecuencia, el diseño de sistemas NL-to-SQL multi-agente debe priorizar el
 
 El Context Retention Rate (CRR) evalúa la capacidad del sistema para retener, recuperar y reutilizar correctamente el contexto relevante a lo largo de interacciones conversacionales multi-turno. A diferencia de métricas centradas en consultas aisladas, CRR mide el comportamiento del sistema cuando las solicitudes del usuario dependen parcial o totalmente de información introducida en turnos previos, como referencias elípticas, anafóricas o implícitas.
 
-Para esta evaluación, se construyó un escenario conversacional controlado compuesto por once turnos, que combina interacciones conversacionales generales con solicitudes ejecutables sobre la base de datos. La Tabla~\ref{tab:crr_evaluation} presenta, para cada turno, si la consulta es dependiente de contexto, el contexto requerido (gold context), la evidencia de su uso en el SQL generado y si el turno se considera un acierto de retención contextual (CRR\_hit).
+Para esta evaluación, el CRR se midió sobre el conjunto conversacional multi-turno completo descrito en la Sección~\ref{sec:datasets}, ejecutando el flujo agentivo real contra la base de datos de prueba. De los 759 turnos de las 100 conversaciones, \textbf{313 corresponden a seguimientos dependientes de memoria} (referencias elípticas, anafóricas o implícitas del tipo ``ahora lo mismo pero con\ldots'', ``los primeros 5'', ``ahora con Cuba''), que solo pueden resolverse recuperando la entidad, los campos o los filtros establecidos en turnos previos. La Figura~\ref{fig:crr_evaluation} presenta el CRR desagregado por tipo de seguimiento contextual.
 
-\begin{table}[htbp]
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\linewidth]{Figura - Evaluacion de CRR.png}
-	\caption{Evaluación del Context Retention Rate (CRR) en un diálogo multi-turno}
-	\label{tab:crr_evaluation}
+	\includegraphics[width=0.86\linewidth]{Figura - Evaluacion de CRR.png}
+	\caption{Context Retention Rate (CRR) sobre los 313 turnos de seguimiento dependientes de memoria del conjunto conversacional, desagregado por tipo de referencia contextual. El sistema reutilizó correctamente el contexto en el 97,4\% de los casos (305/313); las únicas fallas se concentran en seguimientos de tipo total/conteo.}
+	\label{fig:crr_evaluation}
 	\tablefont
-	\textit{Nota.} Se presenta la evaluación de once turnos conversacionales, identificando aquellos dependientes de contexto previo y verificando si el sistema recuperó y aplicó correctamente dicho contexto en la generación del SQL. Los turnos 3, 6, 7 y 11 requieren información de turnos anteriores, y en todos los casos el sistema logró reutilizar correctamente el contexto (CRR\_hit = Sí).
-\end{table}
+	\textit{Nota.} Un turno se cuenta como acierto (CRR\_hit) cuando el sistema reconoce la referencia elíptica y reconstruye la solicitud a partir del contexto previo, en lugar de tratar el mensaje como una petición aislada o pedir que el usuario repita la información.
+\end{figure}
 
 \subsubsection{Definición y cálculo del CRR}
 
@@ -710,15 +710,13 @@ Un turno se clasifica como \textit{context-dependent} cuando la solicitud del us
 	\item Lo aplica de forma consistente en la consulta SQL generada, sin requerir que el usuario repita explícitamente la información.
 \end{itemize}
 
-En el escenario evaluado, los turnos dependientes de contexto corresponden a los turnos 3, 6, 7 y 11, para un total de cuatro turnos contextuales. En todos ellos, el sistema reutilizó correctamente la entidad, los campos y la estructura de la consulta, modificando únicamente los parámetros explícitamente indicados por el usuario.
+De los 313 turnos dependientes de memoria, el sistema reconstruyó correctamente la solicitud a partir del contexto previo en 305, lo que arroja el CRR global del sistema:
 
 \begin{equation}
-	\text{CRR} = \frac{\text{Turnos con CRR\_hit}}{\text{Turnos context-dependent}} = \frac{4}{4} = 1.0 \; (100\%)
+	\text{CRR} = \frac{\text{Turnos con CRR\_hit}}{\text{Turnos context-dependent}} = \frac{305}{313} = 0{,}974 \; (97{,}4\%)
 \end{equation}
 
-\subsubsection{Análisis de resultados sobre el conjunto conversacional}
-
-El diálogo ilustrativo anterior alcanza un CRR del 100\% en sus cuatro turnos dependientes de contexto. Para verificar que este comportamiento se sostiene a escala, la retención de contexto se evaluó sobre el conjunto conversacional completo (Sección~\ref{sec:datasets}), que contiene \textbf{313 turnos de seguimiento dependientes de memoria}. En el 97,4\% de estos turnos (305/313), el sistema reconoció la referencia elíptica y reconstruyó la solicitud a partir de la entidad y la consulta establecidas en turnos previos, en lugar de tratar el mensaje como una petición aislada o pedir que el usuario repitiera la información.
+El desglose por tipo de referencia (Figura~\ref{fig:crr_evaluation}) muestra retención perfecta en los seguimientos que reutilizan una entidad para reproyectarla, reordenarla, limitarla o calcular un extremo, y concentra las ocho únicas fallas en los de tipo total/conteo (91/99), donde reconstruir el agregado desde el contexto es más ambiguo. El diálogo controlado de once turnos del escenario base (Sección~\ref{sec:crr_dialogo}) reproduce este comportamiento a pequeña escala: sus cuatro turnos dependientes de contexto (3, 6, 7 y 11) se resolvieron correctamente ($4/4 = 100\%$).
 
 No obstante, retener el contexto y \emph{ejecutar la consulta exacta} son cosas distintas. La Figura~\ref{fig:contexto_mt} contrasta la calidad del SQL entre los turnos iniciales (que parten de una pregunta autónoma) y los turnos de seguimiento (que deben reconstruirse desde la memoria). En los turnos iniciales, la Execution Accuracy alcanza el 88,0\%; en los seguimientos contextuales desciende al 62,9\%. Esta brecha es esperable y semánticamente informativa: reconstruir una consulta a partir de fragmentos conversacionales previos es intrínsecamente más difícil que traducir una pregunta completa, ya que exige inferir correctamente qué entidad, campos y filtros deben heredarse del contexto. Aun así, cerca de dos de cada tres seguimientos producen resultados idénticos a los de la consulta de referencia, lo que confirma que el módulo de Memoria aporta una capacidad real —no meramente ilustrativa— de resolución contextual.
 

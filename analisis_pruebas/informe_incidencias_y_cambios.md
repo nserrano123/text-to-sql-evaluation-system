@@ -197,10 +197,10 @@ Excel (19 configuraciones × 53 consultas gold, `EVALUADO = 1`):
 | 5.3 (SIN ERRORES) | Robustez con autocorrección | **Consistente — se mantiene.** Configs con RAG: 96–100 % (verificado tras reparar las fórmulas). |
 | 5.4 (SIN_AUTO radar, 4 configs) | Primer intento | **REEMPLAZADA.** Valores correctos (88,68/33,96/9,43/18,87 ✓) pero con la misma limitación de cobertura. Sustituida por el ranking completo (`Figura 5.4 - Ranking SIN AUTO 19 configuraciones.png`): RAG+DIN+DEA lidera (88,7 %) y la configuración completa queda en 67,9 %, dato que el nuevo caption interpreta honestamente como el costo de las capacidades conversacionales. |
 | 5.5 / 5.6 (tokens/costos) | Consumo y costo | **Se mantienen.** Provienen de la hoja `Costos` (datos de facturación reales); no dependen del dataset modificado. |
-| Tabla 4 / 5.7 (TTA) | Tiempos por config | **Se mantienen con nota.** Los TTA por configuración provienen de las mediciones originales (Google Sheets `DinamicaGraficas`, cuyos datos no sobrevivieron al export); el único TTA presente en el Excel (config completa: 13,4 s promedio) es coherente con lo graficado. |
+| Tabla 4 / 5.7 (TTA) | Tiempos por config | **REGENERADA** (ver §4ter). Los TTA por configuración sí están en el Excel (columna `N8nTimeToResponse`, 19 configs × 53 gold); se recalcularon sobre el subconjunto comparable de 53 gold —excluyendo los 759 turnos multiturno que comparten `Parametros` con la config completa— y coinciden exactamente con los valores del export original (config completa: 19,6/8,3/48,9 s). |
 | 5.8 (Relación RAG–TTA) | 19 configs, 4 series | **Consistente — se mantiene.** El eje X lista exactamente las 19 configuraciones evaluadas; las series SIN_AUTO/SIN_ERRORES/EX coinciden con los valores corregidos. |
-| 5.9 (Correlación SIN_AUTO–TTA) | Dispersión | **Se mantiene** (misma fuente que 5.8). |
-| Figura CRR (tabla 11 turnos) | Diálogo TestMultiturn1 | **Consistente — se mantiene.** Corresponde a la corrida real de `TestMultiturn1` registrada en la hoja `TSR` del Excel. |
+| 5.9 (Correlación SIN_AUTO–TTA) | Dispersión | **REGENERADA** (ver §4ter). Además se corrigió el texto: la correlación real es débil ($r \approx -0{,}05$), no "inversa clara"; el TTA lo gobierna la presencia de grounding (RAG), no el SIN_AUTO aislado. |
+| Figura CRR | Retención de contexto | **REEMPLAZADA** (ver §4ter). La antigua tabla de 11 turnos (CRR 4/4) se sustituyó por el CRR a escala del dataset multiturno: 313 turnos de seguimiento dependientes de memoria, desagregados por tipo, con **305/313 = 97,4 %** global. El diálogo de 11 turnos queda como ejemplo ilustrativo en el texto. |
 | 5.10 / 5.11 (nuevas) | Gating y contexto multiturno | **Nuevas**, generadas de la corrida real multiturno (28 conversaciones). |
 
 Conclusión: **ninguna figura previa quedó invalidada** por los cambios del
@@ -223,6 +223,41 @@ primer intento 67,9 %, y el líder en generación directa sigue siendo
 RAG+DIN+DEA (88,7 %). El texto de la tesis nunca contuvo la afirmación
 incorrecta; el markdown auxiliar y sus figuras fueron regenerados.
 
+## 4ter. Regeneración de las figuras que aún eran export de Google Sheets
+
+Cuatro figuras del capítulo de resultados seguían siendo capturas antiguas de
+Google Sheets (estética distinta al resto del pipeline) y la figura de CRR
+todavía mostraba solo el micro-diálogo de 11 turnos (CRR = 4/4), que quedó
+pequeño frente al dataset multiturno ya ampliado. Se regeneraron todas con
+`matplotlib`, coherentes con el resto de figuras, mediante el script
+`generar_figuras_pipeline_google.py`:
+
+- **`Figura 5.1 - SQL.png`** (radar Component Matching) y **`Figura 5.3 - con
+  autocorreccion.png`** (radar Execution/Sin errores/Keywords): mismos 4 configs
+  y mismos valores que el export original, ahora calculados en vivo desde el
+  Excel sobre el subconjunto de 53 gold.
+- **`Tabla 4 Time To Answer.png`**: tabla de 19 configuraciones con TTA
+  prom./mín./máx. y EX/Sin errores/Sin autocorrección, con la configuración
+  completa resaltada. TTA recalculado desde `N8nTimeToResponse` sobre el mismo
+  subconjunto comparable de 53 gold (evita la contaminación de los 759 turnos
+  multiturno que comparten `Parametros`).
+- **`Figura 5.9 Correlacion sin AC.png`**: dispersión SIN_AUTO vs TTA con línea
+  de tendencia y coeficiente $r \approx -0{,}05$. Se corrigió en la tesis la
+  afirmación de "relación inversa clara": la correlación es débil y el TTA está
+  gobernado por la presencia de grounding contextual, no por el SIN_AUTO aislado.
+- **`Figura - Evaluacion de CRR.png`**: reemplazada por el CRR a escala del
+  dataset multiturno — 313 turnos de seguimiento dependientes de memoria
+  desagregados por tipo (Top-N, total/conteo, máx/mín, reordenamiento,
+  promedio), con **305/313 = 97,4 %** global. La ecuación de la tesis pasó de
+  $4/4 = 100\%$ (ahora ejemplo ilustrativo) a $305/313 = 97{,}4\%$ como
+  resultado principal, y el flotante pasó de `table` a `figure`
+  (`fig:crr_evaluation`).
+
+Todos los valores de un solo turno se verificaron idénticos a los del export
+original; el único cambio de contenido es el CRR (ahora a escala) y la
+corrección honesta del texto de correlación TTA. La tesis sigue en **20
+páginas**.
+
 ### Celdas del estándar aún pendientes (declarado)
 
 - `MetricSqlGenerated` / `MetricDINSql` / `WhyMetric*` (juez LLM) no se
@@ -242,6 +277,7 @@ python volcar_multiturno_excel.py        # vuelca N8n*/EX/CM al Excel (con reint
 python generar_analisis_multiturno.py    # regenera figuras multiturno y metricas
 python generar_analisis_ablacion.py      # regenera analisis de ablacion (subconjunto comparable)
 python generar_figuras_ranking_tesis.py  # regenera Figuras 5.2/5.4 de la tesis (19 configs)
+python generar_figuras_pipeline_google.py # regenera Figs 5.1/5.3/Tabla4/5.9/CRR (matplotlib)
 ```
 
 Las figuras 5.10/5.11 de la tesis provienen de `analisis_pruebas/figs/`
