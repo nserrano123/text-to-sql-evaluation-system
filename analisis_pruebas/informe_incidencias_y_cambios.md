@@ -321,6 +321,30 @@ Verificación final: 0 citas indefinidas, 0 referencias huérfanas, 0 citas sin
 entrada; el documento se mantiene en **20 páginas** (se compactaron los radares
 5.1/5.3, las tablas del anexo y listas largas de autores a "et al.").
 
+### Ronda v2 (revisión de la versión corregida) — aplicada
+
+La re-verificación externa confirmó los seis puntos críticos como bien
+resueltos y dejó pendientes que se aplicaron en su totalidad:
+
+- **Sustantivo**: la misma cita de Spider persistía en §IV-F1 (Execution
+  Accuracy); corregida igual que en Resultados → `[2], [5]` (PICARD + BIRD).
+- **Precisión**: CodeS ya no se cita como "ajuste fino eficiente" (no usa
+  PEFT/LoRA) sino como "modelos abiertos de menor escala construidos mediante
+  pre-entrenamiento incremental y ajuste fino supervisado"; el "prompting
+  especializado" ahora cita MCS-SQL y ACT-SQL en lugar de SQLBench.
+- **Tabla I regenerada** (`generar_tabla_estado_arte.py`): años unificados con
+  la bibliografía (DAIL-SQL 2023→2024, GraphRAG 2024→2025) y cada trabajo lleva
+  su marcador de referencia [n] en la columna Trabajo/Modelo — antes era un
+  export sin trazabilidad bibliográfica.
+- **Forma**: los dos grupos de citas fuera de orden ascendente corregidos
+  ([9],[7]→[7],[9] y [3],[25],[15],[16]→[3],[15],[16],[25]); DOI añadido a Rai
+  et al.; CodeS con `pp. 1--28` según Crossref (en vez de `art. 127`, no
+  verificable); "los surveys" en plural ahora respaldado por dos citas [6],[8].
+
+Verificación programática final: 28 entradas, **todos los grupos `\cite` en
+orden ascendente**, 0 huérfanas, 0 claves rotas, 0 citas indefinidas; el
+documento sigue en **20 páginas**.
+
 ## 5. Estado final de la corrida — COMPLETA
 
 Las 100 conversaciones (759 turnos) fueron ejecutadas y consolidadas. Los

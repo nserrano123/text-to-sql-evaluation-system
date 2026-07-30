@@ -55,7 +55,7 @@ En el corto plazo, esta solución reduce fricción y dependencia de reportes est
 
 \section{Introducción}
 
-\IEEEPARstart{L}{a} generación de SQL, también conocida como Text-to-SQL, es una tarea fundamental del procesamiento del lenguaje natural cuyo propósito es convertir preguntas formuladas en lenguaje natural (NL) en consultas SQL ejecutables sobre bases de datos relacionales. Su objetivo central es democratizar el acceso a la información, permitiendo que usuarios sin conocimientos técnicos interactúen con los datos mediante expresiones propias de su lenguaje cotidiano \cite{li2014nalir, liu2025survey}.
+\IEEEPARstart{L}{a} generación de SQL, también conocida como Text-to-SQL, es una tarea fundamental del procesamiento del lenguaje natural cuyo propósito es convertir preguntas formuladas en lenguaje natural (NL) en consultas SQL ejecutables sobre bases de datos relacionales. Su objetivo central es democratizar el acceso a la información, permitiendo que usuarios sin conocimientos técnicos interactúen con los datos mediante expresiones propias de su lenguaje cotidiano \cite{liu2025survey, li2014nalir}.
 
 Este proceso exige la comprensión profunda de tres elementos: la intención del usuario, la estructura del esquema de base de datos y la construcción correcta de la sintaxis SQL. En el contexto organizacional, y especialmente en sistemas de planificación de recursos empresariales (ERP), el acceso oportuno a la información es crítico para la toma de decisiones. Tradicionalmente, dicho acceso se limita a reportes o tableros preconfigurados, que ofrecen una interacción unidireccional con la base de datos. Sin embargo, no existe un mecanismo nativo que permita a los usuarios solicitar información directamente en lenguaje natural, lo que restringe la flexibilidad y agilidad en el análisis.
 
@@ -67,7 +67,7 @@ La interacción entre los usuarios y los sistemas de planificación de recursos 
 
 Con los avances recientes en modelos de lenguaje (LLM), esta situación se transforma. Investigaciones recientes demuestran que los LLM pueden traducir instrucciones en lenguaje natural a consultas SQL con altos niveles de precisión \cite{pourreza2023din}, abriendo la posibilidad de que los usuarios accedan directamente a la información empresarial mediante preguntas expresadas en su propio lenguaje.
 
-No obstante, la literatura reciente evidencia limitaciones persistentes en enfoques basados en LLM para Text-to-SQL: el desempeño tiende a degradarse en esquemas de datos grandes y complejos, debido a la interferencia de información irrelevante y a la mayor dificultad de schema linking \cite{gan2021natural, hong2024bird, li2024comprehensive}. Asimismo, existen fallas cuando la consulta requiere conocimiento implícito no descrito explícitamente en la pregunta o el esquema (p. ej., definiciones de métricas, reglas de negocio o fórmulas), lo que ha motivado marcos de knowledge-intensive Text-to-SQL y el uso de conocimiento externo \cite{dou2022towards, hong2024knowledge}. Finalmente, cuando las preguntas demandan razonamiento multietapa, se observan mejoras al emplear descomposición del problema y estrategias explícitas de razonamiento (p. ej., chain-of-thought y flujos multiagente), frente a enfoques directos \cite{pourreza2023din, zhang2023act, li2024comprehensive, wang2025mac}.
+No obstante, la literatura reciente evidencia limitaciones persistentes en enfoques basados en LLM para Text-to-SQL: el desempeño tiende a degradarse en esquemas de datos grandes y complejos, debido a la interferencia de información irrelevante y a la mayor dificultad de schema linking \cite{gan2021natural, hong2024bird, li2024comprehensive}. Asimismo, existen fallas cuando la consulta requiere conocimiento implícito no descrito explícitamente en la pregunta o el esquema (p. ej., definiciones de métricas, reglas de negocio o fórmulas), lo que ha motivado marcos de knowledge-intensive Text-to-SQL y el uso de conocimiento externo \cite{dou2022towards, hong2024knowledge}. Finalmente, cuando las preguntas demandan razonamiento multietapa, se observan mejoras al emplear descomposición del problema y estrategias explícitas de razonamiento (p. ej., chain-of-thought y flujos multiagente), frente a enfoques directos \cite{pourreza2023din, li2024comprehensive, wang2025mac, zhang2023act}.
 
 La motivación de este trabajo, por tanto, se fundamenta en aprovechar la experiencia acumulada en sistemas ERP y las capacidades emergentes de la inteligencia artificial para permitir que los usuarios formulen consultas en lenguaje natural y obtengan respuestas precisas basadas en los datos de su organización.
 
@@ -79,7 +79,7 @@ El interés por mejorar la generación de SQL a partir de lenguaje natural ha cr
 
 Este trabajo busca cerrar esa brecha mediante una arquitectura que permita acercar las preguntas en lenguaje natural al núcleo de datos de un ERP, de manera precisa, estable y comprensible para el usuario final. Esta motivación se potencia gracias a las características del ERP Fail Fast.
 
-A diferencia de sistemas heredados, la base de datos de Fail Fast fue diseñada desde cero con una estructura coherente, documentada y con nomenclaturas alineadas al significado funcional de cada tabla. Esta decisión de ingeniería no es menor: BIRD documenta que la abreviación y ambigüedad en los nombres dificultan el schema linking, al punto de requerir ficheros de descripción con nombres completos \cite{hong2024bird}, y los surveys señalan la calidad del esquema como factor determinante para los LLM \cite{hong2025advances}.
+A diferencia de sistemas heredados, la base de datos de Fail Fast fue diseñada desde cero con una estructura coherente, documentada y con nomenclaturas alineadas al significado funcional de cada tabla. Esta decisión de ingeniería no es menor: BIRD documenta que la abreviación y ambigüedad en los nombres dificultan el schema linking, al punto de requerir ficheros de descripción con nombres completos \cite{hong2024bird}, y los surveys señalan la calidad del esquema como factor determinante para los LLM \cite{shi2025comprehensive, hong2025advances}.
 
 \subsubsection{Objetivos}
 
@@ -143,7 +143,7 @@ En la actualidad, los grandes modelos de lenguaje (LLMs) han alcanzado un papel 
 \end{table*}
 \subsection{Metodologías Basadas en LLMs para la Generación de SQL}
 
-A diferencia de las aproximaciones tempranas basadas en reglas, plantillas o modelos de lenguaje preentrenados (PLMs), esta sección se concentra en las metodologías recientes que emplean grandes modelos de lenguaje (LLMs) como eje principal para la generación de SQL. Estos enfoques representan el estado del arte actual y se caracterizan por el uso de prompting especializado \cite{li2024comprehensive}, la descomposición modular de tareas \cite{xie2024dea, wang2025mac}, técnicas eficientes de ajuste fino \cite{li2024codes} y ciclos de retroalimentación iterativa que fortalecen la precisión y la capacidad de generalización entre dominios.
+A diferencia de las aproximaciones tempranas basadas en reglas, plantillas o modelos de lenguaje preentrenados (PLMs), esta sección se concentra en las metodologías recientes que emplean grandes modelos de lenguaje (LLMs) como eje principal para la generación de SQL. Estos enfoques representan el estado del arte actual y se caracterizan por el uso de prompting especializado \cite{lee2024mcs, zhang2023act}, la descomposición modular de tareas \cite{xie2024dea, wang2025mac}, modelos abiertos de menor escala construidos mediante pre-entrenamiento incremental y ajuste fino supervisado \cite{li2024codes}, y ciclos de retroalimentación iterativa que fortalecen la precisión y la capacidad de generalización entre dominios.
 
 \subsubsection{Decomposition for Enhancing Attention (DEA-SQL)}
 
@@ -377,7 +377,7 @@ El desempeño de cada configuración se evaluó utilizando tres métricas comple
 
 \subsubsection{Execution Accuracy (EX)}
 
-Mide el porcentaje de consultas cuya ejecución retorna exactamente el mismo resultado que la consulta gold correspondiente, independientemente de la forma sintáctica del SQL. Esta métrica es especialmente relevante en entornos empresariales, donde la corrección semántica del resultado es prioritaria frente a la coincidencia textual \cite{yu2018spider, hong2024bird}.
+Mide el porcentaje de consultas cuya ejecución retorna exactamente el mismo resultado que la consulta gold correspondiente, independientemente de la forma sintáctica del SQL. Esta métrica es especialmente relevante en entornos empresariales, donde la corrección semántica del resultado es prioritaria frente a la coincidencia textual \cite{scholak2021picard, hong2024bird}.
 
 \subsubsection{Component Matching (CM)}
 
@@ -913,7 +913,7 @@ Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones fre
 	B. Wang et al., ``MAC-SQL: A multi-agent collaborative framework for text-to-SQL,'' in \textit{Proc. COLING}, Abu Dhabi, UAE, 2025, pp. 540--557.
 
 	\bibitem{li2024codes}
-	H. Li et al., ``CodeS: Towards building open-source language models for text-to-SQL,'' \textit{Proc. ACM Manag. Data}, vol. 2, no. 3, art. 127, 2024, doi: 10.1145/3654930.
+	H. Li et al., ``CodeS: Towards building open-source language models for text-to-SQL,'' \textit{Proc. ACM Manag. Data}, vol. 2, no. 3, pp. 1--28, 2024, doi: 10.1145/3654930.
 
 	\bibitem{han2025graphrag}
 	H. Han et al., ``Retrieval-augmented generation with graphs (GraphRAG),'' arXiv preprint arXiv:2501.00309, 2025.
@@ -940,7 +940,7 @@ Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones fre
 	H. Zhang et al., ``ACT-SQL: In-context learning for text-to-SQL with automatically-generated chain-of-thought,'' in \textit{Findings of EMNLP}, Singapore, 2023, pp. 3501--3532.
 
 	\bibitem{rai2023improving}
-	D. Rai et al., ``Improving generalization in language model-based text-to-SQL semantic parsing: Two simple semantic boundary-based techniques,'' in \textit{Proc. ACL (Volume 2: Short Papers)}, Toronto, Canada, 2023, pp. 150--160.
+	D. Rai et al., ``Improving generalization in language model-based text-to-SQL semantic parsing: Two simple semantic boundary-based techniques,'' in \textit{Proc. ACL (Volume 2: Short Papers)}, Toronto, Canada, 2023, pp. 150--160, doi: 10.18653/v1/2023.acl-short.15.
 
 	\bibitem{singh2025survey}
 	A. Singh et al., ``A survey of large language model-based generative AI for text-to-SQL: Benchmarks, applications, use cases, and challenges,'' arXiv preprint arXiv:2412.05208, 2024.
