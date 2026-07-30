@@ -264,6 +264,63 @@ páginas**.
   calcularon para las filas multiturno; no alimentan ninguna figura de la
   tesis. Pueden generarse después con el workflow `WF GenerateMetricsLLM`.
 
+## 4quater. Auditoría de uso de referencias — verificada y aplicada
+
+Se recibió un análisis externo de las 26 referencias (existencia, metadatos y
+coherencia cita-párrafo). Antes de aplicarlo se verificó: las frases señaladas
+existen tal cual en el `.tex`; las afirmaciones sobre los papers se contrastaron
+contra los PDFs de `EstadoDelArte2025/` (nota al pie de Spider sobre execution
+accuracy, Selector de MAC-SQL como poda de esquema, muestreo de 500 consultas
+del training set en DIN-SQL, ausencia de la cifra "250" en Liu et al.) y contra
+la web (arXiv:2406.08426 es de jun-2024 y aceptado en IEEE TKDE con DOI
+10.1109/TKDE.2025.3609486 que resuelve; arXiv:2403.02951 fue retitulado
+"SQLBench"). Todo se confirmó. Cambios aplicados:
+
+**Atribuciones (alta prioridad):**
+- Validación por ejecución: se retiró Spider (que la cuestiona en nota al pie) y
+  se citó PICARD + BIRD.
+- Seq2Seq: Spider dejó de citarse como propuesta de arquitectura; queda como
+  benchmark de líneas base junto a Dong & Lapata.
+- MAC-SQL: se corrigió la afirmación de "filtrado previo de intención" — su
+  Selector filtra el *esquema*, no la intención; el gating conversacional se
+  reivindica ahora explícitamente como contribución diferencial de la tesis.
+- Se eliminó la cifra sin respaldo "más de 250 artículos" (Liu et al.).
+- Taxonomía de Shi et al. corregida (dos ramas: prompts/fine-tuning, subdividida
+  por etapa del pipeline; "nivel de supervisión" no existe en el paper).
+- CHESS: se separaron los dos claims (×5 tokens del Schema Selector en esquemas
+  industriales vs. 71,10 % en BIRD test con ~83 % menos llamadas).
+- DAIL-SQL se retiró de "conocimiento externo" (es prompt engineering) y se
+  reubicó junto a su mención en los paradigmas estructurados; su lugar lo ocupa
+  Knowledge-to-SQL (nueva referencia).
+- DIN-SQL: categoría 4 corregida ("anidamiento y operaciones de conjuntos"),
+  glosa inventada de Miscellaneous eliminada, muestra atribuida al training set.
+- MAC-SQL "entrena" → "ajusta por instrucciones (sobre Code Llama)".
+
+**Metadatos:** [8] Hong et al. ahora citado como IEEE TKDE vol. 37, no. 12
+(el DOI resuelve a IEEE Xplore; vol./pp. según el análisis, coherentes con
+TKDE 2025); [25] Singh corregido a 2024; [15] retitulado "SQLBench"; RESDSQL
+con vol./no./DOI; ACL 2016 Long Papers y ACL 2023 Short Papers explícitos.
+
+**Refinamientos:** democratización ahora citada con NaLIR + survey (no Spider);
+PICARD retirado de la frase sobre "LLM" (es un PLM, como la propia tesis lo
+clasifica); "BERT y T5" → "encoder (RoBERTa) y encoder-decoder (T5)"; BIRD
+reformulado (documenta el problema inverso de nombres abreviados); ablación
+citada solo con MAC-SQL; latencia citada solo con Liu et al. y la proyección a
+ERP declarada como aporte propio; clasificación por complejidad → DIN-SQL +
+DEA-SQL.
+
+**Huérfanas resueltas (las 6):** Gan et al. → limitaciones de generalización;
+GraphRAG → Trabajo Futuro; Aparicio et al. → justificación low-code/n8n;
+Rai et al. → párrafo de PLMs; Singh y Zhu → surveys de la sección II.
+
+**Nuevas entradas (28 en total):** CodeS (PACMMOD 2024, citado en fine-tuning
+eficiente) y Knowledge-to-SQL (Findings ACL 2024, citado en conocimiento
+externo) — ambos ya discutidos en la Tabla I sin entrada bibliográfica.
+
+Verificación final: 0 citas indefinidas, 0 referencias huérfanas, 0 citas sin
+entrada; el documento se mantiene en **20 páginas** (se compactaron los radares
+5.1/5.3, las tablas del anexo y listas largas de autores a "et al.").
+
 ## 5. Estado final de la corrida — COMPLETA
 
 Las 100 conversaciones (759 turnos) fueron ejecutadas y consolidadas. Los

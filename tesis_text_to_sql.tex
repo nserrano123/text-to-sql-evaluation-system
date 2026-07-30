@@ -55,7 +55,7 @@ En el corto plazo, esta solución reduce fricción y dependencia de reportes est
 
 \section{Introducción}
 
-\IEEEPARstart{L}{a} generación de SQL, también conocida como Text-to-SQL, es una tarea fundamental del procesamiento del lenguaje natural cuyo propósito es convertir preguntas formuladas en lenguaje natural (NL) en consultas SQL ejecutables sobre bases de datos relacionales. Su objetivo central es democratizar el acceso a la información, permitiendo que usuarios sin conocimientos técnicos interactúen con los datos mediante expresiones propias de su lenguaje cotidiano \cite{yu2018spider}.
+\IEEEPARstart{L}{a} generación de SQL, también conocida como Text-to-SQL, es una tarea fundamental del procesamiento del lenguaje natural cuyo propósito es convertir preguntas formuladas en lenguaje natural (NL) en consultas SQL ejecutables sobre bases de datos relacionales. Su objetivo central es democratizar el acceso a la información, permitiendo que usuarios sin conocimientos técnicos interactúen con los datos mediante expresiones propias de su lenguaje cotidiano \cite{li2014nalir, liu2025survey}.
 
 Este proceso exige la comprensión profunda de tres elementos: la intención del usuario, la estructura del esquema de base de datos y la construcción correcta de la sintaxis SQL. En el contexto organizacional, y especialmente en sistemas de planificación de recursos empresariales (ERP), el acceso oportuno a la información es crítico para la toma de decisiones. Tradicionalmente, dicho acceso se limita a reportes o tableros preconfigurados, que ofrecen una interacción unidireccional con la base de datos. Sin embargo, no existe un mecanismo nativo que permita a los usuarios solicitar información directamente en lenguaje natural, lo que restringe la flexibilidad y agilidad en el análisis.
 
@@ -65,9 +65,9 @@ La incorporación de capacidades Text-to-SQL plantea desafíos relevantes, entre
 
 La interacción entre los usuarios y los sistemas de planificación de recursos empresariales (ERP) ha estado históricamente limitada por la necesidad de comprender estructuras tabulares complejas y dominar lenguajes de consulta como SQL. Aunque estos sistemas gestionan con precisión las transacciones y el control operativo, su acceso cognitivo continúa siendo restringido para quienes no tienen formación técnica. Tras más de treinta años de experiencia en el desarrollo e implementación de ERP, Fail Fast ha evidenciado una brecha persistente: los equipos de negocio necesitan formular preguntas en lenguaje natural para tomar decisiones oportunas, pero el ERP continúa exigiendo consultas formales y habilidades técnicas especializadas para acceder a los datos.
 
-Con los avances recientes en modelos de lenguaje (LLM), esta situación se transforma. Investigaciones recientes demuestran que los LLM pueden traducir instrucciones en lenguaje natural a consultas SQL con altos niveles de precisión \cite{scholak2021picard, pourreza2023din}, abriendo la posibilidad de que los usuarios accedan directamente a la información empresarial mediante preguntas expresadas en su propio lenguaje.
+Con los avances recientes en modelos de lenguaje (LLM), esta situación se transforma. Investigaciones recientes demuestran que los LLM pueden traducir instrucciones en lenguaje natural a consultas SQL con altos niveles de precisión \cite{pourreza2023din}, abriendo la posibilidad de que los usuarios accedan directamente a la información empresarial mediante preguntas expresadas en su propio lenguaje.
 
-No obstante, la literatura reciente evidencia limitaciones persistentes en enfoques basados en LLM para Text-to-SQL: el desempeño tiende a degradarse en esquemas de datos grandes y complejos, debido a la interferencia de información irrelevante y a la mayor dificultad de schema linking \cite{hong2024bird, li2024comprehensive}. Asimismo, existen fallas cuando la consulta requiere conocimiento implícito no descrito explícitamente en la pregunta o el esquema (p. ej., definiciones de métricas, reglas de negocio o fórmulas), lo que ha motivado marcos de knowledge-intensive Text-to-SQL y el uso de conocimiento externo \cite{dou2022towards, gao2024dail}. Finalmente, cuando las preguntas demandan razonamiento multietapa, se observan mejoras al emplear descomposición del problema y estrategias explícitas de razonamiento (p. ej., chain-of-thought y flujos multiagente), frente a enfoques directos \cite{pourreza2023din, zhang2023act, li2024comprehensive}.
+No obstante, la literatura reciente evidencia limitaciones persistentes en enfoques basados en LLM para Text-to-SQL: el desempeño tiende a degradarse en esquemas de datos grandes y complejos, debido a la interferencia de información irrelevante y a la mayor dificultad de schema linking \cite{gan2021natural, hong2024bird, li2024comprehensive}. Asimismo, existen fallas cuando la consulta requiere conocimiento implícito no descrito explícitamente en la pregunta o el esquema (p. ej., definiciones de métricas, reglas de negocio o fórmulas), lo que ha motivado marcos de knowledge-intensive Text-to-SQL y el uso de conocimiento externo \cite{dou2022towards, hong2024knowledge}. Finalmente, cuando las preguntas demandan razonamiento multietapa, se observan mejoras al emplear descomposición del problema y estrategias explícitas de razonamiento (p. ej., chain-of-thought y flujos multiagente), frente a enfoques directos \cite{pourreza2023din, zhang2023act, li2024comprehensive, wang2025mac}.
 
 La motivación de este trabajo, por tanto, se fundamenta en aprovechar la experiencia acumulada en sistemas ERP y las capacidades emergentes de la inteligencia artificial para permitir que los usuarios formulen consultas en lenguaje natural y obtengan respuestas precisas basadas en los datos de su organización.
 
@@ -79,7 +79,7 @@ El interés por mejorar la generación de SQL a partir de lenguaje natural ha cr
 
 Este trabajo busca cerrar esa brecha mediante una arquitectura que permita acercar las preguntas en lenguaje natural al núcleo de datos de un ERP, de manera precisa, estable y comprensible para el usuario final. Esta motivación se potencia gracias a las características del ERP Fail Fast.
 
-A diferencia de sistemas heredados, la base de datos de Fail Fast fue diseñada desde cero con una estructura coherente, documentada y con nomenclaturas alineadas al significado funcional de cada tabla. Esta decisión de ingeniería no es menor: los estudios recientes muestran que la claridad semántica en los esquemas y la consistencia en los nombres de tablas y columnas favorecen el schema linking y reducen errores de interpretación por parte de los LLM \cite{hong2024bird, hong2025advances}.
+A diferencia de sistemas heredados, la base de datos de Fail Fast fue diseñada desde cero con una estructura coherente, documentada y con nomenclaturas alineadas al significado funcional de cada tabla. Esta decisión de ingeniería no es menor: BIRD documenta que la abreviación y ambigüedad en los nombres dificultan el schema linking, al punto de requerir ficheros de descripción con nombres completos \cite{hong2024bird}, y los surveys señalan la calidad del esquema como factor determinante para los LLM \cite{hong2025advances}.
 
 \subsubsection{Objetivos}
 
@@ -117,9 +117,9 @@ En conjunto, se plantea que una arquitectura modular y multi-agente resulta más
 
 \section{Marco Teórico y Estado del Arte}
 
-Al cierre de 2024 y durante 2025, distintos estudios de revisión \cite{shi2025comprehensive, liu2025survey, hong2025advances} han evidenciado el avance sostenido de la generación automática de SQL mediante grandes modelos de lenguaje. Estas investigaciones consolidan el campo como un eje de convergencia entre el procesamiento del lenguaje natural, el razonamiento estructurado y la interacción con bases de datos.
+Al cierre de 2024 y durante 2025, distintos estudios de revisión \cite{shi2025comprehensive, liu2025survey, hong2025advances, singh2025survey, zhu2024large} han evidenciado el avance sostenido de la generación automática de SQL mediante grandes modelos de lenguaje. Estas investigaciones consolidan el campo como un eje de convergencia entre el procesamiento del lenguaje natural, el razonamiento estructurado y la interacción con bases de datos.
 
-En particular, Shi et al. \cite{shi2025comprehensive} proponen una taxonomía integral de los enfoques LLM-based para Text-to-SQL, clasificándolos por tipo de prompting, nivel de supervisión, y estrategias de autocorrección. Por su parte, Liu et al. \cite{liu2025survey} resumen más de 250 artículos y definen el ciclo completo ``modelo-datos-evaluación-errores'', enfatizando la necesidad de estrategias de validación semántica y debugging continuo en entornos reales, como los sistemas ERP.
+En particular, Shi et al. \cite{shi2025comprehensive} proponen una taxonomía de los enfoques LLM-based organizada en dos ramas —ingeniería de prompts y ajuste fino—, subdividiendo la primera por etapa del pipeline (pre-procesamiento, inferencia y post-procesamiento, esta última con autocorrección y métodos de consistencia). Por su parte, Liu et al. \cite{liu2025survey} revisan exhaustivamente la literatura y definen el ciclo completo ``modelo-datos-evaluación-errores'', enfatizando la necesidad de estrategias de validación semántica y debugging continuo en entornos reales, como los sistemas ERP.
 
 Estos trabajos recientes refuerzan que el propósito de Text-to-SQL ha evolucionado desde la simple traducción NL→SQL hacia interfaces cognitivas de consulta, donde los LLM funcionan como agentes semánticos capaces de razonar, corregirse y aprender con retroalimentación de la base de datos \cite{hong2025advances}.
 
@@ -127,9 +127,9 @@ Estos trabajos recientes refuerzan que el propósito de Text-to-SQL ha evolucion
 
 Los primeros avances en Text-to-SQL se desarrollaron a partir de sistemas basados en reglas y plantillas, como NaLIR \cite{li2014nalir} y SQLizer \cite{yaghmazadeh2017sqlizer}. Estos enfoques resultaban adecuados únicamente para escenarios simples, ya que ofrecían interpretabilidad y control, pero su capacidad de generalización era limitada y requerían un alto esfuerzo manual para construir y mantener reglas.
 
-Posteriormente, con el auge del aprendizaje profundo, surgieron los modelos neuronales secuencia a secuencia (Seq2Seq), que introdujeron la posibilidad de aprender relaciones entre preguntas en lenguaje natural y consultas SQL \cite{dong2016language, yu2018spider}. Estos modelos mostraron un avance importante frente a los métodos anteriores, al permitir la extracción automática de características y el modelado de mapeos complejos. Sin embargo, presentaban problemas de escalabilidad, dependencia de grandes volúmenes de datos etiquetados y tendencia al sobreajuste.
+Posteriormente, con el auge del aprendizaje profundo, surgieron los modelos neuronales secuencia a secuencia (Seq2Seq), que introdujeron la posibilidad de aprender relaciones entre preguntas en lenguaje natural y consultas SQL \cite{dong2016language}, evaluados después como líneas base en benchmarks cross-domain \cite{yu2018spider}. Estos modelos mostraron un avance importante frente a los métodos anteriores, al permitir la extracción automática de características y el modelado de mapeos complejos. Sin embargo, presentaban problemas de escalabilidad, dependencia de grandes volúmenes de datos etiquetados y tendencia al sobreajuste.
 
-Una etapa siguiente estuvo marcada por el uso de modelos de lenguaje pre entrenados (PLMs), como BERT y T5, que permitieron transferir conocimiento lingüístico adquirido en grandes corpus hacia la tarea de generación de SQL \cite{scholak2021picard, li2023resdsql}. Estos modelos mejoraron la comprensión semántica y ofrecieron un marco más escalable, aunque aún requerían ajustes finos específicos y su rendimiento dependía de la calidad de los datos del dominio.
+Una etapa siguiente estuvo marcada por el uso de modelos de lenguaje pre entrenados (PLMs), de tipo encoder (RoBERTa) y encoder-decoder (T5), que permitieron transferir conocimiento lingüístico adquirido en grandes corpus hacia la tarea de generación de SQL \cite{scholak2021picard, li2023resdsql, rai2023improving}. Estos modelos mejoraron la comprensión semántica y ofrecieron un marco más escalable, aunque aún requerían ajustes finos específicos y su rendimiento dependía de la calidad de los datos del dominio.
 
 En la actualidad, los grandes modelos de lenguaje (LLMs) han alcanzado un papel protagónico en el campo. Su capacidad para procesar y generar texto similar al humano los hace altamente efectivos frente a la variabilidad lingüística, demostrando una notable capacidad de generalización entre dominios \cite{hong2025advances, huang2024survey}. Estos avances posicionan a los LLMs como la tendencia de próxima generación en interfaces de bases de datos.
 
@@ -143,7 +143,7 @@ En la actualidad, los grandes modelos de lenguaje (LLMs) han alcanzado un papel 
 \end{table*}
 \subsection{Metodologías Basadas en LLMs para la Generación de SQL}
 
-A diferencia de las aproximaciones tempranas basadas en reglas, plantillas o modelos de lenguaje preentrenados (PLMs), esta sección se concentra en las metodologías recientes que emplean grandes modelos de lenguaje (LLMs) como eje principal para la generación de SQL. Estos enfoques representan el estado del arte actual y se caracterizan por el uso de prompting especializado, la descomposición modular de tareas, técnicas eficientes de ajuste fino y ciclos de retroalimentación iterativa que fortalecen la precisión y la capacidad de generalización entre dominios \cite{hong2024bird, li2024comprehensive, xie2024dea}.
+A diferencia de las aproximaciones tempranas basadas en reglas, plantillas o modelos de lenguaje preentrenados (PLMs), esta sección se concentra en las metodologías recientes que emplean grandes modelos de lenguaje (LLMs) como eje principal para la generación de SQL. Estos enfoques representan el estado del arte actual y se caracterizan por el uso de prompting especializado \cite{li2024comprehensive}, la descomposición modular de tareas \cite{xie2024dea, wang2025mac}, técnicas eficientes de ajuste fino \cite{li2024codes} y ciclos de retroalimentación iterativa que fortalecen la precisión y la capacidad de generalización entre dominios.
 
 \subsubsection{Decomposition for Enhancing Attention (DEA-SQL)}
 
@@ -153,7 +153,7 @@ Este diseño busca superar las limitaciones del single-step prompting, donde los
 
 \subsubsection{DIN-SQL (Decomposed In-Context Learning with Self-Correction)}
 
-DIN-SQL \cite{pourreza2023din} propone un enfoque basado completamente en in-context learning (ICL) que divide la tarea Text-to-SQL en subtareas guiadas por prompts especializados y añade un módulo de autocorrección para reparar errores comunes sin necesidad de ajuste fino. A partir del análisis de 500 ejemplos de Spider, los autores identifican seis categorías de fallos frecuentes: errores de schema linking, joins incompletos o incorrectos, uso inadecuado de GROUP BY, dificultades con consultas anidadas, SQL inválido y otros problemas menores relacionados con filtros o agregaciones.
+DIN-SQL \cite{pourreza2023din} propone un enfoque basado completamente en in-context learning (ICL) que divide la tarea Text-to-SQL en subtareas guiadas por prompts especializados y añade un módulo de autocorrección para reparar errores comunes sin necesidad de ajuste fino. A partir del análisis de 500 ejemplos muestreados del conjunto de entrenamiento de Spider, los autores identifican seis categorías de fallos frecuentes: errores de schema linking, joins incompletos o incorrectos, uso inadecuado de GROUP BY, consultas con anidamiento y operaciones de conjuntos, SQL inválido y una categoría miscelánea.
 
 Para mitigarlo, DIN-SQL incorpora una fase de autocorrección zero-shot, adaptada al tipo de modelo (prompts más fuertes para modelos medianos, más suaves para modelos avanzados), lo que permite mejorar la precisión sin reentrenamiento. A diferencia de DEA-SQL, su aporte principal no es alcanzar resultados state of the art, sino demostrar que una buena estructura de prompting—descomposición más verificación—puede acercar el rendimiento al de modelos ajustados mediante fine-tuning.
 
@@ -161,7 +161,7 @@ Para mitigarlo, DIN-SQL incorpora una fase de autocorrección zero-shot, adaptad
 
 Wang et al. \cite{wang2025mac} presentan MAC-SQL como un marco explícitamente multi-agente para Text-to-SQL, en el que la tarea se reparte entre tres roles complementarios. El Selector se encarga de reducir el espacio de búsqueda, identificando las partes del esquema más relevantes y construyendo sub-bases manejables. El Decomposer toma la pregunta original, la divide en subpreguntas y las resuelve de forma progresiva, lo que facilita el manejo de consultas largas o con múltiples condiciones. Por último, el Refiner ejecuta las consultas generadas, analiza los errores de ejecución y aplica correcciones iterativas.
 
-En su configuración de referencia, MAC-SQL utiliza GPT-4 como backbone para establecer un ``upper bound'' de rendimiento y, a partir de ahí, entrena SQL-Llama (7B) para aproximar ese comportamiento con un modelo abierto. En el benchmark BIRD (test), MAC-SQL alcanza un 59.59\% de exactitud de ejecución, considerado state of the art en el momento de su publicación \cite{wang2025mac}.
+En su configuración de referencia, MAC-SQL utiliza GPT-4 como backbone para establecer un ``upper bound'' de rendimiento y, a partir de ahí, ajusta por instrucciones SQL-Llama (7B, sobre Code Llama) para aproximar ese comportamiento con un modelo abierto. En el benchmark BIRD (test), MAC-SQL alcanza un 59.59\% de exactitud de ejecución, considerado state of the art en el momento de su publicación \cite{wang2025mac}.
 
 \subsubsection{ACT-SQL (In-Context Learning con Chain-of-Thought Automático)}
 
@@ -185,9 +185,9 @@ En contextos industriales —como los ERPs—, MCS-SQL resulta especialmente val
 
 Talaei et al. \cite{talaei2024chess} introducen CHESS, un enfoque diseñado específicamente para contextos con esquemas grandes y complejos, donde enviar la totalidad del esquema al LLM resulta costoso e ineficiente. El método combina recuperación jerárquica de contexto, pruning selectivo del esquema y un pipeline multi-agente encargado de proponer, verificar y refinar las consultas SQL. En lugar de exponer al modelo a todas las tablas y columnas disponibles, CHESS identifica primero las partes más relevantes del esquema y construye, a partir de ellas, una vista reducida pero informativa para la generación de la consulta.
 
-La principal fortaleza de CHESS es su capacidad para mejorar la eficiencia sin degradar el rendimiento: logra reducir de forma significativa el número de tokens procesados —hasta cinco veces menos— mientras se mantiene competitivo en benchmarks exigentes como BIRD \cite{talaei2024chess}. Esta combinación de selección contextual y cooperación entre agentes resulta especialmente pertinente para entornos ERP, donde los esquemas suelen abarcar cientos de tablas y atributos. En estos escenarios, CHESS ofrece una vía concreta para equilibrar el costo computacional con la necesidad de preservar suficiente cobertura semántica para responder preguntas empresariales complejas.
+La principal fortaleza de CHESS es su eficiencia sin degradar el rendimiento: en esquemas de escala industrial su Schema Selector reduce en cinco veces los tokens procesados (con una mejora de exactitud cercana a 2 puntos), y en BIRD (test) alcanza un 71,10\% con cerca de un 83\% menos de llamadas al LLM \cite{talaei2024chess}. Esta combinación de selección contextual y cooperación entre agentes resulta especialmente pertinente para entornos ERP, donde los esquemas suelen abarcar cientos de tablas y atributos. En estos escenarios, CHESS ofrece una vía concreta para equilibrar el costo computacional con la necesidad de preservar suficiente cobertura semántica para responder preguntas empresariales complejas.
 
-Los análisis comparativos de Shi et al. \cite{shi2025comprehensive} y Liu et al. \cite{liu2025survey} sitúan a modelos como DEA-SQL, DAIL-SQL, MAC-SQL, ACT-SQL, MCS-SQL y CHESS dentro de los llamados ``paradigmas estructurados'', caracterizados por organizar la generación de SQL en fases claras, apoyarse en contexto recuperado de forma controlada y, en muchos casos, distribuir el razonamiento entre varios agentes. Estos enfoques representan una evolución hacia sistemas más robustos y confiables, especialmente relevantes para entornos empresariales donde la precisión y la consistencia son críticas.
+Los análisis comparativos de Shi et al. \cite{shi2025comprehensive} y Liu et al. \cite{liu2025survey} sitúan a modelos como DEA-SQL, DAIL-SQL \cite{gao2024dail}, MAC-SQL, ACT-SQL, MCS-SQL y CHESS dentro de los llamados ``paradigmas estructurados'', caracterizados por organizar la generación de SQL en fases claras, apoyarse en contexto recuperado de forma controlada y, en muchos casos, distribuir el razonamiento entre varios agentes. Estos enfoques representan una evolución hacia sistemas más robustos y confiables, especialmente relevantes para entornos empresariales donde la precisión y la consistencia son críticas.
 
 
 \section{Arquitectura Propuesta}
@@ -215,7 +215,7 @@ Sobre esta entrada actúa un agente de intención basado en un LLM, cuyo objetiv
 	\item Mantener un diálogo coherente, pidiendo aclaraciones cuando la pregunta es ambigua o incompleta
 \end{itemize}
 
-Solo cuando la intención está clara y se trata de una consulta sobre datos del ERP, este agente ``enciende'' el modo Text-to-SQL y pasa la petición a la siguiente capa. Esta separación entre intención conversacional y generación de consultas es coherente con las recomendaciones de los surveys recientes y con marcos como MAC-SQL, donde no se expone la base de datos a cualquier entrada sin filtrado previo.
+Solo cuando la intención está clara y se trata de una consulta sobre datos del ERP, este agente ``enciende'' el modo Text-to-SQL y pasa la petición a la siguiente capa. Este \emph{gating} conversacional constituye una contribución diferencial de este trabajo: marcos multi-agente como MAC-SQL \cite{wang2025mac} filtran el \emph{esquema} (su Selector poda tablas y columnas irrelevantes) pero asumen que toda entrada es una consulta válida; aquí se filtra la \emph{intención} antes de exponer la base de datos.
 
 \subsection{Capa de Análisis y Planificación de la Consulta}
 
@@ -236,7 +236,7 @@ En esta arquitectura, cada pregunta se clasifica en tres niveles de complejidad:
 
 Hablamos de pregunta de complejidad media o alta cuando intervienen varias tablas con múltiples joins, aparecen condiciones anidadas o subconsultas, hay posibles ambigüedades (por ejemplo, qué ``total'' usar: el del encabezado o el del detalle) o se deben aplicar reglas de negocio y políticas de acceso específicas (como las de entornos multi-tenant).
 
-Esta clasificación, inspirada en los enfoques de descomposición y enrutamiento por tipo de problema \cite{xie2024dea, wang2025mac}, es la que define si la pregunta sigue un flujo directo de generación de SQL o un pipeline más elaborado con planificación y agentes especializados.
+Esta clasificación, inspirada en los enfoques de descomposición y enrutamiento por tipo de problema \cite{pourreza2023din, xie2024dea}, es la que define si la pregunta sigue un flujo directo de generación de SQL o un pipeline más elaborado con planificación y agentes especializados.
 
 \subsubsection{Recuperación de Contexto y Planificación (inspirado en DEA-SQL y DAIL-SQL)}
 
@@ -307,9 +307,9 @@ Todo ello se implementa sobre el ERP Fail Fast, cuya base de datos fue diseñada
 
 \subsection{Diseño metodológico}
 
-La presente investigación adopta un enfoque experimental cuantitativo, orientado a evaluar el impacto individual y combinado de distintos componentes arquitectónicos en la tarea de generación de consultas SQL a partir de lenguaje natural (Text-to-SQL) dentro de un sistema ERP real. El diseño experimental se fundamenta en un estudio controlado con análisis de ablación, técnica ampliamente utilizada para estimar la contribución de módulos específicos dentro de arquitecturas complejas basadas en modelos de lenguaje, particularmente en escenarios donde múltiples etapas de razonamiento y componentes interactúan de manera no trivial \cite{liu2025survey, wang2025mac}.
+La presente investigación adopta un enfoque experimental cuantitativo, orientado a evaluar el impacto individual y combinado de distintos componentes arquitectónicos en la tarea de generación de consultas SQL a partir de lenguaje natural (Text-to-SQL) dentro de un sistema ERP real. El diseño experimental se fundamenta en un estudio controlado con análisis de ablación, técnica ampliamente utilizada para estimar la contribución de módulos específicos dentro de arquitecturas complejas basadas en modelos de lenguaje, particularmente en escenarios donde múltiples etapas de razonamiento y componentes interactúan de manera no trivial \cite{wang2025mac}.
 
-Con el fin de facilitar la experimentación sistemática, la reproducibilidad y la orquestación controlada de configuraciones arquitectónicas, la implementación experimental se realizó utilizando n8n como plataforma de automatización y orquestación de flujos. Esta herramienta permitió definir de manera declarativa y parametrizable cada configuración experimental, habilitando o deshabilitando componentes arquitectónicos —como RAG, memoria, clasificación de intención y descomposición— sin modificar el código base del sistema. El uso de n8n resulta particularmente adecuado en este contexto, ya que posibilita la instrumentación precisa de pipelines de inferencia complejos, el registro automático de métricas y la repetición homogénea de experimentos bajo condiciones controladas.
+Con el fin de facilitar la experimentación sistemática, la reproducibilidad y la orquestación controlada de configuraciones arquitectónicas, la implementación experimental se realizó utilizando n8n como plataforma de automatización y orquestación de flujos, en línea con el uso de plataformas low-code para NL-to-SQL \cite{aparicio2023natural}. Esta herramienta permitió definir de manera declarativa y parametrizable cada configuración experimental, habilitando o deshabilitando componentes arquitectónicos —como RAG, memoria, clasificación de intención y descomposición— sin modificar el código base del sistema. El uso de n8n resulta particularmente adecuado en este contexto, ya que posibilita la instrumentación precisa de pipelines de inferencia complejos, el registro automático de métricas y la repetición homogénea de experimentos bajo condiciones controladas.
 
 Asimismo, la evaluación se llevó a cabo empleando modelos de lenguaje de la familia Gemini 2.5, específicamente Gemini 2.5 Flash, Gemini 2.5 Flash-Lite y Gemini 2.5 Pro, seleccionados con el objetivo de analizar el comportamiento del sistema bajo distintos perfiles de capacidad, latencia y costo computacional. Esta elección permite estudiar no solo el impacto arquitectónico, sino también la robustez del diseño propuesto frente a variaciones en la capacidad del modelo subyacente, aspecto crítico en entornos empresariales donde existen restricciones operativas y económicas. Todos los modelos fueron utilizados en modalidad de inferencia consistente, manteniendo constantes los prompts base y las estrategias de generación, con el fin de aislar los efectos atribuibles exclusivamente a la arquitectura.
 A diferencia de evaluaciones tradicionales centradas únicamente en comparar sistemas completos como "cajas negras", este trabajo evalúa configuraciones parciales de la arquitectura, habilitando o deshabilitando componentes de forma sistemática con el fin de aislar su efecto sobre métricas clave. Este enfoque permite responder no solo si la arquitectura mejora el desempeño, sino también por qué y qué componentes aportan mayor valor en escenarios empresariales reales.
@@ -324,7 +324,7 @@ Para garantizar una evaluación precisa y reproducible, se construyó un conjunt
 	\item La verificación de que el resultado retornado corresponde fielmente a la intención semántica de la pregunta.
 \end{itemize}
 
-La construcción manual de estas consultas minimiza ambigüedades propias de conjuntos sintéticos o genéricos y asegura que la evaluación refleje casos reales de uso empresarial. En Text-to-SQL, la validación por ejecución es una práctica consolidada, dado que la corrección funcional depende de la equivalencia semántica del resultado más que de la coincidencia textual del SQL \cite{yu2018spider, scholak2021picard}.
+La construcción manual de estas consultas minimiza ambigüedades propias de conjuntos sintéticos o genéricos y asegura que la evaluación refleje casos reales de uso empresarial. En Text-to-SQL, la validación por ejecución es una práctica consolidada, dado que la corrección funcional depende de la equivalencia semántica del resultado más que de la coincidencia textual del SQL \cite{scholak2021picard, hong2024bird}.
 
 \subsection{Componentes arquitectónicos evaluados}
 
@@ -394,7 +394,7 @@ Esta métrica permite identificar errores parciales que no siempre se reflejan e
 
 \subsubsection{Tiempo de respuesta (Time-to-Answer, TTA)}
 
-Corresponde al tiempo total transcurrido desde que el usuario formula la consulta en lenguaje natural hasta que el sistema retorna el resultado final. Esta métrica es crítica en sistemas ERP, donde la latencia impacta directamente la experiencia del usuario y la viabilidad operativa de la solución \cite{shi2025comprehensive, liu2025survey}.
+Corresponde al tiempo total transcurrido desde que el usuario formula la consulta en lenguaje natural hasta que el sistema retorna el resultado final. La literatura reporta latencias muy dispares entre metodologías y destaca los escenarios interactivos de baja latencia \cite{liu2025survey}; su proyección a sistemas ERP, donde la latencia condiciona la experiencia del usuario y la viabilidad operativa, es un aporte de este trabajo.
 
 \subsection{Procedimiento experimental}
 
@@ -436,7 +436,7 @@ Para ello, se emplean métricas consolidadas en la literatura de Text-to-SQL. En
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\linewidth]{Figura 5.1 - SQL.png}
+	\includegraphics[width=0.9\linewidth]{Figura 5.1 - SQL.png}
 	\caption{Comparación entre Component Matching y Execution Accuracy para distintas configuraciones arquitectónicas. Esta gráfica permite visualizar que un alto Component Matching no garantiza, por sí solo, una ejecución correcta del SQL.}
 	\label{fig:component_matching_vs_execution}
 \end{figure}
@@ -475,7 +475,7 @@ Este comportamiento indica que la recuperación aumentada por contexto no solo m
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\linewidth]{Figura 5.3 - con autocorreccion.png}
+	\includegraphics[width=0.9\linewidth]{Figura 5.3 - con autocorreccion.png}
 	\caption{Robustez del sistema considerando mecanismos de autocorrección (SIN ERRORES). Las configuraciones que incorporan RAG alcanzan valores cercanos al 100\%, evidenciando alta robustez frente a errores sintácticos y referencias incorrectas mediante corrección iterativa.}
 	\label{fig:sin_errores}
 \end{figure}
@@ -694,7 +694,7 @@ Para esta evaluación, el CRR se midió sobre el conjunto conversacional multi-t
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.86\linewidth]{Figura - Evaluacion de CRR.png}
+	\includegraphics[width=0.8\linewidth]{Figura - Evaluacion de CRR.png}
 	\caption{Context Retention Rate (CRR) sobre los 313 turnos de seguimiento dependientes de memoria del conjunto conversacional, desagregado por tipo de referencia contextual. El sistema reutilizó correctamente el contexto en el 97,4\% de los casos (305/313); las únicas fallas se concentran en seguimientos de tipo total/conteo.}
 	\label{fig:crr_evaluation}
 	\tablefont
@@ -722,7 +722,7 @@ No obstante, retener el contexto y \emph{ejecutar la consulta exacta} son cosas 
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.68\linewidth]{Figura 5.11 - Contexto multiturno.png}
+	\includegraphics[width=0.63\linewidth]{Figura 5.11 - Contexto multiturno.png}
 	\caption{Calidad del SQL en turnos iniciales frente a seguimientos que dependen de la memoria conversacional. La caída de Execution Accuracy (88,0\% $\rightarrow$ 62,9\%) refleja la mayor dificultad de reconstruir la consulta desde el contexto, capacidad habilitada por el módulo de Memoria.}
 	\label{fig:contexto_mt}
 \end{figure}
@@ -758,7 +758,7 @@ Con el fin de obtener una medida estadísticamente representativa —y no limita
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.82\linewidth]{Figura 5.10 - Gating multiturno.png}
+	\includegraphics[width=0.76\linewidth]{Figura 5.10 - Gating multiturno.png}
 	\caption{Gating de intención en el conjunto conversacional (100 conversaciones, 759 turnos): decisión real del sistema frente a la acción esperada, por tipo de turno. El sistema ejecuta SQL cuando corresponde (98,2\% en turnos ejecutables, 100\% en conversacionales), y el margen de error se concentra en los turnos ambiguos.}
 	\label{fig:gating_mt}
 \end{figure}
@@ -793,7 +793,7 @@ Si bien los resultados obtenidos son alentadores, este trabajo abre múltiples l
 
 En segundo lugar, una extensión natural del sistema consiste en avanzar hacia interacciones multimodales, donde las consultas no se originen únicamente a partir de texto, sino también desde otros tipos de entrada como imágenes, tablas, documentos o interfaces visuales. Por ejemplo, permitir que un usuario seleccione visualmente un elemento de un reporte o una imagen de inventario y formule una pregunta contextualizada podría ampliar significativamente las capacidades del sistema más allá del paradigma Text-to-SQL tradicional.
 
-Adicionalmente, futuras investigaciones podrían explorar la integración de GraphRAG u otros mecanismos de recuperación estructurada que modelen explícitamente relaciones complejas entre entidades del ERP, con el fin de mejorar el razonamiento en consultas que requieran múltiples saltos lógicos o dependencias implícitas entre tablas.
+Adicionalmente, futuras investigaciones podrían explorar la integración de GraphRAG \cite{han2025graphrag} u otros mecanismos de recuperación estructurada que modelen explícitamente relaciones complejas entre entidades del ERP, con el fin de mejorar el razonamiento en consultas que requieran múltiples saltos lógicos o dependencias implícitas entre tablas.
 
 Otra línea relevante de trabajo futuro consiste en evaluar el sistema en entornos productivos de mayor escala, considerando esquemas con cientos o miles de tablas, múltiples compañías (multi-tenant) y reglas de negocio más complejas. Esto permitiría analizar aspectos como escalabilidad, costos computacionales y comportamiento bajo cargas reales de usuarios.
 
@@ -827,7 +827,7 @@ Su inclusión permite evaluar la capacidad del sistema para manejar correctament
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\linewidth]{Tabla 1.png}
+	\includegraphics[width=0.88\linewidth]{Tabla 1.png}
 	\caption{Consultas de complejidad baja utilizadas en la evaluación}
 	\label{fig:anexo_baja}
 \end{figure}
@@ -840,7 +840,7 @@ Este nivel de complejidad es representativo de reportes operativos y financieros
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\linewidth]{Tabla 2.png}
+	\includegraphics[width=0.88\linewidth]{Tabla 2.png}
 	\caption{Consultas de complejidad media utilizadas en la evaluación}
 	\label{fig:anexo_media}
 \end{figure}
@@ -851,7 +851,7 @@ Las consultas de complejidad alta requieren combinaciones entre múltiples tabla
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\linewidth]{Tabla 3.png}
+	\includegraphics[width=0.88\linewidth]{Tabla 3.png}
 	\caption{Consultas de complejidad alta utilizadas en la evaluación}
 	\label{fig:anexo_alta}
 \end{figure}
@@ -880,13 +880,13 @@ Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones fre
 	J. Li et al., ``Can LLM already serve as a database interface? A BIg bench for large-scale database grounded text-to-SQLs,'' in \textit{Proc. NeurIPS Datasets and Benchmarks Track}, New Orleans, LA, USA, 2023.
 
 	\bibitem{shi2025comprehensive}
-	L. Shi, Z. Tang, N. Zhang, X. Zhang, and Z. Yang, ``A survey on employing large language models for text-to-SQL tasks,'' \textit{ACM Comput. Surv.}, vol. 58, no. 2, pp. 1--37, 2025, doi: 10.1145/3737873.
+	L. Shi et al., ``A survey on employing large language models for text-to-SQL tasks,'' \textit{ACM Comput. Surv.}, vol. 58, no. 2, pp. 1--37, 2025, doi: 10.1145/3737873.
 
 	\bibitem{liu2025survey}
 	X. Liu et al., ``A survey of text-to-SQL in the era of LLMs: Where are we, and where are we going?,'' \textit{IEEE Trans. Knowl. Data Eng.}, vol. 37, no. 10, pp. 5735--5754, 2025, doi: 10.1109/TKDE.2025.3592032.
 
 	\bibitem{hong2025advances}
-	Z. Hong et al., ``Next-generation database interfaces: A survey of LLM-based text-to-SQL,'' arXiv preprint arXiv:2406.08426, 2025.
+	Z. Hong et al., ``Next-generation database interfaces: A survey of LLM-based text-to-SQL,'' \textit{IEEE Trans. Knowl. Data Eng.}, vol. 37, no. 12, pp. 7328--7345, Dec. 2025, doi: 10.1109/TKDE.2025.3609486.
 
 	\bibitem{li2014nalir}
 	F. Li and H. V. Jagadish, ``Constructing an interactive natural language interface for relational databases,'' \textit{Proc. VLDB Endow.}, vol. 8, no. 1, pp. 73--84, Sep. 2014.
@@ -895,10 +895,10 @@ Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones fre
 	Y. Yaghmazadeh et al., ``SQLizer: Query synthesis from natural language,'' \textit{Proc. ACM Program. Lang.}, vol. 1, no. OOPSLA, pp. 63:1--63:26, Oct. 2017.
 
 	\bibitem{dong2016language}
-	L. Dong and M. Lapata, ``Language to logical form with neural attention,'' in \textit{Proc. ACL}, Berlin, Germany, 2016, pp. 33--43.
+	L. Dong and M. Lapata, ``Language to logical form with neural attention,'' in \textit{Proc. ACL (Volume 1: Long Papers)}, Berlin, Germany, 2016, pp. 33--43.
 
 	\bibitem{li2023resdsql}
-	H. Li, J. Zhang, C. Li, and H. Chen, ``RESDSQL: Decoupling schema linking and skeleton parsing for text-to-SQL,'' in \textit{Proc. AAAI}, Washington, DC, USA, 2023, pp. 13067--13075.
+	H. Li et al., ``RESDSQL: Decoupling schema linking and skeleton parsing for text-to-SQL,'' in \textit{Proc. AAAI}, vol. 37, no. 11, Washington, DC, USA, 2023, pp. 13067--13075, doi: 10.1609/aaai.v37i11.26535.
 
 	\bibitem{huang2024survey}
 	Y. Huang et al., ``Exploring the landscape of text-to-SQL with large language models: Progresses, challenges and opportunities,'' arXiv preprint arXiv:2505.23838, 2025.
@@ -907,10 +907,13 @@ Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones fre
 	Y. Xie et al., ``Decomposition for enhancing attention: Improving LLM-based text-to-SQL through workflow paradigm (DEA-SQL),'' in \textit{Findings of ACL}, Bangkok, Thailand, 2024, pp. 10796--10816.
 
 	\bibitem{li2024comprehensive}
-	B. Zhang et al., ``Benchmarking the text-to-SQL capability of large language models: A comprehensive evaluation,'' arXiv preprint arXiv:2403.02951, 2024.
+	B. Zhang et al., ``SQLBench: A comprehensive evaluation for text-to-SQL capabilities of large language models,'' arXiv preprint arXiv:2403.02951, 2024.
 
 	\bibitem{wang2025mac}
 	B. Wang et al., ``MAC-SQL: A multi-agent collaborative framework for text-to-SQL,'' in \textit{Proc. COLING}, Abu Dhabi, UAE, 2025, pp. 540--557.
+
+	\bibitem{li2024codes}
+	H. Li et al., ``CodeS: Towards building open-source language models for text-to-SQL,'' \textit{Proc. ACM Manag. Data}, vol. 2, no. 3, art. 127, 2024, doi: 10.1145/3654930.
 
 	\bibitem{han2025graphrag}
 	H. Han et al., ``Retrieval-augmented generation with graphs (GraphRAG),'' arXiv preprint arXiv:2501.00309, 2025.
@@ -921,26 +924,29 @@ Las consultas incluidas en este anexo fueron diseñadas para cubrir patrones fre
 	\bibitem{dou2022towards}
 	L. Dou et al., ``Towards knowledge-intensive text-to-SQL semantic parsing with formulaic knowledge,'' in \textit{Proc. EMNLP}, Abu Dhabi, UAE, 2022, pp. 5240--5253.
 
+	\bibitem{hong2024knowledge}
+	Z. Hong et al., ``Knowledge-to-SQL: Enhancing SQL generation with data expert LLM,'' in \textit{Findings of ACL}, Bangkok, Thailand, 2024, pp. 10997--11008, doi: 10.18653/v1/2024.findings-acl.653.
+
 	\bibitem{gao2024dail}
 	D. Gao et al., ``Text-to-SQL empowered by large language models: A benchmark evaluation (DAIL-SQL),'' \textit{Proc. VLDB Endow.}, vol. 17, no. 5, pp. 1132--1145, 2024, doi: 10.14778/3641204.3641221.
 
 	\bibitem{lee2024mcs}
-	D. Lee, C. Park, J. Kim, and H. Park, ``MCS-SQL: Leveraging multiple prompts and multiple-choice selection for text-to-SQL generation,'' in \textit{Proc. COLING}, Abu Dhabi, UAE, 2025, pp. 337--353.
+	D. Lee et al., ``MCS-SQL: Leveraging multiple prompts and multiple-choice selection for text-to-SQL generation,'' in \textit{Proc. COLING}, Abu Dhabi, UAE, 2025, pp. 337--353.
 
 	\bibitem{talaei2024chess}
-	S. Talaei, M. Pourreza, Y.-C. Chang, A. Mirhoseini, and A. Saberi, ``CHESS: Contextual harnessing for efficient SQL synthesis,'' arXiv preprint arXiv:2405.16755, 2024.
+	S. Talaei et al., ``CHESS: Contextual harnessing for efficient SQL synthesis,'' arXiv preprint arXiv:2405.16755, 2024.
 
 	\bibitem{zhang2023act}
 	H. Zhang et al., ``ACT-SQL: In-context learning for text-to-SQL with automatically-generated chain-of-thought,'' in \textit{Findings of EMNLP}, Singapore, 2023, pp. 3501--3532.
 
 	\bibitem{rai2023improving}
-	D. Rai et al., ``Improving generalization in language model-based text-to-SQL semantic parsing: Two simple semantic boundary-based techniques,'' in \textit{Proc. ACL}, Toronto, Canada, 2023, pp. 150--160.
+	D. Rai et al., ``Improving generalization in language model-based text-to-SQL semantic parsing: Two simple semantic boundary-based techniques,'' in \textit{Proc. ACL (Volume 2: Short Papers)}, Toronto, Canada, 2023, pp. 150--160.
 
 	\bibitem{singh2025survey}
-	A. Singh et al., ``A survey of large language model-based generative AI for text-to-SQL: Benchmarks, applications, use cases, and challenges,'' arXiv preprint arXiv:2412.05208, 2025.
+	A. Singh et al., ``A survey of large language model-based generative AI for text-to-SQL: Benchmarks, applications, use cases, and challenges,'' arXiv preprint arXiv:2412.05208, 2024.
 
 	\bibitem{zhu2024large}
-	X. Zhu, Q. Li, L. Cui, and Y. Liu, ``Large language model enhanced text-to-SQL generation: A survey,'' arXiv preprint arXiv:2410.06011, 2024.
+	X. Zhu et al., ``Large language model enhanced text-to-SQL generation: A survey,'' arXiv preprint arXiv:2410.06011, 2024.
 
 \end{thebibliography}
 

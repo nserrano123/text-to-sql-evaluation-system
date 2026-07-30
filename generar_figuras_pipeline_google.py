@@ -164,15 +164,15 @@ def fig_51(D):
                "[Rag],[Din],[Dea]",
                "[Rag]"]
     colors = [C_BLUE, C_TEAL, C_ORANGE, C_GREEN]
-    fig = plt.figure(figsize=(8.4, 8.6))
-    ax = fig.add_axes([0.10, 0.40, 0.80, 0.55], polar=True)
+    fig = plt.figure(figsize=(8.4, 7.5))
+    ax = fig.add_axes([0.12, 0.37, 0.76, 0.50], polar=True)
     series = [(bracket_label(c), [D[c][k] for k in keys]) for c in configs]
     radar(ax, axes, series, colors)
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.28), ncol=2,
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.24), ncol=2,
               frameon=False, fontsize=9.2)
     rows = [[bracket_label(c)] + [f"{D[c][k]:.2f}\\%".replace("\\", "")
                                   for k in keys] for c in configs]
-    add_table(fig, [0.02, 0.03, 0.96, 0.30],
+    add_table(fig, [0.02, 0.03, 0.96, 0.26],
               ["Parámetros", "SELECT", "WHERE", "GROUP BY", "KEYWORDS"], rows,
               col_widths=[0.42, 0.145, 0.145, 0.145, 0.145])
     fig.savefig(os.path.join(BASE, "Figura 5.1 - SQL.png"))
@@ -191,15 +191,15 @@ def fig_53(D):
                "[Rag],[Dea]",
                "[Rag],[Memoria]"]
     colors = [C_TEAL, C_BLUE, C_ORANGE, C_GREEN]
-    fig = plt.figure(figsize=(8.4, 8.6))
-    ax = fig.add_axes([0.12, 0.40, 0.76, 0.55], polar=True)
+    fig = plt.figure(figsize=(8.4, 7.5))
+    ax = fig.add_axes([0.14, 0.37, 0.72, 0.50], polar=True)
     series = [(bracket_label(c), [D[c][k] for k in keys]) for c in configs]
     radar(ax, axes, series, colors)
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.26), ncol=2,
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.24), ncol=2,
               frameon=False, fontsize=9.2)
     rows = [[bracket_label(c)] + [f"{D[c][k]:.2f}\\%".replace("\\", "")
                                   for k in keys] for c in configs]
-    add_table(fig, [0.04, 0.03, 0.92, 0.28],
+    add_table(fig, [0.04, 0.03, 0.92, 0.25],
               ["Parámetros", "EXECUTION", "SIN ERRORES", "KEYWORDS"], rows,
               col_widths=[0.40, 0.20, 0.20, 0.20])
     fig.savefig(os.path.join(BASE, "Figura 5.3 - con autocorreccion.png"))
